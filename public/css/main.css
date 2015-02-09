@@ -1,0 +1,107 @@
+html,
+body {
+  height: 100%; }
+
+body {
+  display: flex;
+  flex-direction: column; }
+  body > header,
+  body > footer {
+    align-items: center;
+    display: flex;
+    flex: none;
+    /* 2 */
+    justify-content: center;
+    padding: 1rem; }
+  body .master {
+    display: flex;
+    flex: 1 0 auto;
+    /* 2 */ }
+    body .master > nav {
+      /* put the nav on the left */
+      order: -1; }
+    body .master > aside,
+    body .master > nav {
+      align-items: center;
+      display: flex;
+      flex: 1;
+      justify-content: center; }
+    body .master > main {
+      flex: 1; }
+      body .master > main > article {
+        flex: 1; }
+    @media (max-width: 1023px) {
+      body .master {
+        flex-direction: column; }
+        body .master > aside,
+        body .master > nav {
+          flex-direction: row; }
+          body .master > aside button,
+          body .master > nav button {
+            margin: 0 1rem; } }
+    @media (min-width: 1024px) {
+      body .master {
+        flex-direction: row; }
+        body .master > main {
+          display: flex; }
+          body .master > main > article {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap; }
+            body .master > main > article > header,
+            body .master > main > article > footer {
+              width: 100%; }
+            body .master > main > article > .module {
+              width: 50%; }
+            body .master > main > article > header,
+            body .master > main > article > footer,
+            body .master > main > article .module {
+              margin: 0;
+              padding: 1rem; }
+        body .master > aside,
+        body .master > nav {
+          flex: none;
+          flex-direction: column;
+          overflow-x: hidden;
+          transition-duration: 0.5s;
+          transition-property: width;
+          width: 0; }
+          body .master > aside > *,
+          body .master > nav > * {
+            opacity: 0;
+            transition-duration: 0.25s;
+            transition-property: opacity; }
+          body .master > aside.open,
+          body .master > nav.open {
+            width: 20rem; }
+            body .master > aside.open > *,
+            body .master > nav.open > * {
+              opacity: 1;
+              transition-duration: 1.5s; }
+          body .master > aside button,
+          body .master > nav button {
+            margin: 1rem 0; } }
+
+* {
+  box-sizing: border-box; }
+
+body > header,
+body > footer {
+  background-color: #e20dff; }
+body .master > aside,
+body .master > nav {
+  background-color: #920ce8; }
+
+button {
+  background: transparent;
+  border: none; }
+
+figure img {
+  height: 100%;
+  max-width: 100%;
+  width: auto; }
+
+button {
+  text-transform: capitalize; }
+
+/*# sourceMappingURL=main.css.map */

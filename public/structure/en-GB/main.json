@@ -1,0 +1,144 @@
+{
+  "navigation_primary": [
+    {
+      "title": "Home",
+      "href": "/"
+    },
+    {
+      "title": "Recipes",
+      "href": "/recipes"
+    },
+    {
+      "title": "Assistant",
+      "href": "/assistant"
+    },
+    {
+      "title": "Planner",
+      "href": "/planner"
+    }
+  ],
+  "navigation_secondary": [
+    {
+      "title": "My Account",
+      "href": "/account"
+    },
+    {
+      "title": "Home",
+      "href": "/"
+    }
+  ],
+  "navigation_footer": [
+    {
+      "title": "About Us",
+      "href": "/about-us"
+    },
+    {
+      "title": "Privacy Policy",
+      "href": "/privacy-policy"
+    },
+    {
+      "title": "Terms of Service",
+      "href": "/terms-of-service"
+    }
+  ],
+  "promos": [
+    {
+      "title": "promo-1",
+      "href": "/summer-promo",
+      "summary": "Lorem ipsum"
+    }
+  ],
+  "widgets": [
+    {
+      "title": "widget-1",
+      "href": "/calendar",
+      "summary": "Lorem ipsum"
+    }
+  ],
+  "pages": {
+    "home": {
+      "title": "Home",
+      "url": "/",
+      "summary":  "Home page",
+      "content": [
+        {
+          "name": "h1",
+          "text": "Cook AdLib",
+          "attributes": [
+            {
+              "id": "page-title"
+            },
+            {
+              "title": "Lorem ipsum"
+            }
+          ]
+        },
+        {
+          "name": "a",
+          "attributes": [
+            {
+              "href": "/my-sample-link-1"
+            }
+          ],
+          "childNodes": [
+            {
+              "name": "img",
+              "attributes": [
+                {
+                  "src": "/images/black-dress.png"
+                },
+                {
+                  "title": "My image 1"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "figure",
+          "childNodes": [
+            {
+              "name": "img",
+              "attributes": [
+                {
+                  "src": "/images/black-dress.png"
+                },
+                {
+                  "title": "My image 1"
+                }
+              ]
+            },
+            {
+              "name": "figcaption",
+              "text": "Figure caption text"
+            }
+          ]
+        },
+        {
+          "template": "product",
+          "properties": {
+            "name": "Black Dress",
+            "url": "/products/spring-summer-2015/black-dress",
+            "releaseDate": "2012-04-23T18:25:43.511Z"
+          },
+          "childNodes": [
+            {
+              "name": "img",
+              "attributes": [
+                {
+                  "src": "/images/black-dress.png"
+                },
+                {
+                  "title": "My image 1"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "promos": [
+        "promo-1"
+      ]
+    }
+  }
+}

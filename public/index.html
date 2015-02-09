@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+
+  <head>
+
+    <meta charset="utf-8" />
+
+    <title>Recipe</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+
+    <link href="//cdnjs.cloudflare.com/ajax/libs/normalize/3.0.2/normalize.min.css" rel="stylesheet" />
+
+    <link href="./css/main.css" rel="stylesheet" />
+
+    <link rel="icon" href="favicon.ico" />
+
+    <script src="bower_components/webcomponentsjs/webcomponents.min.js" /></script>
+
+    <link rel="import" href="bower_components/core-ajax/core-ajax.html" />
+    <link rel="import" href="bower_components/paper-button/paper-button.html" />
+
+  </head>
+
+  <body>
+
+    <header>
+      <h1>H1</h1>
+    </header>
+
+    <div class="master">
+
+      <main role="main">
+
+        <article>
+
+          <header>
+            <h1>H1</h1>
+          </header>
+
+          <figure class="module">
+            <img src="./images/Donald-Duck.png" alt="The Pulpit Rock" />
+            <figcaption>figcaption</figcaption>
+          </figure>
+
+          <section class="module">
+            <h2>H2</h2>
+          </section>
+
+          <section class="module">
+            <h2>H2</h2>
+          </section>
+
+          <section class="module">
+            <h2>H2</h2>
+            <!-- http://www.w3.org/html/wg/drafts/html/master/infrastructure.html#parse-a-duration-string -->
+            <time>PT4H18M3S</time>
+            <time>4h 18m 3s</time>
+          </section>
+
+          <!--
+          <details>
+            <summary>Summary</summary>
+          </details>
+
+          <output>
+          </output>
+
+          <progress>
+          </progress>
+          -->
+
+          <aside>
+            ASIDE
+          </aside>
+
+          <footer>
+            FOOTER
+          </footer>
+
+        </article>
+
+      </main>
+
+      <nav id="navigation-1">
+        <button data-target="dialog-1">Show dialog</button>
+        <button data-target="notification-1">Show notification</button>
+        <button data-target="speech-1">Play speech</button>
+      </nav>
+
+      <aside id="aside-1">
+      </aside>
+
+    </div>
+
+    <footer>
+      <button data-target="navigation-1">Show navigation</button>
+      <button data-target="aside-1">Show aside</button>
+    </footer>
+
+    <div id="dialogs">
+
+      <dialog id="dialog-1">
+        <p>Hi, I'm a dialog!</p>
+        <button data-action="close">Okay</button>
+      </dialog>
+
+    </div>
+
+    <template class="product">
+
+      <style>
+        /*
+        :host {
+          background: #f8f8f8;
+          padding: 10px;
+          transition: all 400ms ease-in-out;
+          box-sizing: border-box;
+          border-radius: 5px;
+          width: 450px;
+          max-width: 100%;
+        }
+
+        :host(:hover) {
+          background: #ccc;
+        }
+        */
+        h1 {
+          color: red;
+        }
+      </style>
+
+      <content></content>
+
+      <article itemscope itemtype="http://schema.org/Product">
+
+        <a href="" title="" itemprop="url"></a>
+
+        <img src="" alt="" itemprop="image" />
+
+        <h1 itemprop="name"></h1>
+
+        <div class="description" itemprop="description"></div>
+
+        <div class="rating" itemscope itemtype="http://schema.org/AggregateRating">
+          <span>Rating: <span itemprop="ratingValue"></span> out of <span itemprop="bestRating"></span> by <span itemprop="reviewCount"></span> customers</span>
+        </div>
+
+        <div class="offer" itemscope itemtype="http://schema.org/Offer">
+          <span class="price" itemprop="price"></span>
+          <span class="availability" itemprop="availability"></span>
+        </div>
+
+        <time itemprop="releaseDate"></time>
+
+        <button class="action-add-to-cart"></button>
+
+        <ol class="review_list">
+          <template>
+            <li>
+              <article itemscoop itemtype="http://schema.org/Review">
+                <h1 itemprop="name"></h1>
+                <span>Posted by: <cite itemprop="author"></cite> at <time datetime="" pubdate itemprop="datePublished"></time></span>
+                <div class="review_content" itemprop="description"></div><!--/end .review_content-->
+              </article>
+            </li>
+          </template>
+        </ol>
+
+      </article>
+
+    </template>
+
+    <script src="bower_components/jquery/dist/jquery.js"></script>
+    <script src="bower_components/i18next/i18next.js"></script>
+    <script src="bower_components/later/later.js"></script>
+    <script src="bower_components/schedule/schedule.js"></script>
+
+    <core-ajax url="//example.com/json" handleAs="json"></core-ajax>
+
+    <script src="js/main.js"></script>
+    <script src="js/components/dialog.js"></script>
+    <script src="js/components/navigation.js"></script>
+    <script src="js/components/aside.js"></script>
+
+  </body>
+
+</html>
