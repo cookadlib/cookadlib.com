@@ -87,10 +87,10 @@ body {
 
 body > header,
 body > footer {
-  background-color: #e20dff; }
+  background-color: #0d3eff; }
 body .master > aside,
 body .master > nav {
-  background-color: #920ce8; }
+  background-color: #1a0ce8; }
 
 button {
   background: transparent;

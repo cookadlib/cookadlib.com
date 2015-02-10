@@ -1,42 +1,51 @@
 {
   "navigation_primary": [
     {
+      "name": "a",
       "title": "Home",
       "href": "/"
     },
     {
+      "name": "a",
       "title": "Recipes",
       "href": "/recipes"
     },
     {
+      "name": "a",
       "title": "Assistant",
       "href": "/assistant"
     },
     {
+      "name": "a",
       "title": "Planner",
       "href": "/planner"
     }
   ],
   "navigation_secondary": [
     {
+      "name": "a",
       "title": "My Account",
       "href": "/account"
     },
     {
+      "name": "a",
       "title": "Home",
       "href": "/"
     }
   ],
   "navigation_footer": [
     {
+      "name": "a",
       "title": "About Us",
       "href": "/about-us"
     },
     {
+      "name": "a",
       "title": "Privacy Policy",
       "href": "/privacy-policy"
     },
     {
+      "name": "a",
       "title": "Terms of Service",
       "href": "/terms-of-service"
     }

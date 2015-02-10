@@ -1,15 +1,6 @@
 // @import 'CSS:normalize.css/normalize';
-
-$color-1: rgb(226, 13, 255);
-$color-2: rgb(146, 12, 232);
-$color-3: rgb(86, 0, 255);
-$color-4: rgb(26, 12, 232);
-$color-5: rgb(13, 62, 255);
-
-
-$frame-width: 5rem;
-$frame-height: 5rem;
-
+@import './variables/colors';
+@import './variables/layout';
 @import './components/holy-grail';
 
 * {
@@ -20,14 +11,14 @@ body {
 
   > header,
   > footer {
-    background-color: rgba($color-1, 1);
+    background-color: rgba($color-5, 1);
   }
 
   .master {
 
     > aside,
     > nav {
-      background-color: rgba($color-2, 1);
+      background-color: rgba($color-4, 1);
     }
 
   }

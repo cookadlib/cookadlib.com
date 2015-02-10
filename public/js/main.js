@@ -2,9 +2,20 @@
 
 'use strict';
 
-var db;
+var data;
 var databaseName = 'structure';
+var db;
 var language = window.navigator.language;
+var stores = [
+  'navigation_primary',
+  'navigation_secondary',
+  'navigation_footer',
+  'promos',
+  'widgets',
+  'pages'
+];
+var structureData;
+var structureDataRequest;
 var utterance = new SpeechSynthesisUtterance();
 var version = 1;
 
@@ -16,7 +27,7 @@ var version = 1;
 utterance.lang = language;
 utterance.rate = 0.1;
 
-function appendContent() {
+function render() {
   var number = 3500;
   var date = new Date(Date.UTC(2012, 11, 20, 3, 0, 0));
   var price = new Intl.NumberFormat(language).format(number);
@@ -41,10 +52,13 @@ function appendContent() {
   // host.appendChild(clone);
 }
 
-function processStructure() {
+function renderTemplatesForStore(index, key) {
   // Open our object store and then get a cursor list of all the different data items in the IDB to iterate through
-  var transaction = db.transaction([databaseName], 'readwrite');
-  var objectStore = transaction.objectStore(databaseName);
+
+  console.log(index, key);
+
+  var transaction = db.transaction([key], 'readwrite');
+  var objectStore = transaction.objectStore(key);
 
   objectStore.openCursor().onsuccess = function(event) {
     var cursor = event.target.result;
@@ -54,11 +68,10 @@ function processStructure() {
       console.log('cursor', cursor);
     }
   };
-
 }
 
-function router() {
-
+function renderTemplates() {
+  $.each(stores, renderTemplatesForStore);
 }
 
 function deleteDatabase() {
@@ -89,8 +102,7 @@ function openDatabase(stores) {
   var request = window.indexedDB.open(databaseName, version);
 
   request.onblocked = function(event) {
-    // If some other tab is loaded with the database, then it needs to be closed
-    // before we can proceed.
+    // If some other tab is loaded with the database, then it needs to be closed before we can proceed.
     console.log('Please close all other tabs with this site open!');
   };
 
@@ -107,6 +119,14 @@ function openDatabase(stores) {
       db.close();
     };
 
+    if (structureDataRequest) {
+      structureDataRequest.done(populateStores).done(function(data) {
+        renderTemplates();
+      });
+    } else {
+      renderTemplates();
+    }
+
     defer.resolve();
   };
 
@@ -122,82 +142,98 @@ function openDatabase(stores) {
 
     event.target.transaction.onerror = window.indexedDB.onerror;
 
-    console.log('db.objectStoreNames', db.objectStoreNames);
+    // console.log('stores', stores);
+    setupStores(stores);
 
-    $.each(stores, function(key, value) {
-      if (db.objectStoreNames.contains(key)) {
-        console.log('deleting store', key);
-        db.deleteObjectStore(key);
-      }
+    console.log('setupStores 1');
 
-      var objectStore = db.createObjectStore(key, {
-        keyPath: 'title'
-        // autoIncrement: true
-      });
-
-      objectStore.createIndex('href', 'href', {
-        unique: true
-      });
-
-      objectStore.createIndex('title', 'title', {
-        unique: false
-      });
-    });
-
-    // db.close();
-
-    console.log('Object store created.');
-    defer.resolve();
+    structureDataRequest = $.getJSON('structure/' + language + '/main.json');
   };
 
   return defer;
 }
 
-function saveItems(store, items) {
-  var transaction = db.transaction([store], 'readwrite');
+function setupStores() {
+  console.log('setupStores');
+
+  return $.when.apply($, $.map(stores, function(key, index) {
+    console.log('setupStores', key, index);
+    return setupStore(index, key);
+  })).promise();
+
+}
+
+function setupStore(index, key) {
+  console.log('setupStore', index, key);
+
+  var defer = $.Deferred();
+
+  if (db.objectStoreNames.contains(key)) {
+    console.log('Deleting existing store', key);
+    db.deleteObjectStore(key);
+  }
+
+  var createObjectStore = db.createObjectStore(key, {
+    keyPath: 'title'
+  });
+
+  createObjectStore.createIndex('name', 'name', {
+    unique: false
+  });
+
+  createObjectStore.createIndex('href', 'href', {
+    unique: true
+  });
+
+  createObjectStore.createIndex('title', 'title', {
+    unique: false
+  });
+
+  defer.resolve('Object store created for ', key);
+  // console.log('Object store created for ', key);
+}
+
+function populateStores(stores) {
+  console.log('populateStores');
+  $.each(stores, populateStore);
+}
+
+function populateStore(key, values) {
+  console.log('populateStore, key, values', key, values);
+
+  var transaction = db.transaction([key], 'readwrite');
 
   transaction.oncomplete = function(event) {
-    // console.log('complete', event);
+    console.log('complete', event);
   };
 
   transaction.onerror = function(event) {
     console.log('error', event);
   };
 
-  var objectStore = transaction.objectStore(store);
+  var objectStore = transaction.objectStore(key);
 
-  $.each(items, function(index, value) {
+  $.each(values, function(index, value) {
     var objectStoreRequest = objectStore.add(value);
     objectStoreRequest.onsuccess = function(event) {
       console.log('success', event);
     };
   });
+
 }
-
-function speech() {
-  var speechPlayButtons = 'button[data-target^="speech"]';
-
-  $('body').on('click', speechPlayButtons, function(event) {
-    utterance.text = $.t('greeting');
-    speechSynthesis.speak(utterance);
-  });
-}
-
-function loadData() {
-  var structure = $.getJSON('structure/' + language + '/main.json');
-};
-
 
 (function() {
-  //check if local storage and IndexedDB have all the necessary data
+  deleteDatabase();
 
-  if (hasData) {
-    // data = load from local storage
-    loadData();
-  } else {
-    // data = load from remote
-    saveData();
-  }
+  openDatabase(stores)
+  .done(function() {
+    console.log('Loaded data from IndexedDB');
+
+    render();
+  })
+  .fail(function() {
+    console.log('Could not load data from IndexedDB');
+  });
 
   var translate = i18n.init({
     debug: true,
@@ -221,42 +257,5 @@ function loadData() {
     },
     useLocalStorage: false
   });
-
-  render();
-
-  // deleteDatabase();
-
-  // window.indexedDB.webkitGetDatabaseNames().onsuccess = function(sender,args) {
-  //   console.log('webkitGetDatabaseNames', sender.target.result);
-  // };
-
-  $.when(structure, translate).then(
-    function(structureResponse, translateResponse) {
-      // router();
-      // speech();
-      // appendContent();
-
-      var stores = structureResponse[0];
-
-      openDatabase(stores).then(
-        function() {
-          // setTimeout(function() {
-            $.each(stores, function(key, value) {
-              saveItems(key, value);
-            });
-          // }, 1000);
-
-        }, function() {
-          console.log('openDatabase failed');
-        }
-      );
-    },
-    function(structureResponse, translateResponse) {
-      console.log('failure');
-    },
-    function(structureResponse, translateResponse) {
-      console.log('progress');
-    }
-  );
 
 })();

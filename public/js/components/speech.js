@@ -6,6 +6,7 @@
     console.log('play');
     // utterance.text = '你好, 凯兰';
     // utterance.text = 'Beat the mixture for a couple of minutes, then start sprinkling in the flour.';
+    utterance.text = $.t('greeting');
     speechSynthesis.speak(utterance);
   });
 })();

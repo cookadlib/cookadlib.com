@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en-GB">
+<html>
 
   <head>
 
@@ -41,7 +41,7 @@
           </header>
 
           <figure class="module">
-            <img src="./images/Donald-Duck.png" alt="The Pulpit Rock" />
+            <img src="./images/black-dress.jpg" alt="Black dress" />
             <figcaption>figcaption</figcaption>
           </figure>
 
@@ -84,7 +84,7 @@
 
       </main>
 
-      <nav id="navigation-1">
+      <nav id="navigation_primary">
         <button data-target="dialog-1">Show dialog</button>
         <button data-target="notification-1">Show notification</button>
         <button data-target="speech-1">Play speech</button>
@@ -157,20 +157,29 @@
 
         <button class="action-add-to-cart"></button>
 
-        <ol class="review_list">
-          <template>
-            <li>
-              <article itemscoop itemtype="http://schema.org/Review">
-                <h1 itemprop="name"></h1>
-                <span>Posted by: <cite itemprop="author"></cite> at <time datetime="" pubdate itemprop="datePublished"></time></span>
-                <div class="review_content" itemprop="description"></div><!--/end .review_content-->
-              </article>
-            </li>
-          </template>
-        </ol>
+        <ol class="review_list"></ol>
 
       </article>
 
+    </template>
+
+    <template class="review">
+
+      <style>
+        time {
+          color: blue;
+        }
+      </style>
+
+      <content></content>
+
+      <li>
+        <article itemscoop itemtype="http://schema.org/Review">
+          <h1 itemprop="name"></h1>
+          <span>Posted by: <cite itemprop="author"></cite> at <time datetime="" pubdate itemprop="datePublished"></time></span>
+          <div class="review_content" itemprop="description"></div><!--/end .review_content-->
+        </article>
+      </li>
     </template>
 
     <script src="bower_components/jquery/dist/jquery.js"></script>
