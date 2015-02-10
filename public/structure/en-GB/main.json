@@ -2,70 +2,105 @@
   "navigation_primary": [
     {
       "name": "a",
-      "title": "Home",
-      "href": "/"
+      "textContent": "Go to Home",
+      "attributes": {
+        "title": "Home",
+        "href": "/"
+      }
     },
     {
       "name": "a",
-      "title": "Recipes",
-      "href": "/recipes"
+      "textContent": "Go to Recipes",
+      "attributes": {
+        "title": "Recipes",
+        "href": "/recipes"
+      }
     },
     {
       "name": "a",
-      "title": "Assistant",
-      "href": "/assistant"
+      "textContent": "Go to Assistant",
+      "attributes": {
+        "title": "Assistant",
+        "href": "/assistant"
+      }
     },
     {
       "name": "a",
-      "title": "Planner",
-      "href": "/planner"
+      "textContent": "Go to Planner",
+      "attributes": {
+        "title": "Planner",
+        "href": "/planner"
+      }
     }
   ],
   "navigation_secondary": [
     {
       "name": "a",
-      "title": "My Account",
-      "href": "/account"
+      "textContent": "Go to My Account",
+      "attributes": {
+        "title": "My Account",
+        "href": "/account"
+      }
     },
     {
-      "name": "a",
-      "title": "Home",
-      "href": "/"
+      "name": "button",
+      "textContent": "Search",
+      "attributes": {
+        "title": "Search",
+        "data-action": "search"
+      }
     }
   ],
   "navigation_footer": [
     {
       "name": "a",
-      "title": "About Us",
-      "href": "/about-us"
+      "textContent": "Link",
+      "attributes": {
+        "title": "About Us",
+        "href": "/about-us"
+      }
     },
     {
       "name": "a",
-      "title": "Privacy Policy",
-      "href": "/privacy-policy"
+      "textContent": "Link",
+      "attributes": {
+        "title": "Privacy Policy",
+        "href": "/privacy-policy"
+      }
     },
     {
       "name": "a",
-      "title": "Terms of Service",
-      "href": "/terms-of-service"
+      "textContent": "Link",
+      "attributes": {
+        "title": "Terms of Service",
+        "href": "/terms-of-service"
+      }
     }
   ],
   "promos": [
     {
-      "title": "promo-1",
-      "href": "/summer-promo",
-      "summary": "Lorem ipsum"
+      "name": "a",
+      "textContent": "Link",
+      "attributes": {
+        "title": "promo-1",
+        "href": "/summer-promo"
+      }
     }
   ],
   "widgets": [
     {
-      "title": "widget-1",
-      "href": "/calendar",
-      "summary": "Lorem ipsum"
+      "name": "a",
+      "textContent": "Link",
+      "attributes": {
+        "title": "widget-1",
+        "href": "/calendar"
+      }
     }
   ],
   "pages": {
     "home": {
+      "name": "a",
+      "textContent": "Link",
       "title": "Home",
       "url": "/",
       "summary":  "Home page",

@@ -27,33 +27,66 @@ var version = 1;
 utterance.lang = language;
 utterance.rate = 0.1;
 
-function render() {
-  var number = 3500;
-  var date = new Date(Date.UTC(2012, 11, 20, 3, 0, 0));
-  var price = new Intl.NumberFormat(language).format(number);
-  var time = new Intl.DateTimeFormat(language).format(date);
+function renderTemplate(key, properties) {
+  // console.log('key, properties', key, properties);
 
-  var host = document.querySelector('main article');
-  var root = host.createShadowRoot();
+  var selector = '#' + key;
 
-  var product = document.querySelector('template.product');
+  // console.log('selector', selector);
 
-  product.content.querySelector('h1').textContent = $.t('greeting');
-  product.content.querySelector('time').textContent = time;
-  product.content.querySelector('.price').textContent = price;
-  product.content.querySelector('button.action-add-to-cart').textContent = $.t('ns.interface:button.continue');
-  product.content.querySelector('img').src = 'http://webcomponents.org/img/logo.svg';
+  var host = document.querySelector(selector);
 
-  var clone = product.content.cloneNode(true);
+  if (host) {
+    // var root = host.createShadowRoot();
 
-  root.appendChild(clone);
+    var element = document.createElement(properties.name);
+
+    element.textContent = properties.textContent;
+    // console.log('properties.attributes', properties.attributes);
+
+    var attributes = properties.attributes;
+
+    for (var name in attributes) {
+      if (attributes.hasOwnProperty(name)) {
+        console.log('name', attributes[name]);
+        element.setAttribute(name, attributes[name]);
+      }
+    }
+
+    host.appendChild(element);
+  }
+
+  // var number = 3500;
+  // var date = new Date(Date.UTC(2012, 11, 20, 3, 0, 0));
+  // var price = new Intl.NumberFormat(language).format(number);
+  // var time = new Intl.DateTimeFormat(language).format(date);
+  //
+  // var host = document.querySelector('main article');
+  // var root = host.createShadowRoot();
+  //
+  // var product = document.querySelector('template.product');
+  //
+  // product.content.querySelector('h1').textContent = $.t('greeting');
+  // product.content.querySelector('time').textContent = time;
+  // product.content.querySelector('.price').textContent = price;
+  // product.content.querySelector('button.action-add-to-cart').textContent = $.t('ns.interface:button.continue');
+  // product.content.querySelector('img').src = 'http://webcomponents.org/img/logo.svg';
+  //
+  // var clone = product.content.cloneNode(true);
+  //
+  // root.appendChild(clone);
 
   // var clone = document.importNode(product.content, true);
   // host.appendChild(clone);
 }
 
-function renderTemplatesForStore(index, key) {
+function iterateStoreRecords(index, key) {
+  console.log('iterateStoreRecords');
   // Open our object store and then get a cursor list of all the different data items in the IDB to iterate through
+
+  if (key === 'pages') {
+    return;
+  }
 
   console.log(index, key);
 
@@ -61,17 +94,26 @@ function renderTemplatesForStore(index, key) {
   var objectStore = transaction.objectStore(key);
 
   objectStore.openCursor().onsuccess = function(event) {
+    console.log('openCursor', event);
+
     var cursor = event.target.result;
 
     // if there is still another cursor to go, keep running this code
     if (cursor) {
       console.log('cursor', cursor);
+
+      renderTemplate(key, cursor.value);
+
+      cursor.continue();
+    } else {
+      console.log('Entries all displayed.');
     }
   };
 }
 
-function renderTemplates() {
-  $.each(stores, renderTemplatesForStore);
+function iterateStores() {
+  console.log('iterateStores');
+  $.each(stores, iterateStoreRecords);
 }
 
 function deleteDatabase() {
@@ -111,6 +153,8 @@ function openDatabase(stores) {
   };
 
   request.onsuccess = function(event) {
+    console.log('onsuccess', event);
+
     db = this.result;
 
     db.onversionchange = function(event) {
@@ -119,12 +163,13 @@ function openDatabase(stores) {
       db.close();
     };
 
+    console.log('structureDataRequest', structureDataRequest);
     if (structureDataRequest) {
-      structureDataRequest.done(populateStores).done(function(data) {
-        renderTemplates();
-      });
+      console.log('structureDataRequest = true');
+      structureDataRequest.done(populateStores).done(iterateStores);
     } else {
-      renderTemplates();
+      console.log('structureDataRequest = false');
+      iterateStores();
     }
 
     defer.resolve();
@@ -145,8 +190,6 @@ function openDatabase(stores) {
     // console.log('stores', stores);
     setupStores(stores);
 
-    console.log('setupStores 1');
-
     structureDataRequest = $.getJSON('structure/' + language + '/main.json');
   };
 
@@ -154,17 +197,17 @@ function openDatabase(stores) {
 }
 
 function setupStores() {
-  console.log('setupStores');
+  // console.log('setupStores');
 
   return $.when.apply($, $.map(stores, function(key, index) {
-    console.log('setupStores', key, index);
+    // console.log('setupStores', key, index);
     return setupStore(index, key);
   })).promise();
 
 }
 
 function setupStore(index, key) {
-  console.log('setupStore', index, key);
+  // console.log('setupStore', index, key);
 
   var defer = $.Deferred();
 
@@ -174,20 +217,21 @@ function setupStore(index, key) {
   }
 
   var createObjectStore = db.createObjectStore(key, {
-    keyPath: 'title'
+    // keyPath: 'title',
+    autoIncrement: true
   });
 
   createObjectStore.createIndex('name', 'name', {
     unique: false
   });
 
-  createObjectStore.createIndex('href', 'href', {
-    unique: true
-  });
-
-  createObjectStore.createIndex('title', 'title', {
-    unique: false
-  });
+  // createObjectStore.createIndex('href', 'attributes.href', {
+  //   unique: false
+  // });
+  //
+  // createObjectStore.createIndex('title', 'attributes.title', {
+  //   unique: false
+  // });
 
   defer.resolve('Object store created for ', key);
   // console.log('Object store created for ', key);
@@ -216,7 +260,7 @@ function populateStore(key, values) {
   $.each(values, function(index, value) {
     var objectStoreRequest = objectStore.add(value);
     objectStoreRequest.onsuccess = function(event) {
-      console.log('success', event);
+      // console.log('objectStore.add success', event);
     };
   });
 
@@ -229,7 +273,7 @@ function populateStore(key, values) {
   .done(function() {
     console.log('Loaded data from IndexedDB');
 
-    render();
+    // iterateStores();
   })
   .fail(function() {
     console.log('Could not load data from IndexedDB');
