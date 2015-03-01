@@ -2,33 +2,33 @@
   "navigation_primary": [
     {
       "name": "a",
-      "textContent": "Go to Home",
+      "textContent": "Home",
       "attributes": {
-        "title": "Home",
+        "title": "Go to Home",
         "href": "/"
       }
     },
     {
       "name": "a",
-      "textContent": "Go to Recipes",
+      "textContent": "Recipes",
       "attributes": {
-        "title": "Recipes",
+        "title": "Go to Recipes",
         "href": "/recipes"
       }
     },
     {
       "name": "a",
-      "textContent": "Go to Assistant",
+      "textContent": "Assistant",
       "attributes": {
-        "title": "Assistant",
+        "title": "Go to Assistant",
         "href": "/assistant"
       }
     },
     {
       "name": "a",
-      "textContent": "Go to Planner",
+      "textContent": "Planner",
       "attributes": {
-        "title": "Planner",
+        "title": "Go to Planner",
         "href": "/planner"
       }
     }
@@ -36,9 +36,9 @@
   "navigation_secondary": [
     {
       "name": "a",
-      "textContent": "Go to My Account",
+      "textContent": "My Account",
       "attributes": {
-        "title": "My Account",
+        "title": "Go to My Account",
         "href": "/account"
       }
     },
@@ -46,7 +46,7 @@
       "name": "button",
       "textContent": "Search",
       "attributes": {
-        "title": "Search",
+        "title": "Go to Search",
         "data-action": "search"
       }
     }
@@ -56,7 +56,7 @@
       "name": "a",
       "textContent": "Link",
       "attributes": {
-        "title": "About Us",
+        "title": "Go to About Us",
         "href": "/about-us"
       }
     },
@@ -64,7 +64,7 @@
       "name": "a",
       "textContent": "Link",
       "attributes": {
-        "title": "Privacy Policy",
+        "title": "Go to Privacy Policy",
         "href": "/privacy-policy"
       }
     },
@@ -72,7 +72,7 @@
       "name": "a",
       "textContent": "Link",
       "attributes": {
-        "title": "Terms of Service",
+        "title": "Go to Terms of Service",
         "href": "/terms-of-service"
       }
     }
@@ -82,7 +82,7 @@
       "name": "a",
       "textContent": "Link",
       "attributes": {
-        "title": "promo-1",
+        "title": "Go to promo-1",
         "href": "/summer-promo"
       }
     }
@@ -92,7 +92,7 @@
       "name": "a",
       "textContent": "Link",
       "attributes": {
-        "title": "widget-1",
+        "title": "Go to widget-1",
         "href": "/calendar"
       }
     }
