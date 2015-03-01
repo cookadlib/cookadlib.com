@@ -1,0 +1,13 @@
+$initial-font-size: 16;
+
+$base-font-percentage: 62.5;
+$base-font-size: percentage(62.5 / 100);
+
+$rem-size: (($initial-font-size * $base-font-percentage) / 100);
+
+// $grid-gutter-width: $rem-size +px;
+// $grid-gutter-width: #{$rem-size +px};
+$grid-gutter-width: 15px;
+$grid-columns: 12;
+
+$icons-font-path: "../bower_components/materialize/font/material-design-icons/";

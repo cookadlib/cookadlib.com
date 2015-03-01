@@ -2,10 +2,18 @@
 
 'use strict';
 
-var data;
 var databaseName = 'structure';
 var db;
 var language = window.navigator.language;
+var languageWhitelist = [
+  'en',
+  'en-GB',
+  'en-US',
+  'fr',
+  'zh',
+  'zh-CN',
+  'zh-HK'
+];
 var stores = [
   'navigation_primary',
   'navigation_secondary',
@@ -14,25 +22,36 @@ var stores = [
   'widgets',
   'pages'
 ];
-var structureData;
 var structureDataRequest;
-var utterance = new SpeechSynthesisUtterance();
 var version = 1;
 
-// language = 'fr';
-// language = 'en-US';
-// language = 'zh-CN';
-// language = 'zh-HK';
+function installServiceWorkers() {
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('/ServiceWorker.js', {
+      scope: '/'
+    })
+    .then(function(registration) {
+      console.log('ServiceWorker registration successful with scope:', registration.scope);
+    })
+    .catch(function(err) {
+      console.log('ServiceWorker registration failed:', err);
+    });
 
-utterance.lang = language;
-utterance.rate = 0.1;
+    navigator.serviceWorker.register('//ServiceWorker.js', {
+      scope: '/'
+    })
+    .then(function(registration) {
+      console.log('ServiceWorker registration successful with scope:', registration.scope);
+    })
+    .catch(function(err) {
+      console.log('ServiceWorker registration failed:', err);
+    });
+  }
+}
 
 function renderTemplate(key, properties) {
-  // console.log('key, properties', key, properties);
-
+  // Polymer.import(urls, callback);
   var selector = '#' + key;
-
-  // console.log('selector', selector);
 
   var host = document.querySelector(selector);
 
@@ -42,15 +61,15 @@ function renderTemplate(key, properties) {
     var element = document.createElement(properties.name);
 
     element.textContent = properties.textContent;
-    // console.log('properties.attributes', properties.attributes);
 
     var attributes = properties.attributes;
 
     for (var name in attributes) {
+
       if (attributes.hasOwnProperty(name)) {
-        console.log('name', attributes[name]);
         element.setAttribute(name, attributes[name]);
       }
+
     }
 
     host.appendChild(element);
@@ -81,38 +100,28 @@ function renderTemplate(key, properties) {
 }
 
 function iterateStoreRecords(index, key) {
-  console.log('iterateStoreRecords');
-  // Open our object store and then get a cursor list of all the different data items in the IDB to iterate through
-
   if (key === 'pages') {
     return;
   }
-
-  console.log(index, key);
 
   var transaction = db.transaction([key], 'readwrite');
   var objectStore = transaction.objectStore(key);
 
   objectStore.openCursor().onsuccess = function(event) {
-    console.log('openCursor', event);
 
     var cursor = event.target.result;
 
-    // if there is still another cursor to go, keep running this code
     if (cursor) {
-      console.log('cursor', cursor);
-
       renderTemplate(key, cursor.value);
 
       cursor.continue();
-    } else {
-      console.log('Entries all displayed.');
     }
+
   };
+
 }
 
 function iterateStores() {
-  console.log('iterateStores');
   $.each(stores, iterateStoreRecords);
 }
 
@@ -153,8 +162,6 @@ function openDatabase(stores) {
   };
 
   request.onsuccess = function(event) {
-    console.log('onsuccess', event);
-
     db = this.result;
 
     db.onversionchange = function(event) {
@@ -163,12 +170,9 @@ function openDatabase(stores) {
       db.close();
     };
 
-    console.log('structureDataRequest', structureDataRequest);
     if (structureDataRequest) {
-      console.log('structureDataRequest = true');
       structureDataRequest.done(populateStores).done(iterateStores);
     } else {
-      console.log('structureDataRequest = false');
       iterateStores();
     }
 
@@ -176,18 +180,17 @@ function openDatabase(stores) {
   };
 
   request.onupgradeneeded = function(event) {
-    console.log('database upgrade needed', event, stores);
+    console.log('Database upgrade needed', event, stores);
 
     db = event.target.result;
 
     db.onerror = function(event) {
-      console.log('error', event);
+      console.log('Error', event);
       defer.reject();
     };
 
     event.target.transaction.onerror = window.indexedDB.onerror;
 
-    // console.log('stores', stores);
     setupStores(stores);
 
     structureDataRequest = $.getJSON('structure/' + language + '/main.json');
@@ -197,18 +200,14 @@ function openDatabase(stores) {
 }
 
 function setupStores() {
-  // console.log('setupStores');
 
   return $.when.apply($, $.map(stores, function(key, index) {
-    // console.log('setupStores', key, index);
     return setupStore(index, key);
   })).promise();
 
 }
 
 function setupStore(index, key) {
-  // console.log('setupStore', index, key);
-
   var defer = $.Deferred();
 
   if (db.objectStoreNames.contains(key)) {
@@ -238,42 +237,48 @@ function setupStore(index, key) {
 }
 
 function populateStores(stores) {
-  console.log('populateStores');
   $.each(stores, populateStore);
 }
 
 function populateStore(key, values) {
-  console.log('populateStore, key, values', key, values);
-
   var transaction = db.transaction([key], 'readwrite');
 
   transaction.oncomplete = function(event) {
-    console.log('complete', event);
+    // console.log('Complete', event);
   };
 
   transaction.onerror = function(event) {
-    console.log('error', event);
+    console.log('Error', event);
   };
 
   var objectStore = transaction.objectStore(key);
 
   $.each(values, function(index, value) {
     var objectStoreRequest = objectStore.add(value);
+
     objectStoreRequest.onsuccess = function(event) {
       // console.log('objectStore.add success', event);
     };
+
   });
 
 }
 
+function removeLoader() {
+  $('body.loading-indicator').removeClass('loading-indicator--loading').addClass('loading-indicator--loaded');
+}
+
 (function() {
-  deleteDatabase();
+  // deleteDatabase();
+
+  installServiceWorkers();
 
   openDatabase(stores)
   .done(function() {
     console.log('Loaded data from IndexedDB');
 
     // iterateStores();
+    removeLoader();
   })
   .fail(function() {
     console.log('Could not load data from IndexedDB');
@@ -283,15 +288,7 @@ function populateStore(key, values) {
     debug: true,
     fallbackLng: 'en',
     lng: language,
-    lngWhitelist: [
-      'en',
-      'en-GB',
-      'en-US',
-      'fr',
-      'zh',
-      'zh-CN',
-      'zh-HK'
-    ],
+    lngWhitelist: languageWhitelist,
     ns: {
       namespaces: [
         'ns.common',

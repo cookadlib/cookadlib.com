@@ -1,0 +1,37 @@
+$color-0: rgb(255, 255, 255);
+$color-1: rgb(0, 0, 0);
+$color-2: rgb(226, 13, 255);
+$color-3: rgb(146, 12, 232);
+$color-4: rgb(86, 0, 255);
+$color-5: rgb(26, 12, 232);
+$color-6: rgb(13, 62, 255);
+
+@mixin box-shadow-bottom() {
+  box-shadow: 0 0 4px rgba($color-1, .2);
+}
+
+$color
+
+
+
+html.palette-1 {
+
+  body {
+
+    > header,
+    > footer {
+      background-color: rgba($color-5, 1);
+    }
+
+    .master {
+
+      > aside,
+      > nav {
+        background-color: rgba($color-4, 1);
+      }
+
+    }
+
+  }
+
+}
