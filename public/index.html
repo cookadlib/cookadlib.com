@@ -1,198 +1,192 @@
 <!DOCTYPE html>
-<html>
-
+<html class="layout-1 palette-1 typography-1">
   <head>
 
     <meta charset="utf-8" />
 
     <title>Recipe</title>
 
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
     <meta name="description" content="" />
     <meta name="author" content="" />
 
-    <link href="//cdnjs.cloudflare.com/ajax/libs/normalize/3.0.2/normalize.min.css" rel="stylesheet" />
+    <link rel="icon" href="/images/icons/favicon.ico" />
 
-    <link href="./css/main.css" rel="stylesheet" />
+    <link rel="stylesheet" href="/bower_components/normalize.css/normalize.css" />
+    <link rel="stylesheet" href="/styles/boilerplate.css" />
 
-    <link rel="icon" href="favicon.ico" />
+    <script src="//ajax.googleapis.com/ajax/libs/webfont/1.5.10/webfont.js"></script>
+    <script>
+      WebFont.load({
+        google: {
+          families: [
+            'Roboto:500,400italic,300,700,300italic,400:latin',
+            'Syncopate'
+          ]
+        }
+      });
+    </script>
 
-    <script src="bower_components/webcomponentsjs/webcomponents.min.js" /></script>
+    <script src="/bower_components/webcomponentsjs/webcomponents.min.js" /></script>
 
-    <link rel="import" href="bower_components/core-ajax/core-ajax.html" />
-    <link rel="import" href="bower_components/paper-button/paper-button.html" />
+    <link rel="import" href="/bower_components/core-ajax/core-ajax.html" />
+    <link rel="import" href="/bower_components/paper-button/paper-button.html" />
 
+    <!-- <link rel="import" href="/custom_components/main-footer/main-footer.html">
+    <link rel="import" href="/custom_components/main-header/main-header.html">
+    <link rel="import" href="/custom_components/main-nav/main-nav.html"> -->
+    <link rel="import" href="/custom_components/materialize-card/materialize-card.html">
   </head>
 
-  <body>
+  <body unresolved>
 
-    <header>
-      <h1>H1</h1>
-    </header>
+    <header is="main-header"></header>
 
     <div class="master">
 
-      <main role="main">
+      <main role="main" class="grid">
 
-        <article>
+        <materialize-card class="col-sm-6 col-md-4 col-lg-3" src="/images/sample/promos/chef.jpg" alt="Card alt 2" title="Card title 2" caption="I am a very simple card. I am good at containing small bits of information.
+        I am convenient because I require little markup to use effectively.">
+          <a href="#">This is a link</a>
+          <a href='#'>This is a link</a>
+        </materialize-card>
 
-          <header>
-            <h1>H1</h1>
-          </header>
+        <figure class="card col-sm-6 col-md-4 col-lg-3">
+          <div class="card-image" style="background-image: url('/images/sample/promos/chef.jpg')">
+            <span class="card-title">Card Title</span>
+          </div>
+          <figcaption class="card-content">
+            <p>I am a very simple card. I am good at containing small bits of information.
+            I am convenient because I require little markup to use effectively.</p>
+          </figcaption>
+          <div class="card-action">
+            <a href="#">This is a link</a>
+            <a href='#'>This is a link</a>
+          </div>
+        </figure>
 
-          <figure class="module">
-            <img src="./images/black-dress.jpg" alt="Black dress" />
-            <figcaption>figcaption</figcaption>
-          </figure>
+        <figure class="card col-sm-6 col-md-4 col-lg-3">
+          <div class="card-image" style="background-image: url('/images/sample/promos/couple.jpg')">
+            <span class="card-title">Card Title</span>
+          </div>
+          <figcaption class="card-content">
+            <p>I am a very simple card. I am good at containing small bits of information.
+            I am convenient because I require little markup to use effectively.</p>
+          </figcaption>
+          <div class="card-action">
+            <a href="#">This is a link</a>
+            <a href='#'>This is a link</a>
+          </div>
+        </figure>
 
-          <section class="module">
-            <h2>H2</h2>
-          </section>
+        <figure class="card col-sm-6 col-md-4 col-lg-3">
+          <div class="card-image" style="background-image: url('/images/sample/promos/tablet-1.jpg')">
+            <span class="card-title">Card Title</span>
+          </div>
+          <figcaption class="card-content">
+            <p>I am a very simple card. I am good at containing small bits of information.
+            I am convenient because I require little markup to use effectively.</p>
+          </figcaption>
+          <div class="card-action">
+            <a href="#">This is a link</a>
+            <a href='#'>This is a link</a>
+          </div>
+        </figure>
 
-          <section class="module">
-            <h2>H2</h2>
-          </section>
+        <figure class="card col-sm-6 col-md-4 col-lg-3">
+          <div class="card-image" style="background-image: url('/images/sample/promos/tablet-2.jpg')">
+            <span class="card-title">Card Title</span>
+          </div>
+          <figcaption class="card-content">
+            <p>I am a very simple card. I am good at containing small bits of information.
+            I am convenient because I require little markup to use effectively.</p>
+          </figcaption>
+          <div class="card-action">
+            <a href="#">This is a link</a>
+            <a href='#'>This is a link</a>
+          </div>
+        </figure>
 
-          <section class="module">
-            <h2>H2</h2>
-            <!-- http://www.w3.org/html/wg/drafts/html/master/infrastructure.html#parse-a-duration-string -->
-            <time>PT4H18M3S</time>
-            <time>4h 18m 3s</time>
-          </section>
+        <figure class="card col-sm-6 col-md-4 col-lg-3">
+          <div class="card-image" style="background-image: url('/images/sample/promos/chef.jpg')">
+            <span class="card-title">Card Title</span>
+          </div>
+          <figcaption class="card-content">
+            <p>I am a very simple card. I am good at containing small bits of information.
+            I am convenient because I require little markup to use effectively.</p>
+          </figcaption>
+          <div class="card-action">
+            <a href="#">This is a link</a>
+            <a href='#'>This is a link</a>
+          </div>
+        </figure>
 
-          <!--
-          <details>
-            <summary>Summary</summary>
-          </details>
+        <figure class="card col-sm-6 col-md-4 col-lg-3">
+          <div class="card-image" style="background-image: url('/images/sample/promos/couple.jpg')">
+            <span class="card-title">Card Title</span>
+          </div>
+          <figcaption class="card-content">
+            <p>I am a very simple card. I am good at containing small bits of information.
+            I am convenient because I require little markup to use effectively.</p>
+          </figcaption>
+          <div class="card-action">
+            <a href="#">This is a link</a>
+            <a href='#'>This is a link</a>
+          </div>
+        </figure>
 
-          <output>
-          </output>
+        <figure class="card col-sm-6 col-md-4 col-lg-3">
+          <div class="card-image" style="background-image: url('/images/sample/promos/tablet-1.jpg')">
+            <span class="card-title">Card Title</span>
+          </div>
+          <figcaption class="card-content">
+            <p>I am a very simple card. I am good at containing small bits of information.
+            I am convenient because I require little markup to use effectively.</p>
+          </figcaption>
+          <div class="card-action">
+            <a href="#">This is a link</a>
+            <a href='#'>This is a link</a>
+          </div>
+        </figure>
 
-          <progress>
-          </progress>
-          -->
-
-          <aside>
-            ASIDE
-          </aside>
-
-          <footer>
-            FOOTER
-          </footer>
-
-        </article>
+        <figure class="card col-sm-6 col-md-4 col-lg-3">
+          <div class="card-image" style="background-image: url('/images/sample/promos/tablet-2.jpg')">
+            <span class="card-title">Card Title</span>
+          </div>
+          <figcaption class="card-content">
+            <p>I am a very simple card. I am good at containing small bits of information.
+            I am convenient because I require little markup to use effectively.</p>
+          </figcaption>
+          <div class="card-action">
+            <a href="#">This is a link</a>
+            <a href='#'>This is a link</a>
+          </div>
+        </figure>
 
       </main>
 
-      <nav id="navigation_primary">
+      <nav is="main-nav">
         <button data-target="dialog-1">Show dialog</button>
         <button data-target="notification-1">Show notification</button>
         <button data-target="speech-1">Play speech</button>
       </nav>
 
-      <aside id="aside-1">
-      </aside>
+      <!-- <aside id="aside-1"></aside> -->
 
     </div>
 
-    <footer>
-      <button data-target="navigation-1">Show navigation</button>
-      <button data-target="aside-1">Show aside</button>
-    </footer>
+    <footer is="main-footer"></footer>
 
-    <div id="dialogs">
-
-      <dialog id="dialog-1">
-        <p>Hi, I'm a dialog!</p>
-        <button data-action="close">Okay</button>
-      </dialog>
-
-    </div>
-
-    <template class="product">
-
-      <style>
-        /*
-        :host {
-          background: #f8f8f8;
-          padding: 10px;
-          transition: all 400ms ease-in-out;
-          box-sizing: border-box;
-          border-radius: 5px;
-          width: 450px;
-          max-width: 100%;
-        }
-
-        :host(:hover) {
-          background: #ccc;
-        }
-        */
-        h1 {
-          color: red;
-        }
-      </style>
-
-      <content></content>
-
-      <article itemscope itemtype="http://schema.org/Product">
-
-        <a href="" title="" itemprop="url"></a>
-
-        <img src="" alt="" itemprop="image" />
-
-        <h1 itemprop="name"></h1>
-
-        <div class="description" itemprop="description"></div>
-
-        <div class="rating" itemscope itemtype="http://schema.org/AggregateRating">
-          <span>Rating: <span itemprop="ratingValue"></span> out of <span itemprop="bestRating"></span> by <span itemprop="reviewCount"></span> customers</span>
-        </div>
-
-        <div class="offer" itemscope itemtype="http://schema.org/Offer">
-          <span class="price" itemprop="price"></span>
-          <span class="availability" itemprop="availability"></span>
-        </div>
-
-        <time itemprop="releaseDate"></time>
-
-        <button class="action-add-to-cart"></button>
-
-        <ol class="review_list"></ol>
-
-      </article>
-
-    </template>
-
-    <template class="review">
-
-      <style>
-        time {
-          color: blue;
-        }
-      </style>
-
-      <content></content>
-
-      <li>
-        <article itemscoop itemtype="http://schema.org/Review">
-          <h1 itemprop="name"></h1>
-          <span>Posted by: <cite itemprop="author"></cite> at <time datetime="" pubdate itemprop="datePublished"></time></span>
-          <div class="review_content" itemprop="description"></div><!--/end .review_content-->
-        </article>
-      </li>
-    </template>
-
-    <script src="bower_components/jquery/dist/jquery.js"></script>
-    <script src="bower_components/i18next/i18next.js"></script>
-    <script src="bower_components/later/later.js"></script>
-    <script src="bower_components/schedule/schedule.js"></script>
+    <script src="/bower_components/jquery/dist/jquery.js"></script>
+    <script src="/bower_components/i18next/i18next.js"></script>
+    <script src="/bower_components/later/later.js"></script>
+    <script src="/bower_components/schedule/schedule.js"></script>
 
     <core-ajax url="//example.com/json" handleAs="json"></core-ajax>
 
-    <script src="js/main.js"></script>
-    <script src="js/components/dialog.js"></script>
-    <script src="js/components/navigation.js"></script>
-    <script src="js/components/aside.js"></script>
+    <script src="/scripts/boilerplate.js"></script>
+    <script src="/scripts/components/component-toggle.js"></script>
 
   </body>
 
