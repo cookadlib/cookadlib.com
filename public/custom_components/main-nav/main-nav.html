@@ -1,0 +1,71 @@
+<polymer-element name="main-nav">
+
+  <template>
+
+    <style>
+      /*
+      :host {
+        background: #f8f8f8;
+        padding: 10px;
+        transition: all 400ms ease-in-out;
+        box-sizing: border-box;
+        border-radius: 5px;
+        width: 450px;
+        max-width: 100%;
+      }
+
+      :host(:hover) {
+        background: #ccc;
+      }
+      */
+      h1 {
+        color: red;
+      }
+    </style>
+
+    <nav>
+      <h2>Menu</h2>
+      <content></content>
+    </nav>
+
+  </template>
+
+  <script>
+    Polymer({
+      publish: {
+        /**
+         * The title of the card.
+         *
+         * @attribute heading
+         * @type string
+         * @default ''
+         */
+        heading: '',
+        /**
+         * The hex color of the heading.
+         *
+         * @attribute headingColor
+         * @type string
+         * @default '#000'
+         */
+        headingColor: '#000',
+        /**
+         * The url of the title image of the card.
+         *
+         * @attribute image
+         * @type string
+         * @default ''
+         */
+        image:''
+      },
+      headingChanged: function(old) {
+        var label = this.getAttribute('aria-label');
+        if (!label || label === old) {
+          this.setAttribute('aria-label', this.heading);
+        }
+        console.log('here in heading');
+      }
+    });
+  </script>
+
+</polymer-element>

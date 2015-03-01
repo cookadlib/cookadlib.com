@@ -1,0 +1,94 @@
+<polymer-element name="custom-product" extends="swipeable-card">
+
+  <template>
+
+    <style>
+      /*
+      :host {
+        background: #f8f8f8;
+        padding: 10px;
+        transition: all 400ms ease-in-out;
+        box-sizing: border-box;
+        border-radius: 5px;
+        width: 450px;
+        max-width: 100%;
+      }
+
+      :host(:hover) {
+        background: #ccc;
+      }
+      */
+      h1 {
+        color: red;
+      }
+    </style>
+
+    <content></content>
+
+    <article itemscope itemtype="http://schema.org/Product">
+
+      <a href="" title="" itemprop="url"></a>
+
+      <img src="" alt="" itemprop="image" />
+
+      <h1 itemprop="name"></h1>
+
+      <div class="description" itemprop="description"></div>
+
+      <div class="rating" itemscope itemtype="http://schema.org/AggregateRating">
+        <span>Rating: <span itemprop="ratingValue"></span> out of <span itemprop="bestRating"></span> by <span itemprop="reviewCount"></span> customers</span>
+      </div>
+
+      <div class="offer" itemscope itemtype="http://schema.org/Offer">
+        <span class="price" itemprop="price"></span>
+        <span class="availability" itemprop="availability"></span>
+      </div>
+
+      <time itemprop="releaseDate"></time>
+
+      <button class="action-add-to-cart"></button>
+
+      <ol class="review_list"></ol>
+
+    </article>
+
+  </template>
+
+  <script>
+    Polymer({
+      publish: {
+        /**
+         * The title of the card.
+         *
+         * @attribute heading
+         * @type string
+         * @default ''
+         */
+        heading: '',
+        /**
+         * The hex color of the heading.
+         *
+         * @attribute headingColor
+         * @type string
+         * @default '#000'
+         */
+        headingColor: '#000',
+        /**
+         * The url of the title image of the card.
+         *
+         * @attribute image
+         * @type string
+         * @default ''
+         */
+        image:''
+      },
+      headingChanged: function(old) {
+        var label = this.getAttribute('aria-label');
+        if (!label || label === old) {
+          this.setAttribute('aria-label', this.heading);
+        }
+      }
+    });
+  </script>
+
+</polymer-element>

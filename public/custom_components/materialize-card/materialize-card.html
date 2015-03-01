@@ -1,0 +1,20 @@
+<polymer-element name="materialize-card" class="grid {{class}}" attributes="class src alt title caption">
+  <template>
+    <link rel="stylesheet" href="style.css" />
+    <div class="card-image" style="background-image: url('{{src}}')">
+      <!-- <img src="{{src}}" alt="{{alt}}"> -->
+      <span class="card-title">{{title}}</span>
+    </div>
+    <figcaption class="card-content">
+      <p>{{caption}}</p>
+    </figcaption>
+    <div class="card-action">
+      <content></content>
+      <a href="#">This is a link original</a>
+      <a href='#'>This is a link original</a>
+    </div>
+  </template>
+  <script>
+    Polymer();
+  </script>
+</polymer-element>
