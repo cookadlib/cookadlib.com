@@ -1,0 +1,12 @@
+{
+  "button": {
+    "cancel": "cancel",
+    "confirm": "confirm",
+    "continue": "continue",
+    "close": "close",
+    "exit": "exit",
+    "go": "go",
+    "open": "open",
+    "submit": "submit"
+  }
+}

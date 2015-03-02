@@ -1,0 +1,32 @@
+<polymer-element name="custom-product" class="grid {{class}}" attributes="class src alt title caption">
+  <template>
+    <link rel="stylesheet" href="custom-product.css" />
+    <article itemscope itemtype="http://schema.org/Product">
+
+      <a href="" title="" itemprop="url"></a>
+
+      <img src="" alt="" itemprop="image" />
+
+      <h1 itemprop="name"></h1>
+
+      <div class="description" itemprop="description"></div>
+
+      <div class="rating" itemscope itemtype="http://schema.org/AggregateRating">
+        <span>Rating: <span itemprop="ratingValue"></span> out of <span itemprop="bestRating"></span> by <span itemprop="reviewCount"></span> customers</span>
+      </div>
+
+      <div class="offer" itemscope itemtype="http://schema.org/Offer">
+        <span class="price" itemprop="price"></span>
+        <span class="availability" itemprop="availability"></span>
+      </div>
+
+      <time itemprop="releaseDate"></time>
+
+      <button class="action-add-to-cart"></button>
+
+      <ol class="review_list"></ol>
+
+    </article>
+  </template>
+  <script src="custom-product.js"></script>
+</polymer-element>

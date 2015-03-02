@@ -1,0 +1,12 @@
+{
+  "button": {
+    "cancel": "annuler",
+    "confirm": "confirmer",
+    "continue": "continuer",
+    "close": "près",
+    "exit": "sortie",
+    "go": "aller",
+    "open": "ouvert",
+    "submit": "soumettre"
+  }
+}

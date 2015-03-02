@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html <% if (general.classes.html || classes.html) { %>class="<%= general.classes.html %><% if (general.classes.html && classes.html) { %> <% } %><%= classes.html %>"<% } %>>
+  <head>
+
+    <meta charset="utf-8" />
+
+    <title><%= title %> - <%= site %></title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <meta name="description" content="<%= description %>" />
+    <meta name="author" content="" />
+
+    <link rel="icon" href="/images/icons/favicon.ico" />
+
+    <link rel="stylesheet" href="/bower_components/normalize.css/normalize.css" />
+    <link rel="stylesheet" href="/boilerplate/styles/boilerplate.css" />
+
+    <link rel="alternate" href="/rss.xml" title="<%= site %> RSS" type="application/rss+xml" />
+
+    <script src="//ajax.googleapis.com/ajax/libs/webfont/1.5.10/webfont.js"></script>
+    <script>
+      WebFont.load({
+        google: {
+          families: [
+            'Roboto:500,400italic,300,700,300italic,400:latin',
+            'Syncopate'
+          ]
+        }
+      });
+    </script>
+
+    <script src="/bower_components/webcomponentsjs/webcomponents.min.js"></script>
+
+    <link rel="import" href="/bower_components/core-ajax/core-ajax.html" />
+    <link rel="import" href="/bower_components/paper-button/paper-button.html" />
+
+    <link rel="import" href="/custom_components/materialize-card/materialize-card.html" />
+  </head>
+
+  <body unresolved <% if (general.classes.body || classes.body) { %>class="<%= general.classes.body %><% if (general.classes.body && classes.body) { %> <% } %><%= classes.body %>"<% } %>>
+
+    <header is="main-header"></header>
+
+    <div class="master">
+
+      <main role="main" <% if (general.classes.main || classes.main) { %>class="<%= general.classes.main %><% if (general.classes.main && classes.main) { %> <% } %><%= classes.main %>"<% } %>>
+
+        <%- yield %>
+
+      </main>
+
+      <nav is="main-nav">
+        <button data-target="dialog-1">Show dialog</button>
+        <button data-target="notification-1">Show notification</button>
+        <button data-target="speech-1">Play speech</button>
+      </nav>
+
+      <aside id="aside-1">
+        <h2>Latest Posts</h2>
+        <ul>
+          <% for(var slug in public.posts._data) { %>
+           <li>
+             <a href="<%= url %>/posts/<%= slug %>"><%= public.posts._data[slug].title %></a>
+             <p><%= public.posts._data[slug].description %></p>
+           </li>
+         <% } %>
+        </ul>
+      </aside>
+
+    </div>
+
+    <footer is="main-footer">
+      <span class="colophon">Copyright &copy; <%= dateofpublication %> <%= site %></span>
+      <!-- search -->
+    </footer>
+
+    <script src="/bower_components/jquery/dist/jquery.js"></script>
+    <script src="/bower_components/i18next/i18next.js"></script>
+    <script src="/boilerplate/scripts/boilerplate.js"></script>
+  </body>
+
+</html>
