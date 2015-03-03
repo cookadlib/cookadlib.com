@@ -296,7 +296,15 @@ function removeLoader() {
       ],
       defaultNs: 'ns.common',
     },
+    // useDataAttrOptions: true,
     useLocalStorage: false
+  }).done(function() {
+    var x = $.t('ns.interface:copyright');
+    var y = $.t('interface:copyright');
+    var z = $.t('ns.interface');
+    console.log('ns.interface:copyright', x, y, z);
+    // $('.colophon').css({'color': 'red'}).i18n();
+    $('body').i18n();
   });
 
 })();
