@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html <% if (general.classes.html || classes.html) { %>class="<%= general.classes.html %><% if (general.classes.html && classes.html) { %> <% } %><%= classes.html %>"<% } %>>
+<html class="<%= classes %> template-<%= current.source %>">
   <head>
 
     <meta charset="utf-8" />
@@ -37,13 +37,13 @@
     <link rel="import" href="/custom_components/materialize-card/materialize-card.html" />
   </head>
 
-  <body unresolved <% if (general.classes.body || classes.body) { %>class="<%= general.classes.body %><% if (general.classes.body && classes.body) { %> <% } %><%= classes.body %>"<% } %>>
+  <body unresolved>
 
     <header is="main-header"></header>
 
     <div class="master">
 
-      <main role="main" <% if (general.classes.main || classes.main) { %>class="<%= general.classes.main %><% if (general.classes.main && classes.main) { %> <% } %><%= classes.main %>"<% } %>>
+      <main role="main">
 
         <%- yield %>
 

@@ -1,0 +1,19 @@
+{
+  "index": {
+    "title": "Home",
+    "classes1": "layout-2"
+  },
+  "recipes": {
+    "title": "Recipes listing page"
+  },
+  "error-404": {
+    "title": "Error",
+    "classes1": "template-error template-error-404"
+  },
+  "rss": {
+    "layout": false
+  },
+  "sitemap": {
+    "layout": false
+  }
+}

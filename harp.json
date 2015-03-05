@@ -1,16 +1,10 @@
 {
   "globals": {
     "site": "Cook AdLib",
-    "description": "Cooking planner.",
-    "url": "http://cookadlib.com",
+    "description": "Cooking planner",
+    "url": "http://www.cookadlib.com",
     "dateofpublication": "2015",
-    "general": {
-      "classes": {
-        "html": "layout-1 palette-1 typography-1",
-        "body": "",
-        "main": ""
-      }
-    },
+    "classes": "layout-1 palette-1 typography-1",
     "social": [
       {
         "name": "facebook",
