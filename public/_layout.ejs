@@ -12,7 +12,6 @@
 
     <link rel="icon" href="/images/icons/favicon.ico" />
 
-    <link rel="stylesheet" href="/bower_components/normalize.css/normalize.css" />
     <link rel="stylesheet" href="/boilerplate/styles/boilerplate.css" />
 
     <link rel="alternate" href="/rss.xml" title="<%= site %> RSS" type="application/rss+xml" />
@@ -32,47 +31,143 @@
     <script src="/bower_components/webcomponentsjs/webcomponents.min.js"></script>
 
     <link rel="import" href="/bower_components/core-ajax/core-ajax.html" />
+    <link rel="import" href="/bower_components/core-drawer-panel/core-drawer-panel.html">
     <link rel="import" href="/bower_components/paper-button/paper-button.html" />
+    <link rel="import" href="/bower_components/paper-icon-button/paper-icon-button.html">
 
     <link rel="import" href="/custom_components/materialize-card/materialize-card.html" />
   </head>
 
   <body unresolved>
 
-    <header is="main-header"></header>
+    <core-drawer-panel>
 
-    <div class="master">
+      <core-header-panel drawer>
 
-      <main role="main">
+        <core-toolbar>
+          <div>Application</div>
+          <paper-icon-button icon="search" class="fade-on-drawer-open" on-tap="{{ toggleSearch }}" role="button" tabindex="0" aria-label="search"></paper-icon-button>
+        </core-toolbar>
 
-        <%- yield %>
+        <nav>
+          <button type="button" class="close" data-action="reveal" data-target="sidebar" aria-hidden="true">&times;</button>
+          <ul>
+              <li>
+                  <a ui-sref="#">Tour</a>
+              </li>
+              <li>
+                  <a ui-sref="#">Log in</a>
+              </li>
+          </ul>
+          <ul>
+              <li>
+                  <a ui-sref="#">My Planner</a>
+              </li>
+              <li>
+                  <a ui-sref="#">My Diet</a>
+              </li>
+              <li>
+                  <a ui-sref="#">My Shopping List</a>
+              </li>
+          </ul>
+          <ul>
+              <li>
+                  <a ui-sref="#">Editorial</a>
+              </li>
+              <li>
+                  <a ui-sref="#">Recipes</a>
+              </li>
+              <li>
+                  <a ui-sref="#">Shopping Assistant</a>
+              </li>
+          </ul>
+          <ul>
+              <li>
+                  <a ui-sref="#">Help &amp; Support</a>
+              </li>
+          </ul>
+          <hr />
+          <ul>
+              <li>
+                  <a ui-sref="#">About Cook AdLib</a>
+              </li>
+              <li>
+                  <a ui-sref="#">Blog</a>
+              </li>
+              <li>
+                  <a ui-sref="#">Developers</a>
+              </li>
+              <li>
+                  <a ui-sref="#">Press &amp; Media</a>
+              </li>
+              <li>
+                  <a ui-sref="#">Terms of Service</a>
+              </li>
+              <li>
+                  <a ui-sref="#">Privacy Policy</a>
+              </li>
+              <li>
+                  <a ui-sref="#">Contact Us</a>
+              </li>
+          </ul>
+          <hr />
+          <div>
+              <a href="#">
+                  <span>Twitter</span><i class="fa fa-twitter"></i>
+              </a>
+              <a href="#">
+                  <span>Facebook</span><i class="fa fa-facebook"></i>
+              </a>
+              <a href="#">
+                  <span>Google+</span><i class="fa fa-google-plus"></i>
+              </a>
+              <a href="#">
+                  <span>YouTube</span><i class="fa fa-youtube"></i>
+              </a>
+              <a href="#">
+                  <span>Tumblr</span><i class="fa fa-tumblr"></i>
+              </a>
+              <a href="#">
+                  <span>Reddit</span><i class="fa fa-arrow-circle-o-up"></i>
+              </a>
+          </div>
+        </nav>
 
-      </main>
+      </core-header-panel>
 
-      <nav is="main-nav">
-        <button data-target="dialog-1">Show dialog</button>
-        <button data-target="notification-1">Show notification</button>
-        <button data-target="speech-1">Play speech</button>
-      </nav>
+      <core-header-panel main>
 
-      <aside id="aside-1">
-        <h2>Latest Posts</h2>
-        <ul>
-          <% for(var slug in public.posts._data) { %>
-           <li>
-             <a href="<%= url %>/posts/<%= slug %>"><%= public.posts._data[slug].title %></a>
-             <p><%= public.posts._data[slug].description %></p>
-           </li>
-         <% } %>
-        </ul>
-      </aside>
+        <core-toolbar>
 
-    </div>
+          <paper-icon-button icon="menu" core-drawer-toggle>
+            toggle drawer
+          </paper-icon-button>
 
-    <footer is="main-footer">
-      <span class="colophon" data-i18n="ns.interface:copyright">Copyright &copy; <%= dateofpublication %> <%= site %></span>
-      <!-- search -->
-    </footer>
+          <div>Title</div>
+
+        </core-toolbar>
+
+        <main>
+          Main content...
+        </main>
+        <aside id="aside-1">
+          <h2>Latest Posts</h2>
+          <ul>
+            <% for(var slug in public.posts._data) { %>
+             <li>
+               <a href="<%= url %>/posts/<%= slug %>"><%= public.posts._data[slug].title %></a>
+               <p><%= public.posts._data[slug].description %></p>
+             </li>
+           <% } %>
+          </ul>
+        </aside>
+        <footer is="main-footer">
+          <span class="colophon" data-i18n="ns.interface:copyright">Copyright &copy; <%= dateofpublication %> <%= site %></span>
+          search
+        </footer>
+      </core-header-panel>
+
+    </core-drawer-panel>
 
     <script src="/bower_components/jquery/dist/jquery.js"></script>
     <script src="/bower_components/i18next/i18next.js"></script>

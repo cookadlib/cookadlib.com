@@ -1,7 +1,7 @@
 {
   "index": {
     "title": "Home",
-    "classes1": "layout-2"
+    "classes": "layout-3"
   },
   "recipes": {
     "title": "Recipes listing page"

@@ -25,7 +25,8 @@
     "normalize.css": "~3.0.2",
     "parsleyjs": "~2.0.0",
     "paper-button": "Polymer/paper-button#~0.5.4",
-    "flag-icon-css": "karlito-who-else/flag-icon-css#~0.6.5"
+    "flag-icon-css": "karlito-who-else/flag-icon-css#~0.6.5",
+    "paper-icon-button": "Polymer/paper-icon-button#~0.5.5"
   },
   "devDependencies": {
     "materialize": "~0.95.3"
