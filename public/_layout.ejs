@@ -30,6 +30,7 @@
 
     <script src="/bower_components/webcomponentsjs/webcomponents.min.js"></script>
 
+    <link rel="import" href="/bower_components/ajax-form/ajax-form.html" />
     <link rel="import" href="/bower_components/core-ajax/core-ajax.html" />
     <link rel="import" href="/bower_components/core-drawer-panel/core-drawer-panel.html">
     <link rel="import" href="/bower_components/paper-button/paper-button.html" />
@@ -150,6 +151,7 @@
         <main>
           Main content...
         </main>
+
         <aside id="aside-1">
           <h2>Latest Posts</h2>
           <ul>
@@ -161,10 +163,16 @@
            <% } %>
           </ul>
         </aside>
+
         <footer is="main-footer">
           <span class="colophon" data-i18n="ns.interface:copyright">Copyright &copy; <%= dateofpublication %> <%= site %></span>
-          search
+          <form is="ajax-form" action="/api/form/handler" method="post">
+            <label for="main-search" data-i18n="ns.interface:search">Search</label>
+            <input name="main-search" placeholder="search" type="search" />
+            <button data-i18n="ns.interface:search">Search</button>
+          </form>
         </footer>
+
       </core-header-panel>
 
     </core-drawer-panel>
