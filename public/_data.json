@@ -1,12 +1,24 @@
 {
+  "200": {
+    "title": "OK"
+  },
+  "404": {
+    "title": "Error"
+  },
   "index": {
-    "title": "Home"
+    "title": "Index",
+    "layout": "_layout-minimal"
+  },
+  "home": {
+    "title": "Home",
+    "layout": false
+  },
+  "demo": {
+    "title": "Oh",
+    "layout": false
   },
   "recipes": {
     "title": "Recipes listing page"
-  },
-  "error-404": {
-    "title": "Error"
   },
   "rss": {
     "layout": false
