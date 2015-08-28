@@ -1,43 +1,55 @@
 {
-  "name": "cookadlib.com",
-  "description": "cookadlib.com main site",
-  "version": "0.0.1",
-  "homepage": "http://cookadlib.com",
+  "name": "www.cookadlib.com",
+  "description": "cookadlib.com website",
+  "version": "0.3.0",
+  "homepage": "http://www.cookadlib.com",
   "author": {
     "name": "Cook AdLib",
     "email": "admin@cookadlib.com",
-    "url": "http://cookadlib.com"
+    "url": "http://www.cookadlib.com"
   },
-  "keywords": [],
+  "keywords": [
+    "cooking",
+    "diet",
+    "health",
+    "polymer",
+    "bower",
+    "gulp",
+    "browser-sync",
+    "modernizr",
+    "npm",
+    "node",
+    "docker"
+  ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/cookadlib/cookadlib.com"
+    "url": "https://github.com/cookadlib/www.cookadlib.com"
   },
   "bugs": {
-    "url": "https://github.com/cookadlib/cookadlib.com/issues"
+    "url": "https://github.com/cookadlib/www.cookadlib.com/issues"
   },
   "license": "",
   "private": true,
   "dependencies": {
-    "core-ajax": "Polymer/core-ajax#~0.5.4",
-    "garlicjs": "~1.2.3",
-    "i18next": "~1.7.7",
-    "normalize.css": "~3.0.2",
-    "parsleyjs": "~2.0.0",
-    "paper-button": "Polymer/paper-button#~0.5.4",
+    "draggabilly": "^1.2.4",
     "flag-icon-css": "karlito-who-else/flag-icon-css#~0.6.5",
-    "paper-icon-button": "Polymer/paper-icon-button#~0.5.5",
-    "core-drawer-panel": "Polymer/core-drawer-panel#~0.5.5",
-    "jquery": "~2.1.3",
-    "bootstrap-sass": "~3.3.3",
+    "google-map": "^1.0.6",
+    "i18next": "~1.7.7",
     "imagesloaded": "~3.1.8",
-    "ajax-form": "~1.5.2",
-    "app-router": "~2.6.0"
+    "iron-elements": "PolymerElements/iron-elements#1.0.3",
+    "jquery": "~2.1.3",
+    "neon-elements": "PolymerElements/neon-elements#1.0.0",
+    "page": "visionmedia/page.js#~1.6.3",
+    "paper-elements": "PolymerElements/paper-elements#1.0.5",
+    "platinum-elements": "PolymerElements/platinum-elements#1.1.1",
+    "polymer": "Polymer/polymer#^1.1.1"
   },
   "devDependencies": {
-    "materialize": "~0.95.3"
+    "bootstrap": "twbs/bootstrap#v4-dev",
+    "test-fixture": "PolymerElements/test-fixture#^1.0.0",
+    "web-component-tester": "*"
   },
   "resolutions": {
-    "jquery": ">=2.1.1"
+
   }
 }
