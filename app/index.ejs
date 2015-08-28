@@ -1,0 +1,11 @@
+<app-router>
+  <app-route path="/" import="/home"></app-route>
+  <app-route path="/demo" import="/demo"></app-route>
+  <app-route path="/demo1" import="/demo"></app-route>
+  <!--
+  <app-route path="/demo/:pathArg1" import="/demo "></app-route>
+  <app-route path="*" import="/404"></app-route>
+  -->
+</app-router>
+
+<a is="pushstate-anchor" href="/demo">Oh</a>

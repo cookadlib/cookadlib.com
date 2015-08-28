@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html class="<%= classes %> template-<%= current.source %>">
+  <head>
+    <%- partial('_partials/head') %>
+  </head>
+
+  <body unresolved>
+
+    <core-drawer-panel>
+
+      <core-header-panel drawer>
+
+        <core-toolbar>
+          <div>Application</div>
+          <paper-icon-button icon="search" class="fade-on-drawer-open" on-tap="{{ toggleSearch }}" role="button" tabindex="0" aria-label="search"></paper-icon-button>
+        </core-toolbar>
+
+        <nav>
+          <button type="button" class="close" data-action="reveal" data-target="sidebar" aria-hidden="true">&times;</button>
+          <ul>
+              <li>
+                  <a ui-sref="#">Tour</a>
+              </li>
+              <li>
+                  <a ui-sref="#">Log in</a>
+              </li>
+          </ul>
+          <ul>
+              <li>
+                  <a ui-sref="#">My Planner</a>
+              </li>
+              <li>
+                  <a ui-sref="#">My Diet</a>
+              </li>
+              <li>
+                  <a ui-sref="#">My Shopping List</a>
+              </li>
+          </ul>
+          <ul>
+              <li>
+                  <a ui-sref="#">Editorial</a>
+              </li>
+              <li>
+                  <a ui-sref="#">Recipes</a>
+              </li>
+              <li>
+                  <a ui-sref="#">Shopping Assistant</a>
+              </li>
+          </ul>
+          <ul>
+              <li>
+                  <a ui-sref="#">Help &amp; Support</a>
+              </li>
+          </ul>
+          <hr />
+          <ul>
+              <li>
+                  <a ui-sref="#">About Cook AdLib</a>
+              </li>
+              <li>
+                  <a ui-sref="#">Blog</a>
+              </li>
+              <li>
+                  <a ui-sref="#">Developers</a>
+              </li>
+              <li>
+                  <a ui-sref="#">Press &amp; Media</a>
+              </li>
+              <li>
+                  <a ui-sref="#">Terms of Service</a>
+              </li>
+              <li>
+                  <a ui-sref="#">Privacy Policy</a>
+              </li>
+              <li>
+                  <a ui-sref="#">Contact Us</a>
+              </li>
+          </ul>
+          <hr />
+          <div>
+              <a href="#">
+                  <span>Twitter</span><i class="fa fa-twitter"></i>
+              </a>
+              <a href="#">
+                  <span>Facebook</span><i class="fa fa-facebook"></i>
+              </a>
+              <a href="#">
+                  <span>Google+</span><i class="fa fa-google-plus"></i>
+              </a>
+              <a href="#">
+                  <span>YouTube</span><i class="fa fa-youtube"></i>
+              </a>
+              <a href="#">
+                  <span>Tumblr</span><i class="fa fa-tumblr"></i>
+              </a>
+              <a href="#">
+                  <span>Reddit</span><i class="fa fa-arrow-circle-o-up"></i>
+              </a>
+          </div>
+        </nav>
+
+      </core-header-panel>
+
+      <core-header-panel main>
+
+        <core-toolbar>
+
+          <paper-icon-button icon="menu" core-drawer-toggle>
+            toggle drawer
+          </paper-icon-button>
+
+          <div>Title</div>
+
+        </core-toolbar>
+
+        <main>
+          <%- yield %>
+        </main>
+
+        <aside id="aside-1">
+          <h2>Latest Posts</h2>
+          <ul>
+            <% for(var slug in public.posts._data) { %>
+             <li>
+               <a href="<%= url %>/posts/<%= slug %>"><%= public.posts._data[slug].title %></a>
+               <p><%= public.posts._data[slug].description %></p>
+             </li>
+           <% } %>
+          </ul>
+        </aside>
+
+        <footer is="main-footer">
+          <span class="colophon" data-i18n="ns.interface:copyright">Copyright &copy; <%= dateofpublication %> <%= site %></span>
+          <form is="ajax-form" action="/api/form/handler" method="post">
+            <label for="main-search" data-i18n="ns.interface:search">Search</label>
+            <input name="main-search" placeholder="search" type="search" />
+            <button data-i18n="ns.interface:search">Search</button>
+          </form>
+        </footer>
+
+      </core-header-panel>
+
+    </core-drawer-panel>
+
+    <%- partial('_partials/scripts') %>
+
+  </body>
+
+</html>

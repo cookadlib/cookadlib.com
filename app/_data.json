@@ -1,0 +1,29 @@
+{
+  "200": {
+    "title": "OK"
+  },
+  "404": {
+    "title": "Error"
+  },
+  "index": {
+    "title": "Index",
+    "layout": "_layout-minimal"
+  },
+  "home": {
+    "title": "Home",
+    "layout": false
+  },
+  "demo": {
+    "title": "Oh",
+    "layout": false
+  },
+  "recipes": {
+    "title": "Recipes listing page"
+  },
+  "rss": {
+    "layout": false
+  },
+  "sitemap": {
+    "layout": false
+  }
+}
