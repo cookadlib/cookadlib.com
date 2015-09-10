@@ -16,7 +16,7 @@ config.domain = manifest.domain;
 
 config.connection = {
   staging: {
-    base: '/var/www/html/tdm/site',
+    base: '/var/www/html/www.cookadlib.com',
     host: 'staging-01',
     user: 'wednesday-admin',
     privateKey: '/Users/karl/.ssh/wednesday-admin',
