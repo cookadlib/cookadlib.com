@@ -2,18 +2,21 @@
 
 import debug from 'gulp-debug';
 import gulp from 'gulp';
-import phantom from 'phantomjs2';
+// import phantom from 'phantomjs2';
+import phantom from 'phantomjs';
 import plumber from 'gulp-plumber';
 import webshot from 'gulp-webshot';
 
 import config from './_config.babel.js';
 import reportError from './_report-error.babel.js';
 
-const sourceFiles = config.files.markup;
+let sourceFiles = config.files.source.markup;
 
 gulp.task('screenshots', () => {
   return gulp.src(sourceFiles)
-    .pipe(plumber())
+    .pipe(plumber({
+      errorHandler: reportError
+    }))
     .pipe(debug({
       title: 'screenshots:'
     }))

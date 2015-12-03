@@ -13,11 +13,13 @@ import yamlvalidate from 'gulp-yaml-validate';
 import config from './_config.babel.js';
 import reportError from './_report-error.babel.js';
 
-const sourceFiles = config.files.tasks;
+let sourceFiles = config.files.source.tasks;
 
 gulp.task('framework', () => {
   gulp.src(sourceFiles)
-    .pipe(plumber())
+    .pipe(plumber({
+      errorHandler: reportError
+    }))
     .pipe(debug({
       title: 'framework (tasks):'
     }))
@@ -33,8 +35,10 @@ gulp.task('framework', () => {
     .pipe(plumber.stop())
     .on('error', reportError);
 
-  gulp.src(config.files.configuration.json)
-    .pipe(plumber())
+  gulp.src(config.files.source.configuration.json)
+    .pipe(plumber({
+	  errorHandler: reportError
+	}))
     .pipe(debug({
       title: 'framework (configuration:json):'
     }))
@@ -43,8 +47,10 @@ gulp.task('framework', () => {
     .pipe(plumber.stop())
     .on('error', reportError);
 
-  gulp.src(config.files.configuration.yaml)
-    .pipe(plumber())
+  gulp.src(config.files.source.configuration.yaml)
+    .pipe(plumber({
+	  errorHandler: reportError
+	}))
     .pipe(debug({
       title: 'framework (configuration:yaml):'
     }))

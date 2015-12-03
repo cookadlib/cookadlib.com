@@ -2,15 +2,15 @@
 
 import debug from 'gulp-debug';
 import gulp from 'gulp';
+import jsonlint  from 'gulp-jsonlint';
 import plumber from 'gulp-plumber';
-import rsync from 'gulp-rsync';
 
 import config from './_config.babel.js';
 import reportError from './_report-error.babel.js';
 
-let sourceFiles = config.files.destination.all;
+let sourceFiles = config.files.source.locales;
 
-gulp.task('rsync', () => {
+gulp.task('locales', () => {
   return gulp.src(sourceFiles, {
     dot: true
   })
@@ -18,16 +18,15 @@ gulp.task('rsync', () => {
     errorHandler: reportError
   }))
   .pipe(debug({
-    title: 'rsync:'
+    title: 'locales:'
   }))
-  .pipe(rsync({
-    root: config.path.destination.base,
-    hostname: '',
-    username: '',
-    destination: config.path.deploy.base,
-    incremental: true,
-    exclude: []
-  }))
+  .pipe(jsonlint())
+  .pipe(jsonlint.reporter(reportError))
   .pipe(plumber.stop())
+  .pipe(gulp.dest(config.path.destination.locales))
   .on('error', reportError);
+});
+
+gulp.task('locales:watch', function() {
+  gulp.watch(sourceFiles, ['locales']);
 });

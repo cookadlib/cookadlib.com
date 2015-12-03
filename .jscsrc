@@ -12,12 +12,13 @@
   "validateIndentation": 2,
 
   "disallowKeywords": ["with"],
+  "disallowSpacesInAnonymousFunctionExpression": null,
   "disallowSpacesInsideObjectBrackets": null,
   "disallowImplicitTypeConversion": ["string"],
 
   "safeContextKeyword": "_this",
 
   "excludeFiles": [
-
+    "node_modules/**"
   ]
 }

@@ -1,18 +1,18 @@
 'use strict';
 
-import debug from 'gulp-debug';
+// import debug from 'gulp-debug';
 import gulp from 'gulp';
-import plumber from 'gulp-plumber';
+// import plumber from 'gulp-plumber';
 import shell from 'gulp-shell';
 
-import manifest from '../package.json';
-import reportError from './_report-error.babel.js';
+// import manifest from '../package.json';
+// import reportError from './_report-error.babel.js';
 
 import config from './_config.babel.js';
 
-const sourceFiles = [
-  config.files.scripts,
-  config.files.documentation
+let sourceFiles = [
+  config.files.source.scripts,
+  config.files.source.documentation
 ];
 
 gulp.task('documentation', shell.task([

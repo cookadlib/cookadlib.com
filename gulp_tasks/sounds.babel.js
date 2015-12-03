@@ -8,11 +8,13 @@ import plumber from 'gulp-plumber';
 import config from './_config.babel.js';
 import reportError from './_report-error.babel.js';
 
-const sourceFiles = config.files.sounds;
+let sourceFiles = config.files.source.sounds;
 
 gulp.task('sounds', () => {
   return gulp.src(sourceFiles)
-    .pipe(plumber())
+    .pipe(plumber({
+      errorHandler: reportError
+    }))
     .pipe(debug({
       title: 'sounds:'
     }))

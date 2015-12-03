@@ -3,7 +3,7 @@
 import notify from 'gulp-notify';
 import util from 'gulp-util';
 
-var reportError = function(error) {
+let reportError = function(error) {
   let lineNumber = (error.lineNumber) ? 'LINE ' + error.lineNumber + ' -- ' : '';
 
   notify({
@@ -15,11 +15,11 @@ var reportError = function(error) {
   util.beep(); // Beep 'sosumi' again
 
   // Inspect the error object
-  //console.log(error);
+  console.log(error);
 
   // Easy error reporting
-  //console.log(error.toString());
-  //util.log(error.toString());
+  console.log(error.toString());
+  util.log(error.toString());
 
   // Pretty error reporting
   let report = '';
@@ -40,6 +40,6 @@ var reportError = function(error) {
 
   // Prevent the 'watch' task from stopping
   this.emit('end');
-}
+};
 
 export default reportError;

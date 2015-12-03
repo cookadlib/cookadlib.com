@@ -25,7 +25,16 @@
   },
 
   "globals": {
-
+    "$": true,
+    "Blob": true,
+    "document": true,
+    "imagesLoaded": true,
+    "importScripts": true,
+    "jQuery": true,
+    "navigator": true,
+    "Phaser": true,
+    "Polymer": true,
+    "window": true
   },
 
   "plugins": [

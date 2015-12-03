@@ -1,55 +1,84 @@
 'use strict';
 
-import autoprefixer from 'gulp-autoprefixer';
-import cached from 'gulp-cached';
-import csscomb from 'gulp-csscomb';
-import csso from 'gulp-csso';
+// import autoprefixer from 'gulp-autoprefixer';
+import autoprefixer from 'autoprefixer';
+import cache from 'gulp-cached';
+// import csscomb from 'gulp-csscomb';
+// import cssmin from 'gulp-cssmin';
+// import minifyCss from 'gulp-minify-css';
+// import csso from 'gulp-csso';
 import debug from 'gulp-debug';
 import gulp from 'gulp';
+// import gulpIgnore from 'gulp-ignore';
 import plumber from 'gulp-plumber';
+import postcss from 'gulp-postcss';
 import remember from 'gulp-remember';
 import sass from 'gulp-sass';
+import sassLint from 'gulp-sass-lint';
 import sourcemaps from 'gulp-sourcemaps';
 // import uncss from 'gulp-uncss';
 
 import {config, browserSync} from './_config.babel.js';
 import reportError from './_report-error.babel.js';
 
-const sourceFiles = config.files.styles;
+let sourceFiles = config.files.source.styles;
+
+// let sourceFilesIgnored = config.files.source.stylesIgnored;
+
+// console.log('sourceFiles', sourceFiles);
+// console.log('sourceFilesIgnored', sourceFilesIgnored);
+
+let processors = [
+  autoprefixer({
+    browsers: ['last 1 version']
+  })
+  // mqpacker,
+  // csswring
+];
 
 gulp.task('styles', () => {
   // stream not returned, see:
   // https://github.com/dlmanning/gulp-sass/wiki/Common-Issues-and-Their-Fixes#gulp-watch-stops-working-on-an-error
   // run from base to include files in elements folder
   gulp.src(sourceFiles)
-    .pipe(plumber())
+    .pipe(plumber({
+      errorHandler: reportError
+    }))
+    .pipe(cache('styles')) // only pass through changed files
     .pipe(debug({
       title: 'styles:'
     }))
-    .pipe(cached('styles')) // only pass through changed files
-    .pipe(sourcemaps.init())
+    // .pipe(gulpIgnore.exclude(sourceFilesIgnored)) // sass-lint can't process interpolated property selectors
+    // .pipe(sassLint({
+    //   config: config.path.root + '/.sass-lint.yml'
+    // }))
+    // .pipe(sassLint.format())
+    // .pipe(sassLint.failOnError())
+    // .pipe(gulpIgnore.include(sourceFiles)) // sass-lint can't process interpolated property selectors
+    .pipe(sourcemaps.init({
+      debug: true,
+      loadMaps: true
+    }))
     .pipe(
       sass({
+        errLogToConsole: true,
         includePaths: [
-          config.path.bowerComponents,
-          config.path.nodeModules,
-          config.path.styles
+          config.path.source.bowerComponents,
+          config.path.source.nodeModules,
+          config.path.source.styles
         ]
       })
       .on('error', sass.logError)
     )
-    .pipe(autoprefixer())
-    .pipe(csscomb())
-    .pipe(csso())
+    .pipe(postcss(processors))
     // .pipe(uncss({
     //   html: [
-    //     'index.html',
-    //     'posts/**/*.html',
-    //     'http://example.com'
+    //     '**/*.html'
     //   ]
     // }))
     .pipe(remember('styles')) // add back all files to the stream
-    // .pipe(sourcemaps.write('./maps')) // Causes the page to be reloaded after the styles are injected.  This was working, I'm not sure what changed.
+    // .pipe(rename({suffix: '.min'}))
+    .pipe(sourcemaps.write('.')) // Causes the page to be reloaded after the styles are injected.  This was working, I'm not sure what changed.
     .pipe(plumber.stop())
     .pipe(gulp.dest(config.path.destination.base))
     .pipe(browserSync.stream({match: '**/*.css'}))
@@ -57,12 +86,12 @@ gulp.task('styles', () => {
 });
 
 gulp.task('styles:watch', function() {
-  var watcher = gulp.watch(sourceFiles, ['styles']);
-  console.log(cached.caches);
+  let watcher = gulp.watch(sourceFiles, ['styles']);
+  // console.log(cache.caches);
   watcher.on('change', function(event) {
-    console.log('change', cached.caches);
+    // console.log('change', cache.caches);
     if (event.type === 'deleted') { // if a file is deleted, forget about it
-      delete cached.caches.styles[event.path];
+      delete cache.caches.styles[event.path];
       remember.forget('styles', event.path);
     }
   });

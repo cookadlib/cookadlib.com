@@ -3,7 +3,7 @@
 import gulp from 'gulp';
 
 gulp.task('assets', [
-  'icons',
+  'fonts',
   'images',
   'sounds',
   'videos'

@@ -11,25 +11,27 @@ import reportError from './_report-error.babel.js';
 
 const privateKey = fs.readFileSync(config.connection.staging.privateKey);
 
-const connection = {
+const sshConfig = {
   host: config.connection.staging.host,
   port: config.connection.staging.port,
   privateKey: privateKey,
-  user: config.connection.staging.user
+  username: config.connection.staging.user
 };
 
 const gulpSSH = new GulpSSH({
   ignoreErrors: false,
-  sshConfig: config
+  sshConfig: sshConfig
 });
 
-const sourceFiles = [config.path.destination.base + '/**'];
+let sourceFiles = config.files.destination.all;
 
 gulp.task('deploy', () => {
   return gulp.src(sourceFiles, {
     dot: true
   })
-  .pipe(plumber())
+  .pipe(plumber({
+    errorHandler: reportError
+  }))
   .pipe(debug({
     title: 'deploy:'
   }))

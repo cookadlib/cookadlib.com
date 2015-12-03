@@ -3,31 +3,28 @@
 import debug from 'gulp-debug';
 import gulp from 'gulp';
 import plumber from 'gulp-plumber';
-import rsync from 'gulp-rsync';
 
 import config from './_config.babel.js';
 import reportError from './_report-error.babel.js';
 
-let sourceFiles = config.files.destination.all;
+let sourceFiles = config.files.source.fonts;
 
-gulp.task('rsync', () => {
+gulp.task('fonts', () => {
   return gulp.src(sourceFiles, {
+    base: config.path.source.base,
     dot: true
   })
   .pipe(plumber({
     errorHandler: reportError
   }))
   .pipe(debug({
-    title: 'rsync:'
-  }))
-  .pipe(rsync({
-    root: config.path.destination.base,
-    hostname: '',
-    username: '',
-    destination: config.path.deploy.base,
-    incremental: true,
-    exclude: []
+    title: 'fonts:'
   }))
   .pipe(plumber.stop())
+  .pipe(gulp.dest(config.path.destination.fonts))
   .on('error', reportError);
+});
+
+gulp.task('fonts:watch', function() {
+  gulp.watch(sourceFiles, ['fonts']);
 });

@@ -7,14 +7,20 @@ import plumber from 'gulp-plumber';
 import config from './_config.babel.js';
 import reportError from './_report-error.babel.js';
 
-const sourceFiles = config.files.miscellaneous;
-sourceFiles.concat(config.files.packages);
+let sourceFiles = config.files.source.miscellaneous;
+sourceFiles = sourceFiles.concat(config.files.source.customStyles);
+sourceFiles = sourceFiles.concat(config.files.source.scriptsIgnored);
+sourceFiles = sourceFiles.concat(config.files.source.templates);
+sourceFiles = sourceFiles.concat(config.files.source.locales);
 
 gulp.task('copy', () => {
   return gulp.src(sourceFiles, {
+    base: config.path.source.base,
     dot: true
   })
-  .pipe(plumber())
+  .pipe(plumber({
+    errorHandler: reportError
+  }))
   .pipe(debug({
     title: 'copy:'
   }))

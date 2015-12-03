@@ -1,13 +1,14 @@
+deploy:
+  provider: gae
+  keyfile: Cook AdLib-629247c92d53.json
+  default: true
+  project: cook-adlib
+before_install:
+- openssl aes-256-cbc -K $encrypted_b34ad3c3bd8d_key -iv $encrypted_b34ad3c3bd8d_iv
+  -in Cook\ AdLib-629247c92d53.json.enc -out Cook\ AdLib-629247c92d53.json -d
 before_script:
-	- npm install
+  - npm install -g gulp
+script: gulp
 language: node_js
 node_js:
-	- '0.12'
-notifications:
-	webhooks:
-		urls:
-			- http://webhooks.nodejitsu.com/1/deploy
-		on_success: always
-		on_failure: never
-services:
-	- mongodb
+  - "4.1"
