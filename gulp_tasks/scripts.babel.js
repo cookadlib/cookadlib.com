@@ -13,7 +13,7 @@ import plumber from 'gulp-plumber';
 import remember from 'gulp-remember';
 import sourcemaps from 'gulp-sourcemaps';
 // import typescript from 'gulp-tsc';
-import uglify from 'gulp-uglify';
+// import uglify from 'gulp-uglify';
 
 import {config, browserSync} from './_config.babel.js';
 import reportError from './_report-error.babel.js';

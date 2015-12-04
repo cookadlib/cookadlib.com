@@ -12,9 +12,6 @@ let sourceFiles = config.files.source.icons;
 
 let pathPrefix = config.path.source.images.replace(/^\/|\/$/g, '') + '/';
 
-// console.log('config.path.source.images', config.path.source.images);
-// console.log('pathPrefix', pathPrefix);
-
 let separator = '-';
 
 gulp.task('icons', () => {
@@ -31,11 +28,8 @@ gulp.task('icons', () => {
       shape: {
         id: {
           generator: function(name) {
-            // console.log('name', name);
             let fullPath = config.path.source.base + '/' + name;
-            // console.log('fullPath', fullPath);
             let id = 'icon-' + fullPath.replace(pathPrefix, '').replace(/\//g, separator);
-            // console.log('id', id);
             return id;
           },
         },
@@ -59,7 +53,6 @@ gulp.task('icons', () => {
               dest: config.file.source.spritesheetTemporary
             }
           },
-          // prefix: '.icon' + separator + 'view',
           sprite: config.path.destination.images + '/sprite.view.svg'
         },
         symbol: {
@@ -68,7 +61,6 @@ gulp.task('icons', () => {
           example: {
             dest: config.path.destination.documentation + '/example.sprite.symbol.html'
           },
-          // prefix: '.icon' + separator + 'symbol',
           sprite: config.path.destination.images + '/sprite.symbol.svg'
         }
       }

@@ -49,11 +49,11 @@ gulp.task('styles', () => {
       title: 'styles:'
     }))
     // .pipe(gulpIgnore.exclude(sourceFilesIgnored)) // sass-lint can't process interpolated property selectors
-    // .pipe(sassLint({
-    //   config: config.path.root + '/.sass-lint.yml'
-    // }))
-    // .pipe(sassLint.format())
-    // .pipe(sassLint.failOnError())
+    .pipe(sassLint({
+      config: config.path.root + '/.sass-lint.yml'
+    }))
+    .pipe(sassLint.format())
+    .pipe(sassLint.failOnError())
     // .pipe(gulpIgnore.include(sourceFiles)) // sass-lint can't process interpolated property selectors
     .pipe(sourcemaps.init({
       debug: true,

@@ -16,7 +16,7 @@ let sourceFiles = [
 ];
 
 gulp.task('documentation', shell.task([
-  '../node_modules/jsdoc/jsdoc .'
+  '../node_modules/.bin/jsdoc .'
 ]));
 
 gulp.task('documentation:watch', function() {

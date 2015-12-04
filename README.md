@@ -3,6 +3,8 @@
 
 This repository contains the source code for [The Cook AdLib Website](http://www.cookadlib.com/)
 
+[![Build Status](https://travis-ci.org/cookadlib/www.cookadlib.com.svg)](https://travis-ci.org/cookadlib/www.cookadlib.com)
+
 ## Introduction
 
 ## Technologies

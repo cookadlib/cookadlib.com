@@ -3,7 +3,7 @@
 import gulp from 'gulp';
 import checkPages from 'check-pages';
 
-import {config, browserSync} from './_config.babel.js';
+import config from './_config.babel.js';
 
 let options = {
   pageUrls: [

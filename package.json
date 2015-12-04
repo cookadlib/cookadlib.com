@@ -66,6 +66,8 @@
     "babel-eslint": "^5.0.0-beta4",
     "babel-preset-es2015": "^6.1.18",
     "browser-sync": "^2.10.0",
+    "check-pages": "^0.9.0",
+    "connect-history-api-fallback": "^1.1.0",
     "del": "^2.1.0",
     "eslint": "^1.10.3",
     "fluent-ffmpeg": "^2.0.1",
@@ -103,6 +105,8 @@
     "gulp-shell": "^0.5.1",
     "gulp-size": "^2.0.0",
     "gulp-sourcemaps": "^1.6.0",
+    "gulp-svg-sprite": "^1.2.14",
+    "gulp-sym": "^0.0.14",
     "gulp-useref": "^3.0.3",
     "gulp-util": "^3.0.7",
     "gulp-vulcanize": "^6.1.0",
@@ -130,15 +134,26 @@
     "web-component-tester": "^3.4.0"
   },
   "config": {
-    "server": {
-      "http": {
-        "port": 8000
+    "browsersync": {
+      "socket": {
+        "port": 8001
       },
-      "browsersync": {
-        "port": 8001,
-        "ui": {
-          "port": 8002
-        }
+      "ui": {
+        "port": 8002
+      }
+    },
+    "http": {
+      "port": 8000
+    },
+    "pagespeed": {
+      "key": "no-key-setup-yet"
+    },
+    "path": {
+      "theme": ""
+    },
+    "vorlon": {
+      "ui": {
+        "port": 1337
       }
     }
   }
