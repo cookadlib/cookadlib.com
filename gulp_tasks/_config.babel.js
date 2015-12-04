@@ -14,6 +14,7 @@ export let config = {};
 
 config.name = packageJson.name;
 config.domain = packageJson.domain;
+config.version = packageJson.version;
 
 config.connection = {
   staging: {
