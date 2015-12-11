@@ -1,7 +1,13 @@
+addons:
+  sauce_connect:
+    username: "karlitowhoelse"
+    access_key: "d45485e6-5775-4719-b001-c2c4409feae6"
 deploy:
   default: true
   keyfile: Cook AdLib-629247c92d53.json
-  on: production
+  on:
+    branch: master
+    tags: true
   project: cook-adlib
   provider: gae
   skip_cleanup: true
