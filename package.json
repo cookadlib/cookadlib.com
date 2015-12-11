@@ -45,7 +45,7 @@
     "postinstall": "./scripts/npm/post-install.sh",
     "preinstall": "./scripts/npm/pre-install.sh",
     "test": "./node_modules/.bin/gulp test:local",
-    "start": "./node_modules/.bin/gulp serve",
+    "start": "node server.js",
     "vorlon": "./node_modules/.bin/vorlon"
   },
   "dependencies": {
@@ -57,7 +57,8 @@
     "lodash": "^3.10.1",
     "moment": "^2.10.6",
     "moment-recur": "^1.0.5",
-    "psi": "^2.0.2"
+    "psi": "^2.0.2",
+    "superstatic": "^3.0.0"
   },
   "devDependencies": {
     "apache-server-configs": "^2.14.0",
