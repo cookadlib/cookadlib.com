@@ -3,7 +3,7 @@
 import debug from 'gulp-debug';
 import gulp from 'gulp';
 // import phantom from 'phantomjs2';
-import phantom from 'phantomjs';
+// import phantom from 'phantomjs';
 import plumber from 'gulp-plumber';
 import webshot from 'gulp-webshot';
 
