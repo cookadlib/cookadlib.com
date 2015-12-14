@@ -11,8 +11,9 @@ deploy:
   keyfile: "Cook AdLib-629247c92d53.json"
   on:
     repo: cookadlib/www.cookadlib.com
-    tags: true
-    all_branches: true
+    #tags: true
+    #all_branches: true
+    branch: master
   project: cook-adlib
   provider: gae
   skip_cleanup: true
