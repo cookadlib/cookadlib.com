@@ -8,7 +8,7 @@ branches:
     - /v\d+\.\d+[a-z]/
 deploy:
   default: true
-  keyfile: "Cook AdLib-629247c92d53.json"
+  keyfile: "cook-adlib-629247c92d53.json.enc"
   on:
     repo: cookadlib/www.cookadlib.com
     #tags: true
@@ -19,7 +19,7 @@ deploy:
   skip_cleanup: true
 before_install:
 - openssl aes-256-cbc -K $encrypted_b34ad3c3bd8d_key -iv $encrypted_b34ad3c3bd8d_iv
-  -in Cook\ AdLib-629247c92d53.json.enc -out Cook\ AdLib-629247c92d53.json -d
+  -in cook-adlib-629247c92d53.json.enc -out cook-adlib-629247c92d53.json -d
 - chmod -R +x scripts
 before_script: scripts/travis/before.sh
 script: gulp build
