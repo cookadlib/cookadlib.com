@@ -17,6 +17,7 @@ deploy:
   project: cook-adlib
   provider: gae
   skip_cleanup: true
+  verbosity: debug
 before_install:
 - openssl aes-256-cbc -K $encrypted_b34ad3c3bd8d_key -iv $encrypted_b34ad3c3bd8d_iv
   -in cook-adlib-629247c92d53.json.enc -out cook-adlib-629247c92d53.json -d
