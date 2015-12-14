@@ -1,18 +1,16 @@
 addons:
   sauce_connect:
-    username: "karlitowhoelse"
-    access_key: "d45485e6-5775-4719-b001-c2c4409feae6"
+    username: karlitowhoelse
+    access_key: d45485e6-5775-4719-b001-c2c4409feae6
 branches:
   only:
-    - master
-    - /v\d+\.\d+[a-z]/
+  - master
+  - /v\d+\.\d+[a-z]/
 deploy:
   default: true
-  keyfile: "cook-adlib-629247c92d53.json.enc"
+  keyfile: cook-adlib-fa7e6a745e91.json
   on:
     repo: cookadlib/www.cookadlib.com
-    #tags: true
-    #all_branches: true
     branch: master
   project: cook-adlib
   provider: gae
@@ -20,10 +18,10 @@ deploy:
   verbosity: debug
 before_install:
 - openssl aes-256-cbc -K $encrypted_b34ad3c3bd8d_key -iv $encrypted_b34ad3c3bd8d_iv
-  -in cook-adlib-629247c92d53.json.enc -out cook-adlib-629247c92d53.json -d
+  -in cook-adlib-fa7e6a745e91.json.enc -out cook-adlib-fa7e6a745e91.json -d
 - chmod -R +x scripts
 before_script: scripts/travis/before.sh
 script: gulp build
 language: node_js
 node_js:
-  - "4.1"
+- '4.1'
