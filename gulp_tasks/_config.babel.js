@@ -114,7 +114,7 @@ config.files.source.elements = [
   config.path.source.elements + '/*.html'
 ];
 config.files.source.fonts = [
-  config.path.source.fonts + '/**/*.{eot,svg,ttf,woff}'
+  config.path.source.fonts + '/**/*.{eot,svg,ttf,woff,woff2}'
 ];
 config.files.source.icons = [
   config.path.source.base + '/**/*.svg'
