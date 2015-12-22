@@ -47,7 +47,7 @@ gulp.task('framework', () => {
     .pipe(plumber.stop())
     .on('error', reportError);
 
-  gulp.src(config.files.source.configuration.yaml)
+	gulp.src(config.files.source.configuration.yaml)
     .pipe(plumber({
 	  errorHandler: reportError
 	}))

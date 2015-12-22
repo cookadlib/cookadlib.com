@@ -42,15 +42,18 @@ config.path = {
   },
   destination: {
     base: 'www',
+    bowerComponents: 'www/' + bowerrc.directory + '/',
+    nodeModules: 'www/node_modules/',
     theme: 'www' + packageJson.config.path.theme
   },
   root: '.',
   source: {
     base: 'app',
+    bowerComponents: bowerrc.directory + '/',
+    nodeModules: 'node_modules/',
     theme: 'app' + packageJson.config.path.theme
   },
-  temporary: '.tmp',
-  theme: packageJson.config.path.theme
+  temporary: '.tmp'
 };
 
 config.path.source.bowerComponents = config.path.root + '/' + bowerrc.directory;
@@ -136,6 +139,9 @@ config.files.source.markup = [
 ];
 config.files.source.miscellaneous = [
   config.path.source.base + '/*.{css,ico,json,txt}'
+];
+config.files.source.packages = [
+  config.path.nodeModules + 'apache-server-configs/dist/.htaccess'
 ];
 config.files.source.scripts = [
   // config.path.source.base + '/**/!(*-min).js'

@@ -2,17 +2,24 @@
   "private": true,
   "name": "www.cookadlib.com",
   "description": "cookadlib.com website",
-  "version": "0.3.26",
+  "version": "0.3.27",
+  "domain": "cookadlib.com",
   "domains": [
     "cookadlib.com"
   ],
-  "subdomain": "cookadlib",
+  "subdomain": "www",
   "homepage": "http://www.cookadlib.com",
   "author": {
     "name": "The Cook AdLib Team",
     "email": "admin@cookadlib.com",
     "url": "http://www.cookadlib.com/about"
   },
+  "contributors": [
+    {
+      "name": "Karl Podger",
+      "email": "karl.podger@primeordinal.com"
+    }
+  ],
   "keywords": [
     "cooking",
     "diet",
@@ -34,20 +41,6 @@
     "url": "https://github.com/cookadlib/www.cookadlib.com/issues"
   },
   "license": "",
-  "engines": {
-    "node": ">=4.1"
-  },
-  "main": "app.js",
-  "scripts": {
-    "bower": "./node_modules/.bin/bower",
-    "dev": "./node_modules/.bin/browser-sync start --proxy '127.0.0.1:7050' --files 'www/**/*.*'",
-    "gulp": "./node_modules/.bin/gulp",
-    "postinstall": "./scripts/npm/post-install.sh",
-    "preinstall": "./scripts/npm/pre-install.sh",
-    "test": "./node_modules/.bin/gulp test:local",
-    "start": "node server.js",
-    "vorlon": "./node_modules/.bin/vorlon"
-  },
   "dependencies": {
     "bower": "^1.7.0",
     "country-data": "^0.0.24",
@@ -55,6 +48,8 @@
     "http2": "^3.2.0",
     "lazy.js": "^0.4.2",
     "lodash": "^3.10.1",
+    "material-design-lite": "^1.0.6",
+    "modernizr": "^3.2.0",
     "moment": "^2.10.6",
     "moment-recur": "^1.0.5",
     "psi": "^2.0.2",
@@ -91,7 +86,6 @@
     "gulp-ignore": "^2.0.1",
     "gulp-imagemin": "^2.4.0",
     "gulp-jscs": "^3.0.2",
-    "gulp-jsdoc": "^0.1.5",
     "gulp-jshint": "^2.0.0",
     "gulp-jsonlint": "^1.1.1",
     "gulp-load-plugins": "^1.1.0",
@@ -109,12 +103,12 @@
     "gulp-shell": "^0.5.1",
     "gulp-size": "^2.0.0",
     "gulp-sourcemaps": "^1.6.0",
+    "gulp-ssh": "^0.5.3",
     "gulp-svg-sprite": "^1.2.16",
     "gulp-sym": "^0.0.14",
     "gulp-useref": "^3.0.3",
     "gulp-util": "^3.0.7",
     "gulp-vulcanize": "^6.1.0",
-    "gulp-w3cjs": "^1.2.0",
     "gulp-webshot": "^0.1.4",
     "gulp-yaml-validate": "^1.0.2",
     "imagemin-gifsicle": "^4.2.0",
@@ -131,12 +125,28 @@
     "opn": "^3.0.3",
     "passport": "^0.3.2",
     "polybuild": "^1.0.5",
+    "psi": "^2.0.2",
     "require-dir": "^0.3.0",
     "run-sequence": "^1.1.5",
     "universal-analytics": "^0.3.9",
     "vorlon": "0.1.0",
+    "vulcanize": ">=1.14.0",
     "web-component-tester": "^3.4.2"
   },
+  "scripts": {
+    "bower": "./node_modules/.bin/bower",
+    "dev": "./node_modules/.bin/browser-sync start --proxy '127.0.0.1:7050' --files 'www/**/*.*'",
+    "gulp": "./node_modules/.bin/gulp",
+    "postinstall": "./scripts/npm/post-install.sh",
+    "preinstall": "./scripts/npm/pre-install.sh",
+    "test": "./node_modules/.bin/gulp test:local",
+    "start": "node server.js",
+    "vorlon": "./node_modules/.bin/vorlon"
+  },
+  "engines": {
+    "node": ">=4.1"
+  },
+  "main": "app.js",
   "config": {
     "browsersync": {
       "socket": {
