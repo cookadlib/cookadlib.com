@@ -12,7 +12,6 @@ addons:
 before_install:
 - openssl aes-256-cbc -K $encrypted_b34ad3c3bd8d_key -iv $encrypted_b34ad3c3bd8d_iv
   -in cook-adlib-fa7e6a745e91.json.enc -out cook-adlib-fa7e6a745e91.json -d
-- gcloud auth activate-service-account --key-file cook-adlib-fa7e6a745e91.json
 - chmod -R +x scripts
 - export CXX=g++-4.8
 - "$CXX --version"
