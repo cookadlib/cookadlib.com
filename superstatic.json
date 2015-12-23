@@ -1,0 +1,4 @@
+{
+  "clean_urls": ["/**", "/!bower_components/**", "/!node_modules/**"],
+  "trailing_slash": true
+}
