@@ -2,7 +2,7 @@
   "private": true,
   "name": "www.cookadlib.com",
   "description": "cookadlib.com website",
-  "version": "0.3.27",
+  "version": "0.3.33",
   "domain": "cookadlib.com",
   "domains": [
     "cookadlib.com"
@@ -40,10 +40,13 @@
   "bugs": {
     "url": "https://github.com/cookadlib/www.cookadlib.com/issues"
   },
-  "license": "",
+  "license": "Apache Version 2.0",
   "dependencies": {
+    "appengine": "git://github.com/GoogleCloudPlatform/appengine-nodejs.git",
     "bower": "^1.7.0",
     "country-data": "^0.0.24",
+    "express": "^4.13.3",
+    "googleapis": "^2.1.7",
     "gcloud": "^0.26.1",
     "http2": "^3.2.0",
     "lazy.js": "^0.4.2",
@@ -135,8 +138,10 @@
   },
   "scripts": {
     "bower": "./node_modules/.bin/bower",
+    "deploy": "gcloud preview app deploy app.yaml",
     "dev": "./node_modules/.bin/browser-sync start --proxy '127.0.0.1:7050' --files 'www/**/*.*'",
     "gulp": "./node_modules/.bin/gulp",
+    "monitor": "nodemon server.js",
     "postinstall": "./scripts/npm/post-install.sh",
     "preinstall": "./scripts/npm/pre-install.sh",
     "test": "./node_modules/.bin/gulp test:local",
@@ -146,7 +151,7 @@
   "engines": {
     "node": ">=4.1"
   },
-  "main": "app.js",
+  "main": "server.js",
   "config": {
     "browsersync": {
       "socket": {

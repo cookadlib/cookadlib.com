@@ -1,4 +1,11 @@
+# To test Node v4, Travis needs to use a newer C++ compiler.
+# Source: https://github.com/nodejs/nan/issues/435#issuecomment-136063745
 addons:
+  apt:
+    sources:
+    - ubuntu-toolchain-r-test
+    packages:
+    - g++-4.8
   sauce_connect:
     username: karlitowhoelse
     access_key: d45485e6-5775-4719-b001-c2c4409feae6
@@ -6,6 +13,8 @@ before_install:
 - openssl aes-256-cbc -K $encrypted_b34ad3c3bd8d_key -iv $encrypted_b34ad3c3bd8d_iv
   -in cook-adlib-fa7e6a745e91.json.enc -out cook-adlib-fa7e6a745e91.json -d
 - chmod -R +x scripts
+- export CXX=g++-4.8
+- "$CXX --version"
 before_script: scripts/travis/before.sh
 branches:
   only:
@@ -24,6 +33,7 @@ deploy:
   verbosity: debug
 language: node_js
 node_js:
+- "stable"
 - '4.1'
 script: gulp build
 sudo: false

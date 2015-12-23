@@ -12,8 +12,9 @@
 # limitations under the License.
 #
 # [START runtime]
-runtime: nodejs
+runtime: custom
 vm: true
+api_version: 1
 # [END runtime]
 
 # Temporary setting to keep gcloud from uploading node_modules
