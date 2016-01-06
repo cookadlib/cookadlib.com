@@ -9,6 +9,6 @@ app.use(superstatic({
   env: 'env.json'
 }));
 
-app.listen(3000, function () {
+app.listen(8080, function () {
 
 });
