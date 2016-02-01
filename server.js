@@ -35,8 +35,8 @@ app.get('/hello', function(req, res) {
 // app.listen(8080, '0.0.0.0');
 
 var server = app.listen(process.env.PORT || 8080, function() {
-  var host = server.address().address;
-  var port = server.address().port;
+  var host = this.address().address;
+  var port = this.address().port;
 
   console.log('App listening at http://%s:%s', host, port);
 });
