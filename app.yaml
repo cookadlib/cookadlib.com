@@ -11,12 +11,25 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-# [START runtime]
-runtime: custom
-vm: true
-api_version: 1
-# [END runtime]
 
-# Temporary setting to keep gcloud from uploading node_modules
+api_version: 1
+application: www.cookadlib.com
+runtime: custom
+# threadsafe: on
+vm: true
+
+# manual_scaling:
+#   instances: 1
+
+# vm_health_check:
+#   enable_health_check: true
+
+
+handlers:
+- url: /.*
+  script: server.js
+  # secure: always
+  secure: optional
+
 skip_files:
  - ^node_modules$

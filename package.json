@@ -53,8 +53,6 @@
     "lodash": "^3.10.1",
     "material-design-lite": "^1.0.6",
     "modernizr": "^3.2.0",
-    "moment": "^2.10.6",
-    "moment-recur": "^1.0.5",
     "psi": "^2.0.2",
     "superstatic": "^3.0.0"
   },
