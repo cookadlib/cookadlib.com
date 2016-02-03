@@ -40,5 +40,3 @@ var server = app.listen(process.env.PORT || 8080, function() {
 
   console.log('App listening at http://%s:%s', host, port);
 });
-
-console.log('Listening on port 8080');
