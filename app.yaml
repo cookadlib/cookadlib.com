@@ -13,7 +13,7 @@
 #
 
 api_version: 1
-application: www.cookadlib.com
+application: cookadlib
 runtime: custom
 # threadsafe: on
 vm: true
@@ -33,4 +33,5 @@ handlers:
   secure: optional
 
 skip_files:
+ - ^bower_components$
  - ^node_modules$

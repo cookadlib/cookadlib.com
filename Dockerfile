@@ -14,7 +14,7 @@ ADD .* ./
 
 ADD app app
 
-npm install -g superstatic
+#npm install -g superstatic
 
 RUN npm install
 
@@ -22,4 +22,4 @@ EXPOSE 8080
 
 WORKDIR .
 
-ENTRYPOINT ["node", "server.js"]
+ENTRYPOINT ["node", "superstatic.js"]

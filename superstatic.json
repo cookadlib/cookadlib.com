@@ -2,7 +2,14 @@
   "clean_urls": [
     "/**",
     "/!bower_components/**",
-    "/!node_modules/**"
+    "/!elements/**",
+    "/!images/**",
+    "/!node_modules/**",
+    "/!scripts/**",
+    "/!sounds/**",
+    "/!styles/**",
+    "/!translations/**",
+    "/!videos/**"
   ],
   "headers": [
     {

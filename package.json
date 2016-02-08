@@ -147,7 +147,7 @@
   "engines": {
     "node": ">=4.1"
   },
-  "main": "server.js",
+  "main": "superstatic.js",
   "config": {
     "browsersync": {
       "socket": {
