@@ -14,6 +14,8 @@ ADD .* ./
 
 ADD app app
 
+npm install -g superstatic
+
 RUN npm install
 
 EXPOSE 8080

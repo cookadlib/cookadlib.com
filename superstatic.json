@@ -1,4 +1,43 @@
 {
-  "clean_urls": ["/**", "/!bower_components/**", "/!node_modules/**"],
+  "clean_urls": [
+    "/**",
+    "/!bower_components/**",
+    "/!node_modules/**"
+  ],
+  "headers": [
+    {
+      "source" : "**/*.@(eot|otf|ttf|ttc|woff|font.css)",
+      "headers" : [
+        {
+          "key" : "Access-Control-Allow-Origin",
+          "value" : "*"
+        }
+      ]
+    }, {
+      "source" : "**/*.@(jpg|jpeg|gif|png)",
+      "headers" : [
+        {
+          "key" : "Cache-Control",
+          "value" : "max-age=7200"
+        }
+      ]
+    }, {
+      "source" : "404.html",
+      "headers" : [
+        {
+          "key" : "Cache-Control",
+          "value" : "max-age=300"
+        }
+      ]
+    }
+  ],
+  "redirects": [
+    {
+      "source": "/firebase/*",
+      "destination":"https://www.firebase.com",
+      "type": 302
+    }
+  ],
+  "root": "dist",
   "trailing_slash": true
 }

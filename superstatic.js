@@ -10,5 +10,8 @@ app.use(superstatic({
 }));
 
 app.listen(8080, function () {
-
+  var host = this.address().address;
+  var port = this.address().port;
+  
+  console.log('App listening at http://%s:%s', host, port);
 });

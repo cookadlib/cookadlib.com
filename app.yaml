@@ -27,7 +27,8 @@ vm: true
 
 handlers:
 - url: /.*
-  script: server.js
+  # script: server.js
+  script: superstatic
   # secure: always
   secure: optional
 

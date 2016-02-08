@@ -4,490 +4,83 @@
 
 <head>
 
-  <meta charset="utf-8">
-  <meta name="description" content="Industrie Magazine">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Industrie Magazine</title>
+  <meta charset="utf-8" />
+  <meta name="description" content="Cook AdLib" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Cook AdLib</title>
   <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
 
-  <base href="http://polygit.org/polymer+:master/components/">
+  <base href="http://polygit.org/polymer+:master/components/" />
 
   <!-- Chrome for Android theme color -->
-  <meta name="theme-color" content="#000000">
+  <meta name="theme-color" content="#000000" />
 
   <!-- Web Application Manifest -->
-  <link rel="manifest" href="manifest.json">
+  <link rel="manifest" href="manifest.json" />
 
   <!-- Tile color for Win8 -->
-  <meta name="msapplication-TileColor" content="#000000">
+  <meta name="msapplication-TileColor" content="#000000" />
 
   <!-- Add to homescreen for Chrome on Android -->
-  <meta name="mobile-web-app-capable" content="yes">
-  <meta name="application-name" content="Industrie Magazine">
-  <link rel="icon" sizes="192x192" href="images/touch/chrome-touch-icon-192x192.png">
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="application-name" content="Cook AdLib" />
+  <link rel="icon" sizes="192x192" href="images/touch/chrome-touch-icon-192x192.png" />
 
   <!-- Add to homescreen for Safari on iOS -->
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black">
-  <meta name="apple-mobile-web-app-title" content="Grids">
-  <link rel="apple-touch-icon" href="images/touch/apple-touch-icon.png">
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  <meta name="apple-mobile-web-app-title" content="Grids" />
+  <link rel="apple-touch-icon" href="images/touch/apple-touch-icon.png" />
 
   <!-- Add to Pinned Tabs for Safari on OS-X -->
-  <link rel="mask-icon" href="images/touch/apple-pinned-icon.svg" color="#000000">
+  <link rel="mask-icon" href="images/touch/apple-pinned-icon.svg" color="#000000" />
 
   <!-- Tile icon for Win8 (144x144) -->
-  <meta name="msapplication-TileImage" content="images/touch/ms-touch-icon-144x144-precomposed.png">
+  <meta name="msapplication-TileImage" content="images/touch/ms-touch-icon-144x144-precomposed.png" />
 
   <script src="webcomponentsjs/webcomponents-lite.min.js"></script>
+  <script src='https://cdn.firebase.com/js/client/2.2.1/firebase.js'></script>
 
-  <link href="polymer/polymer.html" rel="import">
+  <link href="polymer/polymer.html" rel="import" />
 </head>
 
 <body>
 
   <header>
-    <img itemprop="logo" class="page-title" src="images/logos/industriemagazine.svg" alt="Industrie Magazine" />
+    <img itemprop="logo" src="images/logos/cookadlibazine.svg" alt="Cook AdLib" />
   </header>
 
-  <main class="slick-slider">
-    <div class="slide hidden-sm-down">
-      <img data-src="images/gallery/8-cover.jpg" alt="Issue 8 cover" />
-      <img data-src="images/gallery/7-cover.jpg" alt="Issue 7 cover" />
-    </div>
-    <div class="slide hidden-sm-down">
-      <img data-src="images/gallery/6-cover.jpg" alt="Issue 6 cover" />
-      <img data-src="images/gallery/5-cover.jpg" alt="Issue 5 cover" />
-    </div>
-    <div class="slide hidden-sm-down">
-      <img data-src="images/gallery/4-cover.jpg" alt="Issue 4 cover" />
-      <img data-src="images/gallery/3-cover.jpg" alt="Issue 3 cover" />
-    </div>
-    <div class="slide hidden-sm-down">
-      <img data-src="images/gallery/2-cover.jpg" alt="Issue 2 cover" />
-      <img data-src="images/gallery/1-cover.jpg" alt="Issue 1 cover" />
-    </div>
-
-    <div class="slide hidden-md-up">
-      <img data-src="images/gallery/8-cover.jpg" alt="Issue 8 cover" />
-    </div>
-    <div class="slide hidden-md-up">
-      <img data-src="images/gallery/7-cover.jpg" alt="Issue 7 cover" />
-    </div>
-    <div class="slide hidden-md-up">
-      <img data-src="images/gallery/6-cover.jpg" alt="Issue 6 cover" />
-    </div>
-    <div class="slide hidden-md-up">
-      <img data-src="images/gallery/5-cover.jpg" alt="Issue 5 cover" />
-    </div>
-    <div class="slide hidden-md-up">
-      <img data-src="images/gallery/4-cover.jpg" alt="Issue 4 cover" />
-    </div>
-    <div class="slide hidden-md-up">
-      <img data-src="images/gallery/3-cover.jpg" alt="Issue 3 cover" />
-    </div>
-    <div class="slide hidden-md-up">
-      <img data-src="images/gallery/2-cover.jpg" alt="Issue 2 cover" />
-    </div>
-    <div class="slide hidden-md-up">
-      <img data-src="images/gallery/1-cover.jpg" alt="Issue 1 cover" />
-    </div>
-
-    <!-- <div class="slide">
-      <img data-src="images/gallery/8-cover.jpg" alt="Issue 8 cover" />
-    </div> -->
-    <div class="slide">
-      <img data-src="images/gallery/8-11.jpg" alt="Issue 8 featured image" />
-    </div>
-    <div class="slide hidden-md-up">
-      <img data-src="images/gallery/8-10.jpg" alt="Issue 8 featured image" />
-    </div>
-    <div class="slide hidden-md-up">
-      <img data-src="images/gallery/8-9.jpg" alt="Issue 8 featured image" />
-    </div>
-    <div class="slide hidden-sm-down">
-      <img data-src="images/gallery/8-10.jpg" alt="Issue 8 featured image" />
-      <img data-src="images/gallery/8-9.jpg" alt="Issue 8 featured image" />
-    </div>
-    <div class="slide">
-      <img data-src="images/gallery/8-9a.jpg" alt="Issue 8 featured image" />
-    </div>
-    <div class="slide hidden-md-up">
-      <img data-src="images/gallery/8-8.jpg" alt="Issue 8 featured image" />
-    </div>
-    <div class="slide hidden-md-up">
-      <img data-src="images/gallery/8-7.jpg" alt="Issue 8 featured image" />
-    </div>
-    <div class="slide hidden-sm-down">
-      <img data-src="images/gallery/8-8.jpg" alt="Issue 8 featured image" />
-      <img data-src="images/gallery/8-7.jpg" alt="Issue 8 featured image" />
-    </div>
-    <div class="slide">
-      <img data-src="images/gallery/8-6b.jpg" alt="Issue 8 featured image" />
-    </div>
-    <div class="slide">
-      <img data-src="images/gallery/8-6a.jpg" alt="Issue 8 featured image" />
-    </div>
-    <div class="slide hidden-md-up">
-      <img data-src="images/gallery/8-6.jpg" alt="Issue 8 featured image" />
-    </div>
-    <div class="slide hidden-md-up">
-      <img data-src="images/gallery/8-5.jpg" alt="Issue 8 featured image" />
-    </div>
-    <div class="slide hidden-md-up">
-      <img data-src="images/gallery/8-4.jpg" alt="Issue 8 featured image" />
-    </div>
-    <div class="slide hidden-md-up">
-      <img data-src="images/gallery/8-3.jpg" alt="Issue 8 featured image" />
-    </div>
-    <div class="slide hidden-md-up">
-      <img data-src="images/gallery/8-2.jpg" alt="Issue 8 featured image" />
-    </div>
-    <div class="slide hidden-md-up">
-      <img data-src="images/gallery/8-1.jpg" alt="Issue 8 featured image" />
-    </div>
-    <div class="slide hidden-sm-down">
-      <img data-src="images/gallery/8-6.jpg" alt="Issue 8 featured image" />
-      <img data-src="images/gallery/8-5.jpg" alt="Issue 8 featured image" />
-    </div>
-    <div class="slide hidden-sm-down">
-      <img data-src="images/gallery/8-4.jpg" alt="Issue 8 featured image" />
-      <img data-src="images/gallery/8-3.jpg" alt="Issue 8 featured image" />
-    </div>
-    <div class="slide hidden-sm-down">
-      <img data-src="images/gallery/8-2.jpg" alt="Issue 8 featured image" />
-      <img data-src="images/gallery/8-1.jpg" alt="Issue 8 featured image" />
-    </div>
-    <div class="slide">
-      <img data-src="images/gallery/8-0.jpg" alt="Issue 8 featured image" />
-    </div>
-
-    <!-- <div class="slide">
-      <img data-src="images/gallery/7-cover.jpg" alt="Issue 7 cover" />
-    </div> -->
-    <div class="slide">
-      <img data-src="images/gallery/7-5.jpg" alt="Issue 7 featured image" />
-    </div>
-    <div class="slide hidden-md-up">
-      <img data-src="images/gallery/7-4.jpg" alt="Issue 7 featured image" />
-    </div>
-    <div class="slide hidden-md-up">
-      <img data-src="images/gallery/7-3.jpg" alt="Issue 7 featured image" />
-    </div>
-    <div class="slide hidden-md-up">
-      <img data-src="images/gallery/7-2.jpg" alt="Issue 7 featured image" />
-    </div>
-    <div class="slide hidden-md-up">
-      <img data-src="images/gallery/7-1.jpg" alt="Issue 7 featured image" />
-    </div>
-    <div class="slide hidden-sm-down">
-      <img data-src="images/gallery/7-4.jpg" alt="Issue 7 featured image" />
-      <img data-src="images/gallery/7-3.jpg" alt="Issue 7 featured image" />
-    </div>
-    <div class="slide hidden-sm-down">
-      <img data-src="images/gallery/7-2.jpg" alt="Issue 7 featured image" />
-      <img data-src="images/gallery/7-1.jpg" alt="Issue 7 featured image" />
-    </div>
-
-    <!-- <div class="slide">
-      <img data-src="images/gallery/6-cover.jpg" alt="Issue 6 cover" />
-    </div> -->
-    <div class="slide hidden-md-up">
-      <img data-src="images/gallery/6-14.jpg" alt="Issue 6 featured image" />
-    </div>
-    <div class="slide hidden-md-up">
-      <img data-src="images/gallery/6-13.jpg" alt="Issue 6 featured image" />
-    </div>
-    <div class="slide hidden-md-up">
-      <img data-src="images/gallery/6-12.jpg" alt="Issue 6 featured image" />
-    </div>
-    <div class="slide hidden-md-up">
-      <img data-src="images/gallery/6-11.jpg" alt="Issue 6 featured image" />
-    </div>
-    <div class="slide hidden-md-up">
-      <img data-src="images/gallery/6-10.jpg" alt="Issue 6 featured image" />
-    </div>
-    <div class="slide hidden-md-up">
-      <img data-src="images/gallery/6-9.jpg" alt="Issue 6 featured image" />
-    </div>
-    <div class="slide hidden-md-up">
-      <img data-src="images/gallery/6-8.jpg" alt="Issue 6 featured image" />
-    </div>
-    <div class="slide hidden-md-up">
-      <img data-src="images/gallery/6-7.jpg" alt="Issue 6 featured image" />
-    </div>
-    <div class="slide hidden-md-up">
-      <img data-src="images/gallery/6-6.jpg" alt="Issue 6 featured image" />
-    </div>
-    <div class="slide hidden-md-up">
-      <img data-src="images/gallery/6-5.jpg" alt="Issue 6 featured image" />
-    </div>
-    <div class="slide hidden-sm-down">
-      <img data-src="images/gallery/6-14.jpg" alt="Issue 6 featured image" />
-      <img data-src="images/gallery/6-13.jpg" alt="Issue 6 featured image" />
-    </div>
-    <div class="slide hidden-sm-down">
-      <img data-src="images/gallery/6-12.jpg" alt="Issue 6 featured image" />
-      <img data-src="images/gallery/6-11.jpg" alt="Issue 6 featured image" />
-    </div>
-    <div class="slide hidden-sm-down">
-      <img data-src="images/gallery/6-10.jpg" alt="Issue 6 featured image" />
-      <img data-src="images/gallery/6-9.jpg" alt="Issue 6 featured image" />
-    </div>
-    <div class="slide hidden-sm-down">
-      <img data-src="images/gallery/6-8.jpg" alt="Issue 6 featured image" />
-      <img data-src="images/gallery/6-7.jpg" alt="Issue 6 featured image" />
-    </div>
-    <div class="slide hidden-sm-down">
-      <img data-src="images/gallery/6-6.jpg" alt="Issue 6 featured image" />
-      <img data-src="images/gallery/6-5.jpg" alt="Issue 6 featured image" />
-    </div>
-    <div class="slide">
-      <img data-src="images/gallery/6-4b.jpg" alt="Issue 6 featured image" />
-    </div>
-    <div class="slide hidden-md-up">
-      <img data-src="images/gallery/6-4.jpg" alt="Issue 6 featured image" />
-    </div>
-    <div class="slide hidden-md-up">
-      <img data-src="images/gallery/6-3.jpg" alt="Issue 6 featured image" />
-    </div>
-    <div class="slide hidden-md-up">
-      <img data-src="images/gallery/6-2.jpg" alt="Issue 6 featured image" />
-    </div>
-    <div class="slide hidden-md-up">
-      <img data-src="images/gallery/6-1.jpg" alt="Issue 6 featured image" />
-    </div>
-    <div class="slide hidden-sm-down">
-      <img data-src="images/gallery/6-4.jpg" alt="Issue 6 featured image" />
-      <img data-src="images/gallery/6-3.jpg" alt="Issue 6 featured image" />
-    </div>
-    <div class="slide hidden-sm-down">
-      <img data-src="images/gallery/6-2.jpg" alt="Issue 6 featured image" />
-      <img data-src="images/gallery/6-1.jpg" alt="Issue 6 featured image" />
-    </div>
-
-    <!-- <div class="slide">
-      <img data-src="images/gallery/5-cover.jpg" alt="Issue 5 cover" />
-    </div> -->
-    <div class="slide hidden-md-up">
-      <img data-src="images/gallery/5-4.jpg" alt="Issue 5 featured image" />
-    </div>
-    <div class="slide hidden-md-up">
-      <img data-src="images/gallery/5-3.jpg" alt="Issue 5 featured image" />
-    </div>
-    <div class="slide hidden-md-up">
-      <img data-src="images/gallery/5-2.jpg" alt="Issue 5 featured image" />
-    </div>
-    <div class="slide hidden-md-up">
-      <img data-src="images/gallery/5-1.jpg" alt="Issue 5 featured image" />
-    </div>
-    <div class="slide hidden-sm-down">
-      <img data-src="images/gallery/5-4.jpg" alt="Issue 5 featured image" />
-      <img data-src="images/gallery/5-3.jpg" alt="Issue 5 featured image" />
-    </div>
-    <div class="slide hidden-sm-down">
-      <img data-src="images/gallery/5-2.jpg" alt="Issue 5 featured image" />
-      <img data-src="images/gallery/5-1.jpg" alt="Issue 5 featured image" />
-    </div>
-    <div class="slide">
-      <img data-src="images/gallery/5-01.jpg" alt="Issue 5 featured image" />
-    </div>
-    <div class="slide">
-      <img data-src="images/gallery/5-0.jpg" alt="Issue 5 featured image" />
-    </div>
-
-    <!-- <div class="slide">
-      <img data-src="images/gallery/4-cover.jpg" alt="Issue 4 cover" />
-    </div> -->
-    <div class="slide hidden-md-up">
-      <img data-src="images/gallery/4-8.jpg" alt="Issue 4 featured image" />
-    </div>
-    <div class="slide hidden-md-up">
-      <img data-src="images/gallery/4-7.jpg" alt="Issue 4 featured image" />
-    </div>
-    <div class="slide hidden-md-up">
-      <img data-src="images/gallery/4-6.jpg" alt="Issue 4 featured image" />
-    </div>
-    <div class="slide hidden-md-up">
-      <img data-src="images/gallery/4-5.jpg" alt="Issue 4 featured image" />
-    </div>
-    <div class="slide hidden-md-up">
-      <img data-src="images/gallery/4-4.jpg" alt="Issue 4 featured image" />
-    </div>
-    <div class="slide hidden-md-up">
-      <img data-src="images/gallery/4-3.jpg" alt="Issue 4 featured image" />
-    </div>
-    <div class="slide hidden-md-up">
-      <img data-src="images/gallery/4-2.jpg" alt="Issue 4 featured image" />
-    </div>
-    <div class="slide hidden-md-up">
-      <img data-src="images/gallery/4-1.jpg" alt="Issue 4 featured image" />
-    </div>
-    <div class="slide hidden-sm-down">
-      <img data-src="images/gallery/4-8.jpg" alt="Issue 4 featured image" />
-      <img data-src="images/gallery/4-7.jpg" alt="Issue 4 featured image" />
-    </div>
-    <div class="slide hidden-sm-down">
-      <img data-src="images/gallery/4-6.jpg" alt="Issue 4 featured image" />
-      <img data-src="images/gallery/4-5.jpg" alt="Issue 4 featured image" />
-    </div>
-    <div class="slide hidden-sm-down">
-      <img data-src="images/gallery/4-4.jpg" alt="Issue 4 featured image" />
-      <img data-src="images/gallery/4-3.jpg" alt="Issue 4 featured image" />
-    </div>
-    <div class="slide hidden-sm-down">
-      <img data-src="images/gallery/4-2.jpg" alt="Issue 4 featured image" />
-      <img data-src="images/gallery/4-1.jpg" alt="Issue 4 featured image" />
-    </div>
-    <div class="slide">
-      <img data-src="images/gallery/4-0.jpg" alt="Issue 4 featured image" />
-    </div>
-
-    <!-- <div class="slide">
-      <img data-src="images/gallery/3-cover.jpg" alt="Issue 3 cover" />
-    </div> -->
-    <div class="slide">
-      <img data-src="images/gallery/3-5.jpg" alt="Issue 3 featured image" />
-    </div>
-    <div class="slide hidden-md-up">
-      <img data-src="images/gallery/3-4.jpg" alt="Issue 3 featured image" />
-    </div>
-    <div class="slide hidden-md-up">
-      <img data-src="images/gallery/3-3.jpg" alt="Issue 3 featured image" />
-    </div>
-    <div class="slide hidden-md-up">
-      <img data-src="images/gallery/3-2.jpg" alt="Issue 3 featured image" />
-    </div>
-    <div class="slide hidden-md-up">
-      <img data-src="images/gallery/3-1.jpg" alt="Issue 3 featured image" />
-    </div>
-    <div class="slide hidden-sm-down">
-      <img data-src="images/gallery/3-4.jpg" alt="Issue 3 featured image" />
-      <img data-src="images/gallery/3-3.jpg" alt="Issue 3 featured image" />
-    </div>
-    <div class="slide hidden-sm-down">
-      <img data-src="images/gallery/3-2.jpg" alt="Issue 3 featured image" />
-      <img data-src="images/gallery/3-1.jpg" alt="Issue 3 featured image" />
-    </div>
-
-    <!-- <div class="slide">
-      <img data-src="images/gallery/2-cover.jpg" alt="Issue 2 cover" />
-    </div> -->
-    <div class="slide hidden-md-up">
-      <img data-src="images/gallery/2-6.jpg" alt="Issue 2 featured image" />
-    </div>
-    <div class="slide hidden-md-up">
-      <img data-src="images/gallery/2-5.jpg" alt="Issue 2 featured image" />
-    </div>
-    <div class="slide hidden-md-up">
-      <img data-src="images/gallery/2-4.jpg" alt="Issue 2 featured image" />
-    </div>
-    <div class="slide hidden-md-up">
-      <img data-src="images/gallery/2-3.jpg" alt="Issue 2 featured image" />
-    </div>
-    <div class="slide hidden-md-up">
-      <img data-src="images/gallery/2-2.jpg" alt="Issue 2 featured image" />
-    </div>
-    <div class="slide hidden-md-up">
-      <img data-src="images/gallery/2-1.jpg" alt="Issue 2 featured image" />
-    </div>
-    <div class="slide hidden-sm-down">
-      <img data-src="images/gallery/2-6.jpg" alt="Issue 2 featured image" />
-      <img data-src="images/gallery/2-5.jpg" alt="Issue 2 featured image" />
-    </div>
-    <div class="slide hidden-sm-down">
-      <img data-src="images/gallery/2-4.jpg" alt="Issue 2 featured image" />
-      <img data-src="images/gallery/2-3.jpg" alt="Issue 2 featured image" />
-    </div>
-    <div class="slide hidden-sm-down">
-      <img data-src="images/gallery/2-2.jpg" alt="Issue 2 featured image" />
-      <img data-src="images/gallery/2-1.jpg" alt="Issue 2 featured image" />
-    </div>
-
-    <!-- <div class="slide">
-      <img data-src="images/gallery/1-cover.jpg" alt="Issue 1 cover" />
-    </div> -->
-    <div class="slide">
-      <img data-src="images/gallery/1-8.jpg" alt="Issue 1 featured image" />
-    </div>
-    <div class="slide">
-      <img data-src="images/gallery/1-7.jpg" alt="Issue 1 featured image" />
-    </div>
-    <div class="slide hidden-md-up">
-      <img data-src="images/gallery/1-6.jpg" alt="Issue 1 featured image" />
-    </div>
-    <div class="slide hidden-md-up">
-      <img data-src="images/gallery/1-5.jpg" alt="Issue 1 featured image" />
-    </div>
-    <div class="slide hidden-md-up">
-      <img data-src="images/gallery/1-4.jpg" alt="Issue 1 featured image" />
-    </div>
-    <div class="slide hidden-md-up">
-      <img data-src="images/gallery/1-3.jpg" alt="Issue 1 featured image" />
-    </div>
-    <div class="slide hidden-md-up">
-      <img data-src="images/gallery/1-2.jpg" alt="Issue 1 featured image" />
-    </div>
-    <div class="slide hidden-md-up">
-      <img data-src="images/gallery/1-1.jpg" alt="Issue 1 featured image" />
-    </div>
-    <div class="slide hidden-sm-down">
-      <img data-src="images/gallery/1-6.jpg" alt="Issue 1 featured image" />
-      <img data-src="images/gallery/1-5.jpg" alt="Issue 1 featured image" />
-    </div>
-    <div class="slide hidden-sm-down">
-      <img data-src="images/gallery/1-4.jpg" alt="Issue 1 featured image" />
-      <img data-src="images/gallery/1-3.jpg" alt="Issue 1 featured image" />
-    </div>
-    <div class="slide hidden-sm-down">
-      <img data-src="images/gallery/1-2.jpg" alt="Issue 1 featured image" />
-      <img data-src="images/gallery/1-1.jpg" alt="Issue 1 featured image" />
-    </div>
+  <main>
   </main>
 
-  <!-- <img class="loading-indicator" src="images/loaders/circular.svg" alt="Loading indicator" /> -->
-
-  <!-- <img class="chevron" src="images/ui/chevron.svg" alt="Directional chevron" /> -->
-
   <footer itemscope itemtype="http://schema.org/Organization">
-    <span class="sr-only" itemprop="name">Industrie Magazine</span>
-    <a class="logo" href="http://industriemagazine.com" itemprop="url">
-      <img itemprop="logo" class="sr-only" src="images/logos/industriemagazine.svg" alt="Industrie Magazine" />
+    <span class="sr-only" itemprop="name">Cook AdLib</span>
+    <a class="logo" href="http://www.cookadlib.com" itemprop="url">
+      <img itemprop="logo" class="sr-only" src="images/branding/logotype.svg" alt="Cook AdLib" />
     </a>
-    <a href="mailto:info@industriemagazine.com" itemprop="email">info@industriemagazine.com</a>
-    <a href="https://twitter.com/industriemag" target="_blank" rel="me" itemprop="sameAs">@industriemag</a>
-    <a class="sr-only" href="tel:+442077494500" itemprop="telephone">+44 207 749 4500</a>
-    <a class="sr-only" href="https://www.google.co.uk/maps/place/10+Redchurch+St,+London+E1+6JL/@51.5242745,-0.0789459,17z/data=!3m1!4b1!4m2!3m1!1s0x48761cb0b7b4ae75:0x50c53d1a8d3dcd06">
-      <address itemprop="address" itemscope itemtype="http://schema.org/PostalAddress">
-        <div itemprop="streetAddress">
-          <span>Biscuit Building</span>
-          <span>10 Redchurch Street</span>
-        </div>
-        <span itemprop="addressLocality">London</span>
-        <span itemprop="postalCode">E2 7DD</span>
-        <span itemprop="addressCountry">UK</span>
-      </address>
-    </a>
+    <a href="mailto:info@cookadlib.com" itemprop="email">info@cookadlib.com</a>
+    <a href="https://twitter.com/cookadlib" target="_blank" rel="me" itemprop="sameAs">@cookadlib</a>
+    <a class="sr-only" href="tel:+44208123456" itemprop="telephone">+44 208 123456</a>
   </footer>
 
-  <script type="text/javascript" src="//code.jquery.com/jquery-2.1.4.min.js"></script>
-  <script type="text/javascript" src="//cdn.jsdelivr.net/jquery.slick/1.5.7/slick.min.js"></script>
+  <!-- <script src="bower_components/picturefill/dist/picturefill.min.js"></script>
+  <script src="bower_components/lazysizes/lazysizes.min.js"></script> -->
 
-  <script src="bower_components/picturefill/dist/picturefill.min.js"></script>
-  <script src="bower_components/lazysizes/lazysizes.min.js"></script>
-
-  <!-- build:js scripts/slick.js -->
-  <script src="scripts/slick-slider.js"></script>
+  <!-- build:js scripts/application.js -->
+  <script src="scripts/application.js"></script>
   <!-- endbuild-->
 
   <script>
-    // if(window.Worker) {
-    //   var galleryWorker = new Worker('scripts/slick-slider.js');
-    // }
+    var myDataRef = new Firebase('https://tw7bmi21wz1.firebaseio-demo.com/');
+
+    if(window.Worker) {
+      var galleryWorker = new Worker('scripts/database.js');
+    }
   </script>
 
   <span id="browser-sync-binding"></span>
 
-  <!-- <script src="http://localhost:1337/vorlon.js"></script> -->
+  <script src="http://localhost:1337/vorlon.js"></script>
 
 </body>
 
