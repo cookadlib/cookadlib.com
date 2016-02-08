@@ -21,7 +21,7 @@ branches:
 deploy:
   config: app.yaml
   default: true
-  keyfile: cook-adlib-fa7e6a745e91.json
+  keyfile: cookadlib-603545f5e171.json
   on:
     repo: cookadlib/www.cookadlib.com
     branch: master
