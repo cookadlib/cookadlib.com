@@ -13,7 +13,6 @@
 #
 
 api_version: 1
-application: cookadlib
 runtime: custom
 # threadsafe: on
 vm: true
