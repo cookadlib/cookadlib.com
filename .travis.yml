@@ -25,7 +25,7 @@ deploy:
   on:
     repo: cookadlib/www.cookadlib.com
     branch: master
-  project: cook-adlib
+  project: cookadlib-2016
   provider: gae
   skip_cleanup: true
   verbosity: debug
