@@ -31,6 +31,8 @@ deploy:
   # verbosity: debug
   # verbosity: info
   verbosity: warning
+  # docker_build: local
+  docker_build: remote
 language: node_js
 node_js:
 - stable
