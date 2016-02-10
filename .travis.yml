@@ -28,7 +28,9 @@ deploy:
   project: cookadlib-2016
   provider: gae
   skip_cleanup: true
-  verbosity: debug
+  # verbosity: debug
+  # verbosity: info
+  verbosity: warning
 language: node_js
 node_js:
 - stable
