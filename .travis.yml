@@ -10,7 +10,7 @@ addons:
 before_install:
 - openssl aes-256-cbc -K $encrypted_b34ad3c3bd8d_key -iv $encrypted_b34ad3c3bd8d_iv
   -in cookadlib-603545f5e171.json.enc -out cookadlib-603545f5e171.json -d
-# - chmod -R +x scripts
+- chmod -R +x scripts
 # - export CXX=g++-4.8
 # - "$CXX --version"
 before_script: scripts/travis/before.sh
