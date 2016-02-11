@@ -16,7 +16,7 @@ ADD app app
 
 #npm install -g superstatic
 
-RUN npm install
+RUN npm install --silent
 
 EXPOSE 8080
 
