@@ -30,10 +30,31 @@ config.port = {
   http: process.env.PORT ? process.env.PORT : packageJson.config.http.port
 };
 
-config.instance = {
-  pagespeed: {
-    key: packageJson.config.pagespeed.key
-  }
+config.instance = {};
+
+config.instance.pagespeed = {
+  key: packageJson.config.pagespeed.key
+};
+
+config.instance.vorlon = {
+  port: packageJson.config.vorlon.ui.port
+};
+
+config.instance.webshot = {
+  screenSizes: [
+    480,
+    600,
+    840,
+    960,
+    1024,
+    1280,
+    1366,
+    1440,
+    1600,
+    1920,
+    2560,
+    3840
+  ]
 };
 
 config.path = {
@@ -254,10 +275,6 @@ config.instance.browsersync = {
   ui: {
     port: packageJson.config.browsersync.ui.port
   }
-};
-
-config.instance.vorlon = {
-  port: packageJson.config.vorlon.ui.port
 };
 
 export default config;
