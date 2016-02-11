@@ -22,9 +22,12 @@ deploy:
   config: app.yaml
   default: true
   keyfile: cookadlib-603545f5e171.json
+  no_promote: false
+  no_stop_previous_version: false
   on:
     repo: cookadlib/www.cookadlib.com
     branch: master
+    tags: true
   project: cookadlib-2016
   provider: gae
   skip_cleanup: true
