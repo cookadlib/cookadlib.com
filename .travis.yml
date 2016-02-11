@@ -36,6 +36,6 @@ deploy:
 language: node_js
 node_js:
 - stable
-- '4.1'
+# - '4.1'
 script: gulp build
 sudo: false
