@@ -14,10 +14,10 @@ before_install:
 # - export CXX=g++-4.8
 # - "$CXX --version"
 before_script: scripts/travis/before.sh
-branches:
-  only:
-  - master
-  - /v\d+\.\d+[a-z]/
+# branches:
+#   only:
+#   - master
+#   - /v\d+\.\d+[a-z]/
 deploy:
   config: app.yaml
   default: true
