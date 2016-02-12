@@ -2,7 +2,7 @@
   "private": true,
   "name": "www.cookadlib.com",
   "description": "cookadlib.com website",
-  "version": "0.3.44",
+  "version": "0.3.48",
   "domain": "cookadlib.com",
   "domains": [
     "cookadlib.com"

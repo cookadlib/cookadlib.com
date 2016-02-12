@@ -26,7 +26,8 @@ deploy:
   no_stop_previous_version: false
   on:
     repo: cookadlib/www.cookadlib.com
-    branch: master
+    # branch: master
+    all_branches: true
     tags: true
   project: cookadlib-2016
   provider: gae
