@@ -18,6 +18,7 @@ before_script: scripts/travis/before.sh
 #   only:
 #   - master
 #   - /v\d+\.\d+[a-z]/
+all_branches: true
 deploy:
   config: app.yaml
   default: true
@@ -27,7 +28,7 @@ deploy:
   on:
     repo: cookadlib/www.cookadlib.com
     # branch: master
-    all_branches: true
+    # all_branches: true
     tags: true
   project: cookadlib-2016
   provider: gae
@@ -35,8 +36,8 @@ deploy:
   # verbosity: debug
   # verbosity: info
   verbosity: warning
-  # docker_build: local
-  docker_build: remote
+  docker_build: local
+  # docker_build: remote
 language: node_js
 node_js:
 - stable
