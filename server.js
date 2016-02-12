@@ -1,9 +1,9 @@
 'use strict';
 
-var appengine = require('appengine');
-var express = require('express');
+import appengine from 'appengine';
+import express from 'express';
 
-var app = express();
+const app = express();
 
 app.use(appengine.middleware.base);
 
@@ -28,15 +28,15 @@ app.get('/_ah/stop', function(req, res) {
 });
 
 app.get('/hello', function(req, res) {
-  var env = req.appengine.devappserver ? 'the dev appserver' : 'production';
+  let env = req.appengine.devappserver ? 'the dev appserver' : 'production';
   res.send('Hello, world from ' + env + '!');
 });
 
 // app.listen(8080, '0.0.0.0');
 
-var server = app.listen(process.env.PORT || 8080, function() {
-  var host = this.address().address;
-  var port = this.address().port;
+const server = app.listen(process.env.PORT || 8080, function() {
+  const host = this.address().address;
+  const port = this.address().port;
 
   console.log('App listening at http://%s:%s', host, port);
 });

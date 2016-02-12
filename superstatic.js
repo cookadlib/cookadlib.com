@@ -1,14 +1,18 @@
-var superstatic = require('superstatic')
-var connect = require('connect');
+import superstatic from 'superstatic';
+import connect from 'connect';
 
-var app = connect();
+const app = connect();
 
 app.use(superstatic({
   config: 'superstatic.json',
   cwd: 'www',
-  env: 'env.json'
+  env: 'env.json',
+  port: 8080
 }));
 
-app.listen(8080, function () {
+const server = app.listen(8080, function() {
+  const host = this.address().address;
+  const port = this.address().port;
 
+  console.log('App listening at http://%s:%s', host, port);
 });
