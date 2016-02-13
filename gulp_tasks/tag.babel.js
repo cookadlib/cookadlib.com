@@ -5,10 +5,9 @@ import gulp from 'gulp';
 
 import config from './_config.babel.js';
 
-let version = 'v' + config.version;
-let message = `Release ${version}`;
-
 gulp.task('tag', ['bump'], () => {
+  let version = 'v' + config.version;
+  let message = `Release ${version}`;
 
   git.tag(version, message, {
     // args: 'signed'
