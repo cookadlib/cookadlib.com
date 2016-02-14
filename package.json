@@ -146,7 +146,7 @@
     "postinstall": "./scripts/npm/post-install.sh",
     "preinstall": "./scripts/npm/pre-install.sh",
     "test": "./node_modules/.bin/gulp test:local",
-    "start": "node server.js",
+    "start": "node www/superstatic.js",
     "vorlon": "./node_modules/.bin/vorlon"
   },
   "engines": {
