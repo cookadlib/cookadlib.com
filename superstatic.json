@@ -45,7 +45,7 @@
       "type": 302
     }
   ],
-  "root": "dist",
+  "root": "www",
   "routes": {
     "**": "index.html"
   },
