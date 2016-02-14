@@ -22,4 +22,4 @@ EXPOSE 8080
 
 WORKDIR .
 
-ENTRYPOINT ["node", "www/superstatic.js"]
+ENTRYPOINT ["npm", "start"]
