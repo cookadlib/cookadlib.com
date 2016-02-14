@@ -152,7 +152,7 @@
   "engines": {
     "node": ">=4.1"
   },
-  "main": "superstatic.js",
+  "main": "www/superstatic.js",
   "config": {
     "browsersync": {
       "socket": {
