@@ -8,7 +8,8 @@ const app = connect();
 app.use(superstatic({
   config: '../superstatic.json',
   cwd: '.',
-  env: 'env.json'
+  env: 'env.json',
+  errorPage: '404.html'
 }));
 
 app.listen(packageJson.config.http.port, function() {
