@@ -4,6 +4,7 @@ import debug from 'gulp-debug';
 import ffmpeg from 'gulp-fluent-ffmpeg';
 import gulp from 'gulp';
 import plumber from 'gulp-plumber';
+import size from 'gulp-size';
 
 import config from './_config.babel.js';
 import reportError from './_report-error.babel.js';
@@ -39,6 +40,7 @@ gulp.task('videos', () => {
     }))
     .pipe(plumber.stop())
     .pipe(gulp.dest(config.path.destination.base))
+    .pipe(size({title: 'videos'}))
     .on('error', reportError);
 });
 

@@ -3,6 +3,7 @@
 import debug from 'gulp-debug';
 import gulp from 'gulp';
 import plumber from 'gulp-plumber';
+import size from 'gulp-size';
 import svgSprite from 'gulp-svg-sprite';
 
 import config from './_config.babel.js';
@@ -68,6 +69,7 @@ gulp.task('icons', () => {
     .on('error', reportError))
     .pipe(plumber.stop())
     .pipe(gulp.dest(config.path.root))
+    .pipe(size({title: 'icons'}))
     .on('error', reportError);
 });
 

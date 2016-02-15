@@ -3,6 +3,8 @@
 import appengine from 'appengine';
 import express from 'express';
 
+import packageJson from '../package.json';
+
 const app = express();
 
 app.use(appengine.middleware.base);
@@ -34,7 +36,7 @@ app.get('/hello', function(req, res) {
 
 // app.listen(8080, '0.0.0.0');
 
-app.listen(process.env.PORT || 8080, function() {
+app.listen(packageJson.config.http.port, function() {
   const host = this.address().address;
   const port = this.address().port;
 

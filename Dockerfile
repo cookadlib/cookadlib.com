@@ -2,15 +2,19 @@ FROM node:latest
 
 MAINTAINER Karl Podger <karl@cookadlib.com>
 
-RUN mkdir -p /usr/src/app
+RUN mkdir -p /src
 
-WORKDIR /usr/src/app
+WORKDIR /src
 
 COPY . ./
 
+RUN npm install --production --loglevel=warn
+
+RUN pwd
+
 RUN ls -lai
 
-RUN npm install --production --loglevel=warn
+RUN ls -lai www
 
 EXPOSE 8080
 

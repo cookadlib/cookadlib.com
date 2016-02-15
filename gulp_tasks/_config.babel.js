@@ -135,7 +135,7 @@ config.files.source.documentation = [
   config.path.source.base + '/README.md'
 ];
 config.files.source.elements = [
-  config.path.source.elements + '/*.html'
+  config.path.source.elements + '/**/*.html'
 ];
 config.files.source.fonts = [
   config.path.source.fonts + '/**/*.{eot,svg,ttf,woff,woff2}'
@@ -144,7 +144,7 @@ config.files.source.icons = [
   config.path.source.base + '/**/*.svg'
 ];
 config.files.source.images = [
-  config.path.source.base + '/**/*.{gif,jpg,jpeg,png,svg}'
+  config.path.source.images + '/**/*.{gif,jpg,jpeg,png,svg}'
 ];
 config.files.source.json = [
   config.path.source.base + '/**/*.json'
@@ -159,7 +159,8 @@ config.files.source.markup = [
   config.path.source.base + '/**/*.html'
 ];
 config.files.source.miscellaneous = [
-  config.path.source.base + '/*.{css,ico,json,txt}'
+  config.path.source.base + '/*.{css,ico,json,txt}',
+  config.path.source.bowerComponents + '/{webcomponentsjs,platinum-sw,sw-toolbox,promise-polyfill}/**/*'
 ];
 config.files.source.packages = [
   config.path.nodeModules + 'apache-server-configs/dist/.htaccess'
@@ -169,6 +170,7 @@ config.files.source.scripts = [
   config.path.source.base + '/**/*.js'
 ];
 config.files.source.scriptsIgnored = [
+  config.path.source.bowerComponents + '/**/*.js',
   config.path.source.scripts + '/color-scheme-control.js',
   config.path.source.scripts + '/customize-preview.js',
   config.path.source.scripts + '/html5.js',
@@ -178,13 +180,14 @@ config.files.source.scriptsIgnored = [
   config.path.source.scripts + '/skip-link-focus-fix.js'
 ];
 config.files.source.sounds = [
-  config.path.source.base + '/**/*.{ogg,pcm,mp3,wav}'
+  config.path.source.sounds + '/**/*.{ogg,pcm,mp3,wav}'
 ];
 config.files.source.styleguide = [
   config.path.source.styleguide + '/**/*.html',
 ];
 config.files.source.styles = [
-  config.path.source.base + '/**/*.scss'
+  config.path.source.styles + '/**/*.css',
+  config.path.source.styles + '/**/*.scss'
 ];
 config.files.source.stylesIgnored = [
   config.path.source.styles + '/mixins/_media-query-aspect-ratio.scss',
@@ -197,13 +200,13 @@ config.files.source.tasks = [
   config.path.root + '/gulp_tasks/**/*.js'
 ];
 config.files.source.templates = [
-  config.path.source.base + '/**/*.{php,phtml,ejs}'
+  config.path.source.templates + '/**/*.{php,phtml,ejs}'
 ];
 config.files.source.tests = [
   config.path.source.tests + '/**/*.html'
 ];
 config.files.source.videos = [
-  config.path.source.base + '/**/*.{avi,ogg,mov,mp4,mpg,mpeg}'
+  config.path.source.videos + '/**/*.{avi,ogg,mov,mp4,mpg,mpeg}'
 ];
 
 config.files.destination.all = [

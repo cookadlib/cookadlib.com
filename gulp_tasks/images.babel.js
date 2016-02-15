@@ -8,6 +8,7 @@ import jpegtran from 'imagemin-jpegtran';
 import optipng from 'imagemin-optipng';
 import plumber from 'gulp-plumber';
 import pngquant from 'imagemin-pngquant';
+import size from 'gulp-size';
 
 import config from './_config.babel.js';
 import reportError from './_report-error.babel.js';
@@ -24,11 +25,20 @@ gulp.task('images', () => {
     }))
     .pipe(imagemin({
       progressive: true,
-      svgoPlugins: [{removeViewBox: false}],
-      use: [pngquant(), jpegtran(), optipng(), gifsicle()]
+      interlaced: true,
+      svgoPlugins: [{
+        removeViewBox: false
+      }],
+      use: [
+        pngquant(),
+        jpegtran(),
+        optipng(),
+        gifsicle()
+      ]
     }))
     .pipe(plumber.stop())
-    .pipe(gulp.dest(config.path.destination.base))
+    .pipe(gulp.dest(config.path.destination.images))
+    .pipe(size({title: 'images'}))
     .on('error', reportError);
 });
 

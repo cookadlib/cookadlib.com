@@ -11,6 +11,7 @@ import jshint from 'gulp-jshint';
 // import modernizr from 'gulp-modernizr';
 import plumber from 'gulp-plumber';
 import remember from 'gulp-remember';
+import size from 'gulp-size';
 import sourcemaps from 'gulp-sourcemaps';
 // import typescript from 'gulp-tsc';
 // import uglify from 'gulp-uglify';
@@ -20,14 +21,14 @@ import reportError from './_report-error.babel.js';
 
 let sourceFiles = config.files.source.scripts;
 // sourceFiles = sourceFiles.concat(config.files.source.markup);
-sourceFiles = sourceFiles.concat(config.files.source.scriptsIgnored.map(function(element) {
-  return '!' + element;
+sourceFiles = sourceFiles.concat(config.files.source.scriptsIgnored.map(function(file) {
+  return '!' + file;
 }));
-sourceFiles = sourceFiles.concat(config.files.source.tests.map(function(element) {
-  return '!' + element;
+sourceFiles = sourceFiles.concat(config.files.source.tests.map(function(file) {
+  return '!' + file;
 }));
-sourceFiles = sourceFiles.concat(config.files.source.styleguide.map(function(element) {
-  return '!' + element;
+sourceFiles = sourceFiles.concat(config.files.source.styleguide.map(function(file) {
+  return '!' + file;
 }));
 
 gulp.task('scripts', () => {
@@ -66,6 +67,7 @@ gulp.task('scripts', () => {
     }))
     .pipe(plumber.stop())
     .pipe(gulp.dest(config.path.destination.base))
+    .pipe(size({title: 'scripts'}))
     .on('error', reportError);
 });
 

@@ -63,11 +63,14 @@
     "babel-preset-es2015": "^6.3.13",
     "browser-sync": "^2.11.1",
     "check-pages": "^0.9.0",
+    "colorguard": "^1.0.1",
     "connect-history-api-fallback": "^1.1.0",
+    "cssnano-cli": "^1.0.3",
     "del": "^2.2.0",
+    "doiuse": "^2.2.2",
     "eslint": "^2.0.0",
     "fluent-ffmpeg": "^2.0.1",
-    "glob": "^7.0.0",
+    "glob-all": "^3.0.1",
     "gulp": "^3.9.1",
     "gulp-autoprefixer": "^3.1.0",
     "gulp-babel": "^6.1.2",
@@ -82,6 +85,7 @@
     "gulp-flatten": "0.2.0",
     "gulp-fluent-ffmpeg": "^1.0.2",
     "gulp-git": "^1.7.0",
+    "gulp-html-extract": "^0.1.0",
     "gulp-htmlhint": "^0.3.1",
     "gulp-if": "^2.0.0",
     "gulp-ignore": "^2.0.1",
@@ -130,6 +134,7 @@
     "polybuild": "^1.1.0",
     "psi": "^2.0.2",
     "require-dir": "^0.3.0",
+    "rtlcss": "^1.7.3",
     "run-sequence": "^1.1.5",
     "universal-analytics": "^0.3.10",
     "vorlon": "^0.2.1",
@@ -163,7 +168,7 @@
       }
     },
     "http": {
-      "port": 8000
+      "port": 8080
     },
     "pagespeed": {
       "key": "no-key-setup-yet"

@@ -7,23 +7,20 @@ gulp.task('build', ['clean'], function (cb) {
   // Uncomment 'cache-config' after 'rename-index' if you are going to use service workers.
   runSequence(
     'bower-install',
-    'symlinks',
     'copy',
     [
-      'icons',
-      'scripts',
       'markup',
-      'locales'
+      'scripts',
+      'vulcanize'
     ],
-    'rename-spritesheet',
+    // 'rename-spritesheet',
+    'assets',
     [
       // 'elements',
       'styles'
     ],
-    // 'vulcanize',
     'rename-index',
     'remove-old-build-index',
-    'assets',
     'cache-config',
     cb
   );

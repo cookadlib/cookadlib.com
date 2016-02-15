@@ -6,6 +6,7 @@ gulp.task('assets', [
   'fonts',
   'icons',
   'images',
+  'locales',
   'sounds',
   'videos'
 ]);
