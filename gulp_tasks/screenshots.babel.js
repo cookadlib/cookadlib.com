@@ -14,9 +14,9 @@ let sourceFiles = config.files.source.markup;
 
 let screenSizes = config.instance.webshot.screenSizes;
 
-let screenshotTasks = Object.keys(screenSizes).map(function(currentValue) {
-  return `screenshots-${currentValue}`;
-});
+// let screenshotTasks = Object.keys(screenSizes).map(function(currentValue) {
+//   return `screenshots-${currentValue}`;
+// });
 
 // screenshotTasks.forEach(function(screenSize) {
 //

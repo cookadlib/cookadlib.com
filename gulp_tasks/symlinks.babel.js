@@ -8,12 +8,12 @@ import reportError from './_report-error.babel.js';
 import config from './_config.babel.js';
 
 gulp.task('symlinks', () => {
-  gulp.src(config.path.source.bowerComponents)
-    .pipe(debug({
-      title: 'symlinks:'
-    }))
-    .pipe(symlink(config.path.destination.bowerComponents))
-    .on('error', reportError);
+  // gulp.src(config.path.source.bowerComponents)
+  //   .pipe(debug({
+  //     title: 'symlinks:'
+  //   }))
+  //   .pipe(symlink(config.path.destination.bowerComponents))
+  //   .on('error', reportError);
 
   gulp.src(config.path.source.nodeModules)
     .pipe(debug({

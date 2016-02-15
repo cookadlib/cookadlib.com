@@ -6,6 +6,7 @@ import runSequence from 'run-sequence';
 gulp.task('build', ['clean'], function (cb) {
   // Uncomment 'cache-config' after 'rename-index' if you are going to use service workers.
   runSequence(
+    'bower-install',
     'symlinks',
     'copy',
     [
