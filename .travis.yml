@@ -13,7 +13,6 @@ before_install:
 - chmod -R +x scripts
 # - export CXX=g++-4.8
 # - "$CXX --version"
-- gulp build
 # before_script: scripts/travis/before.sh
 # branches:
 #   only:
@@ -42,7 +41,7 @@ language: node_js
 node_js:
 - stable
 # - '4.1'
-# script: gulp build
+script: gulp build
 services:
   - docker
 # sudo: false
