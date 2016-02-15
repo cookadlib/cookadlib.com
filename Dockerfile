@@ -2,24 +2,16 @@ FROM node:latest
 
 MAINTAINER Karl Podger <karl@cookadlib.com>
 
-WORKDIR /tmp
+RUN mkdir -p /usr/src/app
 
-ADD package.json package.json
+WORKDIR /usr/src/app
 
-ADD *.js ./
+COPY . ./
 
-ADD *.json ./
+RUN ls -lai
 
-ADD .* ./
-
-ADD app app
-
-#npm install -g superstatic
-
-RUN npm install --loglevel warn
+RUN npm install --production --loglevel=warn
 
 EXPOSE 8080
-
-WORKDIR .
 
 ENTRYPOINT ["npm", "start"]

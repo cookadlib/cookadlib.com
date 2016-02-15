@@ -9,12 +9,11 @@
 .git
 .gitignore
 .tmp
-bower_components
+app
+gulp_tasks
 LICENSE.md
 logs
 node_modules
 npm-debug.log
 pids
-README.md
-uploads
-www
+scripts
