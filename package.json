@@ -147,11 +147,10 @@
     "deploy": "gcloud preview app deploy app.yaml",
     "dev": "./node_modules/.bin/browser-sync start --proxy '127.0.0.1:7050' --files 'www/**/*.*'",
     "gulp": "./node_modules/.bin/gulp",
-    "monitor": "nodemon server.js",
     "postinstall": "./scripts/npm/post-install.sh",
     "preinstall": "./scripts/npm/pre-install.sh",
     "test": "./node_modules/.bin/gulp test:local",
-    "start": "node www/superstatic.js",
+    "start": "./scripts/npm/start.sh",
     "vorlon": "./node_modules/.bin/vorlon"
   },
   "engines": {

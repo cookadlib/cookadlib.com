@@ -40,5 +40,5 @@ app.listen(packageJson.config.http.port, function() {
   const host = this.address().address;
   const port = this.address().port;
 
-  console.log('App listening at http://%s:%s', host, port);
+  console.log('Express app listening at http://%s:%s', host, port);
 });

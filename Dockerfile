@@ -6,15 +6,19 @@ RUN mkdir -p /src
 
 WORKDIR /src
 
-COPY . ./
+COPY package.json package.json
+
+COPY scripts/npm scripts/npm
+
+RUN chmod -R +x scripts/npm
+
+RUN npm install pm2 -g
 
 RUN npm install --production --loglevel=warn
 
-RUN pwd
+COPY . ./
 
-RUN ls -lai
-
-RUN ls -lai www
+RUN chmod -R +x scripts
 
 EXPOSE 8080
 

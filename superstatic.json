@@ -4,6 +4,7 @@
     "/!bower_components/**",
     "/!elements/**",
     "/!images/**",
+    "/!locales/**",
     "/!node_modules/**",
     "/!scripts/**",
     "/!sounds/**",
@@ -38,16 +39,11 @@
       ]
     }
   ],
-  "redirects": [
+  "public": "./www",
+  "rewrites": [
     {
-      "source": "/firebase/*",
-      "destination": "https://www.firebase.com",
-      "type": 302
+      "source": "**",
+      "destination": "/index.html"
     }
-  ],
-  "root": ".",
-  "routes": {
-    "**": "index.html"
-  },
-  "trailing_slash": true
+  ]
 }
