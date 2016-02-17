@@ -8,7 +8,9 @@ WORKDIR /src
 
 COPY package.json package.json
 
-COPY scripts/npm scripts/npm
+COPY scripts/npm/pre-install.sh scripts/npm/pre-install.sh
+
+COPY scripts/npm/post-install.sh scripts/npm/post-install.sh
 
 RUN chmod -R +x scripts/npm
 

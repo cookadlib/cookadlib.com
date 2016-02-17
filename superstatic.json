@@ -2,6 +2,7 @@
   "clean_urls": [
     "/**",
     "/!bower_components/**",
+    "/!documentation/**",
     "/!elements/**",
     "/!images/**",
     "/!locales/**",
@@ -9,6 +10,7 @@
     "/!scripts/**",
     "/!sounds/**",
     "/!styles/**",
+    "/!test/**",
     "/!translations/**",
     "/!videos/**"
   ],

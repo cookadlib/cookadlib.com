@@ -5,25 +5,13 @@ import packageJson from '../package.json';
 
 const app = connect();
 
-app.use(superstatic({
+let config = {
   config: 'superstatic.json',
   cwd: process.cwd(),
-  // env: '../env.json',
-  // errorPage: '404.html',
   fallthrough: false
-}));
+};
 
-
-// app.use(superstatic({
-//   config: {
-//     public: './app',
-//     rewrites: [{
-//       source: '**',
-//       destination: '/index.html'
-//     }]
-//   },
-//   cwd: process.cwd()
-// }));
+app.use(superstatic(config));
 
 app.listen(packageJson.config.http.port, function() {
   'use strict';
