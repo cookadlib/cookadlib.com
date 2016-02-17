@@ -14,6 +14,10 @@ import reportError from './_report-error.babel.js';
 
 let sourceFiles = config.files.source.markup;
 
+sourceFiles = sourceFiles.concat(config.files.source.markupIgnored.map(function(file) {
+  return '!' + file;
+}));
+
 gulp.task('markup', () => {
   return gulp.src(sourceFiles)
     .pipe(plumber({

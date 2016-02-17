@@ -9,9 +9,14 @@ import reportError from './_report-error.babel.js';
 
 let sourceFiles = config.files.source.miscellaneous;
 sourceFiles = sourceFiles.concat(config.files.source.customStyles);
+sourceFiles = sourceFiles.concat(config.files.source.locales);
 sourceFiles = sourceFiles.concat(config.files.source.scriptsIgnored);
 sourceFiles = sourceFiles.concat(config.files.source.templates);
-sourceFiles = sourceFiles.concat(config.files.source.locales);
+sourceFiles = sourceFiles.concat(config.files.source.translations);
+
+sourceFiles = sourceFiles.concat(config.files.source.miscellaneousIgnored.map(function(file) {
+  return '!' + file;
+}));
 
 gulp.task('copy', () => {
   return gulp.src(sourceFiles, {

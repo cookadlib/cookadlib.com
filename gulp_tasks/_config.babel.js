@@ -93,7 +93,9 @@ config.path.source.sounds = config.path.source.theme + '/sounds';
 config.path.source.styleguide = config.path.source.base + '/styleguide';
 config.path.source.styles = config.path.source.theme + '/styles';
 config.path.source.stylesGenerated = config.path.source.theme + '/styles/generated';
+config.path.source.templates = config.path.source.base;
 config.path.source.tests = config.path.source.base + '/test';
+config.path.source.translations = config.path.source.base + '/translations';
 config.path.source.videos = config.path.source.base + '/videos';
 
 config.path.destination.bowerComponents = config.path.destination.base + '/' + bowerrc.directory;
@@ -112,8 +114,10 @@ config.path.destination.sounds = config.path.destination.theme + '/sounds';
 config.path.destination.sass = config.path.destination.theme + '/styles/sass';
 config.path.destination.styleguide = config.path.destination.base + '/styleguide';
 config.path.destination.styles = config.path.destination.theme + '/styles';
+config.path.destination.templates = config.path.destination.base;
 config.path.destination.tests = config.path.destination.base + '/test';
 config.path.destination.stylesGenerated = config.path.destination.theme + '/styles/generated';
+config.path.destination.translations = config.path.destination.base + '/translations';
 config.path.destination.videos = config.path.destination.base + '/videos';
 
 config.files = {
@@ -158,10 +162,18 @@ config.files.source.maps = [
 config.files.source.markup = [
   config.path.source.base + '/**/*.html'
 ];
+config.files.source.markupIgnored = [
+  config.path.source.bowerComponents + '/**/*.html',
+  config.path.source.nodeModules + '/**/*.html'
+];
 config.files.source.miscellaneous = [
   config.path.source.base + '/*.{css,ico,json,txt}',
   config.path.source.bowerComponents + '/{webcomponentsjs,platinum-sw,sw-toolbox,promise-polyfill}/**/*'
 ];
+config.files.source.miscellaneousIgnored = [
+  config.path.source.nodeModules + '/**/*'
+];
+
 config.files.source.packages = [
   config.path.nodeModules + 'apache-server-configs/dist/.htaccess'
 ];
@@ -171,6 +183,7 @@ config.files.source.scripts = [
 ];
 config.files.source.scriptsIgnored = [
   config.path.source.bowerComponents + '/**/*.js',
+  config.path.source.nodeModules + '/**/*.js',
   config.path.source.scripts + '/color-scheme-control.js',
   config.path.source.scripts + '/customize-preview.js',
   config.path.source.scripts + '/html5.js',
@@ -204,6 +217,9 @@ config.files.source.templates = [
 ];
 config.files.source.tests = [
   config.path.source.tests + '/**/*.html'
+];
+config.files.source.translations = [
+  config.path.source.translations + '/**/*.json'
 ];
 config.files.source.videos = [
   config.path.source.videos + '/**/*.{avi,ogg,mov,mp4,mpg,mpeg}'
