@@ -25,6 +25,6 @@ gulp.task('fonts', () => {
   .on('error', reportError);
 });
 
-gulp.task('fonts:watch', function() {
+gulp.task('fonts:watch', () => {
   gulp.watch(sourceFiles, ['fonts']);
 });

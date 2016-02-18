@@ -73,6 +73,6 @@ gulp.task('icons', () => {
     .on('error', reportError);
 });
 
-gulp.task('icons:watch', function() {
+gulp.task('icons:watch', () => {
   gulp.watch(sourceFiles, ['icons']);
 });

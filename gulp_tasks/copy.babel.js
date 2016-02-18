@@ -34,6 +34,6 @@ gulp.task('copy', () => {
   .on('error', reportError);
 });
 
-gulp.task('copy:watch', function() {
+gulp.task('copy:watch', () => {
   gulp.watch(sourceFiles, ['copy']);
 });

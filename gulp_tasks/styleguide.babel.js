@@ -27,6 +27,6 @@ gulp.task('styleguide', () => {
     .on('error', reportError);
 });
 
-gulp.task('styleguide:watch', function() {
+gulp.task('styleguide:watch', () => {
   gulp.watch(sourceFiles, ['styleguide']);
 });

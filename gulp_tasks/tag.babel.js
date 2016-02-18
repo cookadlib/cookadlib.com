@@ -31,7 +31,7 @@ function increment(importance) {
     .on('error', reportError);
 }
 
-gulp.task('tag', function() {
+gulp.task('tag', () => {
 
   switch (argv.version) {
     case 'major':

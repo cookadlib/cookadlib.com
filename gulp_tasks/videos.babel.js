@@ -33,7 +33,7 @@ gulp.task('videos', () => {
         .fps(24)
         .videoBitrate('512k')
         .videoCodec('libx264')
-        .on('end', function() {
+        .on('end', () => {
           console.log('sounds: Processing finished');
         })
         .on('error', reportError);
@@ -44,6 +44,6 @@ gulp.task('videos', () => {
     .on('error', reportError);
 });
 
-gulp.task('videos:watch', function() {
+gulp.task('videos:watch', () => {
   gulp.watch(sourceFiles, ['videos']);
 });

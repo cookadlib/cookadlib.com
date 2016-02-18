@@ -96,7 +96,7 @@ gulp.task('styles', () => {
     .on('error', reportError);
 });
 
-gulp.task('styles:watch', function() {
+gulp.task('styles:watch', () => {
   let watcher = gulp.watch(sourceFiles, ['styles']);
   // console.log(cache.caches);
   watcher.on('change', function(event) {

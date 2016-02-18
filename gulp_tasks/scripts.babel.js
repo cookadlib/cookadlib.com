@@ -71,7 +71,7 @@ gulp.task('scripts', () => {
     .on('error', reportError);
 });
 
-gulp.task('scripts:watch', function() {
+gulp.task('scripts:watch', () => {
   let watcher = gulp.watch(sourceFiles, ['scripts']);
   // console.log(cache.caches);
   watcher.on('change', function(event) {
