@@ -129,8 +129,23 @@
             <span>Home</span>
           </a>
 
-          <a data-route="users" href="{{baseUrl}}users">
+          <a data-route="recipes" href="{{baseUrl}}recipes">
+            <iron-icon icon="book"></iron-icon>
+            <span>Recipes</span>
+          </a>
+
+          <a data-route="nutrition" href="{{baseUrl}}nutrition">
             <iron-icon icon="info"></iron-icon>
+            <span>Nutrition</span>
+          </a>
+
+          <a data-route="notes" href="{{baseUrl}}notes">
+            <iron-icon icon="list"></iron-icon>
+            <span>Notes</span>
+          </a>
+
+          <a data-route="users" href="{{baseUrl}}users">
+            <iron-icon icon="social:person"></iron-icon>
             <span>Users</span>
           </a>
 
@@ -182,9 +197,9 @@
               </paper-material>
 
               <paper-material elevation="1">
-                <h1 id="license">License</h1>
+                <h2 id="license">License</h2>
 
-                <h2>The MIT License (MIT)</h2>
+                <h3>The MIT License (MIT)</h3>
 
                 <p>Copyright (c) 2016 Polymer Test</p>
 
@@ -208,9 +223,42 @@
               </paper-material>
             </section>
 
+            <section data-route="recipes">
+              <paper-material elevation="1">
+                <h1 class="page-title">Recipes</h1>
+                <p>This is the users section</p>
+                <a href$="{{baseUrl}}users/Addy">Addy</a><br>
+                <a href$="{{baseUrl}}users/Rob">Rob</a><br>
+                <a href$="{{baseUrl}}users/Chuck">Chuck</a><br>
+                <a href$="{{baseUrl}}users/Sam">Sam</a>
+              </paper-material>
+            </section>
+
+            <section data-route="nutrition">
+              <paper-material elevation="1">
+                <h1 class="page-title">Nutrition</h1>
+                <p>This is the users section</p>
+                <a href$="{{baseUrl}}users/Addy">Addy</a><br>
+                <a href$="{{baseUrl}}users/Rob">Rob</a><br>
+                <a href$="{{baseUrl}}users/Chuck">Chuck</a><br>
+                <a href$="{{baseUrl}}users/Sam">Sam</a>
+              </paper-material>
+            </section>
+
+            <section data-route="notes">
+              <paper-material elevation="1">
+                <h1 class="page-title">Notes</h1>
+                <p>This is the users section</p>
+                <a href$="{{baseUrl}}users/Addy">Addy</a><br>
+                <a href$="{{baseUrl}}users/Rob">Rob</a><br>
+                <a href$="{{baseUrl}}users/Chuck">Chuck</a><br>
+                <a href$="{{baseUrl}}users/Sam">Sam</a>
+              </paper-material>
+            </section>
+
             <section data-route="users">
               <paper-material elevation="1">
-                <h2 class="page-title">Users</h2>
+                <h1 class="page-title">Users</h1>
                 <p>This is the users section</p>
                 <a href$="{{baseUrl}}users/Addy">Addy</a><br>
                 <a href$="{{baseUrl}}users/Rob">Rob</a><br>
@@ -221,14 +269,14 @@
 
             <section data-route="user-info">
               <paper-material elevation="1">
-                <h2 class="page-title">User: {{params.name}}</h2>
+                <h1 class="page-title">User: {{params.name}}</h1>
                 <div>This is {{params.name}}'s section</div>
               </paper-material>
             </section>
 
             <section data-route="contact">
               <paper-material elevation="1">
-                <h2 class="page-title">Contact</h2>
+                <h1 class="page-title">Contact</h1>
                 <p>This is the contact section</p>
               </paper-material>
             </section>
