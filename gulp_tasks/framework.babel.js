@@ -7,8 +7,7 @@ import jscs from 'gulp-jscs';
 import jshint from 'gulp-jshint';
 import jsonlint from 'gulp-jsonlint';
 import plumber from 'gulp-plumber';
-// import typescript from 'gulp-tsc';
-import yamlvalidate from 'gulp-yaml-validate';
+// import yamlvalidate from 'gulp-yaml-validate';
 
 import config from './_config.babel.js';
 import reportError from './_report-error.babel.js';
@@ -49,16 +48,16 @@ gulp.task('framework', () => {
     .pipe(plumber.stop())
     .on('error', reportError);
 
-  gulp.src(config.files.source.configuration.yaml)
-      .pipe(plumber({
-      errorHandler: reportError
-    }))
-    .pipe(debug({
-      title: 'framework (configuration:yaml):'
-    }))
-    .pipe(yamlvalidate())
-    .pipe(plumber.stop())
-    .on('error', reportError);
+  // gulp.src(config.files.source.configuration.yaml)
+  //   .pipe(plumber({
+  //     errorHandler: reportError
+  //   }))
+  //   .pipe(debug({
+  //     title: 'framework (configuration:yaml):'
+  //   }))
+  //   .pipe(yamlvalidate())
+  //   .pipe(plumber.stop())
+  //   .on('error', reportError);
 });
 
 gulp.task('framework:watch', () => {

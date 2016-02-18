@@ -64,15 +64,13 @@ config.path = {
   destination: {
     base: 'www',
     bowerComponents: 'www/' + bowerrc.directory + '/',
-    nodeModules: 'www/node_modules/',
-    theme: 'www' + packageJson.config.path.theme
+    nodeModules: 'www/node_modules/'
   },
   root: '.',
   source: {
     base: 'app',
     bowerComponents: bowerrc.directory + '/',
-    nodeModules: 'node_modules/',
-    theme: 'app' + packageJson.config.path.theme
+    nodeModules: 'node_modules/'
   },
   temporary: '.tmp'
 };
@@ -102,21 +100,21 @@ config.path.destination.bowerComponents = config.path.destination.base + '/' + b
 config.path.destination.customStyles = config.path.destination.base + '/styles';
 config.path.destination.documentation = config.path.destination.base + '/documentation';
 config.path.destination.elements = config.path.destination.base + '/elements';
-config.path.destination.fonts = config.path.destination.theme + '/fonts';
-// config.path.destination.icons = config.path.destination.theme + '/images/icons';
-config.path.destination.images = config.path.destination.theme + '/images';
+config.path.destination.fonts = config.path.destination.base + '/fonts';
+// config.path.destination.icons = config.path.destination.base + '/images/icons';
+config.path.destination.images = config.path.destination.base + '/images';
 config.path.destination.locales = config.path.destination.base + '/locales';
-config.path.destination.markup = config.path.destination.theme;
+config.path.destination.markup = config.path.destination.base;
 config.path.destination.nodeModules = config.path.destination.base + '/node_modules';
-config.path.destination.scripts = config.path.destination.theme + '/scripts';
+config.path.destination.scripts = config.path.destination.base + '/scripts';
 config.path.destination.screenshots = config.path.destination.base + '/screenshots';
-config.path.destination.sounds = config.path.destination.theme + '/sounds';
-config.path.destination.sass = config.path.destination.theme + '/styles/sass';
+config.path.destination.sounds = config.path.destination.base + '/sounds';
+config.path.destination.sass = config.path.destination.base + '/styles/sass';
 config.path.destination.styleguide = config.path.destination.base + '/styleguide';
-config.path.destination.styles = config.path.destination.theme + '/styles';
+config.path.destination.styles = config.path.destination.base + '/styles';
 config.path.destination.templates = config.path.destination.base;
 config.path.destination.tests = config.path.destination.base + '/test';
-config.path.destination.stylesGenerated = config.path.destination.theme + '/styles/generated';
+config.path.destination.stylesGenerated = config.path.destination.base + '/styles/generated';
 config.path.destination.translations = config.path.destination.base + '/translations';
 config.path.destination.videos = config.path.destination.base + '/videos';
 
@@ -164,7 +162,8 @@ config.files.source.markup = [
 ];
 config.files.source.markupIgnored = [
   config.path.source.bowerComponents + '/**/*.html',
-  config.path.source.nodeModules + '/**/*.html'
+  config.path.source.nodeModules + '/**/*.html',
+  config.path.source.elements + '/**/*.html'
 ];
 config.files.source.miscellaneous = [
   config.path.source.base + '/*.{css,ico,json,txt}',
