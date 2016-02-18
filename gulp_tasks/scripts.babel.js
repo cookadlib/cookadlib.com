@@ -72,9 +72,9 @@ gulp.task('scripts', () => {
 });
 
 gulp.task('scripts:watch', () => {
-  let watcher = gulp.watch(sourceFiles, ['scripts']);
+  let watcher = gulp.watch(sourceFiles, ['scripts'], browserSync.reload);
   // console.log(cache.caches);
-  watcher.on('change', function(event) {
+  watcher.on('change', (event) => {
     // console.log('change', cache.caches);
     if (event.type === 'deleted') { // if a file is deleted, forget about it
       delete cache.caches.scripts[event.path];

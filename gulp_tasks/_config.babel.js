@@ -79,18 +79,18 @@ config.path.source.bowerComponents = config.path.root + '/' + bowerrc.directory;
 config.path.source.customStyles = config.path.source.base + '/styles';
 config.path.source.documentation = config.path.source.base + '/documentation';
 config.path.source.elements = config.path.source.base + '/elements';
-config.path.source.fonts = config.path.source.theme + '/fonts';
-config.path.source.markup = config.path.source.theme;
-// config.path.source.icons = config.path.source.theme + '/images/icons';
-config.path.source.images = config.path.source.theme + '/images';
+config.path.source.fonts = config.path.source.base + '/fonts';
+config.path.source.markup = config.path.source.base;
+// config.path.source.icons = config.path.source.base + '/images/icons';
+config.path.source.images = config.path.source.base + '/images';
 config.path.source.locales = config.path.source.base + '/locales';
 config.path.source.nodeModules = config.path.root + '/node_modules';
-config.path.source.scripts = config.path.source.theme + '/scripts';
+config.path.source.scripts = config.path.source.base + '/scripts';
 config.path.source.screenshots = config.path.source.base + '/screenshots';
-config.path.source.sounds = config.path.source.theme + '/sounds';
+config.path.source.sounds = config.path.source.base + '/sounds';
 config.path.source.styleguide = config.path.source.base + '/styleguide';
-config.path.source.styles = config.path.source.theme + '/styles';
-config.path.source.stylesGenerated = config.path.source.theme + '/styles/generated';
+config.path.source.styles = config.path.source.base + '/styles';
+config.path.source.stylesGenerated = config.path.source.base + '/styles/generated';
 config.path.source.templates = config.path.source.base;
 config.path.source.tests = config.path.source.base + '/test';
 config.path.source.translations = config.path.source.base + '/translations';
@@ -126,6 +126,9 @@ config.files = {
 config.files.source.all = [
   config.path.source.base + '/**/*'
 ];
+config.files.source.bowerComponents = [
+  config.path.source.bowerComponents + '/**/*'
+];
 config.files.source.configuration = {
   json: config.path.root + '/{*.json,.*rc}',
   yaml: config.path.root + '/{*.yml,.*.yml}'
@@ -158,21 +161,25 @@ config.files.source.maps = [
   config.path.source.base + '/**/*.map'
 ];
 config.files.source.markup = [
-  config.path.source.base + '/**/*.html'
+  config.path.source.base + '/**/*.html',
+  !config.path.source.bowerComponents + '/**/*.html',
+  !config.path.source.nodeModules + '/**/*.html'
 ];
 config.files.source.markupIgnored = [
   config.path.source.bowerComponents + '/**/*.html',
-  config.path.source.nodeModules + '/**/*.html',
-  config.path.source.elements + '/**/*.html'
+  config.path.source.nodeModules + '/**/*.html'
+  // config.path.source.elements + '/**/*.html'
 ];
 config.files.source.miscellaneous = [
-  config.path.source.base + '/*.{css,ico,json,txt}',
-  config.path.source.bowerComponents + '/{webcomponentsjs,platinum-sw,sw-toolbox,promise-polyfill}/**/*'
+  config.path.source.base + '/*.{css,ico,json,txt}'
+  // config.path.source.bowerComponents + '/{platinum-sw,polymer,promise-polyfill,sw-toolbox,webcomponentsjs}/**/*'
 ];
 config.files.source.miscellaneousIgnored = [
-  config.path.source.nodeModules + '/**/*'
+  // config.path.source.nodeModules + '/**/*'
 ];
-
+config.files.source.nodeModules = [
+  config.path.nodeModules + '/**/*'
+];
 config.files.source.packages = [
   config.path.nodeModules + 'apache-server-configs/dist/.htaccess'
 ];

@@ -7,9 +7,6 @@
     // Learn more about auto-binding templates at http://goo.gl/Dx1u2g
     let app = document.querySelector('#app');
 
-    console.log('app', app);
-    console.log('app.$', app.$);
-
     // Sets app default base URL
     app.baseUrl = '/';
     if (window.location.port === '') {  // if production
@@ -82,9 +79,16 @@
     let onImportLoaded = function() {
       console.log('Elements are upgraded!');
 
+      // let style = document.createElement('style');
+      // style.setAttribute('is', 'custom-style');
+      // style.setAttribute('include', 'shared-styles');
+      // document.head.appendChild(style);
+      // Polymer.dom(document.head).appendChild(style);
+      window.Polymer.updateStyles();
+
       let splash = document.getElementById('splash');
-      // splash.remove();
-      splash.style.display = 'none';
+      splash.addEventListener('transitionend', splash.remove);
+      document.body.classList.remove('loading');
 
       // Kickoff your app logic here!
       initializeApplication();

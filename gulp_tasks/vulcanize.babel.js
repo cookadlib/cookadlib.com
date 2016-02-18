@@ -4,7 +4,7 @@ import gulp from 'gulp';
 import size from 'gulp-size';
 import vulcanize from 'gulp-vulcanize';
 
-import config from './_config.babel.js';
+import {config, browserSync} from './_config.babel.js';
 
 let sourceFiles = `${config.path.source.elements}/elements.html`;
 
@@ -20,5 +20,5 @@ gulp.task('vulcanize', () => {
 });
 
 gulp.task('vulcanize:watch', () => {
-  gulp.watch(sourceFiles, ['vulcanize']);
+  gulp.watch(sourceFiles, ['vulcanize'], browserSync.reload);
 });

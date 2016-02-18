@@ -10,7 +10,7 @@ import plumber from 'gulp-plumber';
 import pngquant from 'imagemin-pngquant';
 import size from 'gulp-size';
 
-import config from './_config.babel.js';
+import {config, browserSync} from './_config.babel.js';
 import reportError from './_report-error.babel.js';
 
 let sourceFiles = config.files.source.images;
@@ -43,5 +43,5 @@ gulp.task('images', () => {
 });
 
 gulp.task('images:watch', () => {
-  gulp.watch(sourceFiles, ['images']);
+  gulp.watch(sourceFiles, ['images'], browserSync.reload);
 });

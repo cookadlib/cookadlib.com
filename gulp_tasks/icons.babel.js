@@ -6,7 +6,7 @@ import plumber from 'gulp-plumber';
 import size from 'gulp-size';
 import svgSprite from 'gulp-svg-sprite';
 
-import config from './_config.babel.js';
+import {config, browserSync} from './_config.babel.js';
 import reportError from './_report-error.babel.js';
 
 let sourceFiles = config.files.source.icons;
@@ -74,5 +74,5 @@ gulp.task('icons', () => {
 });
 
 gulp.task('icons:watch', () => {
-  gulp.watch(sourceFiles, ['icons']);
+  gulp.watch(sourceFiles, ['icons'], browserSync.reload);
 });

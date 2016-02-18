@@ -6,7 +6,7 @@ import jsonlint  from 'gulp-jsonlint';
 import plumber from 'gulp-plumber';
 import size from 'gulp-size';
 
-import config from './_config.babel.js';
+import {config, browserSync} from './_config.babel.js';
 import reportError from './_report-error.babel.js';
 
 let sourceFiles = config.files.source.locales;
@@ -30,5 +30,5 @@ gulp.task('locales', () => {
 });
 
 gulp.task('locales:watch', () => {
-  gulp.watch(sourceFiles, ['locales']);
+  gulp.watch(sourceFiles, ['locales'], browserSync.reload);
 });

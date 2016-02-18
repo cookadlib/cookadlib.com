@@ -6,7 +6,7 @@ import gulp from 'gulp';
 import plumber from 'gulp-plumber';
 import size from 'gulp-size';
 
-import config from './_config.babel.js';
+import {config, browserSync} from './_config.babel.js';
 import reportError from './_report-error.babel.js';
 
 let sourceFiles = config.files.source.videos;
@@ -45,5 +45,5 @@ gulp.task('videos', () => {
 });
 
 gulp.task('videos:watch', () => {
-  gulp.watch(sourceFiles, ['videos']);
+  gulp.watch(sourceFiles, ['videos'], browserSync.reload);
 });
