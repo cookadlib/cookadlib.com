@@ -14,6 +14,8 @@ import config from './_config.babel.js';
 import reportError from './_report-error.babel.js';
 
 let sourceFiles = config.files.source.tasks;
+sourceFiles = sourceFiles.concat(config.files.source.configuration.json);
+sourceFiles = sourceFiles.concat(config.files.source.configuration.yaml);
 
 gulp.task('framework', () => {
   gulp.src(sourceFiles)
@@ -37,8 +39,8 @@ gulp.task('framework', () => {
 
   gulp.src(config.files.source.configuration.json)
     .pipe(plumber({
-	  errorHandler: reportError
-	}))
+      errorHandler: reportError
+    }))
     .pipe(debug({
       title: 'framework (configuration:json):'
     }))
@@ -47,10 +49,10 @@ gulp.task('framework', () => {
     .pipe(plumber.stop())
     .on('error', reportError);
 
-	gulp.src(config.files.source.configuration.yaml)
-    .pipe(plumber({
-	  errorHandler: reportError
-	}))
+  gulp.src(config.files.source.configuration.yaml)
+      .pipe(plumber({
+      errorHandler: reportError
+    }))
     .pipe(debug({
       title: 'framework (configuration:yaml):'
     }))
@@ -59,6 +61,6 @@ gulp.task('framework', () => {
     .on('error', reportError);
 });
 
-gulp.task('framework:watch', function() {
+gulp.task('framework:watch', () => {
   gulp.watch(sourceFiles, ['framework']);
 });

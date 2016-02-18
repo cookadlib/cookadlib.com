@@ -6,12 +6,10 @@ import vulcanize from 'gulp-vulcanize';
 
 import config from './_config.babel.js';
 
-// sourceFiles = sourceFiles.concat(config.files.source.elementsIgnored.map(function(file) {
-//   return '!' + file;
-// }));
+let sourceFiles = `${config.path.source.elements}/elements.html`;
 
-gulp.task('vulcanize', function () {
-  return gulp.src(`${config.path.source.elements}/elements.html`)
+gulp.task('vulcanize', () => {
+  return gulp.src(sourceFiles)
     .pipe(vulcanize({
       stripComments: true,
       inlineCss: true,
@@ -19,4 +17,8 @@ gulp.task('vulcanize', function () {
     }))
     .pipe(gulp.dest(config.path.destination.elements))
     .pipe(size({title: 'vulcanize'}));
+});
+
+gulp.task('vulcanize:watch', () => {
+  gulp.watch(sourceFiles, ['vulcanize']);
 });

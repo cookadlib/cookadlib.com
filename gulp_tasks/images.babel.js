@@ -42,6 +42,6 @@ gulp.task('images', () => {
     .on('error', reportError);
 });
 
-gulp.task('images:watch', function() {
+gulp.task('images:watch', () => {
   gulp.watch(sourceFiles, ['images']);
 });

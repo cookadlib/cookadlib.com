@@ -29,6 +29,6 @@ gulp.task('locales', () => {
   .on('error', reportError);
 });
 
-gulp.task('locales:watch', function() {
+gulp.task('locales:watch', () => {
   gulp.watch(sourceFiles, ['locales']);
 });

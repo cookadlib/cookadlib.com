@@ -3,9 +3,10 @@
 import gulp from 'gulp';
 import runSequence from 'run-sequence';
 
-gulp.task('build', ['clean'], function (cb) {
+gulp.task('build', ['clean'], (cb) => {
   // Uncomment 'cache-config' after 'rename-index' if you are going to use service workers.
   runSequence(
+    'framework',
     'bower-install',
     'copy',
     [
@@ -16,7 +17,6 @@ gulp.task('build', ['clean'], function (cb) {
     // 'rename-spritesheet',
     'assets',
     [
-      // 'elements',
       'styles'
     ],
     'rename-index',
@@ -25,3 +25,13 @@ gulp.task('build', ['clean'], function (cb) {
     cb
   );
 });
+
+gulp.task('build:watch', [
+  'framework:watch',
+  'assets:watch',
+  'copy:watch',
+  'markup:watch',
+  'scripts:watch',
+  'styles:watch',
+  'vulcanize:watch'
+]);

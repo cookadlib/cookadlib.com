@@ -36,6 +36,6 @@ gulp.task('markup', () => {
     .on('error', reportError);
 });
 
-gulp.task('markup:watch', function() {
+gulp.task('markup:watch', () => {
   gulp.watch(sourceFiles, ['markup'], browserSync.reload);
 });

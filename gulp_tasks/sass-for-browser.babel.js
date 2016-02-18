@@ -25,6 +25,6 @@ gulp.task('sass-for-browser', () => {
     .on('error', reportError);
 });
 
-gulp.task('sass-for-browser:watch', function() {
+gulp.task('sass-for-browser:watch', () => {
   gulp.watch(sourceFiles, ['sass-for-browser']);
 });
