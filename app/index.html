@@ -10,7 +10,7 @@
   <title>Polymer Test</title>
 
   <!-- Place favicon.ico in the `app/` directory -->
-  <!-- <base href="/"> -->
+  <base href="/">
 
   <!-- Chrome for Android theme color -->
   <meta name="theme-color" content="#2E3AA1">
@@ -97,15 +97,16 @@
   <!-- endbuild-->
 
   <!-- build:js bower_components/webcomponentsjs/webcomponents-lite.min.js -->
-  <!-- <script src="bower_components/webcomponentsjs/webcomponents-lite.js"></script> -->
+  <script src="bower_components/webcomponentsjs/webcomponents-lite.js"></script>
   <!-- endbuild -->
 
   <!-- Because this project uses vulcanize this should be your only html import
        in this file. All other imports should go in elements.html -->
-  <link rel="import" id="bundle" href="elements/elements.html" async>
+  <link rel="import" href="elements/elements.html">
+  <!-- <link rel="import" id="bundle" href="elements/elements.html" async> -->
 
   <!-- For shared styles, shared-styles.html import in elements.html -->
-  <!-- <style is="custom-style" include="shared-styles"></style> -->
+  <style is="custom-style" include="shared-styles"></style>
 </head>
 
 <body class="loading">
@@ -241,7 +242,7 @@
     </paper-toast>
 
     <!-- Uncomment next block to enable Service Worker support (1/2) -->
-    <paper-toast id="caching-complete"
+    <!-- <paper-toast id="caching-complete"
                  duration="6000"
                  text="Caching complete! This app will work offline.">
     </paper-toast>
@@ -254,7 +255,7 @@
       <platinum-sw-cache default-cache-strategy="fastest"
                          cache-config-file="cache-config.json">
       </platinum-sw-cache>
-    </platinum-sw-register>
+    </platinum-sw-register> -->
 
   </template>
 
@@ -267,7 +268,8 @@
   </div>
 
   <!-- build:js scripts/app.js -->
-  <script src="scripts/app.js" async></script>
+  <script src="scripts/app.js"></script>
+  <!-- <script src="scripts/app.async.js" async></script> -->
   <!-- endbuild-->
 </body>
 
