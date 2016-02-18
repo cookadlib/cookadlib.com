@@ -45,9 +45,14 @@ gulp.task('tag', function() {
       break;
   }
 
+  git.push('origin', 'master', function(err) {
+    if (err) {
+      throw err;
+    }
+  });
+
   git.push('origin', 'master', {
-    args: '--tags',
-    // cwd: '../'
+    args: '--tags'
   }, function(err) {
     if (err) {
       throw err;
