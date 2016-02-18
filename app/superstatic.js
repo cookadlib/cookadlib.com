@@ -8,7 +8,9 @@ const app = connect();
 let config = {
   config: 'superstatic.json',
   cwd: process.cwd(),
-  fallthrough: false
+  debug: true,
+  fallthrough: false,
+  gzip: true
 };
 
 app.use(superstatic(config));
