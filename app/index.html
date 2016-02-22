@@ -226,11 +226,36 @@
             <section data-route="recipes">
               <paper-material elevation="1">
                 <h1 class="page-title">Recipes</h1>
-                <p>This is the users section</p>
-                <a href$="{{baseUrl}}users/Addy">Addy</a><br>
-                <a href$="{{baseUrl}}users/Rob">Rob</a><br>
-                <a href$="{{baseUrl}}users/Chuck">Chuck</a><br>
-                <a href$="{{baseUrl}}users/Sam">Sam</a>
+                <p>This is the recipes section</p>
+                <div class="vertical center-justified layout">
+                  <div class="vertical-section">
+                    <h3>Dinosaurs by Height</h3>
+                    <template is="dom-bind">
+                      <firebase-collection
+                        order-by-child="height"
+                        location="https://dinosaur-facts.firebaseio.com/dinosaurs"
+                        data="{{dinosaurs}}"></firebase-collection>
+                      <template is="dom-repeat" items="[[dinosaurs]]" as="dinosaur">
+                        <h4>[[dinosaur.__firebaseKey__]]</h4>
+                        <span>Height: </span><span>[[dinosaur.height]]</span><span>m</span>
+                      </template>
+                    </template>
+                  </div>
+                  <div class="vertical-section">
+                    <h3>Dinosaur Scores Document</h3>
+                    <template is="dom-bind">
+                      <firebase-document
+                        location="https://dinosaur-facts.firebaseio.com/scores"
+                        data="{{dinosaurs}}"></firebase-document>
+                      <x-pretty-json object=[[dinosaurs]]></x-pretty-json>
+                    </template>
+                  </div>
+
+                  <div class="vertical-section">
+                    <h3>Authentication Example</h3>
+                    <x-login></x-login>
+                  </div>
+                </div>
               </paper-material>
             </section>
 
