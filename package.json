@@ -145,7 +145,7 @@
   "scripts": {
     "bower": "./node_modules/.bin/bower",
     "deploy": "gcloud preview app deploy app.yaml",
-    "dev": "./node_modules/.bin/browser-sync start --proxy '127.0.0.1:7050' --files 'www/**/*.*'",
+    "dev": "./node_modules/.bin/browser-sync start --proxy '127.0.0.1:8080' --files 'www/**/*.*'",
     "gulp": "./node_modules/.bin/gulp",
     "postinstall": "./scripts/npm/post-install.sh",
     "preinstall": "./scripts/npm/pre-install.sh",
