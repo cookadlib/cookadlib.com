@@ -76,7 +76,7 @@ config.path = {
   temporary: '.tmp'
 };
 
-config.path.source.bowerComponents = config.path.source.base + '/' + bowerrc.directory;
+config.path.source.bowerComponents = config.path.source.base + '/bower_components';
 config.path.source.nodeModules = config.path.root + '/node_modules';
 
 config.path.source.customStyles = config.path.source.theme + '/styles';
@@ -98,7 +98,7 @@ config.path.source.tests = config.path.source.theme + '/test';
 config.path.source.translations = config.path.source.theme + '/translations';
 config.path.source.videos = config.path.source.theme + '/videos';
 
-config.path.destination.bowerComponents = config.path.destination.base + '/' + bowerrc.directory;
+config.path.destination.bowerComponents = config.path.destination.base + '/bower_components';
 config.path.destination.nodeModules = config.path.destination.base + '/node_modules';
 
 config.path.destination.customStyles = config.path.destination.theme + '/styles';

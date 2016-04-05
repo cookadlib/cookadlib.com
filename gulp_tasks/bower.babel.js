@@ -5,6 +5,7 @@ import cache from 'gulp-cached';
 import debug from 'gulp-debug';
 import gulp from 'gulp';
 import remember from 'gulp-remember';
+import rsync from 'gulp-rsync';
 
 import {config, browserSync} from './_config.babel.js';
 import reportError from './_report-error.babel.js';
@@ -17,6 +18,10 @@ gulp.task('bower', () => {
   })
   .pipe(debug({
     title: 'bower:'
+  }))
+  .pipe(rsync({
+    root: config.path.source.bowerComponents,
+    destination: config.path.destination.bowerComponents
   }))
   .on('end', browserSync.reload)
   .on('error', reportError);
