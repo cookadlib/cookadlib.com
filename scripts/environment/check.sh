@@ -20,7 +20,8 @@ if [ -f Gemfile ]; then
   if hash ruby 2>/dev/null; then
 
     if hash update_rubygems 2>/dev/null; then
-      update_rubygems #sudo update_rubygems
+      #sudo update_rubygems
+      update_rubygems
     else
       echo "update_rubygems not installed"
     fi
