@@ -23,7 +23,7 @@ gulp.task('framework', () => {
     .pipe(plumber({
       errorHandler: reportError
     }))
-    .pipe(cache('framework (tasks)')) // only pass through changed files
+    .pipe(cache('framework')) // only pass through changed files
     .pipe(debug({
       title: 'framework (tasks):'
     }))
@@ -43,7 +43,7 @@ gulp.task('framework', () => {
     .pipe(plumber({
       errorHandler: reportError
     }))
-    .pipe(cache('framework (configuration:json)')) // only pass through changed files
+    .pipe(cache('framework')) // only pass through changed files
     .pipe(debug({
       title: 'framework (configuration:json):'
     }))
@@ -56,7 +56,7 @@ gulp.task('framework', () => {
     .pipe(plumber({
       errorHandler: reportError
     }))
-    .pipe(cache('framework (configuration:yaml)')) // only pass through changed files
+    .pipe(cache('framework')) // only pass through changed files
     .pipe(debug({
       title: 'framework (configuration:yaml):'
     }))
