@@ -67,6 +67,7 @@
     "colorguard": "^1.1.1",
     "connect-history-api-fallback": "^1.2.0",
     "cssnano-cli": "^1.0.3",
+    "csswring": "^4.2.2",
     "del": "^2.2.0",
     "doiuse": "^2.3.0",
     "es6-promise": "^3.1.2",
