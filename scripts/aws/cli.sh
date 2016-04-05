@@ -17,4 +17,4 @@ sudo apt-get install python-pip
 sudo pip install awscli
 aws configure
 
-aws s3 sync /var/www/ilovestage.co.uk/build/www s3:///cdn.industriemagazine.com --exclude .DS_Store
+aws s3 sync /var/www/ilovestage.co.uk/build/www s3:///cdn.cookadlib.com --exclude .DS_Store
