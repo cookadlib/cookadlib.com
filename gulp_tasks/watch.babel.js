@@ -12,7 +12,7 @@ gulp.task('watch', [
   'scripts:watch',
   'styles:watch',
   'templates:watch',
-  // 'vulcanize:watch'
+  'vulcanize:watch',
   'browser-sync'
 ], () => {
   console.info('Watching');

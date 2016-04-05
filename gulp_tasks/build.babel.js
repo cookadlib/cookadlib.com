@@ -4,10 +4,8 @@ import gulp from 'gulp';
 import runSequence from 'run-sequence';
 
 gulp.task(
+    // 'clean',
   'build',
-  [
-    // 'clean'
-  ],
   (cb) => {
   runSequence(
     'bower',
@@ -18,7 +16,7 @@ gulp.task(
       'styles',
       'templates'
     ],
-    // 'vulcanize',
+    'vulcanize',
     'rename-index',
     'remove-old-build-index',
     // Uncomment 'cache-config' after 'rename-index' if you are going to use service workers.
