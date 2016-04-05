@@ -1,8 +1,10 @@
 'use strict';
 
+import cache from 'gulp-cached';
 import debug from 'gulp-debug';
 import gulp from 'gulp';
 import plumber from 'gulp-plumber';
+import remember from 'gulp-remember';
 
 import {config, browserSync} from './_config.babel.js';
 import reportError from './_report-error.babel.js';

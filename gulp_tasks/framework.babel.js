@@ -8,6 +8,7 @@ import jscs from 'gulp-jscs';
 import jshint from 'gulp-jshint';
 import jsonlint from 'gulp-jsonlint';
 import plumber from 'gulp-plumber';
+import remember from 'gulp-remember';
 import yamlvalidate from 'gulp-yaml-validate';
 
 import {config, browserSync} from './_config.babel.js';

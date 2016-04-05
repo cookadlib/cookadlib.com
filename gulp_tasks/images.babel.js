@@ -1,5 +1,6 @@
 'use strict';
 
+import cache from 'gulp-cached';
 import debug from 'gulp-debug';
 import gifsicle from 'imagemin-gifsicle';
 import gulp from 'gulp';
@@ -8,6 +9,7 @@ import jpegtran from 'imagemin-jpegtran';
 import optipng from 'imagemin-optipng';
 import plumber from 'gulp-plumber';
 import pngquant from 'imagemin-pngquant';
+import remember from 'gulp-remember';
 import size from 'gulp-size';
 
 import {config, browserSync} from './_config.babel.js';

@@ -1,8 +1,10 @@
 'use strict';
 
+import cache from 'gulp-cached';
 import debug from 'gulp-debug';
 import gulp from 'gulp';
 import plumber from 'gulp-plumber';
+import remember from 'gulp-remember';
 import size from 'gulp-size';
 import svgSprite from 'gulp-svg-sprite';
 

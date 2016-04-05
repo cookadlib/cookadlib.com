@@ -48,8 +48,8 @@ gulp.task('markup:watch', ['browser-sync'], () => {
   let watcher = gulp.watch(sourceFiles, ['markup'], htmlInjector);
 
   watcher.on('change', (event) => {
-    browserSync.reload();
-    
+    // browserSync.reload();
+
     if (event.type === 'deleted') { // if a file is deleted, forget about it
       delete cache.caches.markup[event.path];
       remember.forget('markup', event.path);
