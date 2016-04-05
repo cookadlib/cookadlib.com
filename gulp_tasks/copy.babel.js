@@ -23,7 +23,7 @@ sourceFiles = sourceFiles.concat(config.files.source.translations);
 
 gulp.task('copy', () => {
   return gulp.src(sourceFiles, {
-    base: config.path.source.base,
+    // base: config.path.source.base,
     dot: true
   })
   .pipe(plumber({
@@ -38,6 +38,15 @@ gulp.task('copy', () => {
   .on('error', reportError);
 });
 
-gulp.task('copy:watch', () => {
-  gulp.watch(sourceFiles, ['copy'], browserSync.reload);
+gulp.task('copy:watch', ['browser-sync'], () => {
+  let watcher = gulp.watch(sourceFiles, ['copy']);
+
+  watcher.on('change', (event) => {
+    browserSync.reload();
+
+    if (event.type === 'deleted') { // if a file is deleted, forget about it
+      delete cache.caches.copy[event.path];
+      remember.forget('copy', event.path);
+    }
+  });
 });

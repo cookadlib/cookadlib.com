@@ -3,10 +3,13 @@
 import gulp from 'gulp';
 
 gulp.task('all', [
+  'cache-clear',
+  // 'clean',
   'framework',
-  'assets',
   'build',
+  'assets',
   'document',
   'test',
-  'pagespeed'
+  'pagespeed',
+  'watch'
 ]);

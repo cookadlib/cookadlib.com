@@ -9,7 +9,6 @@ import path from 'path';
 
 import config from './_config.babel.js';
 
-// gulp.task('cache-config', function (callback) {
 gulp.task('cache-config', (callback) => {
   let dir = config.path.destination.base;
   let settings = {

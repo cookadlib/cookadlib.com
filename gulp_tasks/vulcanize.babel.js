@@ -19,6 +19,15 @@ gulp.task('vulcanize', () => {
     .pipe(size({title: 'vulcanize'}));
 });
 
-gulp.task('vulcanize:watch', () => {
-  gulp.watch(sourceFiles, ['vulcanize'], browserSync.reload);
+gulp.task('vulcanize:watch', ['browser-sync'], () => {
+  let watcher = gulp.watch(sourceFiles, ['vulcanize']);
+
+  watcher.on('change', (event) => {
+    browserSync.reload();
+
+    if (event.type === 'deleted') { // if a file is deleted, forget about it
+      delete cache.caches.vulcanize[event.path];
+      remember.forget('vulcanize', event.path);
+    }
+  });
 });

@@ -3,22 +3,26 @@
 // import autoprefixer from 'gulp-autoprefixer';
 import autoprefixer from 'autoprefixer';
 import cache from 'gulp-cached';
+import colorguard from 'colorguard';
 // import csscomb from 'gulp-csscomb';
 // import cssmin from 'gulp-cssmin';
 import cssnano from 'cssnano';
-import colorguard from 'colorguard';
 // import csso from 'gulp-csso';
+import csswring from 'csswring';
 import debug from 'gulp-debug';
 import doiuse from 'doiuse';
+import filter from 'gulp-filter';
 import gulp from 'gulp';
 // import gulpIgnore from 'gulp-ignore';
 // import minifyCss from 'gulp-minify-css';
 import plumber from 'gulp-plumber';
 import postcss from 'gulp-postcss';
 import remember from 'gulp-remember';
-import rtlcss from 'rtlcss';
-// import sass from 'gulp-sass';
-// import sassLint from 'gulp-sass-lint';
+// import rtlcss from 'rtlcss';
+import sass from 'gulp-sass';
+import sassInheritance from 'gulp-sass-inheritance';
+import sassLint from 'gulp-sass-lint';
+import scss from 'postcss-scss';
 import size from 'gulp-size';
 import sourcemaps from 'gulp-sourcemaps';
 // import stylelint from 'stylelint';
@@ -29,10 +33,10 @@ import reportError from './_report-error.babel.js';
 
 let sourceFiles = config.files.source.styles;
 
-// let sourceFilesIgnored = config.files.source.stylesIgnored;
-
+sourceFiles = sourceFiles.concat(config.files.source.stylesIgnored.map(function(path) {
+  return '!' + path;
+}));
 // console.log('sourceFiles', sourceFiles);
-// console.log('sourceFilesIgnored', sourceFilesIgnored);
 
 gulp.task('styles', () => {
   // stream not returned, see:
@@ -42,33 +46,33 @@ gulp.task('styles', () => {
     .pipe(plumber({
       errorHandler: reportError
     }))
-    .pipe(cache('styles')) // only pass through changed files
+    .pipe(cache('styles (copy scss)')) // only pass through changed files
     .pipe(debug({
-      title: 'styles:'
+      title: 'styles (copy scss):'
+    }))
+    .pipe(gulp.dest(config.path.destination.styles))
+    .pipe(plumber.stop())
+    .on('error', reportError);
+
+  gulp.src(sourceFiles)
+    .pipe(plumber({
+      errorHandler: reportError
+    }))
+    .pipe(sourcemaps.init({
+      debug: true
+      // loadMaps: true
+    }))
+    .pipe(cache('styles (generate css)')) // only pass through changed files
+    .pipe(debug({
+      title: 'styles (generate css):'
     }))
     // .pipe(gulpIgnore.exclude(sourceFilesIgnored)) // sass-lint can't process interpolated property selectors
-    // .pipe(sassLint({
-    //   config: config.path.root + '/.sass-lint.yml'
-    // }))
-    // .pipe(sassLint.format())
-    // .pipe(sassLint.failOnError())
-    // .pipe(gulpIgnore.include(sourceFiles)) // sass-lint can't process interpolated property selectors
-    .pipe(sourcemaps.init({
-      debug: true,
-      loadMaps: true
+    .pipe(sassLint({
+      config: config.path.root + '/.sass-lint.yml'
     }))
-    // .pipe(
-    //   sass({
-    //     errLogToConsole: true,
-    //     includePaths: [
-    //       config.path.source.bowerComponents,
-    //       config.path.source.nodeModules,
-    //       config.path.source.styles
-    //     ]
-    //   })
-    //   .on('error', sass.logError)
-    // )
-    .pipe(remember('styles')) // add back all files to the stream
+    .pipe(sassLint.format())
+    .pipe(sassLint.failOnError())
+    // .pipe(gulpIgnore.include(sourceFiles)) // sass-lint can't process interpolated property selectors
     .pipe(postcss([
       autoprefixer({
         browsers: ['last 1 version']
@@ -76,11 +80,31 @@ gulp.task('styles', () => {
       doiuse,
       colorguard,
       // mqpacker,
-      // csswring,
+      csswring,
       // stylelint,
-      rtlcss,
+      // rtlcss,
       cssnano
-    ]))
+    ], {
+      syntax: scss
+    }))
+    .pipe(sassInheritance({
+      dir: config.path.source.styles
+    }))
+    .pipe(filter(function(file) {
+      return !/\/_/.test(file.path) || !/^_/.test(file.relative);
+    }))
+    .pipe(
+      sass({
+        errLogToConsole: true,
+        includePaths: [
+          config.path.source.bowerComponents,
+          config.path.source.nodeModules
+          // config.path.source.styles
+        ]
+      })
+      .on('error', sass.logError)
+    )
+    .pipe(remember('styles (generate css)')) // add back all files to the stream
     // .pipe(uncss({
     //   html: [
     //     '**/*.html'
@@ -89,18 +113,17 @@ gulp.task('styles', () => {
     // .pipe(rename({suffix: '.min'}))
     // .pipe(minifyCss())
     .pipe(sourcemaps.write('.')) // Causes the page to be reloaded after the styles are injected.  This was working, I'm not sure what changed.
-    .pipe(plumber.stop())
     .pipe(gulp.dest(config.path.destination.styles))
-    .pipe(size({title: 'styles'}))
     .pipe(browserSync.stream({match: '**/*.css'}))
+    .pipe(size({title: 'styles'}))
+    .pipe(plumber.stop())
     .on('error', reportError);
 });
 
-gulp.task('styles:watch', () => {
+gulp.task('styles:watch', ['browser-sync'], () => {
   let watcher = gulp.watch(sourceFiles, ['styles']);
-  // console.log(cache.caches);
-  watcher.on('change', function(event) {
-    // console.log('change', cache.caches);
+
+  watcher.on('change', (event) => {
     if (event.type === 'deleted') { // if a file is deleted, forget about it
       delete cache.caches.styles[event.path];
       remember.forget('styles', event.path);

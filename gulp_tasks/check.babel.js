@@ -28,8 +28,6 @@ let options = {
   summary: true
 };
 
-gulp.task('check', [
-  'browser-sync'
-], (callback) => {
+gulp.task('check', ['browser-sync'], (callback) => {
   checkPages(console, options, callback);
 });

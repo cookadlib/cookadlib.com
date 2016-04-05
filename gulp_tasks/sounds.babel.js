@@ -1,11 +1,14 @@
 'use strict';
 
+import cache from 'gulp-cached';
 import debug from 'gulp-debug';
 import ffmpeg from 'gulp-fluent-ffmpeg';
 import gulp from 'gulp';
 import plumber from 'gulp-plumber';
+import remember from 'gulp-remember';
+import size from 'gulp-size';
 
-import config from './_config.babel.js';
+import {config, browserSync} from './_config.babel.js';
 import reportError from './_report-error.babel.js';
 
 let sourceFiles = config.files.source.sounds;
@@ -15,6 +18,7 @@ gulp.task('sounds', () => {
     .pipe(plumber({
       errorHandler: reportError
     }))
+    .pipe(cache('sounds')) // only pass through changed files
     .pipe(debug({
       title: 'sounds:'
     }))
@@ -40,11 +44,22 @@ gulp.task('sounds', () => {
         })
         .on('error', reportError);
     }))
-    .pipe(plumber.stop())
     .pipe(gulp.dest(config.path.destination.base))
+    .pipe(remember('sounds')) // add back all files to the stream
+    .pipe(size({title: 'sounds'}))
+    .pipe(plumber.stop())
     .on('error', reportError);
 });
 
-gulp.task('sounds:watch', () => {
-  gulp.watch(sourceFiles, ['sounds']);
+gulp.task('sounds:watch', ['browser-sync'], () => {
+  let watcher = gulp.watch(sourceFiles, ['sounds']);
+
+  watcher.on('change', (event) => {
+    browserSync.reload();
+
+    if (event.type === 'deleted') { // if a file is deleted, forget about it
+      delete cache.caches.sounds[event.path];
+      remember.forget('sounds', event.path);
+    }
+  });
 });

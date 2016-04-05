@@ -64,6 +64,15 @@ gulp.task('framework', () => {
     .on('error', reportError);
 });
 
-gulp.task('framework:watch', () => {
-  gulp.watch(sourceFiles, ['framework'], browserSync.reload);
+gulp.task('framework:watch', ['browser-sync'], () => {
+  let watcher = gulp.watch(sourceFiles, ['framework']);
+
+  watcher.on('change', (event) => {
+    browserSync.reload();
+
+    if (event.type === 'deleted') { // if a file is deleted, forget about it
+      delete cache.caches.framework[event.path];
+      remember.forget('framework', event.path);
+    }
+  });
 });

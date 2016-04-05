@@ -73,6 +73,15 @@ gulp.task('icons', () => {
     .on('error', reportError);
 });
 
-gulp.task('icons:watch', () => {
-  gulp.watch(sourceFiles, ['icons'], browserSync.reload);
+gulp.task('icons:watch', ['browser-sync'], () => {
+  let watcher = gulp.watch(sourceFiles, ['icons']);
+
+  watcher.on('change', (event) => {
+    browserSync.reload();
+
+    if (event.type === 'deleted') { // if a file is deleted, forget about it
+      delete cache.caches.icons[event.path];
+      remember.forget('icons', event.path);
+    }
+  });
 });

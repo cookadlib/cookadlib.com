@@ -42,6 +42,15 @@ gulp.task('images', () => {
     .on('error', reportError);
 });
 
-gulp.task('images:watch', () => {
-  gulp.watch(sourceFiles, ['images'], browserSync.reload);
+gulp.task('images:watch', ['browser-sync'], () => {
+  let watcher = gulp.watch(sourceFiles, ['images']);
+
+  watcher.on('change', (event) => {
+    browserSync.reload();
+
+    if (event.type === 'deleted') { // if a file is deleted, forget about it
+      delete cache.caches.images[event.path];
+      remember.forget('images', event.path);
+    }
+  });
 });

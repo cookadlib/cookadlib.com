@@ -24,15 +24,15 @@ let sourceFiles = config.files.source.scripts;
 sourceFiles = sourceFiles.concat(config.files.source.scriptsIgnored.map(function(file) {
   return '!' + file;
 }));
-sourceFiles = sourceFiles.concat(config.files.source.tests.map(function(file) {
-  return '!' + file;
-}));
-sourceFiles = sourceFiles.concat(config.files.source.styleguide.map(function(file) {
-  return '!' + file;
-}));
+// sourceFiles = sourceFiles.concat(config.files.source.tests.map(function(file) {
+//   return '!' + file;
+// }));
+// sourceFiles = sourceFiles.concat(config.files.source.styleguide.map(function(file) {
+//   return '!' + file;
+// }));
+// console.log('sourceFiles', sourceFiles);
 
 gulp.task('scripts', () => {
-  // run from base to include files in site root and elements folder
   return gulp.src(sourceFiles)
     .pipe(plumber({
       errorHandler: reportError
@@ -65,17 +65,18 @@ gulp.task('scripts', () => {
     .pipe(sourcemaps.write('.', {
       sourceRoot: '/'
     }))
-    .pipe(plumber.stop())
     .pipe(gulp.dest(config.path.destination.base))
     .pipe(size({title: 'scripts'}))
+    .pipe(plumber.stop())
     .on('error', reportError);
 });
 
-gulp.task('scripts:watch', () => {
-  let watcher = gulp.watch(sourceFiles, ['scripts'], browserSync.reload);
-  // console.log(cache.caches);
+gulp.task('scripts:watch', ['browser-sync'], () => {
+  let watcher = gulp.watch(sourceFiles, ['scripts']);
+
   watcher.on('change', (event) => {
-    // console.log('change', cache.caches);
+    browserSync.reload();
+
     if (event.type === 'deleted') { // if a file is deleted, forget about it
       delete cache.caches.scripts[event.path];
       remember.forget('scripts', event.path);

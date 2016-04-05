@@ -10,10 +10,10 @@ import shell from 'gulp-shell';
 
 import config from './_config.babel.js';
 
-let sourceFiles = [
-  config.files.source.scripts,
-  config.files.source.documentation
-];
+let sourceFiles = config.files.source.markup;
+sourceFiles = sourceFiles.concat(config.files.source.scripts);
+sourceFiles = sourceFiles.concat(config.files.source.styles);
+sourceFiles = sourceFiles.concat(config.files.source.templates);
 
 gulp.task('documentation', shell.task([
   // '../node_modules/.bin/jsdoc .'

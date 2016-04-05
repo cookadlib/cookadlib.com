@@ -4,16 +4,13 @@ import debug from 'gulp-debug';
 import gulp from 'gulp';
 import plumber from 'gulp-plumber';
 
-import config from './_config.babel.js';
+import {config, browserSync} from './_config.babel.js';
 import reportError from './_report-error.babel.js';
 
 let sourceFiles = config.files.source.fonts;
 
 gulp.task('fonts', () => {
-  return gulp.src(sourceFiles, {
-    base: config.path.source.base,
-    dot: true
-  })
+  return gulp.src(sourceFiles)
   .pipe(plumber({
     errorHandler: reportError
   }))
@@ -25,6 +22,15 @@ gulp.task('fonts', () => {
   .on('error', reportError);
 });
 
-gulp.task('fonts:watch', () => {
-  gulp.watch(sourceFiles, ['fonts']);
+gulp.task('fonts:watch', ['browser-sync'], () => {
+  let watcher = gulp.watch(sourceFiles, ['fonts']);
+
+  watcher.on('change', (event) => {
+    browserSync.reload();
+
+    if (event.type === 'deleted') { // if a file is deleted, forget about it
+      delete cache.caches.fonts[event.path];
+      remember.forget('fonts', event.path);
+    }
+  });
 });

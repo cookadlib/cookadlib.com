@@ -8,15 +8,21 @@ import htmlhint from 'gulp-htmlhint';
 // import minifyHTML from 'gulp-minify-html';
 import plumber from 'gulp-plumber';
 import remember from 'gulp-remember';
+import size from 'gulp-size';
 
-import {config, browserSync} from './_config.babel.js';
+import {
+  config,
+  // browserSync,
+  htmlInjector
+} from './_config.babel.js';
+
 import reportError from './_report-error.babel.js';
 
 let sourceFiles = config.files.source.markup;
 
-// sourceFiles = sourceFiles.concat(config.files.source.markupIgnored.map(function(file) {
-//   return '!' + file;
-// }));
+sourceFiles = sourceFiles.concat(config.files.source.markupIgnored.map(function(path) {
+  return '!' + path;
+}));
 
 gulp.task('markup', () => {
   return gulp.src(sourceFiles)
@@ -32,10 +38,21 @@ gulp.task('markup', () => {
     // .pipe(minifyHTML())
     .pipe(gulp.dest(config.path.destination.base))
     .pipe(remember('markup')) // add back all files to the stream
+    .pipe(size({title: 'markup'}))
     .pipe(plumber.stop())
     .on('error', reportError);
 });
 
-gulp.task('markup:watch', () => {
-  gulp.watch(sourceFiles, ['markup'], browserSync.reload);
+gulp.task('markup:watch', ['browser-sync'], () => {
+  // let watcher = gulp.watch(sourceFiles, ['markup']);
+  let watcher = gulp.watch(sourceFiles, ['markup'], htmlInjector);
+
+  watcher.on('change', (event) => {
+    browserSync.reload();
+    
+    if (event.type === 'deleted') { // if a file is deleted, forget about it
+      delete cache.caches.markup[event.path];
+      remember.forget('markup', event.path);
+    }
+  });
 });
