@@ -23,12 +23,17 @@
 		"app": true,
 		"Blob": true,
 		"document": true,
+		"html2canvas": true,
 		"imagesLoaded": true,
 		"importScripts": true,
 		"jQuery": true,
 		"navigator": true,
+		"page": true,
 		"Phaser": true,
+		"Platform": true,
 		"Polymer": true,
-		"window": true
+		"unwrap": true,
+		"window": true,
+		"wrap": true
 	}
 }
