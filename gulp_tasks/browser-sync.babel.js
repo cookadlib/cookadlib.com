@@ -32,7 +32,7 @@ function onBrowsersyncInit() {
       'Go to Settings > Wi-Fi\n',
       'Tap the information icon next to the Wi-Fi network name that the device is connected to.\n',
       'From the Wi-Fi network settings page, set HTTP Proxy to "Auto"\n',
-      `Enter "${config.browsersync.proxy.protocol}://${browserSync.instance.utils.devIp}" into the "URL" field\n`,
+      // `Enter "${config.browsersync.proxy.protocol}://${browserSync.instance.utils.devIp}" into the "URL" field\n`,
       `Enter ${browserSync.instance.options.get('urls').get('external')} into the browser address bar\n`
     )
   );
