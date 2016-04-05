@@ -80,7 +80,7 @@ if [ -f package.json ]; then
 
     if hash ncu 2>/dev/null; then
       echo "npm-check-updates installed"
-      echo "running npm-check-updates"
+      echo "running ncu --upgradeAll"
       ncu --upgradeAll
     else
       echo "npm-check-updates not installed"
@@ -102,7 +102,7 @@ if [ -f package.json ]; then
         echo "bower installed"
 
         if hash ncu 2>/dev/null; then
-          echo "running npm-check-updates -m bower"
+          echo "running ncu -m bower --upgradeAll"
           ncu -m bower --upgradeAll
         else
           echo "npm-check-updates not installed"
