@@ -1,15 +1,18 @@
 'use strict';
 
+import cache from 'gulp-cached';
 import gulp from 'gulp';
+import remember from 'gulp-remember';
 import size from 'gulp-size';
 import vulcanize from 'gulp-vulcanize';
 
 import {config, browserSync} from './_config.babel.js';
 
 let sourceFiles = `${config.path.source.elements}/elements.html`;
+sourceFiles = sourceFiles.concat(config.files.source.elements);
 
 gulp.task('vulcanize', () => {
-  return gulp.src(sourceFiles)
+  return gulp.src(`${config.path.source.elements}/elements.html`)
     .pipe(vulcanize({
       stripComments: true,
       inlineCss: true,
