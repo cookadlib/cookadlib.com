@@ -4,14 +4,15 @@ import cache from 'gulp-cached';
 import debug from 'gulp-debug';
 import gulp from 'gulp';
 import plumber from 'gulp-plumber';
+import remember from 'gulp-remember';
 
 import {config, browserSync} from './_config.babel.js';
 import reportError from './_report-error.babel.js';
 
 let sourceFiles = config.files.source.miscellaneous;
 // sourceFiles = sourceFiles.concat(config.files.source.bowerComponents);
-sourceFiles = sourceFiles.concat(config.files.source.customStyles);
-sourceFiles = sourceFiles.concat(config.files.source.elements); // remove when using Vulcanize
+// sourceFiles = sourceFiles.concat(config.files.source.customStyles);
+// sourceFiles = sourceFiles.concat(config.files.source.elements); // remove when using Vulcanize
 sourceFiles = sourceFiles.concat(config.files.source.locales);
 // sourceFiles = sourceFiles.concat(config.files.source.scriptsIgnored);
 // sourceFiles = sourceFiles.concat(config.files.source.templates);
