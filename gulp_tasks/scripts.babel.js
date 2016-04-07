@@ -65,7 +65,7 @@ gulp.task('scripts', () => {
     .pipe(sourcemaps.write('.', {
       sourceRoot: '/'
     }))
-    .pipe(gulp.dest(config.path.destination.base))
+    .pipe(gulp.dest(config.path.destination.scripts))
     .pipe(size({title: 'scripts'}))
     .pipe(plumber.stop())
     .on('error', reportError);
