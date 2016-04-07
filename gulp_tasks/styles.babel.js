@@ -73,6 +73,9 @@ gulp.task('styles', () => {
     .pipe(sassLint.format())
     .pipe(sassLint.failOnError())
     // .pipe(gulpIgnore.include(sourceFiles)) // sass-lint can't process interpolated property selectors
+    .pipe(sassInheritance({
+      dir: config.path.source.styles
+    })) // returns nothing if the main scss file does not contain any import statements
     .pipe(postcss([
       autoprefixer({
         browsers: ['last 1 version']
@@ -86,9 +89,6 @@ gulp.task('styles', () => {
       cssnano
     ], {
       syntax: scss
-    }))
-    .pipe(sassInheritance({
-      dir: config.path.source.styles
     }))
     .pipe(filter(function(file) {
       return !/\/_/.test(file.path) || !/^_/.test(file.relative);
