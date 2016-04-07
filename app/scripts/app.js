@@ -15,7 +15,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   // and give it some initial binding values
   // Learn more about auto-binding templates at http://goo.gl/Dx1u2g
   var app = document.querySelector('#app');
-  
+
   // Sets app default base URL
   app.baseUrl = '/';
   if (window.location.port === '') {  // if production
@@ -36,7 +36,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   app.addEventListener('dom-change', function() {
     console.log('Our app is ready to rock!');
   });
-  
+
   // See https://github.com/Polymer/polymer/issues/1381
   window.addEventListener('WebComponentsReady', function() {
     // imports are loaded and elements have been registered
@@ -44,6 +44,28 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     // let splash = document.getElementById('splash');
     // splash.addEventListener('transitionend', splash.remove);
     // document.body.classList.remove('loading');
+
+    // console.info(app.$.carbonLocationMain.route);
+    //
+    // if (!app.$.carbonLocationMain.route.path) {
+    //   app.$.carbonLocationMain.set('route.path', 'home');
+    // } else if (app.$.carbonLocationMain.route.path === '') {
+    //   app.$.carbonLocationMain.route.path = 'home';
+    // } else if (app.$.carbonLocationMain.route.path === '/') {
+    //   app.$.carbonLocationMain.route.path = 'home';
+    // }
+    //
+    // console.info(app.$.carbonLocationMain.route);
+    //
+    // app.$.paperTabsFooBarBaz.addEventListener('iron-items-changed', function paperTabChanged() {
+    //   console.info(app.$.paperTabsFooBarBaz.selected);
+    //   console.info(app.$.carbonLocationMain.route);
+    // });
+    //
+    // app.$.paperTabsFooBarBaz.addEventListener('iron-select', function paperTabChanged() {
+    //   console.info(app.$.paperTabsFooBarBaz.selected);
+    //   console.info(app.$.carbonLocationMain.route);
+    // });
   });
 
   // Main area's paper-scroll-header-panel custom condensing transformation of

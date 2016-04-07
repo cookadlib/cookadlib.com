@@ -19,7 +19,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   <title>Polymer Test</title>
 
   <!-- Place favicon.ico in the `app/` directory -->
-<!-- <base href="/"> -->
+<base href="/">
 
   <!-- Chrome for Android theme color -->
   <meta name="theme-color" content="#2E3AA1">
@@ -45,6 +45,28 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   <meta name="msapplication-TileImage" content="images/touch/ms-touch-icon-144x144-precomposed.png">
 
   <style>
+    :host {
+      display: block;
+      position: relative;
+      height: 100vh;
+    }
+    :host([video-page-active]) {
+      overflow: hidden;
+    }
+    :host([video-page-active]) iron-pages {
+      transform: translateY(-170px);
+    }
+    iron-pages {
+      transition: transform 0.3s;
+    }
+    paper-button {
+      @apply(--paper-font-common-base);
+      color: var(--paper-red-500);
+      margin-bottom: 16px;
+    }
+  </style>
+
+  <style>
     #splash {
       align-items: flex-end;
       background-color: #fff;
@@ -57,6 +79,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       justify-content: center;
       left: 0;
       opacity: 0;
+      pointer-events: none;
       position: absolute;
       right: 0;
       top: 0;
@@ -98,6 +121,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
     body.loading #splash {
       opacity: 1;
+      pointer-events: auto;
     }
   </style>
 
@@ -147,7 +171,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             <span>Recipes</span>
           </a>
 
-          <a data-route="nutrition" href="{{baseUrl}}nutrition">
+          <a data-route="nutrition" href="{{baseUrl}}nutrition/bar">
             <iron-icon icon="info"></iron-icon>
             <span>Nutrition</span>
           </a>
@@ -166,6 +190,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             <iron-icon icon="mail"></iron-icon>
             <span>Contact</span>
           </a>
+
+          <a data-route="search" href="{{baseUrl}}search">
+            <iron-icon icon="search"></iron-icon>
+            <span>Search</span>
+          </a>
+
         </paper-menu>
       </paper-scroll-header-panel>
 
@@ -194,9 +224,26 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
         <!-- Main Content -->
         <div class="content">
-          <iron-pages attr-for-selected="data-route" selected="{{route}}">
-            <section data-route="home">
+
+          <!-- carbon-location binds with the URL and produces a route for
+          carbon-route elements to consume. Since this demo needs to run without
+          server cooperation (e.g. with polyserve, in the elements catalog, etc) we'll
+          use the hash portion of the URL for our route paths. -->
+          <carbon-location route="{{route}}" id="carbonLocationMain"></carbon-location>
+
+          <!-- carbon-routes parse route paths based on the their `pattern`.
+          Parameters are extracted into the `data` object. The rest of the path that
+          comes after the `pattern` is put into the `tail` object, which can be
+          passed to the `route` property of downstream carbon-routes. -->
+          <carbon-route route="{{route}}" pattern="/" data="{{routeData}}" tail="{{subroute}}"></carbon-route>
+          <carbon-route route="{{route}}" pattern="/:page" data="{{routeData}}" tail="{{subroute}}"></carbon-route>
+          <carbon-route route="{{subroute}}" pattern="/:tab" data="{{subrouteData}}"></carbon-route>
+
+          <iron-pages attr-for-selected="data-route" selected="{{routeData.page}}">
+            <section data-route="">
               <paper-material elevation="1">
+                <x-login></x-login>
+
                 <my-greeting class="focus-target" tabindex="-1"></my-greeting>
 
                 <p class="subhead">You now have:</p>
@@ -207,25 +254,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
               <paper-material elevation="1">
                 <p>This is another card.</p>
-              </paper-material>
-
-              <paper-material elevation="1">
-                <h2 id="license">License</h2>
-                <p>Everything in this repo is BSD style license unless otherwise specified.</p>
-                <p>Copyright (c) 2015 The Polymer Authors. All rights reserved.</p>
-                <p>Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:</p>
-                <ul>
-                <li>Redistributions of source code must retain the above copyright
-                notice, this list of conditions and the following disclaimer.</li>
-                <li>Redistributions in binary form must reproduce the above
-                copyright notice, this list of conditions and the following disclaimer
-                in the documentation and/or other materials provided with the
-                distribution.</li>
-                <li>Neither the name of Google Inc. nor the names of its
-                contributors may be used to endorse or promote products derived from
-                this software without specific prior written permission.</li>
-                </ul>
-                <p>THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS &quot;AS IS&quot; AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</p>
               </paper-material>
             </section>
 
@@ -256,11 +284,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                       <x-pretty-json object=[[dinosaurs]]></x-pretty-json>
                     </template>
                   </div>
-
-                  <div class="vertical-section">
-                    <h3>Authentication Example</h3>
-                    <x-login></x-login>
-                  </div>
                 </div>
               </paper-material>
             </section>
@@ -268,12 +291,17 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             <section data-route="nutrition">
               <paper-material elevation="1">
                 <h1 class="page-title">Nutrition</h1>
-                <p>This is the users section</p>
-                <a href$="{{baseUrl}}users/Addy">Addy</a><br>
-                <a href$="{{baseUrl}}users/Rob">Rob</a><br>
-                <a href$="{{baseUrl}}users/Chuck">Chuck</a><br>
-                <a href$="{{baseUrl}}users/Sam">Sam</a>
+                <paper-tabs selected="{{subrouteData.tab}}" attr-for-selected="key" id="paperTabsFooBarBaz">
+                  <paper-tab key="foo">Foo</paper-tab>
+                  <paper-tab key="bar">Bar</paper-tab>
+                  <paper-tab key="baz">Baz!</paper-tab>
+                </paper-tabs>
               </paper-material>
+              <neon-animated-pages selected="{{subrouteData.tab}}" attr-for-selected="key" entry-animation="slide-from-left-animation" exit-animation="slide-right-animation">
+                <neon-animatable key="/foo">Foo Page Here</neon-animatable>
+                <neon-animatable key="/bar">Bar Page Goes Here</neon-animatable>
+                <neon-animatable key="/baz">Baz Page, the Best One of the Three</neon-animatable>
+              </neon-animated-pages>
             </section>
 
             <section data-route="notes">
@@ -311,6 +339,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                 <p>This is the contact section</p>
               </paper-material>
             </section>
+
+            <search-results data-route="search" items="{{videos}}"></search-results>
+
           </iron-pages>
         </div>
       </paper-scroll-header-panel>
