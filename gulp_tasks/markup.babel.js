@@ -12,8 +12,9 @@ import size from 'gulp-size';
 
 import {
   config,
-  // browserSync,
-  htmlInjector
+  browserSync
+  // ,
+  // htmlInjector
 } from './_config.babel.js';
 
 import reportError from './_report-error.babel.js';
@@ -44,11 +45,11 @@ gulp.task('markup', () => {
 });
 
 gulp.task('markup:watch', ['browser-sync'], () => {
-  // let watcher = gulp.watch(sourceFiles, ['markup']);
-  let watcher = gulp.watch(sourceFiles, ['markup'], htmlInjector);
+  let watcher = gulp.watch(sourceFiles, ['markup']);
+  // let watcher = gulp.watch(sourceFiles, ['markup'], htmlInjector);
 
   watcher.on('change', (event) => {
-    // browserSync.reload();
+    browserSync.reload();
 
     if (event.type === 'deleted') { // if a file is deleted, forget about it
       delete cache.caches.markup[event.path];
