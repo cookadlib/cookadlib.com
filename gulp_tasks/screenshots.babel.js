@@ -1,17 +1,17 @@
 'use strict';
 
 import cache from 'gulp-cached';
-import debug from 'gulp-debug';
+// import debug from 'gulp-debug';
 import gulp from 'gulp';
 import Pageres from 'pageres';
 // import {path as phantomjsPath} from 'phantomjs-prebuilt';
-import plumber from 'gulp-plumber';
+// import plumber from 'gulp-plumber';
 import remember from 'gulp-remember';
-import size from 'gulp-size';
+// import size from 'gulp-size';
 // import webshot from 'gulp-webshot';
 
 import {config, browserSync} from './_config.babel.js';
-import reportError from './_report-error.babel.js';
+// import reportError from './_report-error.babel.js';
 
 let sourceFiles = config.files.source.markup;
 
