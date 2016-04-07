@@ -2,13 +2,13 @@ import {
   create as browserSyncInstance
 } from 'browser-sync';
 
-import fs from 'fs';
+// import fs from 'fs';
 
 import * as htmlInjectorInstance from 'bs-html-injector';
 
 import packageJson from '../package.json';
 
-const bowerrc = JSON.parse(fs.readFileSync('.bowerrc'));
+// const bowerrc = JSON.parse(fs.readFileSync('.bowerrc'));
 
 export const browserSync = browserSyncInstance();
 
@@ -43,22 +43,15 @@ config.instance.vorlon = {
   port: packageJson.config.vorlon.ui.port
 };
 
-config.instance.webshot = {
-  screenSizes: [
-    480,
-    600,
-    840,
-    960,
-    1024,
-    1280,
-    1366,
-    1440,
-    1600,
-    1920,
-    2560,
-    3840
-  ]
-};
+config.screenshots = {};
+
+config.screenshots.sizes = [
+  '480x320',
+  '1024x768',
+  'iphone 5s',
+  'iphone 6',
+  'iphone 6s',
+];
 
 config.path = {
   deploy: {
@@ -87,7 +80,7 @@ config.path.source.fonts = config.path.source.theme + '/fonts';
 config.path.source.images = config.path.source.theme + '/images';
 config.path.source.locales = config.path.source.theme + '/locales';
 config.path.source.markup = config.path.source.theme;
-config.path.source.scripts = config.path.source.theme + '/js';
+config.path.source.scripts = config.path.source.theme + '/scripts';
 config.path.source.screenshots = config.path.source.theme + '/screenshots';
 config.path.source.sounds = config.path.source.theme + '/sounds';
 config.path.source.styleguide = config.path.source.theme + '/styleguide';
@@ -109,13 +102,13 @@ config.path.destination.fonts = config.path.destination.theme + '/fonts';
 config.path.destination.images = config.path.destination.theme + '/images';
 config.path.destination.locales = config.path.destination.theme + '/locales';
 config.path.destination.markup = config.path.destination.theme;
-config.path.destination.scripts = config.path.destination.theme + '/js';
+config.path.destination.scripts = config.path.destination.theme + '/scripts';
 config.path.destination.screenshots = config.path.destination.theme + '/screenshots';
 config.path.destination.sounds = config.path.destination.theme + '/sounds';
 config.path.destination.sass = config.path.destination.theme + '/styles/sass';
 config.path.destination.styleguide = config.path.destination.theme + '/styleguide';
 // config.path.destination.styles = config.path.destination.theme + '/styles';
-config.path.destination.styles = config.path.destination.theme;
+config.path.destination.styles = config.path.destination.theme + '/styles';
 config.path.destination.templates = config.path.destination.theme;
 config.path.destination.tests = config.path.destination.theme + '/test';
 config.path.destination.stylesGenerated = config.path.destination.theme + '/styles/generated';
@@ -131,7 +124,7 @@ config.files.source.all = [
   config.path.source.base + '/**/*'
 ];
 config.files.source.bowerComponents = [
-  config.path.source.bowerComponents + '/**/*'
+  config.path.source.bowerComponents + '/**/*.{css,html,js}'
 ];
 config.files.source.bowerConfiguration = [
   '.bowerrc',
@@ -148,7 +141,7 @@ config.files.source.documentation = [
   config.path.source.base + '/README.md'
 ];
 config.files.source.elements = [
-  config.path.source.elements + '/**/*.html'
+  config.path.source.elements + '/**/*.{css,html,js}'
 ];
 config.files.source.fonts = [
   config.path.source.fonts + '/**/*.{eot,svg,ttf,woff,woff2}'
@@ -170,17 +163,14 @@ config.files.source.maps = [
 ];
 config.files.source.markup = [
   config.path.source.base + '/**/*.html'
-  // !config.path.source.bowerComponents + '/**/*.html',
-  // !config.path.source.nodeModules + '/**/*.html'
 ];
 config.files.source.markupIgnored = [
   config.path.source.bowerComponents + '/**/*.html',
-  config.path.source.nodeModules + '/**/*.html'
-  // config.path.source.elements + '/**/*.html'
+  config.path.source.nodeModules + '/**/*.html',
+  config.path.source.elements + '/**/*.html'
 ];
 config.files.source.miscellaneous = [
   config.path.source.base + '/*.{css,ico,json,txt}'
-  // config.path.source.bowerComponents + '/{platinum-sw,polymer,promise-polyfill,sw-toolbox,webcomponentsjs}/**/*'
 ];
 config.files.source.miscellaneousIgnored = [
   // config.path.source.nodeModules + '/**/*'
@@ -189,7 +179,7 @@ config.files.source.nodeConfiguration = [
   'package.json'
 ];
 config.files.source.nodeModules = [
-  config.path.nodeModules + '/**/*'
+  config.path.nodeModules + '/**/*.{css,html,js}'
 ];
 config.files.source.packages = [
   config.path.nodeModules + 'apache-server-configs/dist/.htaccess'
