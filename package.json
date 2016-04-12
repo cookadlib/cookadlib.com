@@ -102,6 +102,7 @@
     "gulp-modernizr": "^1.0.0-alpha",
     "gulp-notify": "^2.2.0",
     "gulp-plumber": "^1.1.0",
+    "gulp-polylint": "^1.0.0",
     "gulp-postcss": "^6.1.0",
     "gulp-remember": "^0.3.1",
     "gulp-rename": "^1.2.2",
