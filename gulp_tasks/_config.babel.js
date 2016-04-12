@@ -169,6 +169,11 @@ config.files.source.markupIgnored = [
   config.path.source.nodeModules + '/**/*.html',
   config.path.source.elements + '/**/*.html'
 ];
+config.files.source.markupHtmlhintFilter = [
+  config.path.source.styleguide + '/templates/module.html',
+  config.path.source.styles + '/app-theme.html',
+  config.path.source.styles + '/shared-styles.html'
+];
 config.files.source.miscellaneous = [
   config.path.source.base + '/*.{css,ico,json,txt}'
 ];

@@ -2,6 +2,7 @@
 
 import cache from 'gulp-cached';
 import debug from 'gulp-debug';
+import filter from 'gulp-filter';
 import gulp from 'gulp';
 import htmlhint from 'gulp-htmlhint';
 // import htmltidy from 'gulp-htmltidy';
@@ -25,6 +26,15 @@ sourceFiles = sourceFiles.concat(config.files.source.markupIgnored.map(function(
   return '!' + path;
 }));
 
+let markupHtmlhintFilter = sourceFiles.concat(config.files.source.markupHtmlhintFilter.map(function(path) {
+  return '!' + path;
+}));
+
+const htmlhintFilter = filter(markupHtmlhintFilter, {
+  restore: true,
+  passthrough: false
+});
+
 gulp.task('markup', () => {
   return gulp.src(sourceFiles)
     .pipe(plumber({
@@ -34,10 +44,14 @@ gulp.task('markup', () => {
     .pipe(debug({
       title: 'markup:'
     }))
+    .pipe(htmlhintFilter)
     .pipe(htmlhint('.htmlhintrc'))
+    .pipe(htmlhint.reporter('htmlhint-stylish'))
+    .pipe(htmlhint.failReporter())
+    .pipe(htmlhintFilter.restore)
     // .pipe(htmltidy())
     // .pipe(minifyHTML())
-    .pipe(gulp.dest(config.path.destination.base))
+    .pipe(gulp.dest(config.path.destination.markup))
     .pipe(remember('markup')) // add back all files to the stream
     .pipe(size({title: 'markup'}))
     .pipe(plumber.stop())
