@@ -201,6 +201,9 @@ config.files.source.scriptsIgnored = [
   config.path.source.scripts + '/navigation.js',
   config.path.source.scripts + '/skip-link-focus-fix.js'
 ];
+config.files.source.serviceWorker = [
+  config.path.source.base + '/sw-import.js'
+];
 config.files.source.sounds = [
   config.path.source.sounds + '/**/*.{ogg,pcm,mp3,wav}'
 ];
@@ -243,7 +246,8 @@ config.filename = {
   index: 'index.html',
   indexBuild: 'index.build.html',
   spritesheet: '_sprites.scss',
-  spritesheetTemporary: '_sprites-tmp.scss'
+  spritesheetTemporary: '_sprites-tmp.scss',
+  webcomponentsjs: 'webcomponentsjs/webcomponents-lite.min.js'
 };
 
 config.file = {
@@ -255,6 +259,7 @@ config.file.source.index = config.path.source.base + '/' + config.filename.index
 config.file.source.indexBuild = config.path.source.base + '/' + config.filename.indexBuild;
 config.file.source.spritesheetTemporary = config.path.source.stylesGenerated + '/' + config.filename.spritesheetTemporary;
 config.file.source.spritesheet = config.path.source.stylesGenerated + '/' + config.filename.spritesheet;
+config.file.source.webcomponentsjs = config.path.source.bowerComponents + '/' + config.filename.webcomponentsjs;
 
 config.file.destination.index = config.path.destination.base + '/' + config.filename.index;
 config.file.destination.indexBuild = config.path.destination.base + '/' + config.filename.indexBuild;
