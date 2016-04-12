@@ -205,6 +205,21 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         <paper-toolbar id="mainToolbar" class="tall">
           <paper-icon-button id="paperToggle" icon="menu" paper-drawer-toggle></paper-icon-button>
 
+          <template is="dom-bind">
+            <firebase-collection
+              order-by-child="height"
+              location="https://dinosaur-facts.firebaseio.com/dinosaurs"
+              data="{{dinosaurs}}"></firebase-collection>
+            <paper-menu-button vertical-align="bottom">
+              <paper-icon-button class="dropdown-trigger" src="images/branding/logos/logo.png" alt="polymer"></paper-icon-button>
+              <paper-menu class="dropdown-content">
+                <template is="dom-repeat" items="[[dinosaurs]]" as="dinosaur">
+                  <paper-item>[[dinosaur.__firebaseKey__]]</paper-item>
+                </template>
+              </paper-menu>
+            </paper-menu-button>
+          </template>
+
           <span class="space"></span>
 
           <!-- Toolbar icons -->
@@ -229,17 +244,17 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           carbon-route elements to consume. Since this demo needs to run without
           server cooperation (e.g. with polyserve, in the elements catalog, etc) we'll
           use the hash portion of the URL for our route paths. -->
-          <carbon-location route="{{route}}" id="carbonLocationMain"></carbon-location>
+          <carbon-location route="{{routeLevel1}}" id="carbonLocationMain"></carbon-location>
 
           <!-- carbon-routes parse route paths based on the their `pattern`.
           Parameters are extracted into the `data` object. The rest of the path that
           comes after the `pattern` is put into the `tail` object, which can be
           passed to the `route` property of downstream carbon-routes. -->
-          <carbon-route route="{{route}}" pattern="/" data="{{routeData}}" tail="{{subroute}}"></carbon-route>
-          <carbon-route route="{{route}}" pattern="/:page" data="{{routeData}}" tail="{{subroute}}"></carbon-route>
-          <carbon-route route="{{subroute}}" pattern="/:tab" data="{{subrouteData}}"></carbon-route>
+          <carbon-route route="{{routeLevel1}}" pattern="/" data="{{routeLevel1Data}}" tail="{{routeLevel2}}"></carbon-route>
+          <carbon-route route="{{routeLevel1}}" pattern="/:page" data="{{routeLevel1Data}}" tail="{{routeLevel2}}"></carbon-route>
+          <carbon-route route="{{routeLevel2}}" pattern="/:tab" data="{{routeLevel2Data}}"></carbon-route>
 
-          <iron-pages attr-for-selected="data-route" selected="{{routeData.page}}">
+          <iron-pages attr-for-selected="data-route" selected="{{routeLevel1Data.page}}">
             <section data-route="">
               <paper-material elevation="1">
                 <x-login></x-login>
@@ -281,7 +296,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                       <firebase-document
                         location="https://dinosaur-facts.firebaseio.com/scores"
                         data="{{dinosaurs}}"></firebase-document>
-                      <x-pretty-json object=[[dinosaurs]]></x-pretty-json>
+                      <x-pretty-json object="[[dinosaurs]]"></x-pretty-json>
                     </template>
                   </div>
                 </div>
@@ -291,13 +306,13 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             <section data-route="nutrition">
               <paper-material elevation="1">
                 <h1 class="page-title">Nutrition</h1>
-                <paper-tabs selected="{{subrouteData.tab}}" attr-for-selected="key" id="paperTabsFooBarBaz">
+                <paper-tabs selected="{{routeLevel2Data.tab}}" attr-for-selected="key" id="paperTabsFooBarBaz">
                   <paper-tab key="foo">Foo</paper-tab>
                   <paper-tab key="bar">Bar</paper-tab>
                   <paper-tab key="baz">Baz!</paper-tab>
                 </paper-tabs>
               </paper-material>
-              <neon-animated-pages selected="{{subrouteData.tab}}" attr-for-selected="key" entry-animation="slide-from-left-animation" exit-animation="slide-right-animation">
+              <neon-animated-pages selected="{{routeLevel2Data.tab}}" attr-for-selected="key" entry-animation="slide-from-left-animation" exit-animation="slide-right-animation">
                 <neon-animatable key="/foo">Foo Page Here</neon-animatable>
                 <neon-animatable key="/bar">Bar Page Goes Here</neon-animatable>
                 <neon-animatable key="/baz">Baz Page, the Best One of the Three</neon-animatable>
@@ -308,9 +323,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
               <paper-material elevation="1">
                 <h1 class="page-title">Notes</h1>
                 <p>This is the users section</p>
-                <a href$="{{baseUrl}}users/Addy">Addy</a><br>
-                <a href$="{{baseUrl}}users/Rob">Rob</a><br>
-                <a href$="{{baseUrl}}users/Chuck">Chuck</a><br>
+                <a href$="{{baseUrl}}users/Addy">Addy</a>
+                <a href$="{{baseUrl}}users/Rob">Rob</a>
+                <a href$="{{baseUrl}}users/Chuck">Chuck</a>
                 <a href$="{{baseUrl}}users/Sam">Sam</a>
               </paper-material>
             </section>
@@ -319,9 +334,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
               <paper-material elevation="1">
                 <h1 class="page-title focus-target" tabindex="-1">Users</h1>
                 <p>This is the users section</p>
-                <a href$="{{baseUrl}}users/Addy">Addy</a><br>
-                <a href$="{{baseUrl}}users/Rob">Rob</a><br>
-                <a href$="{{baseUrl}}users/Chuck">Chuck</a><br>
+                <a href$="{{baseUrl}}users/Addy">Addy</a>
+                <a href$="{{baseUrl}}users/Rob">Rob</a>
+                <a href$="{{baseUrl}}users/Chuck">Chuck</a>
                 <a href$="{{baseUrl}}users/Sam">Sam</a>
               </paper-material>
             </section>
@@ -367,7 +382,16 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                          cache-config-file="cache-config.json">
       </platinum-sw-cache>
     </platinum-sw-register>
-    -->
+ -->
+    <platinum-https-redirect></platinum-https-redirect>
+
+    <platinum-push-messaging
+      id="messageWelcome"
+      title="Welcome to CookAdLib"
+      message="The application was updated in the background"
+      icon-url="images/branding/logos/logo.png"
+      click-url="welcome">
+    </platinum-push-messaging>
 
   </template>
 

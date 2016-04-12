@@ -34,7 +34,10 @@
     "moment": "~2.12.0",
     "moment-recur": "~1.0.5",
     "firebase-element": "GoogleWebComponents/firebase-element#^1.0.12",
-    "carbon-route": "PolymerElements/carbon-route#^0.8.4"
+    "carbon-route": "PolymerElements/carbon-route#^0.8.4",
+    "platinum-https-redirect": "PolymerElements/platinum-https-redirect#^1.0.2",
+    "platinum-push-messaging": "PolymerElements/platinum-push-messaging#^1.0.5",
+    "iron-selector": "PolymerElements/iron-selector#^1.4.0"
   },
   "devDependencies": {
     "web-component-tester": "^4.2.2"
