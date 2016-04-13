@@ -42,3 +42,6 @@ This repository contains the source code for [The Cook AdLib Website](http://www
 
 ### Web Application Manifest
 * [ManifoldJS](http://www.manifoldjs.com/)
+
+## Notes
+`"allow_root": true` in .bowerrc is due to [this issue with moment-recur](https://github.com/c-trimm/moment-recur/issues/47)
