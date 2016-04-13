@@ -24,6 +24,7 @@ gulp.task('icons', () => {
     .pipe(plumber({
       errorHandler: reportError
     }))
+    .pipe(cache('icons')) // only pass through changed files
     .pipe(debug({
       title: 'icons:'
     }))
@@ -71,7 +72,9 @@ gulp.task('icons', () => {
     .on('error', reportError))
     .pipe(plumber.stop())
     .pipe(gulp.dest(config.path.root))
+    .pipe(remember('icons')) // add back all files to the stream
     .pipe(size({title: 'icons'}))
+    .pipe(plumber.stop())
     .on('error', reportError);
 });
 
