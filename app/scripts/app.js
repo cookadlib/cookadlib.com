@@ -66,6 +66,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     //   console.info(app.$.paperTabsFooBarBaz.selected);
     //   console.info(app.$.carbonLocationMain.route);
     // });
+
+    // console.log(app.$.messageWelcome);
+    // app.$.messageWelcome.testPush('It works!');
   });
 
   // Main area's paper-scroll-header-panel custom condensing transformation of
