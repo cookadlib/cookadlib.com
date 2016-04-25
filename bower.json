@@ -21,7 +21,6 @@
   "bugs": {
     "url": "https://github.com/cookadlib/www.cookadlib.com/issues"
   },
-  "license": "",
   "private": true,
   "dependencies": {
     "app-layout": "PolymerLabs/app-layout#^0.0.15",
