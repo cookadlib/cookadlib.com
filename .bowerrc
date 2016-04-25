@@ -2,8 +2,8 @@
   "allow_root": true,
   "directory": "app/bower_components",
   "scripts": {
-    "preinstall": "./scripts/bower/pre-install.sh",
-    "postinstall": "./scripts/bower/post-install.sh",
-    "preuninstall": "./scripts/bower/pre-uninstall.sh"
+    "preinstall": "./shell_scripts/bower/pre-install.sh",
+    "postinstall": "./shell_scripts/bower/post-install.sh",
+    "preuninstall": "./shell_scripts/bower/pre-uninstall.sh"
   }
 }
