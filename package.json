@@ -40,7 +40,6 @@
   "bugs": {
     "url": "https://github.com/cookadlib/www.cookadlib.com/issues"
   },
-  "license": "Apache Version 2.0",
   "dependencies": {
     "appengine": "git://github.com/GoogleCloudPlatform/appengine-nodejs.git",
     "bower": "^1.7.7",
