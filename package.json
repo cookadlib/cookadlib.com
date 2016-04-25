@@ -146,7 +146,7 @@
     "vorlon": "./node_modules/.bin/vorlon"
   },
   "engines": {
-    "node": ">=4.1"
+    "node": ">=5.0"
   },
   "main": "www/superstatic.js",
   "config": {
