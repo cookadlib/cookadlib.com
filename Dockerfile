@@ -2,25 +2,28 @@ FROM node:latest
 
 MAINTAINER Karl Podger <karl@cookadlib.com>
 
-RUN mkdir -p /src
+RUN npm install --global --loglevel=warn bower gulp-cli
 
-WORKDIR /src
+ADD package.json /tmp/package.json
+ADD shell_scripts/npm /tmp/shell_scripts/npm
+RUN chmod -R +x /tmp/shell_scripts/npm
+RUN cd /tmp && npm install --loglevel=warn
+RUN mkdir -p /opt/deploy && cp -a /tmp/node_modules /opt/www/
 
-COPY package.json package.json
+ADD bower.json /tmp/bower.json
+ADD .bowerrc /tmp/.bowerrc
+ADD shell_scripts/bower /tmp/shell_scripts/bower
+RUN chmod -R +x /tmp/shell_scripts/bower
+RUN cd /tmp && bower install
+RUN mkdir -p /opt/www && cp -a /tmp/app/bower_components /opt/www/
 
-COPY scripts/npm/pre-install.sh scripts/npm/pre-install.sh
+ADD . /tmp/
+RUN ls -lai /tmp
 
-COPY scripts/npm/post-install.sh scripts/npm/post-install.sh
+RUN cd /tmp && gulp all
+RUN mkdir -p /opt/www && cp -a /tmp/www /opt/
 
-RUN chmod -R +x scripts/npm
-
-RUN npm install pm2 -g
-
-RUN npm install --production --loglevel=warn
-
-COPY . ./
-
-RUN chmod -R +x scripts
+WORKDIR /opt/www
 
 EXPOSE 8080
 
