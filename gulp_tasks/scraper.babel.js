@@ -1,32 +1,32 @@
 'use strict';
 
-import cache from 'gulp-cached';
 import debug from 'gulp-debug';
 import gulp from 'gulp';
-import Pageres from 'pageres';
 // import {path as phantomjsPath} from 'phantomjs-prebuilt';
 import plumber from 'gulp-plumber';
-import remember from 'gulp-remember';
-import size from 'gulp-size';
 // import webshot from 'gulp-webshot';
+import xray from 'x-ray';
 
-import {config, browserSync} from './_config.babel.js';
+import config from './_config.babel.js';
 import reportError from './_report-error.babel.js';
+
+const x = xray();
 
 let sourceFiles = config.files.source.markup;
 
 gulp.task('scraper', ['browser-sync'], () => {
-  // `http://localhost:${config.instance.browsersync.port}`
+  x(`http://localhost:${config.instance.browsersync.port}`, 'title')
+  .stream()
+  .pipe(plumber({
+    errorHandler: reportError
+  }))
+  .pipe(debug({
+    title: 'scraper:'
+  }))
+  .pipe(plumber.stop())
+  .on('error', reportError);
 });
 
 gulp.task('scraper:watch', () => {
-  let watcher = gulp.watch(sourceFiles, ['scraper']);
-  watcher.on('change', (event) => {
-    browserSync.reload();
-
-    if (event.type === 'deleted') { // if a file is deleted, forget about it
-      delete cache.caches.scraper[event.path];
-      remember.forget('scraper', event.path);
-    }
-  });
+  gulp.watch(sourceFiles, ['scraper']);
 });
