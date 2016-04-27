@@ -5,7 +5,6 @@ import gulp from 'gulp';
 import {output as pagespeed} from 'psi';
 
 import config from './_config.babel.js';
-import reportError from './_report-error.babel.js';
 
 gulp.task('pagespeed', cb => {
   pagespeed(config.domain, {
@@ -14,5 +13,8 @@ gulp.task('pagespeed', cb => {
     // Use a Google Developer API key if you have one: http://goo.gl/RkN0vE
     key: config.instance.pagespeed.key
   }, cb)
-  .on('error', reportError);
+  .then(data => {
+    console.log('Speed score: ' + data.ruleGroups.SPEED.score);
+    console.log('Usability score: ' + data.ruleGroups.USABILITY.score);
+  });
 });

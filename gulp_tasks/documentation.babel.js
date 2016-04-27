@@ -10,14 +10,15 @@ import shell from 'gulp-shell';
 
 import config from './_config.babel.js';
 
-let sourceFiles = config.files.source.markup;
-sourceFiles = sourceFiles.concat(config.files.source.scripts);
-sourceFiles = sourceFiles.concat(config.files.source.styles);
-sourceFiles = sourceFiles.concat(config.files.source.templates);
+// let sourceFiles = config.files.source.markup;
+// sourceFiles = sourceFiles.concat(config.files.source.scripts);
+// sourceFiles = sourceFiles.concat(config.files.source.styles);
+// sourceFiles = sourceFiles.concat(config.files.source.templates);
+
+let sourceFiles = config.files.source.scripts;
 
 gulp.task('documentation', shell.task([
-  // '../node_modules/.bin/jsdoc .'
-  '../node_modules/.bin/jsdoc app -r -d docs'
+  './node_modules/.bin/jsdoc app -r -d docs'
 ]));
 
 gulp.task('documentation:watch', () => {
