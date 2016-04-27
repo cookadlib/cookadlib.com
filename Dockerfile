@@ -18,7 +18,8 @@ RUN cd /tmp && bower install
 RUN mkdir -p /opt/www && cp -a /tmp/app/bower_components /opt/www/
 
 ADD . /tmp/
-RUN ls -lai /tmp
+
+ENV NODE_ENV docker
 
 RUN cd /tmp && gulp all
 RUN mkdir -p /opt/www && cp -a /tmp/www /opt/
