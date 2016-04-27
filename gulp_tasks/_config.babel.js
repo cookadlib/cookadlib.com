@@ -266,32 +266,38 @@ config.file.destination.indexBuild = config.path.destination.base + '/' + config
 config.file.destination.spritesheetTemporary = config.path.destination.stylesGenerated + '/' + config.filename.spritesheetTemporary;
 config.file.destination.spritesheet = config.path.destination.stylesGenerated + '/' + config.filename.spritesheet;
 
-config.instance.browsersync = {
-  browser: [
-    'google chrome'
-  ],
-  debugInfo: true,
-  // files: [
-  //   config.path.destination.base + '/**',
-  //   '!' + config.path.destination.base + '/**/*.{map,scss}'
-  // ],  //site-wide reload
-  ghostMode: {
+config.instance.browsersync = {};
+
+config.instance.browsersync.browser = [
+  'google chrome'
+];
+// config.instance.browsersync.files = [
+//   config.path.destination.base + '/**',
+//   '!' + config.path.destination.base + '/**/*.{map,scss}'
+// ],  //site-wide reload
+// Run as an https by uncommenting 'https: true'
+// Note: this uses an unsigned certificate which on first access will present a certificate warning in the browser.
+// config.instance.browsersync.https = true;
+config.instance.browsersync.logPrefix = 'Browsersync';
+config.instance.browsersync.port = packageJson.config.browsersync.socket.port;
+config.instance.browsersync.ui = {
+    port: packageJson.config.browsersync.ui.port
+};
+
+if (process.env.ENV === 'development') {
+  config.instance.browsersync.debugInfo = true;
+  config.instance.browsersync.ghostMode = {
     clicks: true,
     forms: true,
     scroll: true
-  },
-  // Run as an https by uncommenting 'https: true'
-  // Note: this uses an unsigned certificate which on first access will present a certificate warning in the browser.
-  // https: true,
-  logConnections: true,
-  logFileChanges: true,
-  logPrefix: 'Browsersync',
-  logSnippet: true,
-  notify: true,
-  open: true,
-  port: packageJson.config.browsersync.socket.port,
-  reloadOnRestart: false,
-  snippetOptions: {
+  };
+  config.instance.browsersync.logConnections = true;
+  config.instance.browsersync.logFileChanges = true;
+  config.instance.browsersync.logSnippet = true;
+  config.instance.browsersync.notify = true;
+  config.instance.browsersync.open = true;
+  config.instance.browsersync.reloadOnRestart = false;
+  config.instance.browsersync.snippetOptions = {
     rule: {
       match: '<span id="browser-sync-binding"></span>',
       fn: function (snippet) {
@@ -303,11 +309,8 @@ config.instance.browsersync = {
         return snippet;
       }
     }
-  },
-  ui: {
-    port: packageJson.config.browsersync.ui.port
-  }
-};
+  };
+}
 
 if(packageJson.config.browsersync.proxy) {
   config.instance.browsersync.proxy = {
