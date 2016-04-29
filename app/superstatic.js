@@ -1,25 +1,26 @@
 import connect from 'connect';
+import ip from 'ip';
 import superstatic from 'superstatic';
 
 import packageJson from '../package.json';
 
-const app = connect();
-
 let config = {
-  config: 'superstatic.json',
+  config: '../superstatic.json',
   cwd: process.cwd(),
   debug: true,
   fallthrough: false,
   gzip: true
 };
 
+const app = connect();
+
 app.use(superstatic(config));
 
-app.listen(packageJson.config.http.port, function() {
+const server = app.listen(packageJson.config.http.port, () => {
   'use strict';
 
-  const host = this.address().address;
-  const port = this.address().port;
+  const host = server.address().address === '::' ? ip.address() : server.address().address;
+  const port = server.address().port;
 
-  console.log('Superstatic app listening at http://%s:%s', host, port);
+  console.log(`Superstatic app listening at http://${host}:${port}`);
 });

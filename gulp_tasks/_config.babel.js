@@ -4,6 +4,8 @@ import {
 
 // import fs from 'fs';
 
+import superstatic from 'superstatic';
+
 import * as htmlInjectorInstance from 'bs-html-injector';
 
 import packageJson from '../package.json';
@@ -15,6 +17,9 @@ export const browserSync = browserSyncInstance();
 export const htmlInjector = htmlInjectorInstance;
 
 export let config = packageJson.config;
+
+console.info('ENV', process.env.ENV);
+
 config.domain = packageJson.domain;
 config.name = packageJson.name;
 config.version = packageJson.version;
@@ -82,6 +87,7 @@ config.path.source.locales = config.path.source.theme + '/locales';
 config.path.source.markup = config.path.source.theme;
 config.path.source.scripts = config.path.source.theme + '/scripts';
 config.path.source.screenshots = config.path.source.theme + '/screenshots';
+config.path.source.server = config.path.source.base;
 config.path.source.sounds = config.path.source.theme + '/sounds';
 config.path.source.styleguide = config.path.source.theme + '/styleguide';
 config.path.source.styles = config.path.source.theme + '/styles';
@@ -104,6 +110,7 @@ config.path.destination.locales = config.path.destination.theme + '/locales';
 config.path.destination.markup = config.path.destination.theme;
 config.path.destination.scripts = config.path.destination.theme + '/scripts';
 config.path.destination.screenshots = config.path.destination.theme + '/screenshots';
+config.path.destination.server = config.path.destination.base;
 config.path.destination.sounds = config.path.destination.theme + '/sounds';
 config.path.destination.sass = config.path.destination.theme + '/styles/sass';
 config.path.destination.styleguide = config.path.destination.theme + '/styleguide';
@@ -194,12 +201,15 @@ config.files.source.scripts = [
   config.path.source.scripts + '/**/*.js'
 ];
 config.files.source.scriptsIgnored = [
-  // config.path.source.bowerComponents + '/**/*.js',
+  config.path.source.bowerComponents,
   // config.path.source.nodeModules + '/**/*.js',
   config.path.source.scripts + '/color-scheme-control.js',
   config.path.source.scripts + '/customizer.js',
   config.path.source.scripts + '/navigation.js',
   config.path.source.scripts + '/skip-link-focus-fix.js'
+];
+config.files.source.server = [
+  config.path.source.base + '/*.js'
 ];
 config.files.source.serviceWorker = [
   config.path.source.base + '/sw-import.js'
@@ -268,9 +278,6 @@ config.file.destination.spritesheet = config.path.destination.stylesGenerated + 
 
 config.instance.browsersync = {};
 
-config.instance.browsersync.browser = [
-  'google chrome'
-];
 // config.instance.browsersync.files = [
 //   config.path.destination.base + '/**',
 //   '!' + config.path.destination.base + '/**/*.{map,scss}'
@@ -285,6 +292,9 @@ config.instance.browsersync.ui = {
 };
 
 if (process.env.ENV === 'development') {
+  config.instance.browsersync.browser = [
+    'google chrome'
+  ];
   config.instance.browsersync.debugInfo = true;
   config.instance.browsersync.ghostMode = {
     clicks: true,
@@ -329,6 +339,17 @@ if(packageJson.config.browsersync.proxy) {
     baseDir: [
       config.path.temporary,
       config.path.destination.base
+    ],
+    middleware: [
+      superstatic({
+        config: './superstatic.json',
+        debug: true,
+        // errorPage: 'error.html',
+        gzip: true,
+        // host: packageJson.name,
+        // port: packageJson.config.http.port,
+        stack: 'strict'
+      })
     ]
     // ,
     // routes: {

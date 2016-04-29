@@ -1,18 +1,18 @@
 {
-  "clean_urls": [
+  "cleanUrls": [
     "/**",
-    "/!bower_components/**",
-    "/!documentation/**",
-    "/!elements/**",
-    "/!images/**",
-    "/!locales/**",
-    "/!node_modules/**",
-    "/!scripts/**",
-    "/!sounds/**",
-    "/!styles/**",
-    "/!test/**",
-    "/!translations/**",
-    "/!videos/**"
+    "!/bower_components/**",
+    "!/documentation/**",
+    "!/elements/**",
+    "!/images/**",
+    "!/locales/**",
+    "!/node_modules/**",
+    "!/scripts/**",
+    "!/sounds/**",
+    "!/styles/**",
+    "!/test/**",
+    "!/translations/**",
+    "!/videos/**"
   ],
   "headers": [
     {
@@ -41,24 +41,9 @@
       ]
     }
   ],
-  "ignore": [
-    "**/bower_components/**",
-    "**/documentation/**",
-    "**/elements/**",
-    "**/images/**",
-    "**/locales/**",
-    "**/node_modules/**",
-    "**/scripts/**",
-    "**/sounds/**",
-    "**/styles/**",
-    "**/test/**",
-    "**/translations/**",
-    "**/videos/**"
-  ],
-  "public": "./www",
   "rewrites": [
     {
-      "source": "!(bower_components,documentation,elements,images,locales,node_modules,scripts,sounds,styles,test,translations,videos){,/**}",
+      "source": "!{/bower_components,/documentation,/elements,/images,/locales,/node_modules,/scripts,/sounds,/styles,/test,/translations,/videos}/**",
       "destination": "/index.html"
     }
   ]

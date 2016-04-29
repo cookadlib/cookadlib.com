@@ -18,7 +18,7 @@ import config from './_config.babel.js';
 let sourceFiles = config.files.source.scripts;
 
 gulp.task('documentation', shell.task([
-  './node_modules/.bin/jsdoc app -r -d docs'
+  './node_modules/.bin/jsdoc -c ./jsdoc.json'
 ]));
 
 gulp.task('documentation:watch', () => {

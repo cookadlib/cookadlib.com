@@ -13,33 +13,37 @@ import reportError from './_report-error.babel.js';
 let sourceFiles = config.files.source.bowerConfiguration;
 
 gulp.task('bower', () => {
-  bower({
-    cmd: 'install'
-  })
-  .pipe(debug({
-    title: 'bower install:'
-  }))
-  // .pipe(rsync({
-  //   root: config.path.root,
-  //   destination: config.path.destination.bowerComponents
-  // }))
-  .pipe(gulp.dest(config.path.destination.bowerComponents))
-  .on('end', browserSync.reload)
-  .on('error', reportError);
 
-  bower({
-    cmd: 'update'
-  })
-  .pipe(debug({
-    title: 'bower update:'
-  }))
-  // .pipe(rsync({
-  //   root: config.path.root,
-  //   destination: config.path.destination.bowerComponents
-  // }))
-  .pipe(gulp.dest(config.path.destination.bowerComponents))
-  .on('end', browserSync.reload)
-  .on('error', reportError);
+  if (process.env.ENV === 'development') {
+    bower({
+      cmd: 'install'
+    })
+    .pipe(debug({
+      title: 'bower install:'
+    }))
+    // .pipe(rsync({
+    //   root: config.path.root,
+    //   destination: config.path.destination.bowerComponents
+    // }))
+    .pipe(gulp.dest(config.path.destination.bowerComponents))
+    .on('end', browserSync.reload)
+    .on('error', reportError);]
+
+    bower({
+      cmd: 'update'
+    })
+    .pipe(debug({
+      title: 'bower update:'
+    }))
+    // .pipe(rsync({
+    //   root: config.path.root,
+    //   destination: config.path.destination.bowerComponents
+    // }))
+    .pipe(gulp.dest(config.path.destination.bowerComponents))
+    .on('end', browserSync.reload)
+    .on('error', reportError);
+  }
+
 });
 
 gulp.task('bower:watch', ['browser-sync'], () => {

@@ -13,7 +13,8 @@ services:
     labels:
       com.cookadlib.description: "Website"
       com.cookadlib.department: "Marketing"
-    # volumes:
+    volumes:
+      - /:/tmp
     #  - app:/tmp/app
     #  - gulp_tasks:/tmp/gulp_tasks
     #  - www:/opt/www
