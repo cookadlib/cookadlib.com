@@ -27,7 +27,7 @@ gulp.task('bower', () => {
     // }))
     .pipe(gulp.dest(config.path.destination.bowerComponents))
     .on('end', browserSync.reload)
-    .on('error', reportError);]
+    .on('error', reportError);
 
     bower({
       cmd: 'update'
