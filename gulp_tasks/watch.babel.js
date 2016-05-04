@@ -4,6 +4,7 @@ import gulp from 'gulp';
 
 gulp.task('watch', [
   'framework:watch',
+  'server:watch',
   'bower:watch',
   'assets:watch',
   'copy:watch',
