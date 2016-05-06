@@ -43,7 +43,7 @@
   ],
   "rewrites": [
     {
-      "source": "!{/bower_components,/documentation,/elements,/images,/locales,/node_modules,/scripts,/sounds,/styles,/test,/translations,/videos}/**",
+      "source": "/**",
       "destination": "/index.html"
     }
   ]

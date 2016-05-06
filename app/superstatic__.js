@@ -1,20 +1,20 @@
-import connect from 'connect';
 import ip from 'ip';
-import superstatic from 'superstatic';
+import {server as superstatic} from 'superstatic';
 
 import packageJson from '../package.json';
 
 let config = {
+  config: '../superstatic.json',
   debug: true,
-  fallthrough: true,
-  gzip: false
+  // errorPage: 'error.html',
+  gzip: true,
+  // host: packageJson.name,
+  port: packageJson.config.http.port
 };
 
-const app = connect();
+const app = superstatic(config);
 
-app.use(superstatic(config));
-
-const server = app.listen(packageJson.config.http.port, () => {
+const server = app.listen(() => {
   'use strict';
 
   const host = server.address().address === '::' ? ip.address() : server.address().address;
