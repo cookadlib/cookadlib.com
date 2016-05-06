@@ -2,13 +2,10 @@
 
 import gulp from 'gulp';
 import historyApiFallback from 'connect-history-api-fallback';
+import htmlInjector from 'bs-html-injector';
 
-import {
-  config,
-  browserSync
-  // ,
-  // htmlInjector
-} from '../config.js';
+import * as config from '../config';
+import {browserSync} from '../instances';
 
 let sourceFiles = config.files.source.markup;
 
@@ -18,13 +15,13 @@ sourceFiles = sourceFiles.concat(config.files.source.markupIgnored.map(function(
 
 function onBrowsersyncInit() {
 
-  if(config.instance.browsersync.server) {
-    config.instance.browsersync.server.middleware = [
+  if(config.browsersync.server) {
+    config.browsersync.server.middleware = [
       historyApiFallback()
     ];
-    console.info('Browsersync server set via config.instance.browsersync.server, not using config.instance.browsersync.proxy');
-  } else if(config.instance.browsersync.proxy) {
-    console.info('Browsersync server set via config.instance.browsersync.proxy, not using config.instance.browsersync.server');
+    console.info('Browsersync server set via config.browsersync.server, not using config.browsersync.proxy');
+  } else if(config.browsersync.proxy) {
+    console.info('Browsersync server set via config.browsersync.proxy, not using config.browsersync.server');
   }
 
   // console.info(
@@ -44,9 +41,9 @@ export default function task() {
   //   files: sourceFiles
   // });
 
-  browserSync.init(config.instance.browsersync, onBrowsersyncInit);
+  browserSync.init(config.browsersync, onBrowsersyncInit);
 }
 
-gulp.task('browser-sync', [
-    // 'build' //no need to build every time that gulp is run; if you want to build then just type "gulp build" manually
-], task);
+// gulp.task('browser-sync', [
+//
+// ], task);

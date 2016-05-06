@@ -3,7 +3,7 @@
 import gulp from 'gulp';
 import wct from 'web-component-tester';
 
-// import config from '../config.js';
+// import * as config from '../config';
 
 // Load tasks for web-component-tester
 // Adds tasks for `gulp test:local` and `gulp test:remote`
@@ -11,10 +11,6 @@ import wct from 'web-component-tester';
 export default function task() {
   wct.gulp.init(gulp);
 }
-
-gulp.task('test', [
-
-], task);
 
 export function watch() {
   let watcher = gulp.watch(sourceFiles, ['task']);
@@ -27,6 +23,10 @@ export function watch() {
   });
 }
 
-gulp.task('test:watch', [
-  'browser-sync'
-], watch);
+// gulp.task('test', [
+//
+// ], task);
+//
+// gulp.task('test:watch', [
+//   'browser-sync'
+// ], watch);

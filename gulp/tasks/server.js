@@ -16,8 +16,9 @@ import sourcemaps from 'gulp-sourcemaps';
 // import typescript from 'gulp-tsc';
 // import uglify from 'gulp-uglify';
 
-import {config, browserSync} from '../config.js';
-import helper from '../helper';
+import * as config from '../config';
+import {browserSync} from '../instances';
+import * as helper from '../helper';
 
 let sourceFiles = config.files.source.server;
 
@@ -73,10 +74,10 @@ export function watch() {
   });
 }
 
-gulp.task('server', [
-  
-], task);
-
-gulp.task('server:watch', [
-  'browser-sync'
-], watch);
+// gulp.task('server', [
+//
+// ], task);
+//
+// gulp.task('server:watch', [
+//   'browser-sync'
+// ], watch);

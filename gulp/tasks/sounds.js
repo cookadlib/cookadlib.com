@@ -8,8 +8,9 @@ import plumber from 'gulp-plumber';
 import remember from 'gulp-remember';
 import size from 'gulp-size';
 
-import {config, browserSync} from '../config.js';
-import helper from '../helper';
+import * as config from '../config';
+import {browserSync} from '../instances';
+import * as helper from '../helper';
 
 let sourceFiles = config.files.source.sounds;
 
@@ -64,10 +65,10 @@ export function watch() {
   });
 }
 
-gulp.task('sounds', [
-
-], task);
-
-gulp.task('sounds:watch', [
-  'browser-sync'
-], watch);
+// gulp.task('sounds', [
+//
+// ], task);
+//
+// gulp.task('sounds:watch', [
+//   'browser-sync'
+// ], watch);

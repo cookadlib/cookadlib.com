@@ -7,6 +7,6 @@ export default function task() {
   cache.caches = {};
 }
 
-gulp.task('cache-clear', [
-  
-], task);
+// gulp.task('cache-clear', [
+//
+// ], task);

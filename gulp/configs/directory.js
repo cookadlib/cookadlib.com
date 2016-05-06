@@ -2,7 +2,9 @@
 
 import packageJson from '../../package.json';
 
-let directory = {};
+export let directory = {};
+
+export default directory;
 
 directory.destination = {};
 
@@ -62,5 +64,3 @@ directory.destination.tests = directory.destination.theme + '/test';
 directory.destination.stylesGenerated = directory.destination.theme + '/styles/generated';
 directory.destination.translations = directory.destination.theme + '/translations';
 directory.destination.videos = directory.destination.theme + '/videos';
-
-export default directory;

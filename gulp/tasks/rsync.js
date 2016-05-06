@@ -5,8 +5,8 @@ import gulp from 'gulp';
 import plumber from 'gulp-plumber';
 import rsync from 'gulp-rsync';
 
-import config from '../config.js';
-import helper from '../helper';
+import * as config from '../config';
+import * as helper from '../helper';
 
 let sourceFiles = config.files.destination.all;
 
@@ -32,4 +32,6 @@ export default function task() {
   .on('error', helper.reportError);
 }
 
-gulp.task('rsync', task);
+// gulp.task('rsync', [
+//
+// ], task);

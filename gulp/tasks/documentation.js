@@ -3,7 +3,7 @@
 import gulp from 'gulp';
 import shell from 'gulp-shell';
 
-import config from '../config.js';
+import * as config from '../config';
 
 let sourceFiles = config.files.source.scripts;
 
@@ -17,10 +17,10 @@ export function watch() {
   gulp.watch(sourceFiles, ['task']);
 }
 
-gulp.task('documentation', [
-
-], task);
-
-gulp.task('documentation:watch', [
-  'browser-sync'
-], watch);
+// gulp.task('documentation', [
+//
+// ], task);
+//
+// gulp.task('documentation:watch', [
+//   'browser-sync'
+// ], watch);

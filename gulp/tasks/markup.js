@@ -5,6 +5,7 @@ import debug from 'gulp-debug';
 // import filter from 'gulp-filter';
 import gulp from 'gulp';
 // import htmlhint from 'gulp-htmlhint';
+import htmlInjector from 'bs-html-injector';
 // import htmltidy from 'gulp-htmltidy';
 // import minifyHTML from 'gulp-minify-html';
 import plumber from 'gulp-plumber';
@@ -12,14 +13,9 @@ import polylint from 'gulp-polylint';
 import remember from 'gulp-remember';
 import size from 'gulp-size';
 
-import {
-  config,
-  browserSync
-  // ,
-  // htmlInjector
-} from '../config.js';
-
-import helper from '../helper';
+import * as config from '../config';
+import {browserSync} from '../instances';
+import * as helper from '../helper';
 
 let sourceFiles = config.files.source.markup;
 
@@ -77,10 +73,10 @@ export function watch() {
   });
 }
 
-gulp.task('markup', [
-
-], task);
-
-gulp.task('markup:watch', [
-  'browser-sync'
-], watch);
+// gulp.task('markup', [
+//
+// ], task);
+//
+// gulp.task('markup:watch', [
+//   'browser-sync'
+// ], watch);

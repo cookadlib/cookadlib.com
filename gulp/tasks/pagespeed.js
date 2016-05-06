@@ -4,7 +4,7 @@
 import gulp from 'gulp';
 import {output as pagespeed} from 'psi';
 
-import config from '../config.js';
+import * as config from '../config';
 
 export default function task(callback) {
   pagespeed(config.domain, {
@@ -19,6 +19,6 @@ export default function task(callback) {
   });
 }
 
-gulp.task('pagespeed', [
-  
-], task);
+// gulp.task('pagespeed', [
+//
+// ], task);

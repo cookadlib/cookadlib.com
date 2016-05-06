@@ -8,8 +8,9 @@ import remember from 'gulp-remember';
 import size from 'gulp-size';
 import svgSprite from 'gulp-svg-sprite';
 
-import {config, browserSync} from '../config.js';
-import helper from '../helper';
+import * as config from '../config';
+import {browserSync} from '../instances';
+import * as helper from '../helper';
 
 let sourceFiles = config.files.source.icons;
 
@@ -91,10 +92,10 @@ export function watch() {
   });
 }
 
-gulp.task('icons', [
-
-], task);
-
-gulp.task('icons:watch', [
-  'browser-sync'
-], watch);
+// gulp.task('icons', [
+//
+// ], task);
+//
+// gulp.task('icons:watch', [
+//   'browser-sync'
+// ], watch);

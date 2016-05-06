@@ -6,8 +6,9 @@ import debug from 'gulp-debug';
 import gulp from 'gulp';
 import remember from 'gulp-remember';
 
-import {config, browserSync} from '../config.js';
-import helper from '../helper';
+import * as config from '../config';
+import {browserSync} from '../instances';
+import * as helper from '../helper';
 
 let sourceFiles = config.files.source.bowerConfiguration;
 
@@ -50,8 +51,8 @@ export function watch() {
   });
 }
 
-gulp.task('bower', task);
-
-gulp.task('bower:watch', [
-  'browser-sync'
-], watch);
+// gulp.task('bower', task);
+//
+// gulp.task('bower:watch', [
+//   'browser-sync'
+// ], watch);

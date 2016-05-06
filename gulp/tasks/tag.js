@@ -8,11 +8,14 @@ import gulp from 'gulp';
 import tagVersion from 'gulp-tag-version';
 import {argv} from 'yargs';
 
-import helper from '../helper';
+import * as helper from '../helper';
 
 function increment(importance) {
   // get all the files in which to bump version
-  return gulp.src(['./package.json', './bower.json'])
+  return gulp.src([
+      './package.json',
+      './bower.json'
+    ])
     .pipe(debug({
       title: 'tag:'
     }))
@@ -59,6 +62,6 @@ export default function task() {
   });
 }
 
-gulp.task('tag', [
-  
-], task);
+// gulp.task('tag', [
+//
+// ], task);

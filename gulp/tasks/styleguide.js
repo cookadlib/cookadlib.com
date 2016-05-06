@@ -8,8 +8,8 @@ import plumber from 'gulp-plumber';
 import remember from 'gulp-remember';
 import size from 'gulp-size';
 
-import config from '../config.js';
-import helper from '../helper';
+import * as config from '../config';
+import * as helper from '../helper';
 
 let sourceFiles = config.files.source.styles;
 
@@ -44,10 +44,10 @@ export function watch() {
   });
 }
 
-gulp.task('styleguide', [
-
-], task);
-
-gulp.task('styleguide:watch', [
-
-], watch);
+// gulp.task('styleguide', [
+//
+// ], task);
+//
+// gulp.task('styleguide:watch', [
+//
+// ], watch);

@@ -6,8 +6,9 @@ import gulp from 'gulp';
 import plumber from 'gulp-plumber';
 import remember from 'gulp-remember';
 
-import {config, browserSync} from '../config.js';
-import helper from '../helper';
+import * as config from '../config';
+import {browserSync} from '../instances';
+import * as helper from '../helper';
 
 let sourceFiles = config.files.source.miscellaneous;
 // sourceFiles = sourceFiles.concat(config.files.source.bowerComponents);
@@ -52,10 +53,10 @@ export function watch() {
   });
 }
 
-gulp.task('copy', [
-
-], task);
-
-gulp.task('copy:watch', [
-  'browser-sync'
-], watch);
+// gulp.task('copy', [
+//
+// ], task);
+//
+// gulp.task('copy:watch', [
+//   'browser-sync'
+// ], watch);

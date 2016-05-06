@@ -11,8 +11,9 @@ import plumber from 'gulp-plumber';
 import remember from 'gulp-remember';
 import yamlvalidate from 'gulp-yaml-validate';
 
-import {config, browserSync} from '../config.js';
-import helper from '../helper';
+import * as config from '../config';
+import {browserSync} from '../instances';
+import * as helper from '../helper';
 
 let sourceFiles = config.files.source.gulp;
 sourceFiles = sourceFiles.concat(config.files.source.configuration.json);
@@ -78,10 +79,10 @@ export function watch() {
   });
 }
 
-gulp.task('framework', [
-
-], task);
-
-gulp.task('framework:watch', [
-  'browser-sync'
-], watch);
+// gulp.task('framework', [
+//
+// ], task);
+//
+// gulp.task('framework:watch', [
+//   'browser-sync'
+// ], watch);

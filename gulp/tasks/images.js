@@ -12,8 +12,9 @@ import pngquant from 'imagemin-pngquant';
 import remember from 'gulp-remember';
 import size from 'gulp-size';
 
-import {config, browserSync} from '../config.js';
-import helper from '../helper';
+import * as config from '../config';
+import {browserSync} from '../instances';
+import * as helper from '../helper';
 
 let sourceFiles = config.files.source.images;
 
@@ -57,10 +58,10 @@ export function watch() {
   });
 }
 
-gulp.task('images', [
-
-], task);
-
-gulp.task('images:watch', [
-  'browser-sync'
-], watch);
+// gulp.task('images', [
+//
+// ], task);
+//
+// gulp.task('images:watch', [
+//   'browser-sync'
+// ], watch);

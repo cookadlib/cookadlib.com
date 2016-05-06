@@ -5,8 +5,8 @@ import gulp from 'gulp';
 import replace from 'gulp-replace';
 import rename from 'gulp-rename';
 
-import config from '../config.js';
-import helper from '../helper';
+import * as config from '../config';
+import * as helper from '../helper';
 
 // console.log('config.directory.source.stylesGenerated', config.directory.source.stylesGenerated);
 // console.log('config.file.source.spritesheetTemporary', config.file.source.spritesheetTemporary);
@@ -24,6 +24,6 @@ export default function task() {
     .on('error', helper.reportError);
 }
 
-gulp.task('rename-spritesheet', [
-  
-], task);
+// gulp.task('rename-spritesheet', [
+//
+// ], task);

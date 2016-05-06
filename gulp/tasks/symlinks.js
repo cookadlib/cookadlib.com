@@ -3,9 +3,9 @@
 import debug from 'gulp-debug';
 import gulp from 'gulp';
 import symlink from 'gulp-sym';
-import helper from '../helper';
+import * as helper from '../helper';
 
-import config from '../config.js';
+import * as config from '../config';
 
 export default function task() {
   // gulp.src(config.directory.source.bowerComponents)
@@ -23,6 +23,6 @@ export default function task() {
     .on('error', helper.reportError);
 }
 
-gulp.task('symlinks', [
-
-], task);
+// gulp.task('symlinks', [
+//
+// ], task);

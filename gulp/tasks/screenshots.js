@@ -10,8 +10,8 @@ import remember from 'gulp-remember';
 // import size from 'gulp-size';
 // import webshot from 'gulp-webshot';
 
-import {config, browserSync} from '../config.js';
-// import helper from '../helper';
+import * as config from '../config';
+import {browserSync} from '../instances';
 
 let sourceFiles = config.files.source.markup;
 
@@ -39,8 +39,10 @@ export function watch() {
   });
 }
 
-gulp.task('screenshots', ['browser-sync'], task);
-
-gulp.task('screenshots:watch', [
-
-], watch);
+// gulp.task('screenshots', [
+//   'browser-sync'
+// ], task);
+//
+// gulp.task('screenshots:watch', [
+//
+// ], watch);

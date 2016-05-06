@@ -3,17 +3,14 @@
 import cache from 'gulp-cached';
 import debug from 'gulp-debug';
 import gulp from 'gulp';
-// import htmlInjector from 'bs-html-injector';
+import htmlInjector from 'bs-html-injector';
 import plumber from 'gulp-plumber';
 import remember from 'gulp-remember';
 import size from 'gulp-size';
 
-import {
-  config,
-  browserSync
-} from '../config.js';
-
-import helper from '../helper';
+import * as config from '../config';
+import {browserSync} from '../instances';
+import * as helper from '../helper';
 
 let sourceFiles = config.files.source.templates;
 
@@ -51,10 +48,10 @@ export function watch() {
   });
 }
 
-gulp.task('templates', [
-
-], task);
-
-gulp.task('templates:watch', [
-  'browser-sync'
-], watch);
+// gulp.task('templates', [
+//
+// ], task);
+//
+// gulp.task('templates:watch', [
+//   'browser-sync'
+// ], watch);

@@ -28,8 +28,9 @@ import sourcemaps from 'gulp-sourcemaps';
 // import stylelint from 'stylelint';
 // import uncss from 'gulp-uncss';
 
-import {config, browserSync} from '../config.js';
-import helper from '../helper';
+import * as config from '../config';
+import {browserSync} from '../instances';
+import * as helper from '../helper';
 
 let sourceFiles = config.files.source.styles;
 
@@ -131,10 +132,10 @@ export function watch() {
   });
 }
 
-gulp.task('styles', [
-
-], task);
-
-gulp.task('styles:watch', [
-  'browser-sync'
-], watch);
+// gulp.task('styles', [
+//
+// ], task);
+//
+// gulp.task('styles:watch', [
+//   'browser-sync'
+// ], watch);

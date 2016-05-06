@@ -4,9 +4,9 @@ import concat from 'gulp-concat';
 import debug from 'gulp-debug';
 import gulp from 'gulp';
 // import order from 'gul`p-order';
-import helper from '../helper';
 
-import config from '../config.js';
+import * as config from '../config';
+import * as helper from '../helper';
 
 // let sourceFiles = config.files.sass.library.bootstrap;
 // sourceFiles.unshift(config.files.sass.custom);
@@ -29,10 +29,10 @@ export function watch() {
   gulp.watch(sourceFiles, ['task']);
 }
 
-gulp.task('sass-for-browser', [
-
-], task);
-
-gulp.task('sass-for-browser:watch', [
-  'browser-sync'
-], watch);
+// gulp.task('sass-for-browser', [
+//
+// ], task);
+//
+// gulp.task('sass-for-browser:watch', [
+//   'browser-sync'
+// ], watch);

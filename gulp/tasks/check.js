@@ -3,7 +3,7 @@
 import gulp from 'gulp';
 import checkPages from 'check-pages';
 
-import config from '../config.js';
+import * as config from '../config';
 
 let options = {
   pageUrls: [
@@ -28,10 +28,29 @@ let options = {
   summary: true
 };
 
-export function task(callback) {
+let sourceFiles = config.files.source.markup;
+
+sourceFiles = sourceFiles.concat(config.files.source.markupIgnored.map(function(path) {
+  return '!' + path;
+}));
+
+export default function task(callback) {
   checkPages(console, options, callback);
 }
 
-gulp.task('check', [
-  'browser-sync'
-], task);
+export function watch() {
+  let watcher = gulp.watch(sourceFiles, ['task']);
+
+  watcher.on('change', (event) => {
+    browserSync.reload();
+
+    if (event.type === 'deleted') { // if a file is deleted, forget about it
+      delete cache.caches.check[event.path];
+      remember.forget('check', event.path);
+    }
+  });
+}
+
+// gulp.task('check', [
+//   'browser-sync'
+// ], task);

@@ -6,8 +6,9 @@ import gulp from 'gulp';
 import plumber from 'gulp-plumber';
 import remember from 'gulp-remember';
 
-import {config, browserSync} from '../config.js';
-import helper from '../helper';
+import * as config from '../config';
+import {browserSync} from '../instances';
+import * as helper from '../helper';
 
 let sourceFiles = config.files.source.fonts;
 
@@ -37,10 +38,10 @@ export function watch() {
   });
 }
 
-gulp.task('fonts', [
-
-], task);
-
-gulp.task('fonts:watch', [
-  'browser-sync'
-], watch);
+// gulp.task('fonts', [
+//
+// ], task);
+//
+// gulp.task('fonts:watch', [
+//   'browser-sync'
+// ], watch);

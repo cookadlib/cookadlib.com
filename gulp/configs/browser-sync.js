@@ -5,49 +5,44 @@ import superstatic from 'superstatic';
 import packageJson from '../../package.json';
 
 import directory from './directory';
+// import * as config from '../config';
 
-let instance = {};
+// console.log('config', config);
 
-instance.pagespeed = {
-  key: packageJson.config.pagespeed.key
-};
+export let browsersync = {};
 
-instance.vorlon = {
-  port: packageJson.config.vorlon.ui.port
-};
+export default browsersync;
 
-instance.browsersync = {};
-
-// instance.browsersync.files = [
-//   directory.destination.base + '/**',
-//   '!' + directory.destination.base + '/**/*.{map,scss}'
+// browsersync.files = [
+//   config.directory.destination.base + '/**',
+//   '!' + config.directory.destination.base + '/**/*.{map,scss}'
 // ],  //site-wide reload
 // Run as an https by uncommenting 'https: true'
 // Note: this uses an unsigned certificate which on first access will present a certificate warning in the browser.
-// instance.browsersync.https = true;
-instance.browsersync.logPrefix = 'Browsersync';
-instance.browsersync.port = packageJson.config.browsersync.socket.port;
-instance.browsersync.ui = {
+// browsersync.https = true;
+browsersync.logPrefix = 'Browsersync';
+browsersync.port = packageJson.config.browsersync.socket.port;
+browsersync.ui = {
     port: packageJson.config.browsersync.ui.port
 };
 
 if (process.env.ENV === 'development') {
-  instance.browsersync.browser = [
+  browsersync.browser = [
     'google chrome'
   ];
-  instance.browsersync.debugInfo = true;
-  instance.browsersync.ghostMode = {
+  browsersync.debugInfo = true;
+  browsersync.ghostMode = {
     clicks: true,
     forms: true,
     scroll: true
   };
-  instance.browsersync.logConnections = true;
-  instance.browsersync.logFileChanges = true;
-  instance.browsersync.logSnippet = true;
-  instance.browsersync.notify = true;
-  instance.browsersync.open = true;
-  instance.browsersync.reloadOnRestart = false;
-  instance.browsersync.snippetOptions = {
+  browsersync.logConnections = true;
+  browsersync.logFileChanges = true;
+  browsersync.logSnippet = true;
+  browsersync.notify = true;
+  browsersync.open = true;
+  browsersync.reloadOnRestart = false;
+  browsersync.snippetOptions = {
     rule: {
       match: '<span id="browser-sync-binding"></span>',
       fn: function (snippet) {
@@ -63,7 +58,7 @@ if (process.env.ENV === 'development') {
 }
 
 if(packageJson.config.browsersync.proxy) {
-  instance.browsersync.proxy = {
+  browsersync.proxy = {
     middleware: function (req, res, next) {
       'use strict';
       // res.setHeader('Access-Control-Allow-Credentials', 'false');
@@ -75,14 +70,14 @@ if(packageJson.config.browsersync.proxy) {
     target: `${packageJson.config.browsersync.proxy.hostname}:${packageJson.config.browsersync.proxy.port}`
   };
 } else {
-  instance.browsersync.server = {
+  browsersync.server = {
     baseDir: [
       directory.temporary,
       directory.destination.base
     ],
     middleware: [
       superstatic({
-        config: './superstatic.json',
+        config: '../../superstatic.json',
         debug: true,
         // errorPage: 'error.html',
         gzip: true,
@@ -93,10 +88,8 @@ if(packageJson.config.browsersync.proxy) {
     ]
     // ,
     // routes: {
-    //   '/bower_components': directory.source.bowerComponents,
-    //   '/node_modules': directory.source.nodeModules,
+    //   '/bower_components': config.directory.source.bowerComponents,
+    //   '/node_modules': config.directory.source.nodeModules,
     // }
   };
 }
-
-export default instance;

@@ -1,110 +1,39 @@
-// import requireDir from 'require-dir';
-import runSequence from 'run-sequence';
+import gulp from 'gulp';
 
+import * as tasklists from './gulp/tasklist';
 import * as tasks from './gulp/task';
+import * as watches from './gulp/watch';
 
-/**
- * Look in `./gulp_tasks/` for definitions of tasks, pipes and helpers.
- *
- * Additional arguments:
- * --verbose: Various tasks will produce more output to the console.
- */
+for (const task of Object.keys(tasks)) {
+  console.log('task', task);
+  gulp.task(
+    task,
+    tasks[task]()
+  );
+}
 
-gulp.task(
-  'all',
-  (cb) => {
-    runSequence(
-      [
-        'cache-clear',
-        'clean'
-      ],
-      [
-        'framework',
-        'assets'
-      ],
-      'build',
-      [
-        'document',
-        'test',
-        'pagespeed',
-        'watch'
-      ],
-      cb
-    );
-  }
-);
+for (const task of Object.keys(watches)) {
+  console.log('watch', task);
+  gulp.task(
+    `${task}:watch`,
+    tasks[task]()
+  );
+}
 
-gulp.task('assets', [
-  'fonts',
-  'icons',
-  // 'rename-spritesheet',
-  'images',
-  'locales',
-  'sounds',
-  'videos'
-]);
+for (const tasklist of Object.keys(tasklists)) {
+  console.log('tasklist', tasklist);
+  gulp.task(
+    tasklist,
+    tasklists[tasklist]()
+  );
+}
 
-gulp.task('assets:watch', [
-  'fonts:watch',
-  'icons:watch',
-  // 'rename-spritesheet:watch',
-  'images:watch',
-  'locales:watch',
-  'sounds:watch',
-  'videos:watch'
-]);
+// for (const tasklist of Object.keys(tasklists)) {
+//   console.log('tasklist watch', tasklist);
+//   gulp.task(
+//     `${tasklist}:watch`,
+//     tasklists[tasklist]()
+//   );
+// }
 
-gulp.task(
-    // 'clean',
-  'build',
-  (cb) => {
-    runSequence(
-      'bower',
-      'copy',
-      [
-        'markup',
-        'scripts',
-        'server',
-        'styles',
-        'templates'
-      ],
-      'vulcanize',
-      'rename-index',
-      'remove-old-build-index',
-      // Uncomment 'cache-config' after 'rename-index' if you are going to use service workers.
-      'cache-config',
-      cb
-    );
-  }
-);
-
-gulp.task('default', [
-  'all'
-]);
-
-gulp.task('serve', [
-  'browser-sync'
-]);
-
-// gulp.task('serve', gulp.series(
-//     'index',
-//     task.startServer
-// ));
-
-gulp.task('watch', [
-  'framework:watch',
-  'server:watch',
-  'bower:watch',
-  'assets:watch',
-  'copy:watch',
-  'locales:watch',
-  'markup:watch',
-  'scripts:watch',
-  'styles:watch',
-  'templates:watch',
-  'vulcanize:watch',
-  'cache-config:watch',
-  'browser-sync'
-], () => {
-  console.info('Watching');
-});
+console.log('gulp.tree', gulp.tree);

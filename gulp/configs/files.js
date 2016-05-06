@@ -2,7 +2,9 @@
 
 import directory from './directory';
 
-let files = {};
+export let files = {};
+
+export default files;
 
 files.source = {};
 files.destination = {};
@@ -131,5 +133,3 @@ files.source.videos = [
 files.destination.all = [
   directory.destination.base + '/**/*'
 ];
-
-export default files;

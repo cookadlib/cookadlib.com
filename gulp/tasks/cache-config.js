@@ -11,8 +11,9 @@ import plumber from 'gulp-plumber';
 import remember from 'gulp-remember';
 // import swPrecache from 'sw-precache';
 
-import {config, browserSync} from '../config.js';
-import helper from '../helper';
+import * as config from '../config';
+import {browserSync} from '../instances';
+import * as helper from '../helper';
 
 let sourceFiles = config.files.source.serviceWorker;
 sourceFiles = sourceFiles.concat(config.directory.source.base);
@@ -63,7 +64,7 @@ export default function task(callback) {
       md5.update(JSON.stringify(settings.precache));
       settings.precacheFingerprint = md5.digest('hex');
 
-      let configPath = directory.join(dir, 'cache-config.json');
+      let configPath = directory.join(dir, 'cache-configon');
       fs.writeFile(configPath, JSON.stringify(settings), callback);
     }
   });
@@ -82,10 +83,10 @@ export function watch() {
   });
 }
 
-gulp.task('cache-config', [
-
-], task);
-
-gulp.task('cache-config:watch', [
-  'browser-sync'
-], watch);
+// gulp.task('cache-config', [
+//
+// ], task);
+//
+// gulp.task('cache-config:watch', [
+//   'browser-sync'
+// ], watch);

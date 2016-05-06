@@ -8,15 +8,16 @@ import remember from 'gulp-remember';
 import size from 'gulp-size';
 import vulcanize from 'gulp-vulcanize';
 
-import {config, browserSync} from '../config.js';
-import helper from '../helper';
+import * as config from '../config';
+import {browserSync} from '../instances';
+import * as helper from '../helper';
 
 let sourceFiles = [
   `${config.directory.source.elements}/elements.html`
 ];
 sourceFiles = sourceFiles.concat(config.files.source.elements);
 
-export default funciton task() {
+export default function task() {
   return gulp.src(`${config.directory.source.elements}/elements.html`)
     .pipe(plumber({
       errorHandler: helper.reportError
@@ -50,10 +51,10 @@ export function watch() {
   });
 }
 
-gulp.task('vulcanize', [
-
-], task);
-
-gulp.task('vulcanize:watch', [
-  'browser-sync'
-], watch);
+// gulp.task('vulcanize', [
+//
+// ], task);
+//
+// gulp.task('vulcanize:watch', [
+//   'browser-sync'
+// ], watch);
