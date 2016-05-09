@@ -1,37 +1,24 @@
 'use strict';
 
-import cache from 'gulp-cached';
 import debug from 'gulp-debug';
 import gulp from 'gulp';
-import remember from 'gulp-remember';
 
 import * as config from '../config';
-import {browserSync} from '../instances';
 import * as helper from '../helper';
+
+const defaultNamespace = helper.getNamespace(__filename);
 
 let sourceFiles = config.files.source.fonts;
 
-export default function task() {
+export default function task(namespace = defaultNamespace) {
   return gulp.src(sourceFiles)
-  .pipe(plumber({
-    errorHandler: helper.reportError
-  }))
   .pipe(debug({
-    title: 'fonts:'
+    title: namespace
   }))
   .pipe(gulp.dest(config.directory.destination.fonts))
   .on('error', helper.reportError);
 }
 
-export function watch() {
-  let watcher = gulp.watch(sourceFiles, ['task']);
-
-  watcher.on('change', (event) => {
-    browserSync.reload();
-
-    if (event.type === 'deleted') { // if a file is deleted, forget about it
-      delete cache.caches.fonts[event.path];
-      remember.forget('fonts', event.path);
-    }
-  });
+export function watch(namespace = defaultNamespace) {
+  return helper.defineWatcher(namespace, sourceFiles, task, true);
 }

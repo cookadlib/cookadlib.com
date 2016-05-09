@@ -10,8 +10,16 @@ import path from 'path';
 import remember from 'gulp-remember';
 
 import * as config from '../config';
-import {browserSync} from '../instances';
 import * as helper from '../helper';
+
+const defaultNamespace = helper.getNamespace(__filename);
+
+let dir = config.directory.destination.base;
+
+let settings = {
+  cacheId: config.name || path.basename(__dirname),
+  disabled: false
+};
 
 let sourceFiles = config.files.source.serviceWorker;
 sourceFiles = sourceFiles.concat(config.directory.source.base);
@@ -21,23 +29,14 @@ sourceFiles = sourceFiles.concat(config.files.source.elements);
 sourceFiles = sourceFiles.concat(config.files.source.scripts);
 sourceFiles = sourceFiles.concat(config.files.source.styles);
 
-export default function task(callback) {
-  let dir = config.directory.destination.base;
-  let settings = {
-    cacheId: config.name || path.basename(__dirname),
-    disabled: false
-  };
-
+export default function task(namespace = defaultNamespace, callback) {
   gulp.src(config.files.source.serviceWorker, {
     // base: config.directory.source.base,
     dot: true
   })
-  .pipe(plumber({
-    errorHandler: helper.reportError
-  }))
-  .pipe(cache('cache-config')) // add back all files to the stream
+  .pipe(cache(namespace))
   .pipe(debug({
-    title: 'cache-config:'
+    title: namespace
   }))
   .pipe(gulp.dest(config.directory.destination.base))
   .on('error', helper.reportError);
@@ -54,21 +53,12 @@ export default function task(callback) {
       md5.update(JSON.stringify(settings.precache));
       settings.precacheFingerprint = md5.digest('hex');
 
-      let configPath = path.join(dir, 'cache-configon');
+      let configPath = path.join(dir, 'cache-config.json');
       fs.writeFile(configPath, JSON.stringify(settings), callback);
     }
   });
 }
 
-export function watch() {
-  let watcher = gulp.watch(sourceFiles, ['cache-config']);
-
-  watcher.on('change', (event) => {
-    browserSync.reload();
-
-    if (event.type === 'deleted') { // if a file is deleted, forget about it
-      delete cache.caches.cacheConfig[event.path];
-      remember.forget('cacheConfig', event.path);
-    }
-  });
+export function watch(namespace = defaultNamespace) {
+  return helper.defineWatcher(namespace, sourceFiles, task, true);
 }

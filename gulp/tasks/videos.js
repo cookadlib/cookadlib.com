@@ -8,16 +8,17 @@ import remember from 'gulp-remember';
 import size from 'gulp-size';
 
 import * as config from '../config';
-import {browserSync} from '../instances';
 import * as helper from '../helper';
+
+const defaultNamespace = helper.getNamespace(__filename);
 
 let sourceFiles = config.files.source.videos;
 
-export default function task() {
+export default function task(namespace = defaultNamespace) {
   return gulp.src(sourceFiles)
-    .pipe(cache('videos')) // only pass through changed files
+    .pipe(cache(namespace))
     .pipe(debug({
-      title: 'videos:'
+      title: namespace
     }))
     .pipe(ffmpeg('mp4', function(cmd) {
       return cmd
@@ -33,26 +34,17 @@ export default function task() {
         .fps(24)
         .videoBitrate('512k')
         .videoCodec('libx264')
-        .on('end', () => {
-          console.log('videos: Processing finished');
-        })
+        // .on('end', () => {
+        //   console.log('videos: Processing finished');
+        // })
         .on('error', helper.reportError);
     }))
     .pipe(gulp.dest(config.directory.destination.base))
-    .pipe(remember('videos')) // add back all files to the stream
-    .pipe(size({title: 'videos'}))
+    .pipe(remember(namespace))
+    .pipe(size({title: namespace}))
     .on('error', helper.reportError);
 }
 
-export function watch() {
-  let watcher = gulp.watch(sourceFiles, ['task']);
-
-  watcher.on('change', (event) => {
-    browserSync.reload();
-
-    if (event.type === 'deleted') { // if a file is deleted, forget about it
-      delete cache.caches.videos[event.path];
-      remember.forget('videos', event.path);
-    }
-  });
+export function watch(namespace = defaultNamespace) {
+  return helper.defineWatcher(namespace, sourceFiles, task, true);
 }

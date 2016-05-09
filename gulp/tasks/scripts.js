@@ -4,6 +4,7 @@ import babel from 'gulp-babel';
 import cache from 'gulp-cached';
 // import concat from 'gulp-concat';
 import debug from 'gulp-debug';
+import eslint from 'gulp-eslint';
 import gulp from 'gulp';
 import gulpIf from 'gulp-if';
 import jscs from 'gulp-jscs';
@@ -19,6 +20,8 @@ import * as config from '../config';
 import {browserSync} from '../instances';
 import * as helper from '../helper';
 
+const defaultNamespace = helper.getNamespace(__filename);
+
 let sourceFiles = config.files.source.scripts;
 // sourceFiles = sourceFiles.concat(config.files.source.markup);
 sourceFiles = sourceFiles.concat(config.files.source.scriptsIgnored.map(function(file) {
@@ -32,11 +35,11 @@ sourceFiles = sourceFiles.concat(config.files.source.scriptsIgnored.map(function
 // }));
 // console.log('sourceFiles', sourceFiles);
 
-export default function task() {
+export default function task(namespace = defaultNamespace) {
   return gulp.src(sourceFiles)
-    .pipe(cache('scripts')) // only pass through changed files
+    .pipe(cache(namespace))
     .pipe(debug({
-      title: 'scripts:'
+      title: namespace
     }))
     .pipe(sourcemaps.init({
       debug: true,
@@ -53,29 +56,24 @@ export default function task() {
     //   allowimportmodule: true,
     //   target: 'ES6'
     // }))
+    .pipe(eslint())
+    .pipe(eslint.format())
+    .pipe(eslint.failAfterError())
     .pipe(babel())
     // .pipe(modernizr())
-    .pipe(remember('scripts')) // add back all files to the stream
+    .pipe(remember(namespace))
     // .pipe(uglify())
     // .pipe(concat('app-min.js'))
     // .pipe(rename({suffix: '.min'}))
-    .pipe(sourcemaps.write('.', {
-      sourceRoot: '/'
-    }))
+    // .pipe(sourcemaps.write('.', {
+    //   sourceRoot: '/'
+    // }))
+    // .pipe(sourcemaps.write('.'))
     .pipe(gulp.dest(config.directory.destination.scripts))
-    .pipe(size({title: 'scripts'}))
+    .pipe(size({title: namespace}))
     .on('error', helper.reportError);
 }
 
-export function watch() {
-  let watcher = gulp.watch(sourceFiles, ['task']);
-
-  watcher.on('change', (event) => {
-    browserSync.reload();
-
-    if (event.type === 'deleted') { // if a file is deleted, forget about it
-      delete cache.caches.scripts[event.path];
-      remember.forget('scripts', event.path);
-    }
-  });
+export function watch(namespace = defaultNamespace) {
+  return helper.defineWatcher(namespace, sourceFiles, task, true);
 }

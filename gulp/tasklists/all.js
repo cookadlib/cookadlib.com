@@ -5,7 +5,7 @@ import gulp from 'gulp';
 export default function tasklist() {
   return gulp.series(
     gulp.parallel(
-      'cache-clear',
+      'cacheClear',
       'clean'
     ),
     'framework',

@@ -5,7 +5,6 @@ import debug from 'gulp-debug';
 // import filter from 'gulp-filter';
 import gulp from 'gulp';
 // import htmlhint from 'gulp-htmlhint';
-import htmlInjector from 'bs-html-injector';
 // import htmltidy from 'gulp-htmltidy';
 // import minifyHTML from 'gulp-minify-html';
 import polylint from 'gulp-polylint';
@@ -13,11 +12,11 @@ import remember from 'gulp-remember';
 import size from 'gulp-size';
 
 import * as config from '../config';
-import {browserSync} from '../instances';
 import * as helper from '../helper';
 
-let sourceFiles = config.files.source.markup;
+const defaultNamespace = helper.getNamespace(__filename);
 
+let sourceFiles = config.files.source.markup;
 sourceFiles = sourceFiles.concat(config.files.source.markupIgnored.map(function(path) {
   return '!' + path;
 }));
@@ -31,11 +30,11 @@ sourceFiles = sourceFiles.concat(config.files.source.markupIgnored.map(function(
 //   passthrough: false
 // });
 
-export default function task() {
+export default function task(namespace = defaultNamespace) {
   return gulp.src(sourceFiles)
-    .pipe(cache('markup')) // only pass through changed files
+    .pipe(cache(namespace))
     .pipe(debug({
-      title: 'markup:'
+      title: namespace
     }))
     // .pipe(htmlhintFilter)
     // .pipe(htmlhint('.htmlhintrc'))
@@ -49,21 +48,11 @@ export default function task() {
     .pipe(polylint())
     .pipe(polylint.reporter(polylint.reporter.stylishlike))
     .pipe(gulp.dest(config.directory.destination.markup))
-    .pipe(remember('markup')) // add back all files to the stream
-    .pipe(size({title: 'markup'}))
+    .pipe(remember(namespace))
+    .pipe(size({title: namespace}))
     .on('error', helper.reportError);
 }
 
-export function watch() {
-  let watcher = gulp.watch(sourceFiles, ['task']);
-  // let watcher = gulp.watch(sourceFiles, ['markup'], htmlInjector);
-
-  watcher.on('change', (event) => {
-    browserSync.reload();
-
-    if (event.type === 'deleted') { // if a file is deleted, forget about it
-      delete cache.caches.markup[event.path];
-      remember.forget('markup', event.path);
-    }
-  });
+export function watch(namespace = defaultNamespace) {
+  return helper.defineWatcher(namespace, sourceFiles, task, true);
 }

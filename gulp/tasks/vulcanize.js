@@ -8,19 +8,20 @@ import size from 'gulp-size';
 import vulcanize from 'gulp-vulcanize';
 
 import * as config from '../config';
-import {browserSync} from '../instances';
 import * as helper from '../helper';
+
+const defaultNamespace = helper.getNamespace(__filename);
 
 let sourceFiles = [
   `${config.directory.source.elements}/elements.html`
 ];
 sourceFiles = sourceFiles.concat(config.files.source.elements);
 
-export default function task() {
+export default function task(namespace = defaultNamespace) {
   return gulp.src(`${config.directory.source.elements}/elements.html`)
-    .pipe(cache('vulcanize')) // only pass through changed files
+    .pipe(cache(namespace))
     .pipe(debug({
-      title: 'vulcanize:'
+      title: namespace
     }))
     .pipe(vulcanize({
       stripComments: true,
@@ -28,20 +29,11 @@ export default function task() {
       inlineScripts: true
     }))
     .pipe(gulp.dest(config.directory.destination.elements))
-    .pipe(remember('vulcanize')) // add back all files to the stream
-    .pipe(size({title: 'vulcanize'}))
+    .pipe(remember(namespace))
+    .pipe(size({title: namespace}))
     .on('error', helper.reportError);
 }
 
-export function watch() {
-  let watcher = gulp.watch(sourceFiles, ['task']);
-
-  watcher.on('change', (event) => {
-    browserSync.reload();
-
-    if (event.type === 'deleted') { // if a file is deleted, forget about it
-      delete cache.caches.vulcanize[event.path];
-      remember.forget('vulcanize', event.path);
-    }
-  });
+export function watch(namespace = defaultNamespace) {
+  return helper.defineWatcher(namespace, sourceFiles, task, true);
 }

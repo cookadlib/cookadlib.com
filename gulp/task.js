@@ -1,6 +1,7 @@
 'use strict';
 
-export {default as bower} from './tasks/bower';
+export {default as bowerInstall} from './tasks/bower-install';
+export {default as bowerUpdate} from './tasks/bower-update';
 export {default as browserSync} from './tasks/browser-sync';
 export {default as cacheClear} from './tasks/cache-clear';
 export {default as cacheConfig} from './tasks/cache-config';
@@ -9,7 +10,9 @@ export {default as clean} from './tasks/clean';
 export {default as copy} from './tasks/copy';
 export {default as documentation} from './tasks/documentation';
 export {default as fonts} from './tasks/fonts';
-export {default as framework} from './tasks/framework';
+export {default as frameworkGulp} from './tasks/framework-gulp';
+export {default as frameworkJson} from './tasks/framework-json';
+export {default as frameworkYaml} from './tasks/framework-yaml';
 export {default as icons} from './tasks/icons';
 export {default as images} from './tasks/images';
 export {default as locales} from './tasks/locales';
@@ -18,8 +21,6 @@ export {default as pagespeed} from './tasks/pagespeed';
 export {default as removeOldBuildIndex} from './tasks/remove-old-build-index';
 export {default as renameIndex} from './tasks/rename-index';
 export {default as renameSpritesheet} from './tasks/rename-spritesheet';
-export {default as rsync} from './tasks/rsync';
-export {default as sassForBrowser} from './tasks/sass-for-browser';
 export {default as scraper} from './tasks/scraper';
 export {default as screenshots} from './tasks/screenshots';
 export {default as scripts} from './tasks/scripts';

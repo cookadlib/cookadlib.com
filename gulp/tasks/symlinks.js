@@ -2,23 +2,25 @@
 
 import debug from 'gulp-debug';
 import gulp from 'gulp';
-import symlink from 'gulp-sym';
-import * as helper from '../helper';
+// import symlink from 'gulp-sym';
 
 import * as config from '../config';
+import * as helper from '../helper';
 
-export default function task() {
-  // gulp.src(config.directory.source.bowerComponents)
-  //   .pipe(debug({
-  //     title: 'symlinks:'
-  //   }))
-  //   .pipe(symlink(config.directory.destination.bowerComponents))
-  //   .on('error', helper.reportError);
+const defaultNamespace = helper.getNamespace(__filename);
 
-  gulp.src(config.directory.source.nodeModules)
+export default function task(namespace = defaultNamespace) {
+  gulp.src(config.directory.source.bowerComponents)
     .pipe(debug({
       title: 'symlinks:'
     }))
-    .pipe(symlink(config.directory.destination.nodeModules))
+    .pipe(gulp.symlink(config.directory.destination.base))
+    .on('error', helper.reportError);
+
+  gulp.src(config.directory.source.nodeModules)
+    .pipe(debug({
+      title: namespace
+    }))
+    .pipe(gulp.symlink(config.directory.destination.base))
     .on('error', helper.reportError);
 }

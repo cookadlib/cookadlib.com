@@ -1,21 +1,19 @@
 'use strict';
 
-import cache from 'gulp-cached';
 // import debug from 'gulp-debug';
-import gulp from 'gulp';
 import Pageres from 'pageres';
 // import {path as phantomjsPath} from 'phantomjs-prebuilt';
-//
-import remember from 'gulp-remember';
 // import size from 'gulp-size';
 // import webshot from 'gulp-webshot';
 
 import * as config from '../config';
-import {browserSync} from '../instances';
+import * as helper from '../helper';
+
+const defaultNamespace = helper.getNamespace(__filename);
 
 let sourceFiles = config.files.source.markup;
 
-export default function task() {
+export default function task(namespace = defaultNamespace) {
   return new Pageres({
       delay: 2
     })
@@ -27,14 +25,6 @@ export default function task() {
     .run();
 }
 
-export function watch() {
-  let watcher = gulp.watch(sourceFiles, ['task']);
-  watcher.on('change', (event) => {
-    browserSync.reload();
-
-    if (event.type === 'deleted') { // if a file is deleted, forget about it
-      delete cache.caches.screenshots[event.path];
-      remember.forget('screenshots', event.path);
-    }
-  });
+export function watch(namespace = defaultNamespace) {
+  return helper.defineWatcher(namespace, sourceFiles, task, true);
 }

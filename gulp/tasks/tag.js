@@ -1,14 +1,16 @@
 'use strict';
 
+import {argv} from 'yargs';
 import bump from 'gulp-bump';
 import debug from 'gulp-debug';
 import filter from 'gulp-filter';
 import git from 'gulp-git';
 import gulp from 'gulp';
 import tagVersion from 'gulp-tag-version';
-import {argv} from 'yargs';
 
 import * as helper from '../helper';
+
+const defaultNamespace = helper.getNamespace(__filename);
 
 function increment(importance) {
   // get all the files in which to bump version
@@ -17,7 +19,7 @@ function increment(importance) {
       './bower.json'
     ])
     .pipe(debug({
-      title: 'tag:'
+      title: 'tag'
     }))
     // bump the version number in those files
     .pipe(bump({
@@ -34,7 +36,7 @@ function increment(importance) {
     .on('error', helper.reportError);
 }
 
-export default function task() {
+export default function task(namespace = defaultNamespace) {
   switch (argv.version) {
     case 'major':
       increment('major');

@@ -31,33 +31,37 @@ import * as config from '../config';
 import {browserSync} from '../instances';
 import * as helper from '../helper';
 
+const defaultNamespace = helper.getNamespace(__filename);
+
 let sourceFiles = config.files.source.styles;
 
 sourceFiles = sourceFiles.concat(config.files.source.stylesIgnored.map(function(path) {
   return '!' + path;
 }));
 
-export default function task() {
+export default function task(namespace = defaultNamespace) {
   // stream not returned, see:
   // https://github.com/dlmanning/gulp-sass/wiki/Common-Issues-and-Their-Fixes#gulp-watch-stops-working-on-an-error
   // run from base to include files in elements folder
-  gulp.src(sourceFiles)
-    .pipe(cache('styles (copy scss)')) // only pass through changed files
-    .pipe(debug({
-      title: 'styles (copy scss):'
-    }))
-    .pipe(gulp.dest(config.directory.destination.styles))
-    .on('error', helper.reportError);
+
+  // gulp.src(sourceFiles)
+  //   .pipe(cache(`${namespace} (copy scss)`))
+  //   .pipe(debug({
+  //     title: `${namespace} (copy scss)`
+  //   }))
+  //   .pipe(gulp.dest(config.directory.destination.styles))
+  //   .on('error', helper.reportError);
 
   gulp.src(sourceFiles)
     .pipe(sourcemaps.init({
       debug: true
       // loadMaps: true
     }))
-    .pipe(cache('styles (generate css)')) // only pass through changed files
+    .pipe(cache(namespace))
     .pipe(debug({
-      title: 'styles (generate css):'
+      title: namespace
     }))
+    .pipe(gulp.dest(config.directory.destination.styles)) //copy scss for sourcemap debugging
     // .pipe(gulpIgnore.exclude(sourceFilesIgnored)) // sass-lint can't process interpolated property selectors
     .pipe(sassLint({
       config: config.directory.root + '/.sass-lint.yml'
@@ -96,7 +100,7 @@ export default function task() {
       })
       .on('error', sass.logError)
     )
-    .pipe(remember('styles (generate css)')) // add back all files to the stream
+    .pipe(remember(namespace))
     // .pipe(uncss({
     //   html: [
     //     '**/*.html'
@@ -107,18 +111,10 @@ export default function task() {
     .pipe(sourcemaps.write('.')) // Causes the page to be reloaded after the styles are injected.  This was working, I'm not sure what changed.
     .pipe(gulp.dest(config.directory.destination.styles))
     .pipe(browserSync.stream({match: '**/*.css'}))
-    .pipe(size({title: 'styles'}))
-
+    .pipe(size({title: namespace}))
     .on('error', helper.reportError);
 }
 
-export function watch() {
-  let watcher = gulp.watch(sourceFiles, ['task']);
-
-  watcher.on('change', (event) => {
-    if (event.type === 'deleted') { // if a file is deleted, forget about it
-      delete cache.caches.styles[event.path];
-      remember.forget('styles', event.path);
-    }
-  });
+export function watch(namespace = defaultNamespace) {
+  return helper.defineWatcher(namespace, sourceFiles, task, true, false);
 }

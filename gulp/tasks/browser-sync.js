@@ -1,14 +1,15 @@
 'use strict';
 
-import gulp from 'gulp';
 import historyApiFallback from 'connect-history-api-fallback';
 import htmlInjector from 'bs-html-injector';
 
 import * as config from '../config';
 import {browserSync} from '../instances';
+import * as helper from '../helper';
+
+const defaultNamespace = helper.getNamespace(__filename);
 
 let sourceFiles = config.files.source.markup;
-
 sourceFiles = sourceFiles.concat(config.files.source.markupIgnored.map(function(path) {
   return '!' + path;
 }));
@@ -36,10 +37,14 @@ function onBrowsersyncInit() {
   // );
 }
 
-export default function task() {
+export default function task(namespace = defaultNamespace) {
   // browserSync.use(htmlInjector, {
   //   files: sourceFiles
   // });
 
   browserSync.init(config.browsersync, onBrowsersyncInit);
+}
+
+export function watch(namespace = defaultNamespace) {
+  return helper.defineWatcher(namespace, sourceFiles, task);
 }

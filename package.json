@@ -61,6 +61,7 @@
     "babel-preset-es2015": "^6.6.0",
     "browser-sync": "^2.12.5",
     "bs-html-injector": "^3.0.1",
+    "camelcase": "^3.0.0",
     "chalk": "^1.1.3",
     "check-pages": "^0.10.0",
     "colorguard": "^1.2.0",
@@ -77,11 +78,13 @@
     "gulp-bower": "0.0.13",
     "gulp-bump": "^2.1.0",
     "gulp-cached": "^1.1.0",
+    "gulp-clean": "^0.3.2",
     "gulp-concat": "^2.6.0",
     "gulp-csscomb": "^3.0.7",
     "gulp-csslint": "^0.3.0",
     "gulp-debug": "^2.1.2",
     "gulp-dss": "^0.1.1",
+    "gulp-eslint": "^2.0.0",
     "gulp-filter": "^4.0.0",
     "gulp-flatten": "0.2.0",
     "gulp-fluent-ffmpeg": "^1.0.2",
@@ -98,7 +101,6 @@
     "gulp-mocha": "^2.2.0",
     "gulp-modernizr": "^1.0.0-alpha",
     "gulp-notify": "^2.2.0",
-    "gulp-plumber": "^1.1.0",
     "gulp-polylint": "^1.0.0",
     "gulp-postcss": "^6.1.1",
     "gulp-remember": "^0.3.1",
@@ -155,6 +157,11 @@
   "main": "www/superstatic.js",
   "config": {
     "browsersync": {
+      "plugins": {
+        "htmlinjector": {
+          "enabled": false
+        }
+      },
       "socket": {
         "port": 8001
       },

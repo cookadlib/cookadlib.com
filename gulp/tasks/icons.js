@@ -8,29 +8,30 @@ import size from 'gulp-size';
 import svgSprite from 'gulp-svg-sprite';
 
 import * as config from '../config';
-import {browserSync} from '../instances';
 import * as helper from '../helper';
 
-let sourceFiles = config.files.source.icons;
+const defaultNamespace = helper.getNamespace(__filename);
 
 let pathPrefix = config.directory.source.images.replace(/^\/|\/$/g, '') + '/';
 
+let sourceFiles = config.files.source.icons;
+
 let separator = '-';
 
-export default function task() {
+export default function task(namespace = defaultNamespace) {
   return gulp.src(sourceFiles, {
       base: config.directory.source.base
     })
-    .pipe(cache('icons')) // only pass through changed files
+    .pipe(cache(namespace))
     .pipe(debug({
-      title: 'icons:'
+      title: namespace
     }))
     .pipe(svgSprite({
       shape: {
         id: {
           generator: function(name) {
             let fullPath = config.directory.source.base + '/' + name;
-            let id = 'icon-' + fulldirectory.replace(pathPrefix, '').replace(/\//g, separator);
+            let id = 'icon-' + fullPath.replace(pathPrefix, '').replace(/\//g, separator);
             return id;
           },
         },
@@ -68,20 +69,11 @@ export default function task() {
     })
     .on('error', helper.reportError))
     .pipe(gulp.dest(config.directory.root))
-    .pipe(remember('icons')) // add back all files to the stream
-    .pipe(size({title: 'icons'}))
+    .pipe(remember(namespace))
+    .pipe(size({title: namespace}))
     .on('error', helper.reportError);
 }
 
-export function watch() {
-  let watcher = gulp.watch(sourceFiles, ['task']);
-
-  watcher.on('change', (event) => {
-    browserSync.reload();
-
-    if (event.type === 'deleted') { // if a file is deleted, forget about it
-      delete cache.caches.icons[event.path];
-      remember.forget('icons', event.path);
-    }
-  });
+export function watch(namespace = defaultNamespace) {
+  return helper.defineWatcher(namespace, sourceFiles, task, true);
 }

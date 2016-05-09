@@ -1,29 +1,30 @@
 'use strict';
 
-import cache from 'gulp-cached';
+import bower from 'gulp-bower';
 import debug from 'gulp-debug';
 import gulp from 'gulp';
-import remember from 'gulp-remember';
-import size from 'gulp-size';
 
 import * as config from '../config';
-import {browserSync} from '../instances';
 import * as helper from '../helper';
 
 const defaultNamespace = helper.getNamespace(__filename);
 
-let sourceFiles = config.files.source.templates;
+let sourceFiles = config.files.source.bowerConfiguration;
 
 export default function task(namespace = defaultNamespace) {
-  return gulp.src(sourceFiles)
-    .pipe(cache(namespace))
+
+  if (process.env.ENV === 'development') {
+    return bower({
+      cmd: 'install',
+      verbosity: 1
+    })
     .pipe(debug({
       title: namespace
     }))
-    .pipe(gulp.dest(config.directory.destination.templates))
-    .pipe(remember('templates'))
-    .pipe(size({title: 'templates'}))
+    .pipe(gulp.dest(config.directory.destination.bowerComponents))
     .on('error', helper.reportError);
+  }
+
 }
 
 export function watch(namespace = defaultNamespace) {

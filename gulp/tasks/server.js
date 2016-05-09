@@ -19,13 +19,15 @@ import * as config from '../config';
 import {browserSync} from '../instances';
 import * as helper from '../helper';
 
+const defaultNamespace = helper.getNamespace(__filename);
+
 let sourceFiles = config.files.source.server;
 
-export default function task() {
+export default function task(namespace = defaultNamespace) {
   return gulp.src(sourceFiles)
-    .pipe(cache('server')) // only pass through changed files
+    .pipe(cache(namespace))
     .pipe(debug({
-      title: 'server:'
+      title: namespace
     }))
     .pipe(sourcemaps.init({
       debug: true,
@@ -44,27 +46,19 @@ export default function task() {
     // }))
     .pipe(babel())
     // .pipe(modernizr())
-    .pipe(remember('server')) // add back all files to the stream
+    .pipe(remember(namespace))
     // .pipe(uglify())
     // .pipe(concat('app-min.js'))
     // .pipe(rename({suffix: '.min'}))
-    .pipe(sourcemaps.write('.', {
-      sourceRoot: '/'
-    }))
+    // .pipe(sourcemaps.write('.', {
+    //   sourceRoot: '/'
+    // }))
+    // .pipe(sourcemaps.write('.'))
     .pipe(gulp.dest(config.directory.destination.server))
-    .pipe(size({title: 'server'}))
+    .pipe(size({title: namespace}))
     .on('error', helper.reportError);
 }
 
-export function watch() {
-  let watcher = gulp.watch(sourceFiles, ['task']);
-
-  watcher.on('change', (event) => {
-    browserSync.reload();
-
-    if (event.type === 'deleted') { // if a file is deleted, forget about it
-      delete cache.caches.server[event.path];
-      remember.forget('server', event.path);
-    }
-  });
+export function watch(namespace = defaultNamespace) {
+  return helper.defineWatcher(namespace, sourceFiles, task, true);
 }

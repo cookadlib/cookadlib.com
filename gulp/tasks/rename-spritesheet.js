@@ -8,14 +8,12 @@ import rename from 'gulp-rename';
 import * as config from '../config';
 import * as helper from '../helper';
 
-// console.log('config.directory.source.stylesGenerated', config.directory.source.stylesGenerated);
-// console.log('config.file.source.spritesheetTemporary', config.file.source.spritesheetTemporary);
-// console.log('config.file.source.spritesheet', config.file.source.spritesheet);
+const defaultNamespace = helper.getNamespace(__filename);
 
-export default function task() {
+export default function task(namespace = defaultNamespace) {
   return gulp.src(config.file.source.spritesheetTemporary)
     .pipe(debug({
-      title: 'rename-spritesheet:'
+      title: namespace
     }))
     .pipe(replace(config.directory.destination.theme + '/', ''))
     .pipe(rename(config.file.source.spritesheet))

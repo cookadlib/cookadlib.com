@@ -1,6 +1,5 @@
 'use strict';
 
-import cache from 'gulp-cached';
 import debug from 'gulp-debug';
 import gifsicle from 'imagemin-gifsicle';
 import gulp from 'gulp';
@@ -8,19 +7,19 @@ import imagemin from 'gulp-imagemin';
 import jpegtran from 'imagemin-jpegtran';
 import optipng from 'imagemin-optipng';
 import pngquant from 'imagemin-pngquant';
-import remember from 'gulp-remember';
 import size from 'gulp-size';
 
 import * as config from '../config';
-import {browserSync} from '../instances';
 import * as helper from '../helper';
+
+const defaultNamespace = helper.getNamespace(__filename);
 
 let sourceFiles = config.files.source.images;
 
-export default function task() {
+export default function task(namespace = defaultNamespace) {
   return gulp.src(sourceFiles)
     .pipe(debug({
-      title: 'images:'
+      title: namespace
     }))
     .pipe(imagemin({
       progressive: true,
@@ -36,19 +35,10 @@ export default function task() {
       ]
     }))
     .pipe(gulp.dest(config.directory.destination.images))
-    .pipe(size({title: 'images'}))
+    .pipe(size({title: namespace}))
     .on('error', helper.reportError);
 }
 
-export function watch() {
-  let watcher = gulp.watch(sourceFiles, ['task']);
-
-  watcher.on('change', (event) => {
-    browserSync.reload();
-
-    if (event.type === 'deleted') { // if a file is deleted, forget about it
-      delete cache.caches.images[event.path];
-      remember.forget('images', event.path);
-    }
-  });
+export function watch(namespace = defaultNamespace) {
+  return helper.defineWatcher(namespace, sourceFiles, task, true);
 }

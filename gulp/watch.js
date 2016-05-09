@@ -1,6 +1,7 @@
 'use strict';
 
-export {watch as bower} from './tasks/bower';
+export {watch as bowerInstall} from './tasks/bower-install';
+export {watch as bowerUpdate} from './tasks/bower-update';
 export {watch as browserSync} from './tasks/browser-sync';
 export {watch as cacheClear} from './tasks/cache-clear';
 export {watch as cacheConfig} from './tasks/cache-config';
@@ -9,7 +10,9 @@ export {watch as cacheConfig} from './tasks/cache-config';
 export {watch as copy} from './tasks/copy';
 export {watch as documentation} from './tasks/documentation';
 export {watch as fonts} from './tasks/fonts';
-export {watch as framework} from './tasks/framework';
+export {watch as frameworkGulp} from './tasks/framework-gulp';
+export {watch as frameworkJson} from './tasks/framework-json';
+export {watch as frameworkYaml} from './tasks/framework-yaml';
 export {watch as icons} from './tasks/icons';
 export {watch as images} from './tasks/images';
 export {watch as locales} from './tasks/locales';
@@ -18,8 +21,6 @@ export {watch as pagespeed} from './tasks/pagespeed';
 export {watch as removeOldBuildIndex} from './tasks/remove-old-build-index';
 export {watch as renameIndex} from './tasks/rename-index';
 export {watch as renameSpritesheet} from './tasks/rename-spritesheet';
-export {watch as rsync} from './tasks/rsync';
-export {watch as sassForBrowser} from './tasks/sass-for-browser';
 export {watch as scraper} from './tasks/scraper';
 export {watch as screenshots} from './tasks/screenshots';
 export {watch as scripts} from './tasks/scripts';

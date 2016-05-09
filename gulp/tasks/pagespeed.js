@@ -1,13 +1,19 @@
 'use strict';
 
-// import debug from 'gulp-debug';
-import gulp from 'gulp';
 import {output as pagespeed} from 'psi';
 
 import * as config from '../config';
+import * as helper from '../helper';
+
+const defaultNamespace = helper.getNamespace(__filename);
+
+let sourceFiles = config.files.source.markup;
+sourceFiles = sourceFiles.concat(config.files.source.markupIgnored.map(function(path) {
+  return '!' + path;
+}));
 
 export default function task(callback) {
-  pagespeed(config.domain, {
+  return new pagespeed(config.domain, {
     strategy: 'mobile',
     // By default we use the PageSpeed Insights free (no API key) tier.
     // Use a Google Developer API key if you have one: http://goo.gl/RkN0vE
@@ -17,4 +23,8 @@ export default function task(callback) {
     console.log('Speed score: ' + data.ruleGroups.SPEED.score);
     console.log('Usability score: ' + data.ruleGroups.USABILITY.score);
   });
+}
+
+export function watch(namespace = defaultNamespace) {
+  return helper.defineWatcher(namespace, sourceFiles, task, true);
 }

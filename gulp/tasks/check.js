@@ -1,9 +1,15 @@
 'use strict';
 
+import cache from 'gulp-cached';
 import gulp from 'gulp';
 import checkPages from 'check-pages';
+import remember from 'gulp-remember';
 
 import * as config from '../config';
+import {browserSync} from '../instances';
+import * as helper from '../helper';
+
+const defaultNamespace = helper.getNamespace(__filename);
 
 let options = {
   pageUrls: [
@@ -29,24 +35,14 @@ let options = {
 };
 
 let sourceFiles = config.files.source.markup;
-
 sourceFiles = sourceFiles.concat(config.files.source.markupIgnored.map(function(path) {
   return '!' + path;
 }));
 
-export default function task(callback) {
+export default function task(namespace = defaultNamespace, callback) {
   checkPages(console, options, callback);
 }
 
-export function watch() {
-  let watcher = gulp.watch(sourceFiles, ['task']);
-
-  watcher.on('change', (event) => {
-    browserSync.reload();
-
-    if (event.type === 'deleted') { // if a file is deleted, forget about it
-      delete cache.caches.check[event.path];
-      remember.forget('check', event.path);
-    }
-  });
+export function watch(namespace = defaultNamespace) {
+  return helper.defineWatcher(namespace, sourceFiles, task, true);
 }
