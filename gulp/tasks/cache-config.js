@@ -33,7 +33,7 @@ sourceFiles = sourceFiles.concat(config.files.source.styles);
 export default function task(callback) {
   let dir = config.directory.destination.base;
   let settings = {
-    cacheId: config.name || directory.basename(__dirname),
+    cacheId: config.name || path.basename(__dirname),
     disabled: false
   };
 
@@ -48,8 +48,8 @@ export default function task(callback) {
   .pipe(debug({
     title: 'cache-config:'
   }))
-  .pipe(plumber.stop())
   .pipe(gulp.dest(config.directory.destination.base))
+  .pipe(plumber.stop())
   .on('error', helper.reportError);
 
   glob(sourceFiles, {
@@ -64,7 +64,7 @@ export default function task(callback) {
       md5.update(JSON.stringify(settings.precache));
       settings.precacheFingerprint = md5.digest('hex');
 
-      let configPath = directory.join(dir, 'cache-configon');
+      let configPath = path.join(dir, 'cache-configon');
       fs.writeFile(configPath, JSON.stringify(settings), callback);
     }
   });

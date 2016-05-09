@@ -35,8 +35,8 @@ export default function task() {
   .pipe(debug({
     title: 'copy:'
   }))
-  .pipe(plumber.stop())
   .pipe(gulp.dest(config.directory.destination.base))
+  .pipe(plumber.stop())
   .on('error', helper.reportError);
 }
 

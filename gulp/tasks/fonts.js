@@ -20,8 +20,8 @@ export default function task() {
   .pipe(debug({
     title: 'fonts:'
   }))
-  .pipe(plumber.stop())
   .pipe(gulp.dest(config.directory.destination.fonts))
+  .pipe(plumber.stop())
   .on('error', helper.reportError);
 }
 
