@@ -10,7 +10,3 @@ export default function task() {
     .pipe(rename(config.file.destination.index))
     .pipe(gulp.dest(config.directory.destination.base));
 }
-
-// gulp.task('rename-index', [
-//
-// ], task);

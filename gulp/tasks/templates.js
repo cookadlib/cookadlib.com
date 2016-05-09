@@ -4,7 +4,6 @@ import cache from 'gulp-cached';
 import debug from 'gulp-debug';
 import gulp from 'gulp';
 import htmlInjector from 'bs-html-injector';
-import plumber from 'gulp-plumber';
 import remember from 'gulp-remember';
 import size from 'gulp-size';
 
@@ -26,7 +25,6 @@ export default function task() {
   .pipe(gulp.dest(config.directory.destination.templates))
   .pipe(remember('templates')) // add back all files to the stream
   .pipe(size({title: 'templates'}))
-  .pipe(plumber.stop())
   .on('error', helper.reportError);
 }
 
@@ -47,11 +45,3 @@ export function watch() {
     }
   });
 }
-
-// gulp.task('templates', [
-//
-// ], task);
-//
-// gulp.task('templates:watch', [
-//   'browser-sync'
-// ], watch);

@@ -4,10 +4,8 @@ import cache from 'gulp-cached';
 import debug from 'gulp-debug';
 import dss from 'gulp-dss';
 import gulp from 'gulp';
-import plumber from 'gulp-plumber';
 import remember from 'gulp-remember';
 import size from 'gulp-size';
-
 import * as config from '../config';
 import * as helper from '../helper';
 
@@ -15,9 +13,6 @@ let sourceFiles = config.files.source.styles;
 
 export default function task() {
   return gulp.src(sourceFiles)
-    .pipe(plumber({
-      errorHandler: helper.reportError
-    }))
     .pipe(cache('styleguide')) // only pass through changed files
     .pipe(debug({
       title: 'styleguide:'
@@ -29,7 +24,6 @@ export default function task() {
     .pipe(gulp.dest(config.directory.destination.styleguide))
     .pipe(remember('styleguide')) // add back all files to the stream
     .pipe(size({title: 'styleguide'}))
-    .pipe(plumber.stop())
     .on('error', helper.reportError);
 }
 
@@ -43,11 +37,3 @@ export function watch() {
     }
   });
 }
-
-// gulp.task('styleguide', [
-//
-// ], task);
-//
-// gulp.task('styleguide:watch', [
-//
-// ], watch);

@@ -7,7 +7,6 @@ import gulp from 'gulp';
 import jscs from 'gulp-jscs';
 import jshint from 'gulp-jshint';
 import jsonlint from 'gulp-jsonlint';
-import plumber from 'gulp-plumber';
 import remember from 'gulp-remember';
 import yamlvalidate from 'gulp-yaml-validate';
 
@@ -21,9 +20,6 @@ sourceFiles = sourceFiles.concat(config.files.source.configuration.yaml);
 
 export default function task() {
   gulp.src(config.files.source.gulp)
-    .pipe(plumber({
-      errorHandler: helper.reportError
-    }))
     .pipe(cache('framework')) // only pass through changed files
     .pipe(debug({
       title: 'framework (gulp):'
@@ -37,32 +33,23 @@ export default function task() {
     //   allowimportmodule: true,
     //   target: 'ES6'
     // }))
-    .pipe(plumber.stop())
     .on('error', helper.reportError);
 
   gulp.src(config.files.source.configuration.json)
-    .pipe(plumber({
-      errorHandler: helper.reportError
-    }))
     .pipe(cache('framework')) // only pass through changed files
     .pipe(debug({
       title: 'framework (configuration:json):'
     }))
     .pipe(jsonlint())
     .pipe(jsonlint.reporter(helper.reportError))
-    .pipe(plumber.stop())
     .on('error', helper.reportError);
 
   gulp.src(config.files.source.configuration.yaml)
-    .pipe(plumber({
-      errorHandler: helper.reportError
-    }))
     .pipe(cache('framework')) // only pass through changed files
     .pipe(debug({
       title: 'framework (configuration:yaml):'
     }))
     .pipe(yamlvalidate())
-    .pipe(plumber.stop())
     .on('error', helper.reportError);
 }
 
@@ -78,11 +65,3 @@ export function watch() {
     }
   });
 }
-
-// gulp.task('framework', [
-//
-// ], task);
-//
-// gulp.task('framework:watch', [
-//   'browser-sync'
-// ], watch);

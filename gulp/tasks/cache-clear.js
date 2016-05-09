@@ -6,7 +6,3 @@ import gulp from 'gulp';
 export default function task() {
   cache.caches = {};
 }
-
-// gulp.task('cache-clear', [
-//
-// ], task);

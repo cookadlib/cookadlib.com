@@ -22,11 +22,3 @@ export function watch() {
     }
   });
 }
-
-// gulp.task('test', [
-//
-// ], task);
-//
-// gulp.task('test:watch', [
-//   'browser-sync'
-// ], watch);

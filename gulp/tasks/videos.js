@@ -4,7 +4,6 @@ import cache from 'gulp-cached';
 import debug from 'gulp-debug';
 import ffmpeg from 'gulp-fluent-ffmpeg';
 import gulp from 'gulp';
-import plumber from 'gulp-plumber';
 import remember from 'gulp-remember';
 import size from 'gulp-size';
 
@@ -16,9 +15,6 @@ let sourceFiles = config.files.source.videos;
 
 export default function task() {
   return gulp.src(sourceFiles)
-    .pipe(plumber({
-      errorHandler: helper.reportError
-    }))
     .pipe(cache('videos')) // only pass through changed files
     .pipe(debug({
       title: 'videos:'
@@ -45,7 +41,6 @@ export default function task() {
     .pipe(gulp.dest(config.directory.destination.base))
     .pipe(remember('videos')) // add back all files to the stream
     .pipe(size({title: 'videos'}))
-    .pipe(plumber.stop())
     .on('error', helper.reportError);
 }
 
@@ -61,11 +56,3 @@ export function watch() {
     }
   });
 }
-
-// gulp.task('videos', [
-//
-// ], task);
-//
-// gulp.task('videos:watch', [
-//   'browser-sync'
-// ], watch);

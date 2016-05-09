@@ -8,7 +8,6 @@ import gulp from 'gulp';
 import htmlInjector from 'bs-html-injector';
 // import htmltidy from 'gulp-htmltidy';
 // import minifyHTML from 'gulp-minify-html';
-import plumber from 'gulp-plumber';
 import polylint from 'gulp-polylint';
 import remember from 'gulp-remember';
 import size from 'gulp-size';
@@ -34,9 +33,6 @@ sourceFiles = sourceFiles.concat(config.files.source.markupIgnored.map(function(
 
 export default function task() {
   return gulp.src(sourceFiles)
-    .pipe(plumber({
-      errorHandler: helper.reportError
-    }))
     .pipe(cache('markup')) // only pass through changed files
     .pipe(debug({
       title: 'markup:'
@@ -55,7 +51,6 @@ export default function task() {
     .pipe(gulp.dest(config.directory.destination.markup))
     .pipe(remember('markup')) // add back all files to the stream
     .pipe(size({title: 'markup'}))
-    .pipe(plumber.stop())
     .on('error', helper.reportError);
 }
 
@@ -72,11 +67,3 @@ export function watch() {
     }
   });
 }
-
-// gulp.task('markup', [
-//
-// ], task);
-//
-// gulp.task('markup:watch', [
-//   'browser-sync'
-// ], watch);

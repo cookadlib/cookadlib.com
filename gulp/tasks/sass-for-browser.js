@@ -28,11 +28,3 @@ export default function task() {
 export function watch() {
   gulp.watch(sourceFiles, ['task']);
 }
-
-// gulp.task('sass-for-browser', [
-//
-// ], task);
-//
-// gulp.task('sass-for-browser:watch', [
-//   'browser-sync'
-// ], watch);

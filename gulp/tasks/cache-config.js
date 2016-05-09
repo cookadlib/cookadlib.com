@@ -7,9 +7,7 @@ import fs from 'fs';
 import glob from 'glob-all';
 import gulp from 'gulp';
 import path from 'path';
-import plumber from 'gulp-plumber';
 import remember from 'gulp-remember';
-// import swPrecache from 'sw-precache';
 
 import * as config from '../config';
 import {browserSync} from '../instances';
@@ -22,13 +20,6 @@ sourceFiles = sourceFiles.concat(config.file.source.webcomponentsjs);
 sourceFiles = sourceFiles.concat(config.files.source.elements);
 sourceFiles = sourceFiles.concat(config.files.source.scripts);
 sourceFiles = sourceFiles.concat(config.files.source.styles);
-
-// [
-//   'index.html',
-//   './',
-//   'bower_components/webcomponentsjs/webcomponents-lite.min.js',
-//   '{elements,scripts,styles}/**/*.*'
-// ];
 
 export default function task(callback) {
   let dir = config.directory.destination.base;
@@ -49,7 +40,6 @@ export default function task(callback) {
     title: 'cache-config:'
   }))
   .pipe(gulp.dest(config.directory.destination.base))
-  .pipe(plumber.stop())
   .on('error', helper.reportError);
 
   glob(sourceFiles, {
@@ -82,11 +72,3 @@ export function watch() {
     }
   });
 }
-
-// gulp.task('cache-config', [
-//
-// ], task);
-//
-// gulp.task('cache-config:watch', [
-//   'browser-sync'
-// ], watch);

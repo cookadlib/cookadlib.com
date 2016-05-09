@@ -50,7 +50,3 @@ export function watch() {
     }
   });
 }
-
-// gulp.task('check', [
-//   'browser-sync'
-// ], task);

@@ -4,10 +4,8 @@ import cache from 'gulp-cached';
 import debug from 'gulp-debug';
 import ffmpeg from 'gulp-fluent-ffmpeg';
 import gulp from 'gulp';
-import plumber from 'gulp-plumber';
 import remember from 'gulp-remember';
 import size from 'gulp-size';
-
 import * as config from '../config';
 import {browserSync} from '../instances';
 import * as helper from '../helper';
@@ -16,9 +14,6 @@ let sourceFiles = config.files.source.sounds;
 
 export default function task() {
   return gulp.src(sourceFiles)
-    .pipe(plumber({
-      errorHandler: helper.reportError
-    }))
     .pipe(cache('sounds')) // only pass through changed files
     .pipe(debug({
       title: 'sounds:'
@@ -48,7 +43,6 @@ export default function task() {
     .pipe(gulp.dest(config.directory.destination.base))
     .pipe(remember('sounds')) // add back all files to the stream
     .pipe(size({title: 'sounds'}))
-    .pipe(plumber.stop())
     .on('error', helper.reportError);
 }
 
@@ -64,11 +58,3 @@ export function watch() {
     }
   });
 }
-
-// gulp.task('sounds', [
-//
-// ], task);
-//
-// gulp.task('sounds:watch', [
-//   'browser-sync'
-// ], watch);

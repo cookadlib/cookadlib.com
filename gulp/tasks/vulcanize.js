@@ -3,7 +3,6 @@
 import cache from 'gulp-cached';
 import debug from 'gulp-debug';
 import gulp from 'gulp';
-import plumber from 'gulp-plumber';
 import remember from 'gulp-remember';
 import size from 'gulp-size';
 import vulcanize from 'gulp-vulcanize';
@@ -19,9 +18,6 @@ sourceFiles = sourceFiles.concat(config.files.source.elements);
 
 export default function task() {
   return gulp.src(`${config.directory.source.elements}/elements.html`)
-    .pipe(plumber({
-      errorHandler: helper.reportError
-    }))
     .pipe(cache('vulcanize')) // only pass through changed files
     .pipe(debug({
       title: 'vulcanize:'
@@ -34,7 +30,6 @@ export default function task() {
     .pipe(gulp.dest(config.directory.destination.elements))
     .pipe(remember('vulcanize')) // add back all files to the stream
     .pipe(size({title: 'vulcanize'}))
-    .pipe(plumber.stop())
     .on('error', helper.reportError);
 }
 
@@ -50,11 +45,3 @@ export function watch() {
     }
   });
 }
-
-// gulp.task('vulcanize', [
-//
-// ], task);
-//
-// gulp.task('vulcanize:watch', [
-//   'browser-sync'
-// ], watch);

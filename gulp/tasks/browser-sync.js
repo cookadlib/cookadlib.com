@@ -43,7 +43,3 @@ export default function task() {
 
   browserSync.init(config.browsersync, onBrowsersyncInit);
 }
-
-// gulp.task('browser-sync', [
-//
-// ], task);

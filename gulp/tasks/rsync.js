@@ -2,7 +2,6 @@
 
 import debug from 'gulp-debug';
 import gulp from 'gulp';
-import plumber from 'gulp-plumber';
 import rsync from 'gulp-rsync';
 
 import * as config from '../config';
@@ -28,10 +27,6 @@ export default function task() {
     incremental: true,
     exclude: []
   }))
-  .pipe(plumber.stop())
+
   .on('error', helper.reportError);
 }
-
-// gulp.task('rsync', [
-//
-// ], task);

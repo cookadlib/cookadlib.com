@@ -10,7 +10,3 @@ export default function task() {
     dot: true
   });
 }
-
-// gulp.task('clean', [
-//
-// ], task);

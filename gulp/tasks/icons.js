@@ -3,7 +3,6 @@
 import cache from 'gulp-cached';
 import debug from 'gulp-debug';
 import gulp from 'gulp';
-import plumber from 'gulp-plumber';
 import remember from 'gulp-remember';
 import size from 'gulp-size';
 import svgSprite from 'gulp-svg-sprite';
@@ -22,9 +21,6 @@ export default function task() {
   return gulp.src(sourceFiles, {
       base: config.directory.source.base
     })
-    .pipe(plumber({
-      errorHandler: helper.reportError
-    }))
     .pipe(cache('icons')) // only pass through changed files
     .pipe(debug({
       title: 'icons:'
@@ -71,11 +67,9 @@ export default function task() {
       }
     })
     .on('error', helper.reportError))
-    .pipe(plumber.stop())
     .pipe(gulp.dest(config.directory.root))
     .pipe(remember('icons')) // add back all files to the stream
     .pipe(size({title: 'icons'}))
-    .pipe(plumber.stop())
     .on('error', helper.reportError);
 }
 
@@ -91,11 +85,3 @@ export function watch() {
     }
   });
 }
-
-// gulp.task('icons', [
-//
-// ], task);
-//
-// gulp.task('icons:watch', [
-//   'browser-sync'
-// ], watch);

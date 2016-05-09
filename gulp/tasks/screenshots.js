@@ -5,7 +5,7 @@ import cache from 'gulp-cached';
 import gulp from 'gulp';
 import Pageres from 'pageres';
 // import {path as phantomjsPath} from 'phantomjs-prebuilt';
-// import plumber from 'gulp-plumber';
+//
 import remember from 'gulp-remember';
 // import size from 'gulp-size';
 // import webshot from 'gulp-webshot';
@@ -38,11 +38,3 @@ export function watch() {
     }
   });
 }
-
-// gulp.task('screenshots', [
-//   'browser-sync'
-// ], task);
-//
-// gulp.task('screenshots:watch', [
-//
-// ], watch);

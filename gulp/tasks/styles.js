@@ -15,7 +15,6 @@ import filter from 'gulp-filter';
 import gulp from 'gulp';
 // import gulpIgnore from 'gulp-ignore';
 // import minifyCss from 'gulp-minify-css';
-import plumber from 'gulp-plumber';
 import postcss from 'gulp-postcss';
 import remember from 'gulp-remember';
 // import rtlcss from 'rtlcss';
@@ -37,28 +36,20 @@ let sourceFiles = config.files.source.styles;
 sourceFiles = sourceFiles.concat(config.files.source.stylesIgnored.map(function(path) {
   return '!' + path;
 }));
-// console.log('sourceFiles', sourceFiles);
 
 export default function task() {
   // stream not returned, see:
   // https://github.com/dlmanning/gulp-sass/wiki/Common-Issues-and-Their-Fixes#gulp-watch-stops-working-on-an-error
   // run from base to include files in elements folder
   gulp.src(sourceFiles)
-    .pipe(plumber({
-      errorHandler: helper.reportError
-    }))
     .pipe(cache('styles (copy scss)')) // only pass through changed files
     .pipe(debug({
       title: 'styles (copy scss):'
     }))
     .pipe(gulp.dest(config.directory.destination.styles))
-    .pipe(plumber.stop())
     .on('error', helper.reportError);
 
   gulp.src(sourceFiles)
-    .pipe(plumber({
-      errorHandler: helper.reportError
-    }))
     .pipe(sourcemaps.init({
       debug: true
       // loadMaps: true
@@ -117,7 +108,7 @@ export default function task() {
     .pipe(gulp.dest(config.directory.destination.styles))
     .pipe(browserSync.stream({match: '**/*.css'}))
     .pipe(size({title: 'styles'}))
-    .pipe(plumber.stop())
+
     .on('error', helper.reportError);
 }
 
@@ -131,11 +122,3 @@ export function watch() {
     }
   });
 }
-
-// gulp.task('styles', [
-//
-// ], task);
-//
-// gulp.task('styles:watch', [
-//   'browser-sync'
-// ], watch);

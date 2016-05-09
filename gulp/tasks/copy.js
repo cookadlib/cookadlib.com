@@ -3,7 +3,6 @@
 import cache from 'gulp-cached';
 import debug from 'gulp-debug';
 import gulp from 'gulp';
-import plumber from 'gulp-plumber';
 import remember from 'gulp-remember';
 
 import * as config from '../config';
@@ -28,15 +27,11 @@ export default function task() {
     // base: config.directory.source.base,
     dot: true
   })
-  .pipe(plumber({
-    errorHandler: helper.reportError
-  }))
   .pipe(cache('copy')) // add back all files to the stream
   .pipe(debug({
     title: 'copy:'
   }))
   .pipe(gulp.dest(config.directory.destination.base))
-  .pipe(plumber.stop())
   .on('error', helper.reportError);
 }
 
@@ -52,11 +47,3 @@ export function watch() {
     }
   });
 }
-
-// gulp.task('copy', [
-//
-// ], task);
-//
-// gulp.task('copy:watch', [
-//   'browser-sync'
-// ], watch);

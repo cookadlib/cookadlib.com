@@ -7,7 +7,6 @@ import gulp from 'gulp';
 import imagemin from 'gulp-imagemin';
 import jpegtran from 'imagemin-jpegtran';
 import optipng from 'imagemin-optipng';
-import plumber from 'gulp-plumber';
 import pngquant from 'imagemin-pngquant';
 import remember from 'gulp-remember';
 import size from 'gulp-size';
@@ -20,9 +19,6 @@ let sourceFiles = config.files.source.images;
 
 export default function task() {
   return gulp.src(sourceFiles)
-    .pipe(plumber({
-      errorHandler: helper.reportError
-    }))
     .pipe(debug({
       title: 'images:'
     }))
@@ -39,7 +35,6 @@ export default function task() {
         gifsicle()
       ]
     }))
-    .pipe(plumber.stop())
     .pipe(gulp.dest(config.directory.destination.images))
     .pipe(size({title: 'images'}))
     .on('error', helper.reportError);
@@ -57,11 +52,3 @@ export function watch() {
     }
   });
 }
-
-// gulp.task('images', [
-//
-// ], task);
-//
-// gulp.task('images:watch', [
-//   'browser-sync'
-// ], watch);

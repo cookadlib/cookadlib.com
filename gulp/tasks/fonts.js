@@ -3,7 +3,6 @@
 import cache from 'gulp-cached';
 import debug from 'gulp-debug';
 import gulp from 'gulp';
-import plumber from 'gulp-plumber';
 import remember from 'gulp-remember';
 
 import * as config from '../config';
@@ -21,7 +20,6 @@ export default function task() {
     title: 'fonts:'
   }))
   .pipe(gulp.dest(config.directory.destination.fonts))
-  .pipe(plumber.stop())
   .on('error', helper.reportError);
 }
 
@@ -37,11 +35,3 @@ export function watch() {
     }
   });
 }
-
-// gulp.task('fonts', [
-//
-// ], task);
-//
-// gulp.task('fonts:watch', [
-//   'browser-sync'
-// ], watch);

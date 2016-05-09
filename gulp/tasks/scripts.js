@@ -9,7 +9,6 @@ import gulpIf from 'gulp-if';
 import jscs from 'gulp-jscs';
 import jshint from 'gulp-jshint';
 // import modernizr from 'gulp-modernizr';
-import plumber from 'gulp-plumber';
 import remember from 'gulp-remember';
 import size from 'gulp-size';
 import sourcemaps from 'gulp-sourcemaps';
@@ -35,9 +34,6 @@ sourceFiles = sourceFiles.concat(config.files.source.scriptsIgnored.map(function
 
 export default function task() {
   return gulp.src(sourceFiles)
-    .pipe(plumber({
-      errorHandler: helper.reportError
-    }))
     .pipe(cache('scripts')) // only pass through changed files
     .pipe(debug({
       title: 'scripts:'
@@ -68,7 +64,6 @@ export default function task() {
     }))
     .pipe(gulp.dest(config.directory.destination.scripts))
     .pipe(size({title: 'scripts'}))
-    .pipe(plumber.stop())
     .on('error', helper.reportError);
 }
 
@@ -84,11 +79,3 @@ export function watch() {
     }
   });
 }
-
-// gulp.task('scripts', [
-//
-// ], task);
-//
-// gulp.task('scripts:watch', [
-//   'browser-sync'
-// ], watch);

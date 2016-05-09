@@ -22,7 +22,3 @@ export default function task() {
     .pipe(symlink(config.directory.destination.nodeModules))
     .on('error', helper.reportError);
 }
-
-// gulp.task('symlinks', [
-//
-// ], task);

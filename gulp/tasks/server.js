@@ -9,7 +9,6 @@ import gulpIf from 'gulp-if';
 import jscs from 'gulp-jscs';
 import jshint from 'gulp-jshint';
 // import modernizr from 'gulp-modernizr';
-import plumber from 'gulp-plumber';
 import remember from 'gulp-remember';
 import size from 'gulp-size';
 import sourcemaps from 'gulp-sourcemaps';
@@ -24,9 +23,6 @@ let sourceFiles = config.files.source.server;
 
 export default function task() {
   return gulp.src(sourceFiles)
-    .pipe(plumber({
-      errorHandler: helper.reportError
-    }))
     .pipe(cache('server')) // only pass through changed files
     .pipe(debug({
       title: 'server:'
@@ -57,7 +53,6 @@ export default function task() {
     }))
     .pipe(gulp.dest(config.directory.destination.server))
     .pipe(size({title: 'server'}))
-    .pipe(plumber.stop())
     .on('error', helper.reportError);
 }
 
@@ -73,11 +68,3 @@ export function watch() {
     }
   });
 }
-
-// gulp.task('server', [
-//
-// ], task);
-//
-// gulp.task('server:watch', [
-//   'browser-sync'
-// ], watch);

@@ -8,7 +8,7 @@ for (const task of Object.keys(tasks)) {
   console.log('task', task, tasks[task]);
   gulp.task(
     task,
-    tasks[task]()
+    tasks[task](task)
   );
 }
 
@@ -16,7 +16,7 @@ for (const task of Object.keys(tasks)) {
 //   console.log('watch', task);
 //   gulp.task(
 //     `${task}:watch`,
-//     tasks[task]()
+//     tasks[task](task)
 //   );
 // }
 
@@ -24,7 +24,7 @@ for (const task of Object.keys(tasks)) {
 //   console.log('tasklist', tasklist);
 //   gulp.task(
 //     tasklist,
-//     tasklists[tasklist]()
+//     tasklists[tasklist](tasklist)
 //   );
 // }
 
@@ -32,7 +32,7 @@ for (const task of Object.keys(tasks)) {
 //   console.log('tasklist watch', tasklist);
 //   gulp.task(
 //     `${tasklist}:watch`,
-//     tasklists[tasklist]()
+//     tasklists[tasklist](tasklist)
 //   );
 // }
 

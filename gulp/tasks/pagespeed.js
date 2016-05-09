@@ -18,7 +18,3 @@ export default function task(callback) {
     console.log('Usability score: ' + data.ruleGroups.USABILITY.score);
   });
 }
-
-// gulp.task('pagespeed', [
-//
-// ], task);

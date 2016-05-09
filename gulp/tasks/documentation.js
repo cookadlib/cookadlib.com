@@ -16,11 +16,3 @@ export default function task() {
 export function watch() {
   gulp.watch(sourceFiles, ['task']);
 }
-
-// gulp.task('documentation', [
-//
-// ], task);
-//
-// gulp.task('documentation:watch', [
-//   'browser-sync'
-// ], watch);

@@ -23,7 +23,3 @@ export default function task() {
     // .pipe(gulp.dest(config.file.source.spritesheet))
     .on('error', helper.reportError);
 }
-
-// gulp.task('rename-spritesheet', [
-//
-// ], task);

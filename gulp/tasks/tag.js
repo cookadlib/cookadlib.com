@@ -61,7 +61,3 @@ export default function task() {
     }
   });
 }
-
-// gulp.task('tag', [
-//
-// ], task);
