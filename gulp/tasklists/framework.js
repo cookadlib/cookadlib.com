@@ -7,19 +7,19 @@ export default tasklist;
 export function tasklist() {
   return gulp.series(
     gulp.parallel(
-      'framework-gulp',
-      'framework-json',
-      'framework-yaml'
+      'frameworkGulp',
+      'frameworkJson',
+      'frameworkYaml'
     )
   );
 }
 
-export default function watch() {
+export function watch() {
   return gulp.series(
     gulp.parallel(
-      'framework-gulp:watch',
-      'framework-json:watch',
-      'framework-yaml:watch'
+      'frameworkGulp:watch',
+      'frameworkJson:watch',
+      'frameworkYaml:watch'
     )
   );
 }
