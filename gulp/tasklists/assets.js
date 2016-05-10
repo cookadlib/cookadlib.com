@@ -18,7 +18,7 @@ export function tasklist() {
   );
 }
 
-export default function watch() {
+export function watch() {
   return gulp.series(
     gulp.parallel(
       'fonts:watch',
