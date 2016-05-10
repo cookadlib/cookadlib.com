@@ -9,6 +9,8 @@ import Pageres from 'pageres';
 import * as config from '../config';
 import * as helper from '../helper';
 
+export default task;
+
 const defaultNamespace = helper.getNamespace(__filename);
 
 let sourceFiles = config.files.source.markup;
@@ -17,7 +19,7 @@ export function task(namespace = defaultNamespace) {
   return new Pageres({
       delay: 2
     })
-    .src(`http://localhost:${config.instance.browsersync.port}`, config.screenshots.sizes, {
+    .src(`http://localhost:${config.browsersync.port}`, config.screenshots.sizes, {
       crop: true
     })
     // .src('todomvc.com', ['1280x1024', '1920x1080'])

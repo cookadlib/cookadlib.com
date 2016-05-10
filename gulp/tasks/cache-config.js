@@ -12,6 +12,8 @@ import remember from 'gulp-remember';
 import * as config from '../config';
 import * as helper from '../helper';
 
+export default task;
+
 const defaultNamespace = helper.getNamespace(__filename);
 
 let dir = config.directory.destination.base;

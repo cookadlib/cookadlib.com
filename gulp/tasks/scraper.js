@@ -8,6 +8,8 @@ import xray from 'x-ray';
 import * as config from '../config';
 import * as helper from '../helper';
 
+export default task;
+
 const defaultNamespace = helper.getNamespace(__filename);
 
 // const x = xray();
@@ -15,7 +17,7 @@ const defaultNamespace = helper.getNamespace(__filename);
 let sourceFiles = config.files.source.markup;
 
 export function task(namespace = defaultNamespace) {
-  return new xray(`http://localhost:${config.instance.browsersync.port}`, 'title')
+  return new xray(`http://localhost:${config.browsersync.port}`, 'title')
   .stream()
   .pipe(debug({
     title: namespace

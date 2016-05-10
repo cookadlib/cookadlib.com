@@ -9,6 +9,8 @@ import jsonlint from 'gulp-jsonlint';
 import * as config from '../config';
 import * as helper from '../helper';
 
+export default task;
+
 const defaultNamespace = helper.getNamespace(__filename);
 
 let sourceFiles = config.files.source.gulp;

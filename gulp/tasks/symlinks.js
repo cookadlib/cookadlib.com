@@ -7,6 +7,8 @@ import gulp from 'gulp';
 import * as config from '../config';
 import * as helper from '../helper';
 
+export default task;
+
 const defaultNamespace = helper.getNamespace(__filename);
 
 export function task(namespace = defaultNamespace) {

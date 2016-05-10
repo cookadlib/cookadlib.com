@@ -9,6 +9,8 @@ import * as config from '../config';
 import {browserSync} from '../instances';
 import * as helper from '../helper';
 
+export default task;
+
 const defaultNamespace = helper.getNamespace(__filename);
 
 let options = {
