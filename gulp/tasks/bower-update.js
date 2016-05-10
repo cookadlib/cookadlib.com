@@ -11,7 +11,7 @@ const defaultNamespace = helper.getNamespace(__filename);
 
 let sourceFiles = config.files.source.bowerConfiguration;
 
-export default function task(namespace = defaultNamespace) {
+export function task(namespace = defaultNamespace) {
 
   if (process.env.ENV === 'development') {
     return bower({

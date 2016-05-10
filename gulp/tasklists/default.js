@@ -2,8 +2,14 @@
 
 import gulp from 'gulp';
 
-export default function tasklist() {
+export function tasklist() {
   return gulp.series(
     'all'
+  );
+}
+
+export default function watch() {
+  return gulp.series(
+    'all:watch'
   );
 }

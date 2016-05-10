@@ -15,7 +15,7 @@ const defaultNamespace = helper.getNamespace(__filename);
 
 let sourceFiles = config.files.source.locales;
 
-export default function task(namespace = defaultNamespace) {
+export function task(namespace = defaultNamespace) {
   return gulp.src(sourceFiles)
     .pipe(cache(namespace))
     .pipe(debug({

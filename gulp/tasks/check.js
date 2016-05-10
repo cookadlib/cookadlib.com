@@ -39,7 +39,7 @@ sourceFiles = sourceFiles.concat(config.files.source.markupIgnored.map(function(
   return '!' + path;
 }));
 
-export default function task(namespace = defaultNamespace, callback) {
+export function task(namespace = defaultNamespace, callback) {
   checkPages(console, options, callback);
 }
 

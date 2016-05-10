@@ -23,7 +23,7 @@ sourceFiles = sourceFiles.concat(config.files.source.translations);
 //   return '!' + file;
 // }));
 
-export default function task(namespace = defaultNamespace) {
+export function task(namespace = defaultNamespace) {
   return gulp.src(sourceFiles, {
     // base: config.directory.source.base,
     dot: true

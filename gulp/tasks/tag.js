@@ -36,7 +36,7 @@ function increment(importance) {
     .on('error', helper.reportError);
 }
 
-export default function task(namespace = defaultNamespace) {
+export function task(namespace = defaultNamespace) {
   switch (argv.version) {
     case 'major':
       increment('major');

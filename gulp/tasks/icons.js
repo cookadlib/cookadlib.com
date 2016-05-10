@@ -18,7 +18,7 @@ let sourceFiles = config.files.source.icons;
 
 let separator = '-';
 
-export default function task(namespace = defaultNamespace) {
+export function task(namespace = defaultNamespace) {
   return gulp.src(sourceFiles, {
       base: config.directory.source.base
     })

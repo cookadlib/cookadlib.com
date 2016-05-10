@@ -35,7 +35,7 @@ sourceFiles = sourceFiles.concat(config.files.source.scriptsIgnored.map(function
 // }));
 // console.log('sourceFiles', sourceFiles);
 
-export default function task(namespace = defaultNamespace) {
+export function task(namespace = defaultNamespace) {
   return gulp.src(sourceFiles)
     .pipe(cache(namespace))
     .pipe(debug({
@@ -68,7 +68,7 @@ export default function task(namespace = defaultNamespace) {
     // .pipe(sourcemaps.write('.', {
     //   sourceRoot: '/'
     // }))
-    // .pipe(sourcemaps.write('.'))
+    .pipe(sourcemaps.write('.'))
     .pipe(gulp.dest(config.directory.destination.scripts))
     .pipe(size({title: namespace}))
     .on('error', helper.reportError);

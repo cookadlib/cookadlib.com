@@ -10,7 +10,7 @@ const defaultNamespace = helper.getNamespace(__filename);
 
 let sourceFiles = config.files.source.scripts;
 
-export default function task(namespace = defaultNamespace) {
+export function task(namespace = defaultNamespace) {
   shell.task([
     './node_modules/.bin/jsdoc -c ./jsdoc.json'
   ]);

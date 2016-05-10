@@ -23,7 +23,7 @@ const defaultNamespace = helper.getNamespace(__filename);
 
 let sourceFiles = config.files.source.server;
 
-export default function task(namespace = defaultNamespace) {
+export function task(namespace = defaultNamespace) {
   return gulp.src(sourceFiles)
     .pipe(cache(namespace))
     .pipe(debug({
@@ -53,7 +53,7 @@ export default function task(namespace = defaultNamespace) {
     // .pipe(sourcemaps.write('.', {
     //   sourceRoot: '/'
     // }))
-    // .pipe(sourcemaps.write('.'))
+    .pipe(sourcemaps.write('.'))
     .pipe(gulp.dest(config.directory.destination.server))
     .pipe(size({title: namespace}))
     .on('error', helper.reportError);

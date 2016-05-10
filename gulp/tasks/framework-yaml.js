@@ -14,7 +14,7 @@ let sourceFiles = config.files.source.gulp;
 sourceFiles = sourceFiles.concat(config.files.source.configuration.json);
 sourceFiles = sourceFiles.concat(config.files.source.configuration.yaml);
 
-export default function task(namespace = defaultNamespace) {
+export function task(namespace = defaultNamespace) {
   return gulp.src(config.files.source.configuration.yaml)
     .pipe(cache(namespace))
     .pipe(debug({

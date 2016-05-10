@@ -8,7 +8,7 @@ import * as helper from '../helper';
 
 const defaultNamespace = helper.getNamespace(__filename);
 
-export default function task(namespace = defaultNamespace) {
+export function task(namespace = defaultNamespace) {
   return gulp.src(config.file.destination.indexBuild)
     .pipe(rename(config.file.destination.index))
     .pipe(gulp.dest(config.directory.destination.base));

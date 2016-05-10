@@ -2,7 +2,7 @@
 
 import gulp from 'gulp';
 
-export default function tasklist() {
+export function tasklist() {
   return gulp.series(
     gulp.parallel(
       'cacheClear',
@@ -12,10 +12,30 @@ export default function tasklist() {
     'assets',
     'build',
     gulp.parallel(
-      'document',
       'test',
       'pagespeed',
-      'watch'
+      'documentation',
+      'styleguide',
+      'screenshots'
+    )
+  );
+}
+
+export default function watch() {
+  return gulp.series(
+    gulp.parallel(
+      'cacheClear:watch',
+      'clean:watch'
+    ),
+    'framework:watch',
+    'assets:watch',
+    'build:watch',
+    gulp.parallel(
+      'test:watch',
+      'pagespeed:watch',
+      'documentation:watch',
+      'styleguide:watch',
+      'screenshots:watch'
     )
   );
 }

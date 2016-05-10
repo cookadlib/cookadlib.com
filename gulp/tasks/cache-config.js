@@ -29,7 +29,7 @@ sourceFiles = sourceFiles.concat(config.files.source.elements);
 sourceFiles = sourceFiles.concat(config.files.source.scripts);
 sourceFiles = sourceFiles.concat(config.files.source.styles);
 
-export default function task(namespace = defaultNamespace, callback) {
+export function task(namespace = defaultNamespace, callback) {
   gulp.src(config.files.source.serviceWorker, {
     // base: config.directory.source.base,
     dot: true

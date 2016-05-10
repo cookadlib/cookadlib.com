@@ -39,7 +39,7 @@ sourceFiles = sourceFiles.concat(config.files.source.stylesIgnored.map(function(
   return '!' + path;
 }));
 
-export default function task(namespace = defaultNamespace) {
+export function task(namespace = defaultNamespace) {
   // stream not returned, see:
   // https://github.com/dlmanning/gulp-sass/wiki/Common-Issues-and-Their-Fixes#gulp-watch-stops-working-on-an-error
   // run from base to include files in elements folder

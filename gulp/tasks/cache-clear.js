@@ -7,6 +7,6 @@ import * as helper from '../helper';
 
 const defaultNamespace = helper.getNamespace(__filename);
 
-export default function task(namespace = defaultNamespace) {
+export function task(namespace = defaultNamespace) {
   cache.caches = {};
 }

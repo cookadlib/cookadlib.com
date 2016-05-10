@@ -13,7 +13,7 @@ const defaultNamespace = helper.getNamespace(__filename);
 
 let sourceFiles = config.files.source.markup;
 
-export default function task(namespace = defaultNamespace) {
+export function task(namespace = defaultNamespace) {
   return new Pageres({
       delay: 2
     })

@@ -30,7 +30,7 @@ sourceFiles = sourceFiles.concat(config.files.source.markupIgnored.map(function(
 //   passthrough: false
 // });
 
-export default function task(namespace = defaultNamespace) {
+export function task(namespace = defaultNamespace) {
   return gulp.src(sourceFiles)
     .pipe(cache(namespace))
     .pipe(debug({

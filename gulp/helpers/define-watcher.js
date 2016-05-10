@@ -9,7 +9,7 @@ import remember from 'gulp-remember';
 import * as config from '../config';
 import {browserSync} from '../instances';
 
-function reload(triggerBrowserSyncReload = false, useHtmlInjector = true) {
+function reload(triggerBrowserSyncReload, useHtmlInjector) {
   if (triggerBrowserSyncReload === true) {
     if (config.browsersync.plugins.htmlinjector.enabled === true) {
       if (useHtmlInjector === true) {
@@ -25,36 +25,38 @@ function reload(triggerBrowserSyncReload = false, useHtmlInjector = true) {
   return false;
 }
 
-export default function watch(namespace, sourceFiles, task, triggerBrowserSyncReload, useHtmlInjector) {
+function change(task, triggerBrowserSyncReload, useHtmlInjector) {
+  return gulp.series(task, () => {
+    console.log('triggerBrowserSyncReload', triggerBrowserSyncReload);
+    reload(triggerBrowserSyncReload, useHtmlInjector);
+  });
+}
+
+export default function watch(namespace, sourceFiles, task, triggerBrowserSyncReload = false, useHtmlInjector = true) {
 
   if (config.browsersync.plugins.htmlinjector.enabled === true) {
     browserSync.use(htmlInjector, {
-      files: sourceFiles
+      files: sourceFiles // merge into previous definition?
     });
   }
 
-  let watcher = gulp.watch(sourceFiles, gulp.series(task, () => {
-    console.log('triggerBrowserSyncReload', triggerBrowserSyncReload);
-    reload(triggerBrowserSyncReload, useHtmlInjector);
-  }));
+  let watcher = gulp.watch(sourceFiles);
 
-  watcher.on('change', (event) => {
+  watcher.on('change', (path, stats) => {
+    console.log(path, stats);
+    console.info(`File ${chalk.green(path)} was changed`);
 
-    // if (triggerBrowserSyncReload === true) {
-    //   if (config.browsersync.plugins.htmlinjector.enabled === true) {
-    //     htmlInjector();
-    //   } else {
-    //     browserSync.reload();
-    //   }
-    // }
+    change(task, triggerBrowserSyncReload, useHtmlInjector);
+  });
 
-    console.info(`File ${chalk.green(event.path)} was ${chalk.blue(event.type)}`);
+  watcher.on('unlink', (path, stats) => {
+    console.log(path, stats);
+    console.info(`File ${chalk.red(path)} was deleted`);
 
-    if (event.type === 'deleted') {
-      delete cache.caches[namespace][event.path];
-      remember.forget(namespace, event.path);
-    }
+    change(task, triggerBrowserSyncReload, useHtmlInjector);
 
+    delete cache.caches[namespace][path];
+    remember.forget(namespace, path);
   });
 
 }

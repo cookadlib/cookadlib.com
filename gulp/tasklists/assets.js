@@ -2,16 +2,30 @@
 
 import gulp from 'gulp';
 
-export default function tasklist() {
+export function tasklist() {
   return gulp.series(
     gulp.parallel(
       'fonts',
       'icons',
-      // 'rename-spritesheet',
+      // 'renameSpritesheet',
       'images',
       'locales',
       'sounds',
       'videos'
+    )
+  );
+}
+
+export default function watch() {
+  return gulp.series(
+    gulp.parallel(
+      'fonts:watch',
+      'icons:watch',
+      // 'renameSpritesheet:watch',
+      'images:watch',
+      'locales:watch',
+      'sounds:watch',
+      'videos:watch'
     )
   );
 }

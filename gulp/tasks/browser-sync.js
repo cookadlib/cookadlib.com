@@ -37,7 +37,7 @@ function onBrowsersyncInit() {
   // );
 }
 
-export default function task(namespace = defaultNamespace) {
+export function task(namespace = defaultNamespace) {
   // browserSync.use(htmlInjector, {
   //   files: sourceFiles
   // });

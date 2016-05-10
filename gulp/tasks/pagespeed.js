@@ -12,7 +12,7 @@ sourceFiles = sourceFiles.concat(config.files.source.markupIgnored.map(function(
   return '!' + path;
 }));
 
-export default function task(callback) {
+export function task(callback) {
   return new pagespeed(config.domain, {
     strategy: 'mobile',
     // By default we use the PageSpeed Insights free (no API key) tier.

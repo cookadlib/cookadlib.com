@@ -11,7 +11,7 @@ const defaultNamespace = helper.getNamespace(__filename);
 
 let sourceFiles = config.directory.destination.base;
 
-export default function task(namespace = defaultNamespace) {
+export function task(namespace = defaultNamespace) {
   return gulp.src(sourceFiles, {
     dot: true,
     read: false

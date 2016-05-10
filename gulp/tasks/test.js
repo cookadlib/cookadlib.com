@@ -13,7 +13,7 @@ let sourceFiles = [
 ];
 sourceFiles = sourceFiles.concat(config.files.source.elements);
 
-export default function task(namespace = defaultNamespace) {
+export function task(namespace = defaultNamespace) {
   wct.gulp.init(gulp);
 }
 

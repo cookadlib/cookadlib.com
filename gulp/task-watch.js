@@ -5,7 +5,7 @@ export {watch as bowerUpdate} from './tasks/bower-update';
 export {watch as browserSync} from './tasks/browser-sync';
 export {watch as cacheClear} from './tasks/cache-clear';
 export {watch as cacheConfig} from './tasks/cache-config';
-// export {watch as check} from './tasks/check';
+export {watch as check} from './tasks/check';
 // export {watch as clean} from './tasks/clean';
 export {watch as copy} from './tasks/copy';
 export {watch as documentation} from './tasks/documentation';
