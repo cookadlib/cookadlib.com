@@ -7,7 +7,8 @@ export default tasklist;
 export function tasklist() {
   return gulp.series(
     gulp.parallel(
-      'bower',
+      'bowerInstall',
+      'bowerUpdate',
       'copy'
     ),
     gulp.parallel(
@@ -29,7 +30,8 @@ export function tasklist() {
 export function watch() {
   return gulp.series(
     gulp.parallel(
-      'bower:watch',
+      'bowerInstall:watch',
+      'bowerUpdate:watch',
       'copy:watch'
     ),
     gulp.parallel(
