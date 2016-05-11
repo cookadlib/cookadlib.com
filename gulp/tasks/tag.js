@@ -12,7 +12,7 @@ import * as helper from '../helper';
 
 export default task;
 
-const defaultNamespace = helper.getNamespace(__filename);
+const namespace = helper.getNamespace(__filename);
 
 function increment(importance) {
   // get all the files in which to bump version
@@ -38,7 +38,7 @@ function increment(importance) {
     .on('error', helper.reportError);
 }
 
-export function task(namespace = defaultNamespace) {
+export function task(done) {
   switch (argv.version) {
     case 'major':
       increment('major');

@@ -2,8 +2,6 @@
 
 import gulp from 'gulp';
 
-export default tasklist;
-
 export function tasklist() {
   return gulp.series(
     gulp.parallel(
@@ -12,7 +10,6 @@ export function tasklist() {
       'copy'
     ),
     gulp.parallel(
-      'locales',
       'server',
       'scripts',
       'styles',
@@ -35,7 +32,6 @@ export function watch() {
       'copy:watch'
     ),
     gulp.parallel(
-      'locales:watch',
       'server:watch',
       'scripts:watch',
       'styles:watch',

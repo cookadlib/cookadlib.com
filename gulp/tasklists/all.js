@@ -2,8 +2,6 @@
 
 import gulp from 'gulp';
 
-export default tasklist;
-
 export function tasklist() {
   return gulp.series(
     gulp.parallel(
@@ -12,7 +10,7 @@ export function tasklist() {
     ),
     'framework',
     'assets',
-    'build',
+    'code',
     gulp.parallel(
       'test',
       'pagespeed',
@@ -31,7 +29,7 @@ export function watch() {
     ),
     'framework:watch',
     'assets:watch',
-    'build:watch',
+    'code:watch',
     gulp.parallel(
       'test:watch',
       'pagespeed:watch',

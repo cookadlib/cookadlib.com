@@ -42,9 +42,33 @@ export default function watch(namespace, sourceFiles, task, triggerBrowserSyncRe
 
   let watcher = gulp.watch(sourceFiles);
 
+  watcher.on('added', (event) => {
+    console.log(event);
+    console.info(`File ${chalk.green(event.path)} was added`);
+
+    change(task, triggerBrowserSyncReload, useHtmlInjector);
+  });
+
+  watcher.on('changed', (event) => {
+    console.log(event);
+    console.info(`File ${chalk.blue(event.path)} was changed`);
+
+    change(task, triggerBrowserSyncReload, useHtmlInjector);
+  });
+
+  watcher.on('deleted', (event) => {
+    console.log(event);
+    console.info(`File ${chalk.red(event.path)} was deleted`);
+
+    change(task, triggerBrowserSyncReload, useHtmlInjector);
+
+    delete cache.caches[namespace][event.path];
+    remember.forget(namespace, event.path);
+  });
+
   watcher.on('change', (path, stats) => {
     console.log(path, stats);
-    console.info(`File ${chalk.green(path)} was changed`);
+    console.info(`File ${chalk.blue(path)} was changed`);
 
     change(task, triggerBrowserSyncReload, useHtmlInjector);
   });

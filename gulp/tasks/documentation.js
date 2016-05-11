@@ -6,18 +6,21 @@ import shell from 'gulp-shell';
 import * as config from '../config';
 import * as helper from '../helper';
 
-export default task;
-
-const defaultNamespace = helper.getNamespace(__filename);
+const namespace = helper.getNamespace(__filename);
 
 let sourceFiles = config.files.source.scripts;
 
-export function task(namespace = defaultNamespace) {
-  shell.task([
+export function task(done) {
+  return shell.task([
     './node_modules/.bin/jsdoc -c ./jsdoc.json'
   ]);
 }
 
-export function watch(namespace = defaultNamespace) {
+export function watch(done) {
   return helper.defineWatcher(namespace, sourceFiles, task);
 }
+
+task.displayName = namespace;
+task.description = 'Generate documentation for JavaScript files using JSDoc';
+
+export default task;

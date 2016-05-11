@@ -12,9 +12,7 @@ import remember from 'gulp-remember';
 import * as config from '../config';
 import * as helper from '../helper';
 
-export default task;
-
-const defaultNamespace = helper.getNamespace(__filename);
+const namespace = helper.getNamespace(__filename);
 
 let dir = config.directory.destination.base;
 
@@ -31,23 +29,12 @@ sourceFiles = sourceFiles.concat(config.files.source.elements);
 sourceFiles = sourceFiles.concat(config.files.source.scripts);
 sourceFiles = sourceFiles.concat(config.files.source.styles);
 
-export function task(namespace = defaultNamespace, callback) {
-  gulp.src(config.files.source.serviceWorker, {
-    // base: config.directory.source.base,
-    dot: true
-  })
-  .pipe(cache(namespace))
-  .pipe(debug({
-    title: namespace
-  }))
-  .pipe(gulp.dest(config.directory.destination.base))
-  .on('error', helper.reportError);
-
+export function task(done) {
   glob(sourceFiles, {
       cwd: dir
     }, function(error, files) {
     if (error) {
-      callback(error);
+      done(error);
     } else {
       settings.precache = files;
 
@@ -56,11 +43,16 @@ export function task(namespace = defaultNamespace, callback) {
       settings.precacheFingerprint = md5.digest('hex');
 
       let configPath = path.join(dir, 'cache-config.json');
-      fs.writeFile(configPath, JSON.stringify(settings), callback);
+      fs.writeFile(configPath, JSON.stringify(settings), done);
     }
   });
 }
 
-export function watch(namespace = defaultNamespace) {
+export function watch(done) {
   return helper.defineWatcher(namespace, sourceFiles, task, true);
 }
+
+task.displayName = namespace;
+task.description = 'Generate cache-config.json file for service worker cache';
+
+export default task;

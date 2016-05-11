@@ -5,10 +5,14 @@ import gulp from 'gulp';
 
 import * as helper from '../helper';
 
-export default task;
+const namespace = helper.getNamespace(__filename);
 
-const defaultNamespace = helper.getNamespace(__filename);
-
-export function task(namespace = defaultNamespace) {
+export function task(done) {
   cache.caches = {};
+  done();
 }
+
+task.displayName = namespace;
+task.description = 'Clear gulp cache';
+
+export default task;

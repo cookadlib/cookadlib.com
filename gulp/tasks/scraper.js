@@ -10,13 +10,13 @@ import * as helper from '../helper';
 
 export default task;
 
-const defaultNamespace = helper.getNamespace(__filename);
+const namespace = helper.getNamespace(__filename);
 
 // const x = xray();
 
 let sourceFiles = config.files.source.markup;
 
-export function task(namespace = defaultNamespace) {
+export function task(done) {
   return new xray(`http://localhost:${config.browsersync.port}`, 'title')
   .stream()
   .pipe(debug({
@@ -25,6 +25,6 @@ export function task(namespace = defaultNamespace) {
   .on('error', helper.reportError);
 }
 
-export function watch(namespace = defaultNamespace) {
+export function watch(done) {
   return helper.defineWatcher(namespace, sourceFiles, task, true);
 }

@@ -5,7 +5,7 @@ export {task as bowerUpdate} from './tasks/bower-update';
 export {task as browserSync} from './tasks/browser-sync';
 export {task as cacheClear} from './tasks/cache-clear';
 export {task as cacheConfig} from './tasks/cache-config';
-// export {task as check} from './tasks/check';
+export {task as check} from './tasks/check';
 export {task as clean} from './tasks/clean';
 export {task as copy} from './tasks/copy';
 export {task as documentation} from './tasks/documentation';

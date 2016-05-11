@@ -1,24 +1,19 @@
 'use strict';
 
-import cache from 'gulp-cached';
-import gulp from 'gulp';
 import checkPages from 'check-pages';
-import remember from 'gulp-remember';
+import gulp from 'gulp';
 
 import * as config from '../config';
-import {browserSync} from '../instances';
 import * as helper from '../helper';
 
-export default task;
+const namespace = helper.getNamespace(__filename);
 
-const defaultNamespace = helper.getNamespace(__filename);
+let pageUrls = config.files.source.markup.map(function(path) {
+  return `http://localhost:${config.port}/${path}`;
+});
 
 let options = {
-  pageUrls: [
-    `http://localhost:${config.port}/`,
-    `http://localhost:${config.port}/blog`,
-    `http://localhost:${config.port}/about.html`
-  ],
+  pageUrls,
   checkLinks: true,
   onlySameDomain: true,
   queryHashes: true,
@@ -41,10 +36,15 @@ sourceFiles = sourceFiles.concat(config.files.source.markupIgnored.map(function(
   return '!' + path;
 }));
 
-export function task(namespace = defaultNamespace, callback) {
-  checkPages(console, options, callback);
+export function task(done) {
+  return gulp.serial('browserSync', () => checkPages(console, options, done));
 }
 
-export function watch(namespace = defaultNamespace) {
+export function watch(done) {
   return helper.defineWatcher(namespace, sourceFiles, task, true);
 }
+
+task.displayName = namespace;
+task.description = 'Run check-pages to validate page accessibility, validation, link validity, response time, caching performance and compression performance';
+
+export default task;

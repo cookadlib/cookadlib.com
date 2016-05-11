@@ -6,12 +6,15 @@ import rename from 'gulp-rename';
 import * as config from '../config';
 import * as helper from '../helper';
 
-export default task;
+const namespace = helper.getNamespace(__filename);
 
-const defaultNamespace = helper.getNamespace(__filename);
-
-export function task(namespace = defaultNamespace) {
+export function task(done) {
   return gulp.src(config.file.destination.indexBuild)
     .pipe(rename(config.file.destination.index))
     .pipe(gulp.dest(config.directory.destination.base));
 }
+
+task.displayName = namespace;
+task.description = 'Rename temorary index.html build file';
+
+export default task;

@@ -5,9 +5,7 @@ import {output as pagespeed} from 'psi';
 import * as config from '../config';
 import * as helper from '../helper';
 
-export default task;
-
-const defaultNamespace = helper.getNamespace(__filename);
+const namespace = helper.getNamespace(__filename);
 
 let sourceFiles = config.files.source.markup;
 sourceFiles = sourceFiles.concat(config.files.source.markupIgnored.map(function(path) {
@@ -27,6 +25,11 @@ export function task(callback) {
   });
 }
 
-export function watch(namespace = defaultNamespace) {
+export function watch(done) {
   return helper.defineWatcher(namespace, sourceFiles, task, true);
 }
+
+task.displayName = namespace;
+task.description = 'Run performance test using Google PageSpeed Insights';
+
+export default task;

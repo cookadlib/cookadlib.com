@@ -12,14 +12,14 @@ import * as helper from '../helper';
 
 export default task;
 
-const defaultNamespace = helper.getNamespace(__filename);
+const namespace = helper.getNamespace(__filename);
 
 let sourceFiles = [
   `${config.directory.source.elements}/elements.html`
 ];
 sourceFiles = sourceFiles.concat(config.files.source.elements);
 
-export function task(namespace = defaultNamespace) {
+export function task(done) {
   return gulp.src(`${config.directory.source.elements}/elements.html`)
     .pipe(cache(namespace))
     .pipe(debug({
@@ -36,6 +36,6 @@ export function task(namespace = defaultNamespace) {
     .on('error', helper.reportError);
 }
 
-export function watch(namespace = defaultNamespace) {
+export function watch(done) {
   return helper.defineWatcher(namespace, sourceFiles, task, true);
 }

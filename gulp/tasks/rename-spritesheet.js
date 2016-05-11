@@ -10,9 +10,9 @@ import * as helper from '../helper';
 
 export default task;
 
-const defaultNamespace = helper.getNamespace(__filename);
+const namespace = helper.getNamespace(__filename);
 
-export function task(namespace = defaultNamespace) {
+export function task(done) {
   return gulp.src(config.file.source.spritesheetTemporary)
     .pipe(debug({
       title: namespace

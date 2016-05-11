@@ -11,11 +11,11 @@ import * as helper from '../helper';
 
 export default task;
 
-const defaultNamespace = helper.getNamespace(__filename);
+const namespace = helper.getNamespace(__filename);
 
 let sourceFiles = config.files.source.markup;
 
-export function task(namespace = defaultNamespace) {
+export function task(done) {
   return new Pageres({
       delay: 2
     })
@@ -27,6 +27,6 @@ export function task(namespace = defaultNamespace) {
     .run();
 }
 
-export function watch(namespace = defaultNamespace) {
+export function watch(done) {
   return helper.defineWatcher(namespace, sourceFiles, task, true);
 }
