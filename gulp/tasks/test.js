@@ -6,8 +6,6 @@ import wct from 'web-component-tester';
 import * as config from '../config';
 import * as helper from '../helper';
 
-export default task;
-
 const namespace = helper.getNamespace(__filename);
 
 let sourceFiles = [
@@ -25,3 +23,8 @@ export function watch(done) {
 
 // Load tasks for web-component-tester
 // Adds tasks for `gulp test:local` and `gulp test:remote`
+
+task.displayName = namespace;
+task.description = 'Test web components using Web Components Tester';
+
+export default task;

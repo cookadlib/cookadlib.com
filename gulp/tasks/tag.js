@@ -65,3 +65,8 @@ export function task(done) {
     }
   });
 }
+
+task.displayName = namespace;
+task.description = 'Bump package version using git tag';
+
+export default task;

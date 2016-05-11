@@ -17,8 +17,6 @@ export function tasklist() {
       'templates'
     ),
     'vulcanize',
-    'renameIndex',
-    'removeOldBuildIndex',
     // Uncomment 'cache-config' after 'rename-index' if you are going to use service workers.
     'cacheConfig'
   );
@@ -39,8 +37,6 @@ export function watch() {
       'templates:watch'
     ),
     'vulcanize:watch',
-    'renameIndex:watch',
-    'removeOldBuildIndex:watch',
     // Uncomment 'cacheConfig' after 'renameIndex' if you are going to use service workers.
     'cacheConfig:watch'
   );

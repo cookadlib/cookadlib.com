@@ -8,23 +8,28 @@ import xray from 'x-ray';
 import * as config from '../config';
 import * as helper from '../helper';
 
-export default task;
-
 const namespace = helper.getNamespace(__filename);
 
-// const x = xray();
+const x = xray();
 
 let sourceFiles = config.files.source.markup;
 
 export function task(done) {
-  return new xray(`http://localhost:${config.browsersync.port}`, 'title')
-  .stream()
-  .pipe(debug({
-    title: namespace
-  }))
-  .on('error', helper.reportError);
+  return gulp.serial('browserSync', () => {
+    x(`http://localhost:${config.browsersync.port}`, 'title')
+    .stream()
+    .pipe(debug({
+      title: namespace
+    }))
+    .on('error', helper.reportError);
+  })
 }
 
 export function watch(done) {
-  return helper.defineWatcher(namespace, sourceFiles, task, true);
+  return helper.defineWatcher(namespace, sourceFiles, task, true)
 }
+
+task.displayName = namespace;
+task.description = 'Scrape site using x-ray and output to console';
+
+export default task;

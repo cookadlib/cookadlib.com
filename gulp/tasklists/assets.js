@@ -6,8 +6,8 @@ export function tasklist() {
   return gulp.series(
     gulp.parallel(
       'fonts',
-      'icons',
-      // 'renameSpritesheet',
+      'generateSpritesheet',
+      'renameSpritesheet',
       'images',
       'locales',
       'sounds',
@@ -20,8 +20,8 @@ export function watch() {
   return gulp.series(
     gulp.parallel(
       'fonts:watch',
-      'icons:watch',
-      // 'renameSpritesheet:watch',
+      'generateSpritesheet:watch',
+      'renameSpritesheet:watch',
       'images:watch',
       'locales:watch',
       'sounds:watch',

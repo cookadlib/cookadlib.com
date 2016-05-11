@@ -10,8 +10,6 @@ import size from 'gulp-size';
 import * as config from '../config';
 import * as helper from '../helper';
 
-export default task;
-
 const namespace = helper.getNamespace(__filename);
 
 let sourceFiles = config.files.source.styles;
@@ -35,3 +33,8 @@ export function task(done) {
 export function watch(done) {
   return helper.defineWatcher(namespace, sourceFiles, task);
 }
+
+task.displayName = namespace;
+task.description = 'Generate styleguide using DSS';
+
+export default task;

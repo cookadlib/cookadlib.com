@@ -10,8 +10,6 @@ import vulcanize from 'gulp-vulcanize';
 import * as config from '../config';
 import * as helper from '../helper';
 
-export default task;
-
 const namespace = helper.getNamespace(__filename);
 
 let sourceFiles = [
@@ -39,3 +37,8 @@ export function task(done) {
 export function watch(done) {
   return helper.defineWatcher(namespace, sourceFiles, task, true);
 }
+
+task.displayName = namespace;
+task.description = 'Vulcanize web components';
+
+export default task;

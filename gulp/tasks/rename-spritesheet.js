@@ -8,8 +8,6 @@ import rename from 'gulp-rename';
 import * as config from '../config';
 import * as helper from '../helper';
 
-export default task;
-
 const namespace = helper.getNamespace(__filename);
 
 export function task(done) {
@@ -23,3 +21,8 @@ export function task(done) {
     // .pipe(gulp.dest(config.file.source.spritesheet))
     .on('error', helper.reportError);
 }
+
+task.displayName = namespace;
+task.description = 'Move spritesheet from temporary path to destination path';
+
+export default task;

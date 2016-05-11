@@ -7,10 +7,7 @@ import remember from 'gulp-remember';
 import size from 'gulp-size';
 
 import * as config from '../config';
-import {browserSync} from '../instances';
 import * as helper from '../helper';
-
-export default task;
 
 const namespace = helper.getNamespace(__filename);
 
@@ -31,3 +28,8 @@ export function task(done) {
 export function watch(done) {
   return helper.defineWatcher(namespace, sourceFiles, task, true);
 }
+
+task.displayName = namespace;
+task.description = 'Process markup templates';
+
+export default task;

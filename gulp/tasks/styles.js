@@ -31,8 +31,6 @@ import * as config from '../config';
 import {browserSync} from '../instances';
 import * as helper from '../helper';
 
-export default task;
-
 const namespace = helper.getNamespace(__filename);
 
 let sourceFiles = config.files.source.styles;
@@ -120,3 +118,8 @@ export function task(done) {
 export function watch(done) {
   return helper.defineWatcher(namespace, sourceFiles, task, true, false);
 }
+
+task.displayName = namespace;
+task.description = 'Process and lint stylesheet files';
+
+export default task;
