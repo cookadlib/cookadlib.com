@@ -40,12 +40,15 @@
   "bugs": {
     "url": "https://github.com/cookadlib/www.cookadlib.com/issues"
   },
+  "directories": {
+    "test": "test"
+  },
   "dependencies": {
     "appengine": "git://github.com/GoogleCloudPlatform/appengine-nodejs.git",
     "bower": "^1.7.7",
     "express": "^4.13.4",
     "gcloud": "^0.32.0",
-    "googleapis": "^5.2.1",
+    "googleapis": "^6.1.0",
     "http2": "^3.3.4",
     "ip": "^1.1.3",
     "pageres": "^4.1.1",
@@ -58,8 +61,10 @@
     "babel-cli": "^6.8.0",
     "babel-core": "^6.8.0",
     "babel-eslint": "^6.0.4",
+    "babel-polyfill": "^6.8.0",
     "babel-preset-es2015": "^6.6.0",
-    "browser-sync": "^2.12.7",
+    "babel-preset-stage-0": "^6.3.13",
+    "browser-sync": "^2.12.8",
     "bs-html-injector": "^3.0.1",
     "camelcase": "^3.0.0",
     "chalk": "^1.1.3",
@@ -86,14 +91,16 @@
     "gulp-dss": "^0.1.1",
     "gulp-eslint": "^2.0.0",
     "gulp-filter": "^4.0.0",
+    "gulp-flatmap": "^1.0.0",
     "gulp-flatten": "0.2.0",
     "gulp-fluent-ffmpeg": "^1.0.2",
+    "gulp-fontgen": "^0.1.6",
     "gulp-git": "^1.7.1",
     "gulp-html-extract": "^0.1.0",
     "gulp-htmlhint": "^0.3.1",
     "gulp-if": "^2.0.1",
     "gulp-ignore": "^2.0.1",
-    "gulp-imagemin": "^3.0.0",
+    "gulp-imagemin": "^3.0.1",
     "gulp-jscs": "^3.0.2",
     "gulp-jshint": "^2.0.1",
     "gulp-jsonlint": "^1.1.2",
@@ -107,6 +114,7 @@
     "gulp-rename": "^1.2.2",
     "gulp-replace": "^0.5.4",
     "gulp-rsync": "0.0.6",
+    "gulp-run": "^1.6.12",
     "gulp-sass": "^2.3.1",
     "gulp-sass-inheritance": "^0.5.1",
     "gulp-sass-lint": "^1.1.1",
@@ -137,6 +145,7 @@
     "universal-analytics": "^0.3.11",
     "vorlon": "^0.2.2",
     "web-component-tester": "^4.2.2",
+    "x-ray-phantom": "^1.0.1",
     "yargs": "^4.7.0"
   },
   "scripts": {
@@ -168,11 +177,13 @@
         "port": 8002
       }
     },
+    "googleapis": {
+      "keys": {
+        "server": "AIzaSyAdkylGCapcyPsKn9jiq8yn3Pc_I7Qp3ew"
+      }
+    },
     "http": {
       "port": 8080
-    },
-    "pagespeed": {
-      "key": "no-key-setup-yet"
     },
     "directory": {
       "theme": ""
