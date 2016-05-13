@@ -15,7 +15,7 @@
   "source": {
     "include": [
       "app",
-      "gulp_tasks"
+      "gulp"
     ],
     "exclude": [
       "app/bower_components"
