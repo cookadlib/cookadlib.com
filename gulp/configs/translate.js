@@ -2,8 +2,8 @@
 
 import packageJson from '../../package.json';
 
-export let pagespeed = {
+export let translate = {
   key: packageJson.config.googleapis.keys.server
 };
 
-export default pagespeed;
+export default translate;

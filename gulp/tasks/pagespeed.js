@@ -13,11 +13,9 @@ sourceFiles = sourceFiles.concat(config.files.source.markupIgnored.map(function(
 }));
 
 export function task(callback) {
-  return new pagespeed(config.domain, {
+  return new pagespeed(config.server.host, {
     strategy: 'mobile',
-    // By default we use the PageSpeed Insights free (no API key) tier.
-    // Use a Google Developer API key if you have one: http://goo.gl/RkN0vE
-    key: config.instance.pagespeed.key
+    key: config.pagespeed.key
   }, callback)
   .then(data => {
     console.log('Speed score: ' + data.ruleGroups.SPEED.score);

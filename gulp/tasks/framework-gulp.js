@@ -42,6 +42,6 @@ export function watch(done) {
 }
 
 task.displayName = namespace;
-task.description = 'Lint gulp configuration files';
+task.description = 'Lint JavaScript configuration files for gulp';
 
 export default task;

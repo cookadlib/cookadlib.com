@@ -13,14 +13,14 @@ let sourceFiles = config.directory.destination.base;
 
 export function task(done) {
   return gulp.src(sourceFiles, {
-    dot: true,
-    read: false
-  })
-  .pipe(debug({
-    title: namespace
-  }))
-  .pipe(clean())
-  .on('error', helper.reportError);
+      dot: true,
+      read: false
+    })
+    .pipe(debug({
+      title: namespace
+    }))
+    .pipe(clean())
+    .on('error', helper.reportError);
 }
 
 task.displayName = namespace;

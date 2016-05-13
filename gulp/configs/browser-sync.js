@@ -11,8 +11,6 @@ import directory from './directory';
 
 export let browsersync = {};
 
-export default browsersync;
-
 // browsersync.files = [
 //   config.directory.destination.base + '/**',
 //   '!' + config.directory.destination.base + '/**/*.{map,scss}'
@@ -93,3 +91,5 @@ if(packageJson.config.browsersync.proxy) {
     // }
   };
 }
+
+export default browsersync;

@@ -3,6 +3,7 @@
 import cache from 'gulp-cached';
 import debug from 'gulp-debug';
 import gulp from 'gulp';
+import polylint from 'gulp-polylint';
 import remember from 'gulp-remember';
 import size from 'gulp-size';
 import vulcanize from 'gulp-vulcanize';
@@ -23,6 +24,8 @@ export function task(done) {
     .pipe(debug({
       title: namespace
     }))
+    .pipe(polylint())
+    .pipe(polylint.reporter(polylint.reporter.stylishlike))
     .pipe(vulcanize({
       stripComments: true,
       inlineCss: true,

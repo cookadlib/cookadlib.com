@@ -8,7 +8,7 @@ import gulp from 'gulp';
 // import htmltidy from 'gulp-htmltidy';
 // import minifyHTML from 'gulp-minify-html';
 import polylint from 'gulp-polylint';
-import remember from 'gulp-remember';
+// import remember from 'gulp-remember';
 import size from 'gulp-size';
 
 import * as config from '../config';
@@ -47,8 +47,8 @@ export function task(done) {
     // .pipe(minifyHTML())
     .pipe(polylint())
     .pipe(polylint.reporter(polylint.reporter.stylishlike))
+    // .pipe(remember(namespace))
     .pipe(gulp.dest(config.directory.destination.markup))
-    .pipe(remember(namespace))
     .pipe(size({title: namespace}))
     .on('error', helper.reportError);
 }

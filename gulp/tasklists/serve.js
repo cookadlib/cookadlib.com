@@ -2,8 +2,18 @@
 
 import gulp from 'gulp';
 
-export function tasklist() {
-  return gulp.series(
-    'browserSync'
-  );
-}
+import * as helper from '../helper';
+
+import * as tasks from '../task';
+import * as tasksWatch from '../task-watch';
+
+const namespace = helper.getNamespace(__filename);
+
+export const tasklist = gulp.parallel(
+  tasks.browserSync
+);
+
+tasklist.displayName = namespace;
+tasklist.description = 'Start Browsersync server';
+
+export default tasklist;

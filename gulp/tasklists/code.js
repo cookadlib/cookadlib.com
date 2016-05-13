@@ -2,42 +2,50 @@
 
 import gulp from 'gulp';
 
-export function tasklist() {
-  return gulp.series(
-    gulp.parallel(
-      'bowerInstall',
-      'bowerUpdate',
-      'copy'
-    ),
-    gulp.parallel(
-      'server',
-      'scripts',
-      'styles',
-      'markup',
-      'templates'
-    ),
-    'vulcanize',
-    // Uncomment 'cache-config' after 'rename-index' if you are going to use service workers.
-    'cacheConfig'
-  );
-}
+import * as helper from '../helper';
 
-export function watch() {
-  return gulp.series(
-    gulp.parallel(
-      'bowerInstall:watch',
-      'bowerUpdate:watch',
-      'copy:watch'
-    ),
-    gulp.parallel(
-      'server:watch',
-      'scripts:watch',
-      'styles:watch',
-      'markup:watch',
-      'templates:watch'
-    ),
-    'vulcanize:watch',
-    // Uncomment 'cacheConfig' after 'renameIndex' if you are going to use service workers.
-    'cacheConfig:watch'
-  );
-}
+import * as tasks from '../task';
+import * as tasksWatch from '../task-watch';
+
+const namespace = helper.getNamespace(__filename);
+
+export const tasklist = gulp.series(
+  tasks.bowerInstall,
+  gulp.parallel(
+    tasks.bowerUpdate,
+    tasks.copy
+  ),
+  gulp.parallel(
+    tasks.server,
+    tasks.scripts,
+    tasks.styles,
+    tasks.markup,
+    tasks.templates
+  ),
+  tasks.vulcanize,
+  // Uncomment 'cache-config' after 'rename-index' if you are going to use service workers.
+  tasks.cacheConfig
+);
+
+export const watch = gulp.series(
+  tasksWatch.bowerInstall,
+  gulp.parallel(
+    tasksWatch.bowerUpdate,
+    tasksWatch.copy
+  ),
+  gulp.parallel(
+    tasksWatch.server,
+    tasksWatch.scripts,
+    tasksWatch.styles,
+    tasksWatch.markup,
+    tasksWatch.templates
+  ),
+  tasksWatch.vulcanize,
+  // Uncomment 'cacheConfig' after 'renameIndex' if you are going to use service workers.
+  tasksWatch.cacheConfig
+);
+
+tasklist.displayName = namespace;
+tasklist.description = 'Process code';
+
+export default tasklist;

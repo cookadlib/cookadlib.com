@@ -2,40 +2,50 @@
 
 import gulp from 'gulp';
 
-export function tasklist() {
-  return gulp.series(
-    gulp.parallel(
-      'cacheClear',
-      'clean'
-    ),
-    'framework',
-    'assets',
-    'code',
-    gulp.parallel(
-      'test',
-      'pagespeed',
-      'documentation',
-      'styleguide',
-      'screenshots'
-    )
-  );
-}
+import * as helper from '../helper';
 
-export function watch() {
-  return gulp.series(
-    gulp.parallel(
-      'cacheClear:watch',
-      'clean:watch'
-    ),
-    'framework:watch',
-    'assets:watch',
-    'code:watch',
-    gulp.parallel(
-      'test:watch',
-      'pagespeed:watch',
-      'documentation:watch',
-      'styleguide:watch',
-      'screenshots:watch'
-    )
-  );
-}
+import * as tasks from '../task';
+import * as tasksWatch from '../task-watch';
+import * as tasklists from '../tasklist';
+import * as tasklistsWatch from '../tasklist-watch';
+
+const namespace = helper.getNamespace(__filename);
+
+export const tasklist = gulp.series(
+  gulp.parallel(
+    tasks.cacheClear,
+    tasks.clean
+  ),
+  tasklists.framework,
+  tasklists.assets,
+  tasklists.code,
+  tasks.browserSync,
+  gulp.parallel(
+    tasks.test,
+    tasks.documentation,
+    tasks.styleguide,
+    tasks.screenshots,
+    tasks.scraper,
+    tasks.pagespeed
+  )
+);
+
+export const watch = gulp.series(
+  tasklistsWatch.framework,
+  tasklistsWatch.assets,
+  tasklistsWatch.code,
+  tasks.browserSync,
+  gulp.parallel(
+    tasksWatch.test,
+    tasksWatch.documentation,
+    tasksWatch.styleguide,
+    tasksWatch.screenshots,
+    tasksWatch.scraper,
+    tasksWatch.pagespeed
+  )
+);
+
+tasklist.displayName = namespace;
+tasklist.description = 'Run all tasks';
+
+export default tasklist;

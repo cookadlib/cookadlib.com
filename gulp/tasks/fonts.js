@@ -1,6 +1,7 @@
 'use strict';
 
 import debug from 'gulp-debug';
+// import fontgen from 'gulp-fontgen';
 import gulp from 'gulp';
 
 import * as config from '../config';
@@ -12,11 +13,14 @@ let sourceFiles = config.files.source.fonts;
 
 export function task(done) {
   return gulp.src(sourceFiles)
-  .pipe(debug({
-    title: namespace
-  }))
-  .pipe(gulp.dest(config.directory.destination.fonts))
-  .on('error', helper.reportError);
+    .pipe(debug({
+      title: namespace
+    }))
+    // .pipe(fontgen({
+    //   dest: config.directory.destination.fonts
+    // }))
+    .pipe(gulp.dest(config.directory.destination.fonts))
+    .on('error', helper.reportError);
 }
 
 export function watch(done) {

@@ -17,7 +17,7 @@ export function task(done) {
   return new Pageres({
       delay: 2
     })
-    .src(`http://localhost:${config.browsersync.port}`, config.screenshots.sizes, {
+    .src(config.server.host, config.screenshots.sizes, {
       crop: true
     })
     // .src('todomvc.com', ['1280x1024', '1920x1080'])

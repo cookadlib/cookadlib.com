@@ -17,7 +17,7 @@ const namespace = helper.getNamespace(__filename);
 let dir = config.directory.destination.base;
 
 let settings = {
-  cacheId: config.name || path.basename(__dirname),
+  cacheId: config.filename || path.basename(__dirname),
   disabled: false
 };
 

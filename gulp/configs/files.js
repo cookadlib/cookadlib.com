@@ -4,8 +4,6 @@ import directory from './directory';
 
 export let files = {};
 
-export default files;
-
 files.source = {};
 files.destination = {};
 
@@ -56,7 +54,9 @@ files.source.markup = [
 files.source.markupIgnored = [
   directory.source.bowerComponents + '/**/*.html',
   directory.source.nodeModules + '/**/*.html',
-  directory.source.elements + '/**/*.html'
+  directory.source.elements + '/**/*.html',
+  directory.source.styleguide + '/**/*.html',
+  directory.source.tests + '/**/*.html'
 ];
 files.source.markupHtmlhintFilter = [
   directory.source.styleguide + '/templates/module.html',
@@ -123,9 +123,9 @@ files.source.templates = [
 files.source.tests = [
   directory.source.tests + '/**/*.html'
 ];
-files.source.translations = [
-  directory.source.translations + '/**/*.json'
-];
+// files.source.translations = [
+//   directory.source.translations + '/**/*.json'
+// ];
 files.source.videos = [
   directory.source.videos + '/**/*.{avi,ogg,mov,mp4,mpg,mpeg}'
 ];
@@ -133,3 +133,5 @@ files.source.videos = [
 files.destination.all = [
   directory.destination.base + '/**/*'
 ];
+
+export default files;

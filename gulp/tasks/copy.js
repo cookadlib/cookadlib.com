@@ -17,22 +17,22 @@ sourceFiles = sourceFiles.concat(config.files.source.locales);
 // sourceFiles = sourceFiles.concat(config.files.source.scriptsIgnored);
 sourceFiles = sourceFiles.concat(config.files.source.serviceWorker);
 // sourceFiles = sourceFiles.concat(config.files.source.templates);
-sourceFiles = sourceFiles.concat(config.files.source.translations);
+// sourceFiles = sourceFiles.concat(config.files.source.translations);
 // sourceFiles = sourceFiles.concat(config.files.source.miscellaneousIgnored.map(function(file) {
 //   return '!' + file;
 // }));
 
 export function task(done) {
   return gulp.src(sourceFiles, {
-    // base: config.directory.source.base,
-    dot: true
-  })
-  .pipe(cache(namespace))
-  .pipe(debug({
-    title: namespace
-  }))
-  .pipe(gulp.dest(config.directory.destination.base))
-  .on('error', helper.reportError);
+      // base: config.directory.source.base,
+      dot: true
+    })
+    .pipe(cache(namespace))
+    .pipe(debug({
+      title: namespace
+    }))
+    .pipe(gulp.dest(config.directory.destination.base))
+    .on('error', helper.reportError);
 }
 
 export function watch(done) {

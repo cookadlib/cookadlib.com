@@ -22,6 +22,10 @@ export function task(done) {
     .on('error', helper.reportError);
 }
 
+export function watch(done) {
+  return helper.defineWatcher(namespace, sourceFiles, task, true);
+}
+
 task.displayName = namespace;
 task.description = 'Move spritesheet from temporary path to destination path';
 
