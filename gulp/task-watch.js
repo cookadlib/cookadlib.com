@@ -22,8 +22,6 @@ export {watch as screenshots} from './tasks/screenshots';
 export {watch as scripts} from './tasks/scripts';
 export {watch as server} from './tasks/server';
 export {watch as sounds} from './tasks/sounds';
-export {watch as spritesheetGenerate} from './tasks/spritesheet-generate';
-export {watch as spritesheetRename} from './tasks/spritesheet-rename';
 export {watch as styleguide} from './tasks/styleguide';
 export {watch as styles} from './tasks/styles';
 export {watch as symlinks} from './tasks/symlinks';

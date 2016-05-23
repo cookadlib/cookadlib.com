@@ -11,12 +11,12 @@ import * as helper from '../helper';
 
 const namespace = helper.getNamespace(__filename);
 
-let sourceFiles = config.files.source.gulp;
-sourceFiles = sourceFiles.concat(config.files.source.configuration.json);
-sourceFiles = sourceFiles.concat(config.files.source.configuration.yaml);
+let sourceFiles = config.files.source.configuration.json;
 
 export function task(done) {
-  return gulp.src(config.files.source.configuration.json)
+  return gulp.src(sourceFiles, {
+      since: gulp.lastRun(namespace)
+    })
     .pipe(cache(namespace))
     .pipe(debug({
       title: `${namespace} (configuration:json)`

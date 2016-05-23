@@ -15,7 +15,9 @@ const namespace = helper.getNamespace(__filename);
 let sourceFiles = config.files.source.styles;
 
 export function task(done) {
-  return gulp.src(sourceFiles)
+  return gulp.src(sourceFiles, {
+      since: gulp.lastRun(namespace)
+    })
     .pipe(cache(namespace))
     .pipe(debug({
       title: namespace

@@ -19,7 +19,9 @@ let sourceFiles = [
 sourceFiles = sourceFiles.concat(config.files.source.elements);
 
 export function task(done) {
-  return gulp.src(`${config.directory.source.elements}/elements.html`)
+  return gulp.src(`${config.directory.source.elements}/elements.html`, {
+      since: gulp.lastRun(namespace)
+    })
     .pipe(cache(namespace))
     .pipe(debug({
       title: namespace

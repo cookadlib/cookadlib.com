@@ -44,7 +44,6 @@ if (process.env.ENV === 'development') {
     rule: {
       match: '<span id="browser-sync-binding"></span>',
       fn: function (snippet) {
-        'use strict';
   //       // temporary workaround below as browser-sync 2.7.11 tries to inject
   //       // the client with an incorrect version number appended to the filename
   //       snippet = '<script async src="/browser-sync/browser-sync-client.js"></script>';
@@ -58,7 +57,6 @@ if (process.env.ENV === 'development') {
 if(packageJson.config.browsersync.proxy) {
   browsersync.proxy = {
     middleware: function (req, res, next) {
-      'use strict';
       // res.setHeader('Access-Control-Allow-Credentials', 'false');
       // res.setHeader('Access-Control-Allow-Origin', '*');
       res.setHeader('Access-Control-Allow-Origin', 'TRUE');

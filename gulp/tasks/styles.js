@@ -52,7 +52,9 @@ export function task(done) {
   //   .pipe(gulp.dest(config.directory.destination.styles))
   //   .on('error', helper.reportError);
 
-  gulp.src(sourceFiles)
+  return gulp.src(sourceFiles, {
+      since: gulp.lastRun(namespace)
+    })
     .pipe(sourcemaps.init({
       debug: true
       // loadMaps: true

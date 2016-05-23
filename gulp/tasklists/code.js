@@ -13,9 +13,10 @@ export const tasklist = gulp.series(
   tasks.bowerInstall,
   gulp.parallel(
     tasks.bowerUpdate,
-    tasks.copy
+    tasks.symlinks
   ),
   gulp.parallel(
+    tasks.copy,
     tasks.server,
     tasks.scripts,
     tasks.styles,
@@ -31,9 +32,10 @@ export const watch = gulp.series(
   tasksWatch.bowerInstall,
   gulp.parallel(
     tasksWatch.bowerUpdate,
-    tasksWatch.copy
+    tasksWatch.symlinks
   ),
   gulp.parallel(
+    tasksWatch.copy,
     tasksWatch.server,
     tasksWatch.scripts,
     tasksWatch.styles,

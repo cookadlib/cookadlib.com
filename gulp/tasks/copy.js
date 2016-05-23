@@ -10,7 +10,6 @@ import * as helper from '../helper';
 const namespace = helper.getNamespace(__filename);
 
 let sourceFiles = config.files.source.miscellaneous;
-// sourceFiles = sourceFiles.concat(config.files.source.bowerComponents);
 // sourceFiles = sourceFiles.concat(config.files.source.customStyles);
 // sourceFiles = sourceFiles.concat(config.files.source.elements); // remove when using Vulcanize
 sourceFiles = sourceFiles.concat(config.files.source.locales);
@@ -24,8 +23,8 @@ sourceFiles = sourceFiles.concat(config.files.source.serviceWorker);
 
 export function task(done) {
   return gulp.src(sourceFiles, {
-      // base: config.directory.source.base,
-      dot: true
+      dot: true,
+      since: gulp.lastRun(namespace)
     })
     .pipe(cache(namespace))
     .pipe(debug({

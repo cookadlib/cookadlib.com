@@ -31,7 +31,9 @@ sourceFiles = sourceFiles.concat(config.files.source.markupIgnored.map(function(
 // });
 
 export function task(done) {
-  return gulp.src(sourceFiles)
+  return gulp.src(sourceFiles, {
+      since: gulp.lastRun(namespace)
+    })
     .pipe(cache(namespace))
     .pipe(debug({
       title: namespace

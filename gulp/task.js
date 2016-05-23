@@ -22,8 +22,6 @@ export {task as screenshots} from './tasks/screenshots';
 export {task as scripts} from './tasks/scripts';
 export {task as server} from './tasks/server';
 export {task as sounds} from './tasks/sounds';
-export {task as spritesheetGenerate} from './tasks/spritesheet-generate';
-export {task as spritesheetRename} from './tasks/spritesheet-rename';
 export {task as styleguide} from './tasks/styleguide';
 export {task as styles} from './tasks/styles';
 export {task as symlinks} from './tasks/symlinks';
