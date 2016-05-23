@@ -12,7 +12,7 @@ const namespace = helper.getNamespace(__filename);
 export const tasklist = gulp.parallel(
   tasks.fonts,
   tasks.images,
-  tasks.locales,
+  // tasks.locales,
   tasks.sounds,
   tasks.videos
 );
@@ -20,7 +20,7 @@ export const tasklist = gulp.parallel(
 export const watch = gulp.parallel(
   tasksWatch.fonts,
   tasksWatch.images,
-  tasksWatch.locales,
+  // tasksWatch.locales,
   tasksWatch.sounds,
   tasksWatch.videos
 );

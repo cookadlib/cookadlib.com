@@ -10,14 +10,14 @@ directory.destination = {};
 
 directory.source = {};
 
-directory.bowerComponents = `/bower_components`;
+directory.bowerComponents = `bower_components`;
 
-directory.nodeModules = `/node_modules`;
+directory.nodeModules = `node_modules`;
 
 directory.temporary = `.tmp`;
 
 directory.source.base = `app`;
-directory.source.theme = `${directory.source.base}/${packageJson.config.directory.theme}`;
+directory.source.theme = packageJson.config.directory.theme ? `${directory.source.base}/${packageJson.config.directory.theme}` : directory.source.base;
 
 directory.source.bowerComponents = `${directory.source.base}/bower_components`;
 directory.source.customStyles = `${directory.source.theme}/styles`;
@@ -42,7 +42,7 @@ directory.source.tests = `${directory.source.base}/test`;
 directory.source.videos = `${directory.source.theme}/videos`;
 
 directory.destination.base = `www`;
-directory.destination.theme = `${directory.destination.base}/${packageJson.config.directory.theme}`;
+directory.destination.theme = packageJson.config.directory.theme ? `${directory.destination.base}/${packageJson.config.directory.theme}` : directory.destination.base;
 
 directory.destination.bowerComponents = `${directory.destination.base}/bower_components`;
 directory.destination.customStyles = `${directory.destination.theme}/styles`;

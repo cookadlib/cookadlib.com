@@ -14,7 +14,7 @@ export {task as frameworkGulp} from './tasks/framework-gulp';
 export {task as frameworkJson} from './tasks/framework-json';
 export {task as frameworkYaml} from './tasks/framework-yaml';
 export {task as images} from './tasks/images';
-export {task as locales} from './tasks/locales';
+// export {task as locales} from './tasks/locales';
 export {task as markup} from './tasks/markup';
 export {task as pagespeed} from './tasks/pagespeed';
 export {task as scraper} from './tasks/scraper';

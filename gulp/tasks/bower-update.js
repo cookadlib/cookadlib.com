@@ -10,15 +10,12 @@ const namespace = helper.getNamespace(__filename);
 let sourceFiles = config.files.source.bowerConfiguration;
 
 export function task(done) {
-
-  if (process.env.ENV === 'development') {
-    return bower({
-      cmd: 'update',
-      verbosity: 1
-    })
-    .on('error', helper.reportError);
-  }
-
+  return bower({
+    cmd: 'update',
+    verbosity: 1
+  })
+  .on('end', done)
+  .on('error', helper.reportError);
 }
 
 export function watch(done) {

@@ -5,7 +5,7 @@ import gulp from 'gulp';
 import * as helper from '../helper';
 
 import * as tasks from '../task';
-import * as tasksWatch from '../task-watch';
+// import * as tasksWatch from '../task-watch';
 
 const namespace = helper.getNamespace(__filename);
 

@@ -8,8 +8,10 @@ import * as helper from '../helper';
 
 const namespace = helper.getNamespace(__filename);
 
-let sourceFiles = config.directory.source.bowerComponents;
-sourceFiles = sourceFiles.concat(config.directory.source.nodeModules);
+let sourceFiles = [
+  config.directory.bowerComponents,
+  config.directory.nodeModules
+];
 
 export function task(done) {
   return gulp.src(sourceFiles, {

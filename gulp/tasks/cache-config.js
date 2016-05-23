@@ -1,20 +1,18 @@
 'use strict';
 
-import cache from 'gulp-cached';
-import debug from 'gulp-debug';
+// import cache from 'gulp-cached';
+// import debug from 'gulp-debug';
 import crypto from 'crypto';
 import fs from 'fs';
 import glob from 'glob-all';
-import gulp from 'gulp';
+// import gulp from 'gulp';
 import path from 'path';
-import remember from 'gulp-remember';
+// import remember from 'gulp-remember';
 
 import * as config from '../config';
 import * as helper from '../helper';
 
 const namespace = helper.getNamespace(__filename);
-
-let dir = config.directory.destination.base;
 
 let settings = {
   cacheId: config.filename || path.basename(__dirname),
@@ -31,7 +29,7 @@ sourceFiles = sourceFiles.concat(config.files.source.styles);
 
 export function task(done) {
   glob(sourceFiles, {
-      cwd: dir
+      cwd: config.directory.destination.base
     }, function(error, files) {
     if (error) {
       done(error);
@@ -42,7 +40,7 @@ export function task(done) {
       md5.update(JSON.stringify(settings.precache));
       settings.precacheFingerprint = md5.digest('hex');
 
-      let configPath = path.join(dir, 'cache-config.json');
+      let configPath = path.join(config.directory.destination.base, 'cache-config.json');
       fs.writeFile(configPath, JSON.stringify(settings), done);
     }
   });

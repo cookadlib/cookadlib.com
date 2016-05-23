@@ -8,11 +8,10 @@
 .publish
 .tmp
 bower_components
-app/styles/generated
+build
 logs
 node_modules
 npm-debug.log
 pids
 scss-lint-report.xml
 uploads
-www

@@ -14,7 +14,7 @@ export {watch as frameworkGulp} from './tasks/framework-gulp';
 export {watch as frameworkJson} from './tasks/framework-json';
 export {watch as frameworkYaml} from './tasks/framework-yaml';
 export {watch as images} from './tasks/images';
-export {watch as locales} from './tasks/locales';
+// export {watch as locales} from './tasks/locales';
 export {watch as markup} from './tasks/markup';
 export {watch as pagespeed} from './tasks/pagespeed';
 export {watch as scraper} from './tasks/scraper';
