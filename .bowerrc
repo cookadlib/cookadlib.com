@@ -1,9 +1,3 @@
 {
-  "allow_root": true,
-  "directory": "bower_components",
-  "scripts": {
-    "preinstall": "./shell_scripts/bower/pre-install.sh",
-    "postinstall": "./shell_scripts/bower/post-install.sh",
-    "preuninstall": "./shell_scripts/bower/pre-uninstall.sh"
-  }
+  "directory": "bower_components"
 }

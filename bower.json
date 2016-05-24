@@ -31,8 +31,8 @@
     "platinum-elements": "PolymerElements/platinum-elements#^1.1.0",
     "polymer": "polymer/polymer#^1.4.0",
     "moment": "~2.13.0",
-    "moment-recur": "~1.0.5",
-    "star-rating": "*"
+    "star-rating": "*",
+    "polymerfire": "^0.2.0"
   },
   "devDependencies": {
     "web-component-tester": "^4.2.2",
