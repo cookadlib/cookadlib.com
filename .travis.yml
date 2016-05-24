@@ -1,48 +1,24 @@
+dist: trusty
+sudo: required
+language: node_js
+node_js: stable
 addons:
-  # apt:
-  #   sources:
-  #   - ubuntu-toolchain-r-test
-  #   packages:
-  #   - g++-4.8
+  firefox: latest
+  apt:
+    sources:
+      - google-chrome
+    packages:
+      - google-chrome-stable
   sauce_connect:
     username: karlitowhoelse
     access_key: d45485e6-5775-4719-b001-c2c4409feae6
-before_install:
-- openssl aes-256-cbc -K $encrypted_b34ad3c3bd8d_key -iv $encrypted_b34ad3c3bd8d_iv
-  -in cookadlib-603545f5e171.json.enc -out cookadlib-603545f5e171.json -d
-- chmod -R +x scripts
-# - export CXX=g++-4.8
-# - "$CXX --version"
-# before_script: scripts/travis/before.sh
-# branches:
-#   only:
-#   - master
-#   - /v\d+\.\d+[a-z]/
-deploy:
-  config: app.yaml
-  default: true
-  keyfile: cookadlib-603545f5e171.json
-  no_promote: false
-  no_stop_previous_version: false
-  on:
-    repo: cookadlib/www.cookadlib.com
-    branch: master
-    # all_branches: true
-    tags: true
-  project: cookadlib-2016
-  provider: gae
-  skip_cleanup: true
-  # verbosity: debug
-  # verbosity: info
-  verbosity: warning
-  # docker_build: local
-  docker_build: remote
-language: node_js
-node_js:
-- stable
-# - '4.1'
-script: gulp build
-services:
-  - docker
-# sudo: false
-sudo: required
+before_script:
+  - npm install -g bower polylint web-component-tester
+  - bower install
+  - polylint
+script:
+  - echo "Hello Firebase"
+install:
+  - npm install -g firebase-tools
+after_success:
+  - firebase deploy --token "$FIREBASE_TOKEN"
