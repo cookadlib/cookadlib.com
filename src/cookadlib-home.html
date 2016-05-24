@@ -9,20 +9,20 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 -->
 
 <link rel="import" href="../bower_components/polymer/polymer.html">
-<link rel="import" href="shop-button.html">
-<link rel="import" href="shop-image.html">
+<link rel="import" href="cookadlib-button.html">
+<link rel="import" href="cookadlib-image.html">
 
-<dom-module id="shop-home">
+<dom-module id="cookadlib-home">
 
   <template>
 
-    <style include="shop-button">
+    <style include="cookadlib-button">
 
       .image-link {
         outline: none;
       }
 
-      .image-link > shop-image::after {
+      .image-link > cookadlib-image::after {
         display: block;
         content: '';
         position: absolute;
@@ -40,7 +40,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         outline: -webkit-focus-ring-color auto 5px;
       }
 
-      .image-link:focus > shop-image::after {
+      .image-link:focus > cookadlib-image::after {
         opacity: 1;
       }
 
@@ -57,11 +57,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         width: 50%;
       }
 
-      shop-image {
+      cookadlib-image {
         position: relative;
         height: 320px;
         overflow: hidden;
-        --shop-image-img: {
+        --cookadlib-image-img: {
           position: absolute;
           top: 0;
           bottom: 0;
@@ -83,7 +83,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       }
 
       @media (max-width: 767px) {
-        shop-image {
+        cookadlib-image {
           height: 240px;
         }
 
@@ -91,8 +91,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           margin: 24px 0;
         }
 
-        .item:nth-of-type(3) > shop-button > a,
-        .item:nth-of-type(4) > shop-button > a {
+        .item:nth-of-type(3) > cookadlib-button > a,
+        .item:nth-of-type(4) > cookadlib-button > a {
           padding: 8px 24px;
         }
       }
@@ -102,12 +102,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     <template is="dom-repeat" items="[[categories]]" strip-whitespace>
       <div class="item">
         <a class="image-link" href$="/list/[[item.name]]">
-          <shop-image src="[[item.image]]" alt="[[item.title]]" placeholder-img="[[item.placeholder]]"></shop-image>
+          <cookadlib-image src="[[item.image]]" alt="[[item.title]]" placeholder-img="[[item.placeholder]]"></cookadlib-image>
         </a>
         <h2>[[item.title]]</h2>
-        <shop-button>
+        <cookadlib-button>
           <a aria-label$="[[item.title]] Shop Now" href$="/list/[[item.name]]">Shop Now</a>
-        </shop-button>
+        </cookadlib-button>
       </div>
     </template>
 
@@ -117,7 +117,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
     Polymer({
 
-      is: 'shop-home',
+      is: 'cookadlib-home',
 
       properties: {
 

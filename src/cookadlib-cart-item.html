@@ -11,15 +11,15 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../bower_components/polymer/polymer.html">
 <link rel="import" href="../bower_components/iron-flex-layout/iron-flex-layout.html">
 <link rel="import" href="../bower_components/paper-icon-button/paper-icon-button.html">
-<link rel="import" href="shop-icons.html">
-<link rel="import" href="shop-image.html">
-<link rel="import" href="shop-select.html">
+<link rel="import" href="cookadlib-icons.html">
+<link rel="import" href="cookadlib-image.html">
+<link rel="import" href="cookadlib-select.html">
 
-<dom-module id="shop-cart-item">
+<dom-module id="cookadlib-cart-item">
 
   <template strip-whitespace>
 
-    <style include="shop-select">
+    <style include="cookadlib-select">
 
       :host {
         @apply(--layout-horizontal);
@@ -27,17 +27,17 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         margin-bottom: 24px;
       }
 
-      shop-image {
+      cookadlib-image {
         width: 72px;
         height: 72px;
       }
 
-      shop-select > select {
+      cookadlib-select > select {
         font-size: 16px;
         padding-left: 40px;
       }
 
-      shop-select > shop-md-decorator {
+      cookadlib-select > cookadlib-md-decorator {
         font-size: 12px;
         border: none;
       }
@@ -154,7 +154,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           top: -6px;
         }
 
-        shop-select > select {
+        cookadlib-select > select {
           padding: 2px 24px 2px 40px;
         }
 
@@ -167,7 +167,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     </style>
 
     <a href$="/detail/[[entry.item.category]]/[[entry.item.name]]" title$="[[entry.item.title]]">
-      <shop-image src="[[entry.item.image]]" alt="[[entry.item.title]]"></shop-image>
+      <cookadlib-image src="[[entry.item.image]]" alt="[[entry.item.title]]"></cookadlib-image>
     </a>
     <div class="flex">
       <div class="name">
@@ -175,7 +175,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       </div>
       <div class="detail">
         <div class="quantity">
-          <shop-select>
+          <cookadlib-select>
             <label prefix>Qty:</label>
             <select id="quantitySelect" aria-label="Change quantity" value="[[entry.quantity]]"
                 on-change="_quantityChange">
@@ -192,8 +192,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
               <option value="11">11</option>
               <option value="12">12</option>
             </select>
-            <shop-md-decorator aria-hidden="true"></shop-md-decorator>
-          </shop-select>
+            <cookadlib-md-decorator aria-hidden="true"></cookadlib-md-decorator>
+          </cookadlib-select>
         </div>
         <div class="size">Size: <span>[[entry.size]]</span></div>
         <div class="price">[[_formatPrice(entry.item.price)]]</div>
@@ -211,7 +211,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
     Polymer({
 
-      is: 'shop-cart-item',
+      is: 'cookadlib-cart-item',
 
       properties: {
 

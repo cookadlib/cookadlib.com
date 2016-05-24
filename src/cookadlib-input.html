@@ -10,32 +10,32 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
 <link rel="import" href="../bower_components/polymer/polymer.html">
 
-<dom-module id="shop-input">
+<dom-module id="cookadlib-input">
   <template>
     <style>
 
-      shop-input {
+      cookadlib-input {
         display: inline-block;
         margin: 20px 0;
       }
 
-      shop-input > input::-webkit-input-placeholder {
+      cookadlib-input > input::-webkit-input-placeholder {
         color: transparent;
       }
 
-      shop-input > input::-moz-placeholder {
+      cookadlib-input > input::-moz-placeholder {
         color: transparent;
       }
 
-      shop-input > input:-ms-input-placeholder {
+      cookadlib-input > input:-ms-input-placeholder {
         color: transparent;
       }
 
-      shop-input > input::-ms-input-placeholder {
+      cookadlib-input > input::-ms-input-placeholder {
         color: transparent;
       }
 
-      shop-input > input {
+      cookadlib-input > input {
         font-size: 1em;
         font-weight: 300;
         color: var(--app-primary-color);
@@ -45,12 +45,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         outline: none;
       }
 
-      shop-input > input:invalid {
+      cookadlib-input > input:invalid {
         /* reset the default style in FF */
         box-shadow: none;
       }
 
-      shop-input > shop-md-decorator {
+      cookadlib-input > cookadlib-md-decorator {
         display: block;
         height: 1px;
         width: 100%;
@@ -61,7 +61,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         transform: translateZ(0);
       }
 
-      shop-input shop-underline {
+      cookadlib-input cookadlib-underline {
         display: block;
         height: 2px;
         width: 100%;
@@ -77,7 +77,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       }
 
       /* input label */
-      shop-input > shop-md-decorator > label {
+      cookadlib-input > cookadlib-md-decorator > label {
         display: block;
         pointer-events: none;
         opacity: 0.5;
@@ -96,7 +96,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       }
 
       /* Error message */
-      shop-input > shop-md-decorator::after {
+      cookadlib-input > cookadlib-md-decorator::after {
         position: absolute;
         top: 0;
         left: 0;
@@ -108,7 +108,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         white-space: nowrap;
       }
 
-      shop-input > input:focus + shop-md-decorator > shop-underline {
+      cookadlib-input > input:focus + cookadlib-md-decorator > cookadlib-underline {
         -webkit-transform: scale3d(1, 1, 1);
         transform: scale3d(1, 1, 1);
         transition: -webkit-transform 0.2s ease-out;
@@ -116,32 +116,32 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       }
 
       /* Label: valid state */
-      shop-input > input:focus + shop-md-decorator > label {
+      cookadlib-input > input:focus + cookadlib-md-decorator > label {
         -webkit-transform: translate3d(0px, -3.4em, 0px) scale(0.8, 0.8);
         transform: translate3d(0px, -3.4em, 0px) scale(0.8, 0.8);
         opacity: 1;
       }
 
-      shop-input > input:optional:not(:placeholder-shown) + shop-md-decorator > label {
+      cookadlib-input > input:optional:not(:placeholder-shown) + cookadlib-md-decorator > label {
         -webkit-transform: translate3d(0px, -3.4em, 0px) scale(0.8, 0.8);
         transform: translate3d(0px, -3.4em, 0px) scale(0.8, 0.8);
         opacity: 1;
       }
 
-      _:-ms-lang(x), shop-input > input + shop-md-decorator > label {
+      _:-ms-lang(x), cookadlib-input > input + cookadlib-md-decorator > label {
         -webkit-transform: translate3d(0px, -3.4em, 0px) scale(0.8, 0.8);
         transform: translate3d(0px, -3.4em, 0px) scale(0.8, 0.8);
         opacity: 1;
       }
 
-      shop-input > input:optional:-moz-ui-valid + shop-md-decorator > label {
+      cookadlib-input > input:optional:-moz-ui-valid + cookadlib-md-decorator > label {
         -webkit-transform: translate3d(0px, -3.4em, 0px) scale(0.8, 0.8);
         transform: translate3d(0px, -3.4em, 0px) scale(0.8, 0.8);
         opacity: 1;
       }
 
       /* Underline */
-      shop-input > input:not(:focus):not(:placeholder-shown):invalid + shop-md-decorator > shop-underline {
+      cookadlib-input > input:not(:focus):not(:placeholder-shown):invalid + cookadlib-md-decorator > cookadlib-underline {
         background-color: #dd2c00;
         -webkit-transform: scale3d(1, 1, 1);
         transform: scale3d(1, 1, 1);
@@ -149,7 +149,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         transition: transform 0.2s ease-out;
       }
 
-      shop-input > input:not(:focus):-moz-ui-invalid:invalid + shop-md-decorator > shop-underline {
+      cookadlib-input > input:not(:focus):-moz-ui-invalid:invalid + cookadlib-md-decorator > cookadlib-underline {
         background-color: #dd2c00;
         -webkit-transform: scale3d(1, 1, 1);
         transform: scale3d(1, 1, 1);
@@ -157,7 +157,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         transition: transform 0.2s ease-out;
       }
 
-      shop-input > input[aria-invalid='true']:not(:valid) + shop-md-decorator > shop-underline {
+      cookadlib-input > input[aria-invalid='true']:not(:valid) + cookadlib-md-decorator > cookadlib-underline {
         background-color: #dd2c00;
         -webkit-transform: scale3d(1, 1, 1);
         transform: scale3d(1, 1, 1);
@@ -166,34 +166,34 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       }
 
       /* Error message */
-      shop-input > input:not(:focus):not(:placeholder-shown):invalid + shop-md-decorator::after {
+      cookadlib-input > input:not(:focus):not(:placeholder-shown):invalid + cookadlib-md-decorator::after {
         display: block;
       }
 
-      shop-input > input:not(:focus):-moz-ui-invalid:invalid + shop-md-decorator::after {
+      cookadlib-input > input:not(:focus):-moz-ui-invalid:invalid + cookadlib-md-decorator::after {
         display: block;
       }
 
-      shop-input > input[aria-invalid='true']:not(:valid) + shop-md-decorator::after {
+      cookadlib-input > input[aria-invalid='true']:not(:valid) + cookadlib-md-decorator::after {
         display: block;
       }
 
       /* Error label */
-      shop-input > input:not(:focus):not(:placeholder-shown):invalid + shop-md-decorator > label {
+      cookadlib-input > input:not(:focus):not(:placeholder-shown):invalid + cookadlib-md-decorator > label {
         -webkit-transform: translate3d(0px, -3.4em, 0px) scale(0.8, 0.8);
         transform: translate3d(0px, -3.4em, 0px) scale(0.8, 0.8);
         opacity: 1;
         color: #dd2c00;
       }
 
-      shop-input > input:not(:focus):-moz-ui-invalid:invalid + shop-md-decorator > label {
+      cookadlib-input > input:not(:focus):-moz-ui-invalid:invalid + cookadlib-md-decorator > label {
         -webkit-transform: translate3d(0px, -3.4em, 0px) scale(0.8, 0.8);
         transform: translate3d(0px, -3.4em, 0px) scale(0.8, 0.8);
         opacity: 1;
         color: #dd2c00;
       }
 
-      shop-input > input[aria-invalid='true']:not(:valid) + shop-md-decorator > label {
+      cookadlib-input > input[aria-invalid='true']:not(:valid) + cookadlib-md-decorator > label {
         -webkit-transform: translate3d(0px, -3.4em, 0px) scale(0.8, 0.8);
         transform: translate3d(0px, -3.4em, 0px) scale(0.8, 0.8);
         opacity: 1;
@@ -201,7 +201,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       }
 
       /* Valid label */
-      shop-input > input:not(:focus):required:valid + shop-md-decorator > label {
+      cookadlib-input > input:not(:focus):required:valid + cookadlib-md-decorator > label {
         -webkit-transform: translate3d(0px, -3.4em, 0px) scale(0.8, 0.8);
         transform: translate3d(0px, -3.4em, 0px) scale(0.8, 0.8);
         opacity: 1;

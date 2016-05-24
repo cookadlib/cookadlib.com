@@ -11,17 +11,17 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../bower_components/polymer/polymer.html">
 <link rel="import" href="../bower_components/app-route/app-route.html">
 <link rel="import" href="../bower_components/iron-flex-layout/iron-flex-layout.html">
-<link rel="import" href="shop-button.html">
-<link rel="import" href="shop-common-styles.html">
-<link rel="import" href="shop-form-styles.html">
-<link rel="import" href="shop-input.html">
-<link rel="import" href="shop-select.html">
-<link rel="import" href="shop-checkbox.html">
+<link rel="import" href="cookadlib-button.html">
+<link rel="import" href="cookadlib-common-styles.html">
+<link rel="import" href="cookadlib-form-styles.html">
+<link rel="import" href="cookadlib-input.html">
+<link rel="import" href="cookadlib-select.html">
+<link rel="import" href="cookadlib-checkbox.html">
 
-<dom-module id="shop-checkout">
+<dom-module id="cookadlib-checkout">
 
   <template>
-    <style include="shop-common-styles shop-button shop-form-styles shop-input shop-select shop-checkbox">
+    <style include="cookadlib-common-styles cookadlib-button cookadlib-form-styles cookadlib-input cookadlib-select cookadlib-checkbox">
 
       .main-frame {
         transition: opacity 0.5s;
@@ -31,11 +31,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         opacity: 0.1;
       }
 
-      shop-input, shop-select {
+      cookadlib-input, cookadlib-select {
         font-size: 16px;
       }
 
-      shop-select {
+      cookadlib-select {
         margin-bottom: 20px;
       }
 
@@ -86,7 +86,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         margin-left: 8px;
       }
 
-      .shop-select-label {
+      .cookadlib-select-label {
         line-height: 20px;
       }
 
@@ -138,152 +138,152 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
               <section>
                 <h2 id="accountInfoHeading">Account Information</h2>
                 <div class="row input-row">
-                  <shop-input>
+                  <cookadlib-input>
                     <input type="email" id="accountEmail" name="accountEmail"
                         placeholder="Email" autofocus required
                         aria-labelledby="accountEmailLabel accountInfoHeading">
-                    <shop-md-decorator error-message="Invalid Email" aria-hidden="true">
+                    <cookadlib-md-decorator error-message="Invalid Email" aria-hidden="true">
                       <label id="accountEmailLabel">Email</label>
-                      <shop-underline></shop-underline>
-                    </shop-md-decorator>
-                  </shop-input>
+                      <cookadlib-underline></cookadlib-underline>
+                    </cookadlib-md-decorator>
+                  </cookadlib-input>
                 </div>
                 <div class="row input-row">
-                  <shop-input>
+                  <cookadlib-input>
                     <input type="tel" id="accountPhone" name="accountPhone" pattern="\d{10,}"
                         placeholder="Phone Number" required
                         aria-labelledby="accountPhoneLabel accountInfoHeading">
-                    <shop-md-decorator error-message="Invalid Phone Number" aria-hidden="true">
+                    <cookadlib-md-decorator error-message="Invalid Phone Number" aria-hidden="true">
                       <label id="accountPhoneLabel">Phone Number</label>
-                      <shop-underline></shop-underline>
-                    </shop-md-decorator>
-                  </shop-input>
+                      <cookadlib-underline></cookadlib-underline>
+                    </cookadlib-md-decorator>
+                  </cookadlib-input>
                 </div>
                 <h2 id="shipAddressHeading">Shipping Address</h2>
                 <div class="row input-row">
-                  <shop-input>
+                  <cookadlib-input>
                     <input type="text" id="shipAddress" name="shipAddress" pattern=".{5,}"
                         placeholder="Address" required
                         aria-labelledby="shipAddressLabel shipAddressHeading">
-                    <shop-md-decorator error-message="Invalid Address" aria-hidden="true">
+                    <cookadlib-md-decorator error-message="Invalid Address" aria-hidden="true">
                       <label id="shipAddressLabel">Address</label>
-                      <shop-underline></shop-underline>
-                    </shop-md-decorator>
-                  </shop-input>
+                      <cookadlib-underline></cookadlib-underline>
+                    </cookadlib-md-decorator>
+                  </cookadlib-input>
                 </div>
                 <div class="row input-row">
-                  <shop-input>
+                  <cookadlib-input>
                     <input type="text" id="shipCity" name="shipCity" pattern=".{2,}"
                         placeholder="City" required
                         aria-labelledby="shipCityLabel shipAddressHeading">
-                    <shop-md-decorator error-message="Invalid City" aria-hidden="true">
+                    <cookadlib-md-decorator error-message="Invalid City" aria-hidden="true">
                       <label id="shipCityLabel">City</label>
-                      <shop-underline></shop-underline>
-                    </shop-md-decorator>
-                  </shop-input>
+                      <cookadlib-underline></cookadlib-underline>
+                    </cookadlib-md-decorator>
+                  </cookadlib-input>
                 </div>
                 <div class="row input-row">
-                  <shop-input>
+                  <cookadlib-input>
                     <input type="text" id="shipState" name="shipState" pattern=".{2,}"
                         placeholder="State/Province" required
                         aria-labelledby="shipStateLabel shipAddressHeading">
-                    <shop-md-decorator error-message="Invalid State/Province" aria-hidden="true">
+                    <cookadlib-md-decorator error-message="Invalid State/Province" aria-hidden="true">
                       <label id="shipStateLabel">State/Province</label>
-                      <shop-underline></shop-underline>
-                    </shop-md-decorator>
-                  </shop-input>
-                  <shop-input>
+                      <cookadlib-underline></cookadlib-underline>
+                    </cookadlib-md-decorator>
+                  </cookadlib-input>
+                  <cookadlib-input>
                     <input type="text" id="shipZip" name="shipZip" pattern=".{4,}"
                         placeholder="Zip/Postal Code" required
                         aria-labelledby="shipZipLabel shipAddressHeading">
-                    <shop-md-decorator error-message="Invalid Zip/Postal Code" aria-hidden="true">
+                    <cookadlib-md-decorator error-message="Invalid Zip/Postal Code" aria-hidden="true">
                       <label id="shipZipLabel">Zip/Postal Code</label>
-                      <shop-underline></shop-underline>
-                    </shop-md-decorator>
-                  </shop-input>
+                      <cookadlib-underline></cookadlib-underline>
+                    </cookadlib-md-decorator>
+                  </cookadlib-input>
                 </div>
                 <div class="column">
-                  <label id="shipCountryLabel" class="shop-select-label">Country</label>
-                  <shop-select>
+                  <label id="shipCountryLabel" class="cookadlib-select-label">Country</label>
+                  <cookadlib-select>
                     <select id="shipCountry" name="shipCountry" required
                         aria-labelledby="shipCountryLabel shipAddressHeading">
                       <option value="US" selected>United States</option>
                       <option value="CA">Canada</option>
                     </select>
-                    <shop-md-decorator aria-hidden="true">
-                      <shop-underline></shop-underline>
-                    </shop-md-decorator>
-                  </shop-select>
+                    <cookadlib-md-decorator aria-hidden="true">
+                      <cookadlib-underline></cookadlib-underline>
+                    </cookadlib-md-decorator>
+                  </cookadlib-select>
                 </div>
                 <h2 id="billAddressHeading">Billing Address</h2>
                 <div class="billing-address-picker">
-                  <shop-checkbox>
+                  <cookadlib-checkbox>
                     <input type="checkbox" id="setBilling" name="setBilling"
                         checked$="[[hasBillingAddress]]" on-change="_toggleBillingAddress">
-                    <shop-md-decorator></shop-md-decorator aria-hidden="true">
-                  </shop-checkbox>
+                    <cookadlib-md-decorator></cookadlib-md-decorator aria-hidden="true">
+                  </cookadlib-checkbox>
                   <label for="setBilling">Use different billing address</label>
                 </div>
                 <div hidden$="[[!hasBillingAddress]]">
                   <div class="row input-row">
-                    <shop-input>
+                    <cookadlib-input>
                       <input type="text" id="billAddress" name="billAddress" pattern=".{5,}"
                           placeholder="Address" required$="[[hasBillingAddress]]"
                           autocomplete="billing street-address"
                           aria-labelledby="billAddressLabel billAddressHeading">
-                      <shop-md-decorator error-message="Invalid Address" aria-hidden="true">
+                      <cookadlib-md-decorator error-message="Invalid Address" aria-hidden="true">
                         <label id="billAddressLabel">Address</label>
-                        <shop-underline></shop-underline>
-                      </shop-md-decorator>
-                    </shop-input>
+                        <cookadlib-underline></cookadlib-underline>
+                      </cookadlib-md-decorator>
+                    </cookadlib-input>
                   </div>
                   <div class="row input-row">
-                    <shop-input>
+                    <cookadlib-input>
                       <input type="text" id="billCity" name="billCity" pattern=".{2,}"
                           placeholder="City" required$="[[hasBillingAddress]]"
                           autocomplete="billing address-level2"
                           aria-labelledby="billCityLabel billAddressHeading">
-                      <shop-md-decorator error-message="Invalid City" aria-hidden="true">
+                      <cookadlib-md-decorator error-message="Invalid City" aria-hidden="true">
                         <label id="billCityLabel">City</label>
-                        <shop-underline></shop-underline>
-                      </shop-md-decorator>
-                    </shop-input>
+                        <cookadlib-underline></cookadlib-underline>
+                      </cookadlib-md-decorator>
+                    </cookadlib-input>
                   </div>
                   <div class="row input-row">
-                    <shop-input>
+                    <cookadlib-input>
                       <input type="text" id="billState" name="billState" pattern=".{2,}"
                           placeholder="State/Province" required$="[[hasBillingAddress]]"
                           autocomplete="billing address-level1"
                           aria-labelledby="billStateLabel billAddressHeading">
-                      <shop-md-decorator error-message="Invalid State/Province" aria-hidden="true">
+                      <cookadlib-md-decorator error-message="Invalid State/Province" aria-hidden="true">
                         <label id="billStateLabel">State/Province</label>
-                        <shop-underline></shop-underline>
-                      </shop-md-decorator>
-                    </shop-input>
-                    <shop-input>
+                        <cookadlib-underline></cookadlib-underline>
+                      </cookadlib-md-decorator>
+                    </cookadlib-input>
+                    <cookadlib-input>
                       <input type="text" id="billZip" name="billZip" pattern=".{4,}"
                           placeholder="Zip/Postal Code" required$="[[hasBillingAddress]]"
                           autocomplete="billing postal-code"
                           aria-labelledby="billZipLabel billAddressHeading">
-                      <shop-md-decorator error-message="Invalid Zip/Postal Code" aria-hidden="true">
+                      <cookadlib-md-decorator error-message="Invalid Zip/Postal Code" aria-hidden="true">
                         <label id="billZipLabel">Zip/Postal Code</label>
-                        <shop-underline></shop-underline>
-                      </shop-md-decorator>
-                    </shop-input>
+                        <cookadlib-underline></cookadlib-underline>
+                      </cookadlib-md-decorator>
+                    </cookadlib-input>
                   </div>
                   <div class="column">
-                    <label id="billCountryLabel" class="shop-select-label">Country</label>
-                    <shop-select>
+                    <label id="billCountryLabel" class="cookadlib-select-label">Country</label>
+                    <cookadlib-select>
                       <select id="billCountry" name="billCountry" required$="[[hasBillingAddress]]"
                           autocomplete="billing country"
                           aria-labelledby="billCountryLabel billAddressHeading">
                         <option value="US" selected>United States</option>
                         <option value="CA">Canada</option>
                       </select>
-                      <shop-md-decorator aria-hidden="true">
-                        <shop-underline></shop-underline>
-                      </shop-md-decorator>
-                    </shop-select>
+                      <cookadlib-md-decorator aria-hidden="true">
+                        <cookadlib-underline></cookadlib-underline>
+                      </cookadlib-md-decorator>
+                    </cookadlib-select>
                   </div>
                 </div>
               </section>
@@ -291,31 +291,31 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
               <section>
                 <h2>Payment Method</h2>
                 <div class="row input-row">
-                  <shop-input>
+                  <cookadlib-input>
                     <input type="text" id="ccName" name="ccName" pattern=".{3,}"
                         placeholder="Cardholder Name" required
                         autocomplete="cc-name">
-                    <shop-md-decorator error-message="Invalid Cardholder Name" aria-hidden="true">
+                    <cookadlib-md-decorator error-message="Invalid Cardholder Name" aria-hidden="true">
                       <label for="ccName">Cardholder Name</label>
-                      <shop-underline></shop-underline>
-                    </shop-md-decorator>
-                  </shop-input>
+                      <cookadlib-underline></cookadlib-underline>
+                    </cookadlib-md-decorator>
+                  </cookadlib-input>
                 </div>
                 <div class="row input-row">
-                  <shop-input>
+                  <cookadlib-input>
                     <input type="tel" id="ccNumber" name="ccNumber" pattern="[\d\s]{15,}"
                         placeholder="Card Number" required
                         autocomplete="cc-number">
-                    <shop-md-decorator error-message="Invalid Card Number" aria-hidden="true">
+                    <cookadlib-md-decorator error-message="Invalid Card Number" aria-hidden="true">
                       <label for="ccNumber">Card Number</label>
-                      <shop-underline></shop-underline>
-                    </shop-md-decorator>
-                  </shop-input>
+                      <cookadlib-underline></cookadlib-underline>
+                    </cookadlib-md-decorator>
+                  </cookadlib-input>
                 </div>
                 <div class="row input-row">
                   <div class="column">
                     <label for="ccExpMonth">Expiry</label>
-                    <shop-select>
+                    <cookadlib-select>
                       <select id="ccExpMonth" name="ccExpMonth" required
                            autocomplete="cc-exp-month" aria-label="Expiry month">
                         <option value="01" selected>Jan</option>
@@ -331,12 +331,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                         <option value="11">Nov</option>
                         <option value="12">Dec</option>
                       </select>
-                      <shop-md-decorator aria-hidden="true">
-                        <shop-underline></shop-underline>
-                      </shop-md-decorator>
-                    </shop-select>
+                      <cookadlib-md-decorator aria-hidden="true">
+                        <cookadlib-underline></cookadlib-underline>
+                      </cookadlib-md-decorator>
+                    </cookadlib-select>
                   </div>
-                  <shop-select>
+                  <cookadlib-select>
                     <select id="ccExpYear" name="ccExpYear" required
                         autocomplete="cc-exp-year" aria-label="Expiry year">
                       <option value="2016" selected>2016</option>
@@ -351,19 +351,19 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                       <option value="2025">2025</option>
                       <option value="2026">2026</option>
                     </select>
-                    <shop-md-decorator aria-hidden="true">
-                      <shop-underline></shop-underline>
-                    </shop-md-decorator>
-                  </shop-select>
-                  <shop-input>
+                    <cookadlib-md-decorator aria-hidden="true">
+                      <cookadlib-underline></cookadlib-underline>
+                    </cookadlib-md-decorator>
+                  </cookadlib-select>
+                  <cookadlib-input>
                     <input type="tel" id="ccCVV" name="ccCVV" pattern="\d{3,4}"
                         placeholder="CVV" required
                         autocomplete="cc-csc">
-                    <shop-md-decorator error-message="Invalid CVV" aria-hidden="true">
+                    <cookadlib-md-decorator error-message="Invalid CVV" aria-hidden="true">
                       <label for="ccCVV">CVV</label>
-                      <shop-underline></shop-underline>
-                    </shop-md-decorator>
-                  </shop-input>
+                      <cookadlib-underline></cookadlib-underline>
+                    </cookadlib-md-decorator>
+                  </cookadlib-input>
                 </div>
                 <h2>Order Summary</h2>
                 <template is="dom-repeat" items="[[cart]]" as="entry">
@@ -376,9 +376,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                   <div class="flex">Total</div>
                   <div>[[_formatPrice(total)]]</div>
                 </div>
-                <shop-button responsive id="submitBox">
+                <cookadlib-button responsive id="submitBox">
                   <input type="button" on-click="_submit" value="Place Order">
-                </shop-button>
+                </cookadlib-button>
               </section>
             </div>
           </form>
@@ -388,18 +388,18 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         <header state="success">
           <h1>Thank you</h1>
           <p>[[response.successMessage]]</p>
-          <shop-button responsive>
+          <cookadlib-button responsive>
             <a href="/">Finish</a>
-          </shop-button>
+          </cookadlib-button>
         </header>
 
         <!-- Error message UI -->
         <header state="error">
           <h1>We couldn&acute;t process your order</h1>
           <p id="errorMessage">[[response.errorMessage]]</p>
-          <shop-button responsive>
+          <cookadlib-button responsive>
             <a href="/checkout">Try again</a>
-          </shop-button>
+          </cookadlib-button>
         </header>
 
       </iron-pages>
@@ -422,7 +422,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
     Polymer({
 
-      is: 'shop-checkout',
+      is: 'cookadlib-checkout',
 
       properties: {
 
@@ -468,7 +468,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         },
 
         /**
-         * If true, shop-checkout is currently visible on the screen.
+         * If true, cookadlib-checkout is currently visible on the screen.
          */
         visible: {
           type: Boolean,

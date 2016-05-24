@@ -10,11 +10,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
 <link rel="import" href="../bower_components/polymer/polymer.html">
 
-<dom-module id="shop-select">
+<dom-module id="cookadlib-select">
   <template>
     <style>
 
-      shop-select {
+      cookadlib-select {
         display: inline-block;
         position: relative;
         /* create a layer to avoid invalidation from other controls*/
@@ -22,14 +22,14 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         transform: translateZ(0);
       }
 
-      shop-select > shop-md-decorator {
+      cookadlib-select > cookadlib-md-decorator {
         display: block;
         border-top: 1px solid #ccc;
         height: 1px;
         speak: none;
       }
 
-      shop-select > shop-md-decorator::after {
+      cookadlib-select > cookadlib-md-decorator::after {
         content: '\25BC';
         display: block;
         position: absolute;
@@ -42,7 +42,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         pointer-events: none;
       }
 
-      shop-select > select {
+      cookadlib-select > select {
         width: 100%;
         -webkit-appearance: none;
         -moz-appearance: none;
@@ -59,11 +59,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         outline: none;
       }
 
-      shop-select > select::-ms-expand {
+      cookadlib-select > select::-ms-expand {
         display: none;
       }
 
-      shop-select > shop-md-decorator > shop-underline {
+      cookadlib-select > cookadlib-md-decorator > cookadlib-underline {
         display: block;
         background-color: var(--app-accent-color);
         height: 2px;
@@ -77,26 +77,26 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         transition: transform 0.2s ease-in;
       }
 
-      shop-select > select:focus + shop-md-decorator > shop-underline {
+      cookadlib-select > select:focus + cookadlib-md-decorator > cookadlib-underline {
         -webkit-transform: scale3d(1, 1, 1);
         transform: scale3d(1, 1, 1);
         transition: -webkit-transform 0.2s ease-out;
         transition: transform 0.2s ease-out;
       }
 
-      shop-select > select:focus + shop-md-decorator::before,
-      shop-select > select:focus + shop-md-decorator::after,
-      shop-select > select:focus {
+      cookadlib-select > select:focus + cookadlib-md-decorator::before,
+      cookadlib-select > select:focus + cookadlib-md-decorator::after,
+      cookadlib-select > select:focus {
         color: black;
       }
 
       /* hide the focus ring in firefox */
-      shop-select > select:focus:-moz-focusring {
+      cookadlib-select > select:focus:-moz-focusring {
         color: transparent;
         text-shadow: 0 0 0 #000;
       }
 
-      shop-select > [prefix] {
+      cookadlib-select > [prefix] {
         position: absolute;
         left: 0px;
         top: calc(50% - 8px);

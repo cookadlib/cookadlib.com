@@ -12,13 +12,13 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../bower_components/iron-flex-layout/iron-flex-layout.html">
 <link rel="import" href="../bower_components/paper-icon-button/paper-icon-button.html">
 <link rel="import" href="../bower_components/iron-overlay-behavior/iron-overlay-behavior.html">
-<link rel="import" href="shop-button.html">
+<link rel="import" href="cookadlib-button.html">
 
-<dom-module id="shop-cart-modal">
+<dom-module id="cookadlib-cart-modal">
 
   <template>
 
-    <style include="shop-button">
+    <style include="cookadlib-button">
 
       :host {
         display: block;
@@ -92,12 +92,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       <div class="label">Added to cart</div>
     </div>
     <div class="layout-horizontal">
-      <shop-button class="modal-button">
+      <cookadlib-button class="modal-button">
         <a href="/cart" on-tap="close" id="viewCartAnchor">View Cart</a>
-      </shop-button>
-      <shop-button class="modal-button">
+      </cookadlib-button>
+      <cookadlib-button class="modal-button">
         <a href="/checkout" on-tap="close">Checkout</a>
-      </shop-button>
+      </cookadlib-button>
     </div>
 
     <paper-icon-button icon="close" id="closeBtn" aria-label="Close dialog" on-tap="close"></paper-icon-button>
@@ -108,7 +108,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
     Polymer({
 
-      is: 'shop-cart-modal',
+      is: 'cookadlib-cart-modal',
 
       behaviors: [
         Polymer.IronOverlayBehaviorImpl

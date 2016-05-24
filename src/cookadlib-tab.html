@@ -10,47 +10,43 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
 <link rel="import" href="../bower_components/polymer/polymer.html">
 <link rel="import" href="../bower_components/iron-flex-layout/iron-flex-layout.html">
-<link rel="import" href="../bower_components/iron-selector/iron-selectable.html">
-<link rel="import" href="shop-tabs-overlay.html">
+<link rel="import" href="cookadlib-ripple-container.html">
 
-<dom-module id="shop-tabs">
+<dom-module id="cookadlib-tab">
   <template strip-whitespace>
     <style>
-      :host {
-        @apply(--layout);
-        @apply(--layout-center-center);
+      [hidden] {
+        display: none !important;
       }
 
-      #container {
+      :host {
+        display: inline-block;
         position: relative;
       }
 
-      shop-tabs-overlay {
-        @apply(--shop-tab-overlay);
+      #overlay {
+        pointer-events: none;
+        display: none;
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        @apply(--cookadlib-tab-overlay);
+      }
+
+      :host(.cookadlib-tabs-overlay-static-above) #overlay {
+        display: block;
       }
     </style>
-    <div id="container">
-      <shop-tabs-overlay id="overlay"></shop-tabs-overlay>
+    <div id="overlay"></div>
+    <cookadlib-ripple-container>
       <content></content>
-    </div>
+    </cookadlib-ripple-container>
   </template>
   <script>
     Polymer({
-      is: 'shop-tabs',
-
-      behaviors: [
-        Polymer.IronSelectableBehavior
-      ],
-
-      observers: [
-        '_onSelectedItemChanged(selectedItem)'
-      ],
-
-      _onSelectedItemChanged: function(selectedItem) {
-        if (selectedItem === undefined && this.selected) return;
-
-        this.$.overlay.target = selectedItem;
-      },
+      is: 'cookadlib-tab'
     });
   </script>
 </dom-module>

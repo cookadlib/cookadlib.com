@@ -10,14 +10,14 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
 <link rel="import" href="../bower_components/polymer/polymer.html">
 <link rel="import" href="../bower_components/iron-icon/iron-icon.html">
-<link rel="import" href="shop-button.html">
-<link rel="import" href="shop-icons.html">
+<link rel="import" href="cookadlib-button.html">
+<link rel="import" href="cookadlib-icons.html">
 
-<dom-module id="shop-network-warning">
+<dom-module id="cookadlib-network-warning">
 
   <template>
 
-    <style include="shop-button">
+    <style include="cookadlib-button">
 
       :host {
         display: block;
@@ -41,7 +41,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         margin: 0;
       }
 
-      shop-button {
+      cookadlib-button {
         margin-top: 50px;
       }
 
@@ -55,16 +55,16 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       <h1>No internet connection</h1>
       <p>Check if your device is connected to a mobile network or WiFi.</p>
     </div>
-    <shop-button>
+    <cookadlib-button>
       <button on-tap="_tryReconnect">Try Again</button>
-    </shop-button>
+    </cookadlib-button>
 
   </template>
 
   <script>
 
     Polymer({
-      is: 'shop-network-warning',
+      is: 'cookadlib-network-warning',
 
       properties: {
         offline: Boolean

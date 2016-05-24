@@ -10,15 +10,15 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
 <link rel="import" href="../bower_components/polymer/polymer.html">
 
-<dom-module id="shop-button">
+<dom-module id="cookadlib-button">
   <template>
     <style>
 
-      shop-button {
+      cookadlib-button {
         display: inline-block;
       }
 
-      shop-button > * {
+      cookadlib-button > * {
         display: inline-block;
         box-sizing: border-box;
         border: 2px solid #000;
@@ -36,25 +36,25 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         -webkit-appearance: none;
       }
 
-      shop-button > *:focus {
+      cookadlib-button > *:focus {
         background-color: #c5cad3;
       }
 
-      shop-button > *:active {
+      cookadlib-button > *:active {
         background-color: #000;
         color: #FFF;
       }
 
       @media (max-width: 767px) {
 
-        /* Responsive buttons are used in shop-detail, shop-cart and shop-checkout */
-        shop-button[responsive] {
+        /* Responsive buttons are used in cookadlib-detail, cookadlib-cart and cookadlib-checkout */
+        cookadlib-button[responsive] {
           @apply(--layout-fixed-bottom);
           height: 64px;
           z-index: 1;
         }
 
-        shop-button[responsive] > * {
+        cookadlib-button[responsive] > * {
           background-color: var(--app-accent-color);
           border: none;
           color: white;
@@ -64,7 +64,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           font-size: 15px;
         }
 
-        shop-button[responsive] > *:focus {
+        cookadlib-button[responsive] > *:focus {
           background-color: var(--app-accent-color);
         }
 

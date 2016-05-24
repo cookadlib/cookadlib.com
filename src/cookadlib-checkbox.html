@@ -10,11 +10,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
 <link rel="import" href="../bower_components/polymer/polymer.html">
 
-<dom-module id="shop-checkbox">
+<dom-module id="cookadlib-checkbox">
   <template>
     <style>
 
-      shop-checkbox {
+      cookadlib-checkbox {
         display: inline-block;
         width: 14px;
         height: 14px;
@@ -23,7 +23,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         border-radius: 2px;
       }
 
-      shop-checkbox > input[type=checkbox] {
+      cookadlib-checkbox > input[type=checkbox] {
         position: absolute;
         top: 0;
         left: 0;
@@ -33,12 +33,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         opacity: 0;
       }
 
-      shop-checkbox > shop-md-decorator {
+      cookadlib-checkbox > cookadlib-md-decorator {
         pointer-events: none;
       }
 
       /* Checked state overlay */
-      shop-checkbox > shop-md-decorator::after {
+      cookadlib-checkbox > cookadlib-md-decorator::after {
         content: '';
         position: absolute;
         top: -5px;
@@ -51,12 +51,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         will-change: opacity;
       }
 
-      shop-checkbox > input[type=checkbox]:checked + shop-md-decorator::after {
+      cookadlib-checkbox > input[type=checkbox]:checked + cookadlib-md-decorator::after {
         opacity: 1;
       }
 
       /* Focused state */
-      shop-checkbox > shop-md-decorator::before {
+      cookadlib-checkbox > cookadlib-md-decorator::before {
         content: '';
         pointer-events: none;
         position: absolute;
@@ -74,7 +74,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         will-change: transform;
       }
 
-      shop-checkbox > input[type=checkbox]:focus + shop-md-decorator::before {
+      cookadlib-checkbox > input[type=checkbox]:focus + cookadlib-md-decorator::before {
         -webkit-transform: scale3d(1, 1, 1);
         transform: scale3d(1, 1, 1);
       }
