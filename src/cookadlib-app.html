@@ -322,6 +322,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                 <a href="/list/[[category.name]]">[[category.title]]</a>
               </cookadlib-tab>
             </template>
+            <cookadlib-tab name="admin">
+              <a href="/admin">Administration Area</a>
+            </cookadlib-tab>
           </cookadlib-tabs>
         </template>
       </div>
@@ -350,6 +353,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       <cookadlib-cart name="cart" cart="[[cart]]" total="[[total]]"></cookadlib-cart>
       <!-- checkout view -->
       <cookadlib-checkout name="checkout" cart="[[cart]]" total="[[total]]" route="{{subroute}}"></cookadlib-checkout>
+      <!-- admin view -->
+      <cookadlib-admin name="admin" route="[[subroute]]"></cookadlib-admin>
     </iron-pages>
 
     <footer>
