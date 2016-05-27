@@ -14,9 +14,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../bower_components/app-layout/helpers/helpers.html">
 <link rel="import" href="../bower_components/app-route/app-location.html">
 <link rel="import" href="../bower_components/app-route/app-route.html">
-<link rel="import" href="../bower_components/polymerfire/polymerfire.html"> -->
-<!-- <link rel="import" href="../bower_components/polymerfire/firebase-app.html">
-<link rel="import" href="../bower_components/polymerfire/firebase-auth.html"> -->
+<link rel="import" href="../bower_components/polymerfire/polymerfire.html">
+<!-- <link rel="import" href="../bower_components/polymerfire/firebase-app.html"> -->
+<!-- <link rel="import" href="../bower_components/polymerfire/firebase-auth.html"> -->
 <link rel="import" href="../bower_components/iron-flex-layout/iron-flex-layout.html">
 <link rel="import" href="../bower_components/iron-media-query/iron-media-query.html">
 <link rel="import" href="../bower_components/iron-pages/iron-pages.html">
@@ -423,9 +423,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         this.$.auth.signInAnonymously()
         .then(function(response) {
           // successful authentication response here
+          console.log('signInAnonymously', response);
         })
         .catch(function(error) {
           // unsuccessful authentication response here
+          console.log('signInAnonymously', error);
         });
       },
 
@@ -435,9 +437,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         this.$.auth.signInWithPopup()
         .then(function(response) {
           // successful authentication response here
+          console.log('signInWithPopup', response);
         })
         .catch(function(error) {
           // unsuccessful authentication response here
+          console.log('signInWithPopup', error);
         });
       },
 
