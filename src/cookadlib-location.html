@@ -1,0 +1,56 @@
+<!--
+@license
+Copyright (c) 2016 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+
+<link rel="import" href="../bower_components/polymer/polymer.html">
+<link rel="import" href="../bower_components/google-map/google-map.html">
+
+<dom-module id="cookadlib-admin">
+
+  <template>
+
+    <style>
+      :host {
+        display: block;
+        margin: 0 auto;
+      }
+    </style>
+
+    <style is="custom-style">
+      :host {
+        margin: 0 auto;
+      }
+    </style>
+
+    <google-map latitude="37.779" longitude="-122.3892" min-zoom="9" max-zoom="11" language="en">
+      <google-map-marker latitude="37.779" longitude="-122.3892" title="Go Giants!" draggable="true" drag-events>
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/San_Francisco_Giants_Cap_Insignia.svg/200px-San_Francisco_Giants_Cap_Insignia.svg.png" />
+      </google-map-marker>
+      <google-map-poly closed fill-color="red" fill-opacity=".25" stroke-weight="1">
+        <google-map-point latitude="37.779" longitude="-122.3892"></google-map-point>
+        <google-map-point latitude="37.804" longitude="-122.2711"></google-map-point>
+        <google-map-point latitude="37.386" longitude="-122.0837"></google-map-point>
+      </google-map-poly>
+    </google-map>
+
+    <google-map-directions start-address="Oakland" end-address="Mountain View" language="en"></google-map-directions>
+
+  </template>
+
+  <script>
+
+    Polymer({
+
+      is: 'cookadlib-admin'
+
+    });
+
+  </script>
+
+</dom-module>

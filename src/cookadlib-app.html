@@ -262,7 +262,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       The firebase-app element initializes app in firebase-auth (see firebase-app documentation for more information), but an app name can simply be specified at firebase-auth's app-name property instead.
     -->
     <firebase-app
-      api-key="AIzaSyDgKIwWkoMwhRb6qwv2wkZ62UKDrKEgmcw"
+      api-key="[[googleApisKey]]"
       auth-domain="cookadlib-2016.firebaseapp.com"
       database-url="https://cookadlib-2016.firebaseio.com"></firebase-app>
 
@@ -275,6 +275,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       provider="google"
       signed-in="{{signedIn}}"
       on-error="handleError"></firebase-auth>
+
+      <google-maps-api
+        api-key="[[googleApisKey]]"
+        language="[[language]]"></google-maps-api>
 
     <!--
       cookadlib-cart-data maintains the state of the user's shopping cart (in localstorage) and
@@ -322,6 +326,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                 <a href="/list/[[category.name]]">[[category.title]]</a>
               </cookadlib-tab>
             </template>
+            <cookadlib-tab name="location">
+              <a href="/location">Location</a>
+            </cookadlib-tab>
             <cookadlib-tab name="admin">
               <a href="/admin">Administration Area</a>
             </cookadlib-tab>
@@ -353,6 +360,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       <cookadlib-cart name="cart" cart="[[cart]]" total="[[total]]"></cookadlib-cart>
       <!-- checkout view -->
       <cookadlib-checkout name="checkout" cart="[[cart]]" total="[[total]]" route="{{subroute}}"></cookadlib-checkout>
+      <!-- location view -->
+      <cookadlib-location name="location" route="[[subroute]]"></cookadlib-location>
       <!-- admin view -->
       <cookadlib-admin name="admin" route="[[subroute]]"></cookadlib-admin>
     </iron-pages>
@@ -413,10 +422,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
       properties: {
 
-        error: {
+        googleApisKey: {
           type: String,
-          reflectToAttribute: true,
-          observer: '_pageChanged'
+          value: 'AIzaSyDgKIwWkoMwhRb6qwv2wkZ62UKDrKEgmcw'
         },
 
         error: {
