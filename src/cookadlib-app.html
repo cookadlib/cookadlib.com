@@ -21,6 +21,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../bower_components/iron-media-query/iron-media-query.html">
 <link rel="import" href="../bower_components/iron-pages/iron-pages.html">
 <link rel="import" href="../bower_components/iron-selector/iron-selector.html">
+<link rel="import" href="../bower_components/paper-dialog/paper-dialog.html">
+<link rel="import" href="../bower_components/paper-button/paper-button.html">
 <link rel="import" href="cookadlib-category-data.html">
 <!-- Since 'home' is the default route, eagerly load it. -->
 <link rel="import" href="cookadlib-home.html">
@@ -213,9 +215,31 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         }
       }
 
+      paper-dialog table {
+        text-align: left;
+      }
+
+      paper-dialog table tr th {
+        padding-right: 1rem;
+      }
+
+      .profile-btn-container {
+        margin-left: 1rem;
+      }
+
+      paper-icon-button.photoURL {
+        --paper-icon-button-ink-color: var(--paper-orange-500);
+        border-radius: 1.5rem;
+        /*height: 3rem;*/
+        overflow: hidden;
+        padding: 0;
+        /*width: 3rem;*/
+      }
+
     </style>
 
     <cookadlib-analytics key="UA-51597112-1"></cookadlib-analytics>
+
     <!--
       app-location and app-route elements provide the state of the URL for the app.
     -->
@@ -282,6 +306,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           </a>
           <div class="cart-badge" aria-hidden="true" hidden$="[[!numItems]]">[[numItems]]</div>
         </div>
+        <div class="profile-btn-container">
+          <paper-icon-button class="photoURL" src="[[user.photoURL]]" on-tap="openUserInformationDialog" hidden$="[[!user]]"></paper-icon-button>
+        </div>
       </app-toolbar>
 
       <!-- Lazy-create the tabs for larger screen sizes. -->
@@ -329,6 +356,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       <a href="https://cookadlib.com">Made by Cook AdLib</a>
 
       <div class="error" hidden$="[[!error]]">[[error.code]]: [[error.message]]</div>
+
       <div hidden$="[[user]]">
         <h3>Email/Password</h3>
         <form on-submit="signInWithEmailAndPassword">
@@ -343,18 +371,26 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           <button on-tap="signInWithGoogle">Sign In With Google</button>
         </p>
       </div>
-      <div hidden$="[[!user]]">
-        <table>
-          <tr><th>uid</th> <td>[[user.uid]]</td></tr>
-          <tr><th>displayName</th> <td>[[user.displayName]]</td></tr>
-          <tr><th>email</th> <td>[[user.email]]</td></tr>
-          <tr><th>emailVerified</th> <td>[[user.emailVerified]]</td></tr>
-        </table>
 
-        <button on-tap="signOut">Sign Out</button>
-      </div>
+      <paper-button on-tap="openUserInformationDialog" hidden$="[[!user]]">User Information</paper-button>
 
     </footer>
+
+    <paper-dialog id="user-information-dialog">
+      <h2>User Information</h2>
+
+      <table>
+        <tr><th>uid</th> <td>[[user.uid]]</td></tr>
+        <tr><th>displayName</th> <td>[[user.displayName]]</td></tr>
+        <tr><th>email</th> <td>[[user.email]]</td></tr>
+        <tr><th>emailVerified</th> <td>[[user.emailVerified]]</td></tr>
+        <tr><th>photoURL</th> <td><img src="[[user.photoURL]]" alt="Profile Image" /></td></tr>
+      </table>
+
+      <div class="buttons">
+        <paper-button on-tap="signOut" dialog-dismiss>Sign Out</paper-button>
+      </div>
+    </paper-dialog>
 
     <!-- a11y announcer -->
     <div class="announcer" aria-live="assertive">[[_a11yLabel]]</div>
@@ -378,8 +414,14 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           observer: '_pageChanged'
         },
 
-        page: {
+        error: {
           value: null
+        },
+
+        page: {
+          type: String,
+          reflectToAttribute: true,
+          observer: '_pageChanged'
         },
 
         numItems: {
@@ -411,6 +453,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         'change-section': '_onChangeSection',
         'announce': '_onAnnounce',
         'dom-change': '_domChange'
+      },
+
+      handleError: function(error) {
+        console.error(error);
       },
 
       showError: function(error) {
@@ -463,6 +509,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       signOut: function() {
         this.error = null;
         this.$.auth.signOut();
+      },
+
+      openUserInformationDialog: function() {
+        this.$['user-information-dialog'].open();
       },
 
       created: function() {
