@@ -11,6 +11,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../bower_components/polymer/polymer.html">
 <link rel="import" href="../bower_components/google-analytics/google-analytics.html">
 <link rel="import" href="../bower_components/google-signin/google-signin.html">
+<link rel="import" href="../bower_components/iron-flex-layout/iron-flex-layout.html">
 
 <dom-module id="cookadlib-admin">
 
@@ -26,6 +27,13 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     <style is="custom-style">
       :host {
         margin: 0 auto;
+      }
+
+      footer,
+      google-analytics-dashboard,
+      header {
+        margin-left: var(--container-offset-horizontal);
+        margin-right: var(--container-offset-horizontal);
       }
 
       header {
@@ -53,8 +61,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       }
 
       google-analytics-dashboard {
-        display: flex;
-        flex-wrap: wrap;
+        @apply(--layout-horizontal);
+        @apply(--layout-wrap);
+        /*display: flex;
+        flex-wrap: wrap;*/
         transition: opacity .3s ease;
       }
 
@@ -66,11 +76,23 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       google-analytics-dashboard > * {
         box-sizing: border-box;
         margin-bottom: 2rem;
-        width: calc(50% - 4rem);
+      }
+
+      @media (max-width: 767px) {
+        google-analytics-dashboard > * {
+          width: 100%;
+        }
+      }
+      @media (min-width: 768px) {
+        google-analytics-dashboard > * {
+          width: calc(50% - 4rem);
+        }
       }
 
       google-analytics-dashboard > *:nth-child(even) {
-        margin-left: 4rem;
+        @media (min-width: 768px) {
+          margin-left: 4rem;
+        }
       }
 
       google-analytics-chart {
@@ -165,8 +187,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     </style>
 
     <header>
-      <h1>Google Analytics</h1>
-      <h2>Polymer Elements Demo</h2>
+      <h1>Google Analytics Overview</h1>
       <google-signin
         client-id="1054047045356-j8pgqgls9vdef3rl09hapoicumbte0bo.apps.googleusercontent.com">
       </google-signin>
@@ -208,6 +229,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       </google-analytics-chart>
 
     </google-analytics-dashboard>
+
+    <footer>
+      <a href="https://analytics.google.com/analytics/web/#report/defaultid/a51597112w83846623p86880619/" target="_blank">View "All Web Site Data" on analytics.google.com</a>
+    </footer>
 
   </template>
 

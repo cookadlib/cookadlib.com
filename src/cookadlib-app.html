@@ -14,16 +14,23 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../bower_components/app-layout/helpers/helpers.html">
 <link rel="import" href="../bower_components/app-route/app-location.html">
 <link rel="import" href="../bower_components/app-route/app-route.html">
+<link rel="import" href="../bower_components/google-calendar/google-calendar.html">
 <link rel="import" href="../bower_components/google-map/google-map.html">
-<link rel="import" href="../bower_components/polymerfire/polymerfire.html">
 <!-- <link rel="import" href="../bower_components/polymerfire/firebase-app.html"> -->
 <!-- <link rel="import" href="../bower_components/polymerfire/firebase-auth.html"> -->
 <link rel="import" href="../bower_components/iron-flex-layout/iron-flex-layout.html">
 <link rel="import" href="../bower_components/iron-media-query/iron-media-query.html">
 <link rel="import" href="../bower_components/iron-pages/iron-pages.html">
 <link rel="import" href="../bower_components/iron-selector/iron-selector.html">
+<link rel="import" href="../bower_components/iron-swipeable-container/iron-swipeable-container.html">
+<link rel="import" href="../bower_components/paper-badge/paper-badge.html">
+<link rel="import" href="../bower_components/paper-card/paper-card.html">
 <link rel="import" href="../bower_components/paper-dialog/paper-dialog.html">
+<link rel="import" href="../bower_components/iron-icons/communication-icons.html">
+<link rel="import" href="../bower_components/iron-icons/iron-icons.html">
+<link rel="import" href="../bower_components/iron-icons/social-icons.html">
 <link rel="import" href="../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../bower_components/polymerfire/polymerfire.html">
 <link rel="import" href="cookadlib-category-data.html">
 <!-- Since 'home' is the default route, eagerly load it. -->
 <link rel="import" href="cookadlib-home.html">
@@ -48,6 +55,13 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         --paper-spinner-color: var(--app-accent-color);
         -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
         color: var(--app-primary-color);
+
+        @media (max-width: 767px) {
+          --container-offset-horizontal: 10px;
+        }
+        @media (min-width: 768px) {
+          --container-offset-horizontal: 20px;
+        }
       }
 
       app-header {
@@ -87,6 +101,18 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       .menu-btn {
         display: none;
       }
+
+      app-toolbar > div:not(:last-of-type) {
+        display: inline-block;
+        margin-right: .5rem;
+        padding-right: 1rem;
+        position: relative;
+      }
+
+      /*app-toolbar paper-badge {
+        top: 0;
+        right: 0;
+      }*/
 
       .cart-btn-container {
         position: relative;
@@ -216,6 +242,14 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         }
       }
 
+      paper-dialog paper-card {
+        width: 100%;
+      }
+
+      paper-dialog paper-card:not(:last-child) {
+        margin-bottom: 1rem;
+      }
+
       paper-dialog table {
         text-align: left;
       }
@@ -312,8 +346,20 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           </a>
           <div class="cart-badge" aria-hidden="true" hidden$="[[!numItems]]">[[numItems]]</div>
         </div>
+        <div class="messages-btn-container">
+          <paper-icon-button id="user-messages-icon" icon="communication:message" aria-label="Messages" on-tap="openUserMessagesDialog" hidden$="[[!user]]"></paper-icon-button>
+          <paper-badge for="user-messages-icon" label="5"></paper-badge>
+        </div>
+        <div class="notifications-btn-container">
+          <paper-icon-button id="user-notifications-icon" icon="social:notifications-active" aria-label="Notifications" on-tap="openUserNotificationsDialog" hidden$="[[!user]]"></paper-icon-button>
+          <paper-badge for="user-notifications-icon" label="3"></paper-badge>
+        </div>
+        <div class="planner-btn-container">
+          <paper-icon-button id="user-planner-icon" icon="icons:event" aria-label="Planner" on-tap="openUserPlannerDialog" hidden$="[[!user]]"></paper-icon-button>
+          <paper-badge for="user-planner-icon" label="2"></paper-badge>
+        </div>
         <div class="profile-btn-container">
-          <paper-icon-button class="photoURL" src="[[user.photoURL]]" on-tap="openUserInformationDialog" hidden$="[[!user]]"></paper-icon-button>
+          <paper-icon-button class="photoURL" src="[[user.photoURL]]" aria-label="User Informationn Dialog" on-tap="openUserInformationDialog" hidden$="[[!user]]"></paper-icon-button>
         </div>
       </app-toolbar>
 
@@ -351,21 +397,23 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       </app-drawer>
     </template>
 
-    <iron-pages role="main" selected="[[page]]" attr-for-selected="name" selected-attribute="visible">
+    <iron-pages id="main" role="main" selected="[[page]]" attr-for-selected="name" selected-attribute="visible">
       <!-- home view -->
-      <cookadlib-home name="home" categories="[[categories]]"></cookadlib-home>
+      <cookadlib-home name="home" title="Home" categories="[[categories]]"></cookadlib-home>
+      <!-- grid view of items in a category -->
+      <cookadlib-grid name="grid" title="Grid" route="[[subroute]]" offline="[[offline]]" page-title={{pageTitle}}></cookadlib-grid>
       <!-- list view of items in a category -->
-      <cookadlib-list name="list" route="[[subroute]]" offline="[[offline]]"></cookadlib-list>
+      <cookadlib-list name="list" title="List" route="[[subroute]]" offline="[[offline]]" page-title={{pageTitle}}></cookadlib-list>
       <!-- detail view of one item -->
-      <cookadlib-detail name="detail" route="[[subroute]]" offline="[[offline]]"></cookadlib-detail>
+      <cookadlib-detail name="detail" title="Detail" route="[[subroute]]" offline="[[offline]]"></cookadlib-detail>
       <!-- cart view -->
-      <cookadlib-cart name="cart" cart="[[cart]]" total="[[total]]"></cookadlib-cart>
+      <cookadlib-cart name="cart" title="Cart Overview" cart="[[cart]]" total="[[total]]"></cookadlib-cart>
       <!-- checkout view -->
-      <cookadlib-checkout name="checkout" cart="[[cart]]" total="[[total]]" route="{{subroute}}"></cookadlib-checkout>
+      <cookadlib-checkout name="checkout" title="Checkout" cart="[[cart]]" total="[[total]]" route="{{subroute}}"></cookadlib-checkout>
       <!-- location view -->
-      <cookadlib-location name="location" route="[[subroute]]"></cookadlib-location>
+      <cookadlib-location name="location" title="Location" route="[[subroute]]"></cookadlib-location>
       <!-- admin view -->
-      <cookadlib-admin name="admin" route="[[subroute]]"></cookadlib-admin>
+      <cookadlib-admin name="admin" title="Administration Area" route="[[subroute]]"></cookadlib-admin>
     </iron-pages>
 
     <footer>
@@ -388,8 +436,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         </p>
       </div>
 
-      <paper-button on-tap="openUserInformationDialog" hidden$="[[!user]]">User Information</paper-button>
-
     </footer>
 
     <paper-dialog id="user-information-dialog">
@@ -406,6 +452,26 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       <div class="buttons">
         <paper-button on-tap="signOut" dialog-dismiss>Sign Out</paper-button>
       </div>
+    </paper-dialog>
+
+    <paper-dialog id="user-messages-dialog">
+      <iron-swipeable-container>
+        <paper-card heading="Message 1"></paper-card>
+        <paper-card heading="Message 2"></paper-card>
+        <paper-card heading="Message 3"></paper-card>
+      </iron-swipeable-container>
+    </paper-dialog>
+
+    <paper-dialog id="user-notifications-dialog">
+      <iron-swipeable-container>
+        <paper-card heading="Notification 1"></paper-card>
+        <paper-card heading="Notification 2"></paper-card>
+        <paper-card heading="Notification 3"></paper-card>
+      </iron-swipeable-container>
+    </paper-dialog>
+
+    <paper-dialog id="user-planner-dialog">
+      <google-calendar-list title="My meal planner"></google-calendar-list>
     </paper-dialog>
 
     <!-- a11y announcer -->
@@ -437,6 +503,16 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           type: String,
           reflectToAttribute: true,
           observer: '_pageChanged'
+        },
+
+        pageTitle: {
+          type: String,
+          value: document.title
+        },
+
+        siteTitle: {
+          type: String,
+          value: document.title
         },
 
         numItems: {
@@ -479,7 +555,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       },
 
       signInAnonymously: function() {
-        console.log('signInAnonymously');
         this.error = null;
         this.$.auth.signInAnonymously()
         .then(function(response) {
@@ -493,14 +568,13 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       },
 
       signInWithGoogle: function() {
-        console.log('signInWithGoogle', this.$.auth);
         this.error = null;
         this.$.auth.signInWithPopup()
-        .then(function(response) {
+        .then((response) => {
           // successful authentication response here
           console.log('signInWithPopup', response);
         })
-        .catch(function(error) {
+        .catch((error) => {
           // unsuccessful authentication response here
           console.log('signInWithPopup', error);
         });
@@ -530,6 +604,18 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         this.$['user-information-dialog'].open();
       },
 
+      openUserMessagesDialog: function() {
+        this.$['user-messages-dialog'].open();
+      },
+
+      openUserNotificationsDialog: function() {
+        this.$['user-notifications-dialog'].open();
+      },
+
+      openUserPlannerDialog: function() {
+        this.$['user-planner-dialog'].open();
+      },
+
       created: function() {
         window.performance && performance.mark && performance.mark('cookadlib-app.created');
         // Custom elements polyfill safe way to indicate an element has been upgraded.
@@ -542,10 +628,21 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           this.listen(window, 'online', '_notifyNetworkStatus');
           this.listen(window, 'offline', '_notifyNetworkStatus');
         });
+
+        window.setTimeout(() => {
+          let paperBadges = Polymer.dom(this.root).querySelectorAll('paper-badge');
+          for (let paperBadge of paperBadges) {
+            paperBadge.updatePosition();
+            // paperBadge.notifyResize();
+          }
+        }, 2000);
+
       },
 
       _routePageChanged: function(page) {
         this.page = page || 'home';
+        this.pageTitle = this.$.main.selectedItem.title + ' - ' + this.siteTitle;
+        document.title = this.pageTitle;
         // Scroll to the top of the page on every *route* change. Use `Polymer.AppLayout.scroll`
         // with `behavior: 'silent'` to disable header scroll effects during the scroll.
         Polymer.AppLayout.scroll({ top: 0, behavior: 'silent' });
@@ -677,7 +774,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       },
 
       _computeShouldShowTabs: function(page, smallScreen) {
-        return (page === 'home' || page === 'list' || page === 'detail') && !smallScreen;
+        return (page === 'home' || page === 'grid' || page === 'list' || page === 'detail' || page === 'location') && !smallScreen;
       },
 
       _computeShouldRenderTabs: function(_shouldShowTabs, loadComplete) {

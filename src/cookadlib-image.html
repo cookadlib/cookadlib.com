@@ -35,6 +35,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         @apply(--cookadlib-image-img);
       }
 
+      :host(.cover) img {
+        height: 100%;
+        object-fit: cover;
+        width: 100%;
+      }
+
     </style>
 
     <img id="img" alt$="[[alt]]" on-load="_onImgLoad" on-error="_onImgError">
