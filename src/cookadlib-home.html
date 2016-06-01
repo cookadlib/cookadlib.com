@@ -110,11 +110,13 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         </cookadlib-button>
       </div>
     </template>
-aaa
+
     <firebase-document
-      path="/users/{{userId}}/notes/{{noteId}}"
+      path="/micronutrient/description"
       data="{{noteData}}">
     </firebase-document>
+
+    <input type="text" value="{{noteData}}"></input>
 
   </template>
 
