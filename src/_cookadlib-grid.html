@@ -12,13 +12,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../bower_components/app-route/app-route.html">
 <link rel="import" href="../bower_components/iron-icons/iron-icons.html">
 <link rel="import" href="../bower_components/iron-flex-layout/iron-flex-layout.html">
-<link rel="import" href="../bower_components/paper-input/paper-input.html">
-<link rel="import" href="../bower_components/polymerfire/firebase-query.html">
-<link rel="import" href="../bower_components/vaadin-grid/vaadin-grid.html">
-<!-- <link rel="import" href="cookadlib-category-data.html"> -->
+<link rel="import" href="cookadlib-category-data.html">
 <link rel="import" href="cookadlib-common-styles.html">
-<!-- <link rel="import" href="cookadlib-image.html"> -->
-<!-- <link rel="import" href="cookadlib-grid-item.html"> -->
+<link rel="import" href="cookadlib-image.html">
+<link rel="import" href="cookadlib-grid-item.html">
 
 <dom-module id="cookadlib-grid">
 
@@ -26,8 +23,54 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
     <style include="cookadlib-common-styles">
 
-      #grid {
-        height: 500px;
+      .hero-image {
+        position: relative;
+        height: 320px;
+        overflow: hidden;
+        margin-bottom: 32px;
+      }
+
+      .hero-image {
+        --cookadlib-image-img: {
+          position: absolute;
+          top: 0;
+          bottom: 0;
+          left: -9999px;
+          right: -9999px;
+          max-width: none;
+        };
+      }
+
+      header {
+        margin-bottom: 32px;
+      }
+
+      .grid {
+        @apply(--layout-horizontal);
+        @apply(--layout-wrap);
+        @apply(--layout-justified);
+        margin: 0;
+      }
+
+      .grid > a {
+        -webkit-flex: 1 1;
+        flex: 1 1;
+        -webkit-flex-basis: 33.3333%;
+        flex-basis: 33.3333%;
+        max-width: 33.3333%;
+        text-decoration: none;
+      }
+
+      @media (max-width: 767px) {
+        .hero-image {
+          display: none;
+        }
+
+        .grid > a {
+          -webkit-flex-basis: 50%;
+          flex-basis: 50%;
+          max-width: 50%;
+        }
       }
 
     </style>
@@ -43,66 +86,44 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     <!--
       cookadlib-category-data provides the category data for a given category name.
     -->
-    <!-- <cookadlib-category-data
+    <cookadlib-category-data
         id="categoryData"
         category-name="[[routeData.category]]"
         category="{{category}}"
-        failure="{{failure}}"></cookadlib-category-data> -->
+        failure="{{failure}}"></cookadlib-category-data>
 
-    <!-- <cookadlib-image
+    <cookadlib-image
         alt="[[category.title]]"
         src="[[category.image]]"
-        placeholder-img="[[category.placeholder]]" class="hero-image"></cookadlib-image> -->
+        placeholder-img="[[category.placeholder]]" class="hero-image"></cookadlib-image>
 
-    <!-- <header>
+    <header>
       <h1>[[category.title]]</h1>
       <span>[[_getPluralizedQuantity(category.items.length)]]</span>
-    </header> -->
+      <a href$="[[_getListPageHref(route)]]">
+        <paper-icon-button icon="icons:view-list" aria-label="Show list view"></paper-icon-button>
+      </a>
+      <a href$="[[_getGridPageHref(route)]]">
+        <paper-icon-button icon="icons:view-quilt" aria-label="Show grid view"></paper-icon-button>
+      </a>
+    </header>
 
-    <!-- See https://vaadin.com/elements/-/element/vaadin-grid -->
-
-    <firebase-query
-        id="query"
-        path="/[[routeData.category]]"
-        data="{{data}}">
-    </firebase-query>
-
-    <paper-input id="filter" label="Filter by name"></paper-input>
-
-    <vaadin-grid id="grid" selection-mode="multi" frozen-columns="2">
-      <table>
-        <colgroup>
-          <col name="number" width="80" />
-          <col name="name" />
-          <col name="category" />
-        </colgroup>
-        <thead>
-            <tr>
-              <th>Key</th>
-              <th>Name</th>
-              <th>Category</th>
-            </tr>
-        </thead>
-        <tbody>
-        <template is="dom-repeat" items="[[data]]" as="match">
-          <tr>
-            <td>[[match.__firebaseKey__]]</td>
-            <td>[[match.name]]</td>
-            <td>[[match.category]]</td>
-          </tr>
-        </template>
-        </tbody>
-      </table>
-    </vaadin-grid>
+    <div class="grid" hidden$="[[failure]]">
+      <template is="dom-repeat" items="[[_getGridItems(category.items)]]" initial-count="4">
+        <a href$="[[_getItemHref(item)]]">
+          <cookadlib-grid-item item="[[item]]"></cookadlib-grid-item>
+        </a>
+      </template>
+    </div>
 
     <!--
       cookadlib-network-warning shows a warning message when the items can't be rendered due
       to network conditions.
     -->
-    <!-- <cookadlib-network-warning
+    <cookadlib-network-warning
         hidden$="[[!failure]]"
         offline="[[offline]]"
-        on-try-reconnect="_tryReconnect"></cookadlib-network-warning> -->
+        on-try-reconnect="_tryReconnect"></cookadlib-network-warning>
 
   </template>
 
@@ -137,7 +158,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         '_categoryChanged(category, visible)'
       ],
 
-      _getListItems: function(items) {
+      _getGridItems: function(items) {
         // Return placeholder items when the items haven't loaded yet.
         return items || [{},{},{},{},{},{},{},{},{},{}];
       },
@@ -146,6 +167,14 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         // By returning null when `itemId` is undefined, the href attribute won't be set and
         // the link will be disabled.
         return item.name ? ['/detail', this.category.name, item.name].join('/') : null;
+      },
+
+      _getGridPageHref: function(route) {
+        return ['/grid', route.path].join('');
+      },
+
+      _getListPageHref: function(route) {
+        return ['/list', route.path].join('');
       },
 
       _getPluralizedQuantity: function(quantity) {
@@ -171,7 +200,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       },
 
       _tryReconnect: function() {
-        // this.$.categoryData.refresh();
+        this.$.categoryData.refresh();
       },
 
       _offlineChanged: function(offline) {

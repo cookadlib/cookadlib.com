@@ -33,7 +33,11 @@
     "polymer": "polymer/polymer#^1.4.0",
     "polymerfire": "firebase/polymerfire#^0.9.2",
     "moment": "~2.13.0",
-    "star-rating": "*"
+    "star-rating": "*",
+    "vaadin-grid": "^1.0.0",
+    "vaadin-combo-box": "^1.0.0",
+    "vaadin-date-picker": "^1.0.0",
+    "vaadin-upload": "^1.0.0"
   },
   "devDependencies": {
     "web-component-tester": "^4.2.2",

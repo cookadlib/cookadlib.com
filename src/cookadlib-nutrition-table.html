@@ -12,7 +12,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../bower_components/iron-flex-layout/iron-flex-layout.html">
 <link rel="import" href="cookadlib-ripple-container.html">
 
-<dom-module id="cookadlib-tab">
+<dom-module id="cookadlib-nutrition-table">
   <template strip-whitespace>
     <style>
       [hidden] {
@@ -23,30 +23,88 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         display: inline-block;
         position: relative;
       }
-
-      #overlay {
-        pointer-events: none;
-        display: none;
-        position: absolute;
-        top: 0;
-        right: 0;
-        bottom: 0;
-        left: 0;
-        @apply(--cookadlib-tab-overlay);
-      }
-
-      :host(.cookadlib-tabs-overlay-static-above) #overlay {
-        display: block;
-      }
     </style>
-    <div id="overlay"></div>
-    <cookadlib-ripple-container>
-      <content></content>
-    </cookadlib-ripple-container>
+    <div itemprop="nutrition" itemscope itemtype="http://schema.org/NutritionInformation">
+    	<h2 class="title">Nutrition Facts</h2>
+    	<span itemprop="name">USDA Commodity, salsa - 100 g</span>
+    	<div class="serving">
+    		<div class="cf">
+    			<div class="servingSizeText fl">Serving Size:</div>
+    			<div class="rel servingSizeField fl">
+    				<div class="setter">
+    					<a href="Increase the quantity" class="unitQuantityUp" rel="nofollow"></a>
+    					<a href="Decrease the quantity" class="unitQuantityDown" rel="nofollow"></a>
+    				</div><!-- closing class="setter" -->
+    				<input type="text" value="100" class="unitQuantityBox">
+    				<input type="hidden" value="100" id="nixLabelBeforeQuantity">
+    			</div><!-- closing class="servingSizeField" -->
+    			<div class="servingUnit fl unitHasTextbox">g</div>
+    			<div class="servingWeightGrams fl gramsHasTextbox">(<span itemprop="servingSize">100g</span>)</div>
+    		</div><!-- closing class="cf" -->
+    	</div><!-- closing class="serving" -->
+    	<div class="bar1"></div>
+    	<div class="line m"><b>Amount Per Serving</b></div>
+    	<div class="line">
+    		<div class="fr">Calories from Fat 0</div>
+    		<div><b>Calories</b> <span itemprop="calories">35</span></div>
+    	</div>
+    	<div class="bar2"></div>
+    	<div class="line ar"><b>% Daily Value<sup>*</sup></b></div>
+    	<div class="line">
+    		<div class="dv"><b>0</b>%</div>
+    		<b>Total Fat</b> <span itemprop="fatContent">0g
+    	</span></div>
+    	<div class="line indent">
+    		<div class="dv"><b>0</b>%</div>
+    		Saturated Fat <span itemprop="saturatedFatContent">0g
+    	</span></div>
+    	<div class="line indent">
+    		<i>Trans</i> Fat <span itemprop="transFatContent">0g
+    	</span></div>
+    	<div class="line">
+    		<div class="dv"><b>0</b>%</div>
+    		<b>Cholesterol</b> <span itemprop="cholesterolContent">0mg
+    	</span></div>
+    	<div class="line">
+    		<div class="dv"><b>18</b>%</div>
+    		<b>Sodium</b> <span itemprop="sodiumContent">430mg
+    	</span></div>
+    	<div class="line">
+    		<div class="dv"><b>2</b>%</div>
+    		<b>Total Carbohydrates</b> <span itemprop="carbohydrateContent">7g
+    	</span></div>
+    	<div class="line indent">
+    		<div class="dv"><b>4</b>%</div>
+    		Dietary Fiber <span itemprop="fiberContent">1g
+    	</span></div>
+    	<div class="line"><b>Protein</b> <span itemprop="proteinContent">2g</span></div>
+    	<div class="bar1"></div>
+    	<div class="line vitaminA">
+    		<div class="dv">10%</div>
+    		Vitamin A
+    	</div>
+    	<div class="line vitaminC">
+    		<div class="dv">6%</div>
+    		Vitamin C
+    	</div>
+    	<div class="line calcium">
+    		<div class="dv">2%</div>
+    		Calcium
+    	</div>
+    	<div class="line iron">
+    		<div class="dv">10%</div>
+    		Iron
+    	</div>
+    	<div class="dvCalorieDiet line">
+    		<div class="calorieNote">
+    			<span class="star">*</span> Percent Daily Values are based on a 2000 calorie diet.
+    		</div><!-- closing class="calorieNote" -->
+    	</div><!-- closing class="dvCalorieDiet line" -->
+    </div>
   </template>
   <script>
     Polymer({
-      is: 'cookadlib-tab'
+      is: 'cookadlib-nutrition-table'
     });
   </script>
 </dom-module>
