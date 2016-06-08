@@ -1,0 +1,57 @@
+{
+  "private": true,
+  "name": "www.cookadlib.com",
+  "description": "API",
+  "version": "0.1.0",
+  "domain": "cookadlib.com",
+  "domains": [
+    "cookadlib.com"
+  ],
+  "subdomain": "www",
+  "homepage": "https://github.com/cookadlib/www#readme",
+  "author": "The Cook AdLib Team",
+  "contributors": [
+    {
+      "name": "Karl Podger",
+      "email": "karl@cookadlib.com"
+    }
+  ],
+  "keywords": [
+    "cooking",
+    "diet",
+    "health",
+    "polymer",
+    "bower",
+    "gulp",
+    "browser-sync",
+    "modernizr",
+    "npm",
+    "node",
+    "docker",
+    "firebase"
+  ],
+  "main": "index.js",
+  "dependencies": {
+  },
+  "devDependencies": {
+  },
+  "engines": {
+
+  },
+  "scripts": {
+    "build": " polymer build",
+    "deploy": " polymer build && firebase deploy",
+    "lint": " polymer lint",
+    "start": " polymer serve",
+    "test": "polymer test",
+    "watch": " polymer serve"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cookadlib/www.git"
+  },
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/cookadlib/www/issues"
+  }
+}

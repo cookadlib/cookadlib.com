@@ -1,7 +1,6 @@
 <!doctype html>
 
 <html lang="en">
-
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
@@ -9,8 +8,7 @@
 
   <title>Cook AdLib</title>
 
-  <!-- Place favicon.ico in the `app/` directory -->
-  <!-- <base href="/"> -->
+  <link rel="shortcut icon" sizes="32x32" href="/images/shop-icon-32.png">
 
   <!-- Chrome for Android theme color -->
   <meta name="theme-color" content="#fff">
@@ -38,6 +36,7 @@
   <link rel="import" href="/src/cookadlib-app.html" async>
 
   <style>
+
     body {
       margin: 0;
       font-family: 'Roboto', 'Noto', sans-serif;
@@ -45,6 +44,7 @@
       line-height: 1.5;
       min-height: 100vh;
     }
+
     /* styling for render while resources are loading */
     cookadlib-app[unresolved] {
       display: block;
@@ -58,27 +58,29 @@
       padding: 0 16px;
       overflow: visible;
     }
+
   </style>
 
 </head>
-
 <body>
 
   <!-- Google Tag Manager -->
-  <!-- <noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-T6SQVJ"
+  <noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-T6SQVJ"
   height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
   new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
   j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   '//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-  })(window,document,'script','dataLayer','GTM-T6SQVJ');</script> -->
+  })(window,document,'script','dataLayer','GTM-T6SQVJ');</script>
   <!-- End Google Tag Manager -->
 
   <cookadlib-app unresolved>Application loading</cookadlib-app>
 
   <script>
     window.performance && performance.mark && performance.mark('index.html');
+
     Polymer = {lazyRegister: true, dom: 'shadow'};
+
     (function() {
       if ('registerElement' in document
           && 'import' in document.createElement('link')
@@ -98,5 +100,4 @@
   <!-- endbuild -->
 
 </body>
-
 </html>
