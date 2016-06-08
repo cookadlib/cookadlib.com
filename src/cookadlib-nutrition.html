@@ -9,7 +9,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 -->
 
 <link rel="import" href="../bower_components/polymer/polymer.html">
+<link rel="import" href="../bower_components/app-route/app-route.html">
 <link rel="import" href="../bower_components/iron-flex-layout/iron-flex-layout.html">
+<link rel="import" href="../bower_components/polymerfire/firebase-document.html">
+<link rel="import" href="cookadlib-category-data.html">
 <link rel="import" href="cookadlib-ripple-container.html">
 
 <dom-module id="cookadlib-nutrition-table">
@@ -24,6 +27,31 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         position: relative;
       }
     </style>
+
+    <!--
+      app-route provides the name of the category.
+    -->
+    <app-route
+        route="[[route]]"
+        pattern="/:category"
+        data="{{routeData}}"></app-route>
+
+    <!--
+      cookadlib-category-data provides the category data for a given category name.
+    -->
+    <cookadlib-category-data
+        id="categoryData"
+        category-name="[[routeData.category]]"
+        category="{{category}}"
+        failure="{{failure}}"></cookadlib-category-data>
+
+    <firebase-document
+      path="/nutrition/{{category}}"
+      data="{{noteData}}">
+    </firebase-document>
+
+    <input type="text" value="{{noteData}}"></input>
+
     <div itemprop="nutrition" itemscope itemtype="http://schema.org/NutritionInformation">
     	<h2 class="title">Nutrition Facts</h2>
     	<span itemprop="name">USDA Commodity, salsa - 100 g</span>

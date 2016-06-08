@@ -380,6 +380,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             <cookadlib-tab name="admin">
               <a href="/admin">Administration Area</a>
             </cookadlib-tab>
+            <cookadlib-tab name="nutrition">
+              <a href="/nutrition">Nutrition table</a>
+            </cookadlib-tab>
           </cookadlib-tabs>
         </template>
       </div>
@@ -399,21 +402,23 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
     <iron-pages id="main" role="main" selected="[[page]]" attr-for-selected="name" selected-attribute="visible">
       <!-- home view -->
-      <cookadlib-home name="home" title="Home" categories="[[categories]]"></cookadlib-home>
+      <cookadlib-home name="home" categories="[[categories]]"></cookadlib-home>
       <!-- grid view of items in a category -->
-      <cookadlib-grid name="grid" title="Grid" route="[[subroute]]" offline="[[offline]]" page-title={{pageTitle}}></cookadlib-grid>
+      <cookadlib-grid name="grid" route="[[subroute]]" offline="[[offline]]"></cookadlib-grid>
       <!-- list view of items in a category -->
-      <cookadlib-list name="list" title="List" route="[[subroute]]" offline="[[offline]]" page-title={{pageTitle}}></cookadlib-list>
+      <cookadlib-list name="list" route="[[subroute]]" offline="[[offline]]"></cookadlib-list>
       <!-- detail view of one item -->
-      <cookadlib-detail name="detail" title="Detail" route="[[subroute]]" offline="[[offline]]"></cookadlib-detail>
+      <cookadlib-detail name="detail" route="[[subroute]]" offline="[[offline]]"></cookadlib-detail>
       <!-- cart view -->
-      <cookadlib-cart name="cart" title="Cart Overview" cart="[[cart]]" total="[[total]]"></cookadlib-cart>
+      <cookadlib-cart name="cart" cart="[[cart]]" total="[[total]]"></cookadlib-cart>
       <!-- checkout view -->
-      <cookadlib-checkout name="checkout" title="Checkout" cart="[[cart]]" total="[[total]]" route="{{subroute}}"></cookadlib-checkout>
+      <cookadlib-checkout name="checkout" cart="[[cart]]" total="[[total]]" route="{{subroute}}"></cookadlib-checkout>
       <!-- location view -->
-      <cookadlib-location name="location" title="Location" route="[[subroute]]"></cookadlib-location>
+      <cookadlib-location name="location" route="[[subroute]]"></cookadlib-location>
       <!-- admin view -->
-      <cookadlib-admin name="admin" title="Administration Area" route="[[subroute]]" google-client-id="[[googleClientId]]"></cookadlib-admin>
+      <cookadlib-admin name="admin" route="[[subroute]]" google-client-id="[[googleClientId]]"></cookadlib-admin>
+      <!-- nutrition table -->
+      <cookadlib-nutrition name="nutrition" route="[[subroute]]" offline="[[offline]]"></cookadlib-nutrition>
     </iron-pages>
 
     <footer>
@@ -513,16 +518,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           type: String,
           reflectToAttribute: true,
           observer: '_pageChanged'
-        },
-
-        pageTitle: {
-          type: String,
-          value: document.title
-        },
-
-        siteTitle: {
-          type: String,
-          value: document.title
         },
 
         numItems: {
@@ -638,21 +633,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           this.listen(window, 'online', '_notifyNetworkStatus');
           this.listen(window, 'offline', '_notifyNetworkStatus');
         });
-
-        window.setTimeout(() => {
-          let paperBadges = Polymer.dom(this.root).querySelectorAll('paper-badge');
-          for (let paperBadge of paperBadges) {
-            paperBadge.updatePosition();
-            // paperBadge.notifyResize();
-          }
-        }, 2000);
-
       },
 
       _routePageChanged: function(page) {
         this.page = page || 'home';
-        this.pageTitle = this.$.main.selectedItem.title + ' - ' + this.siteTitle;
-        document.title = this.pageTitle;
         // Scroll to the top of the page on every *route* change. Use `Polymer.AppLayout.scroll`
         // with `behavior: 'silent'` to disable header scroll effects during the scroll.
         Polymer.AppLayout.scroll({ top: 0, behavior: 'silent' });
@@ -764,7 +748,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       _onAnnounce: function(e) {
         this._announce(e.detail);
       },
-      
+
       // A11y announce the given message.
       _announce: function(message) {
         this._a11yLabel = '';

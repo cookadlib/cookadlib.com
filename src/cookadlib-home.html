@@ -9,7 +9,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 -->
 
 <link rel="import" href="../bower_components/polymer/polymer.html">
-<link rel="import" href="../bower_components/polymerfire/firebase-document.html">
 <link rel="import" href="cookadlib-button.html">
 <link rel="import" href="cookadlib-image.html">
 
@@ -111,13 +110,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         </cookadlib-button>
       </div>
     </template>
-
-    <firebase-document
-      path="/micronutrient/description"
-      data="{{noteData}}">
-    </firebase-document>
-
-    <input type="text" value="{{noteData}}"></input>
 
   </template>
 
