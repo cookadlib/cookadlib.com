@@ -189,7 +189,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     <header>
       <h1>Google Analytics Overview</h1>
       <google-signin
-        client-id="1054047045356-j8pgqgls9vdef3rl09hapoicumbte0bo.apps.googleusercontent.com">
+        client-id="[[googleClientId]]">
       </google-signin>
     </header>
 
@@ -240,7 +240,28 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
     Polymer({
 
-      is: 'cookadlib-admin'
+      is: 'cookadlib-admin',
+
+      properties: {
+
+        route: Object,
+
+        routeData: Object,
+
+        visible: Boolean,
+
+        pageTitle: String,
+
+        offline: {
+          type: Boolean,
+          observer: '_offlineChanged'
+        },
+
+        failure: Boolean,
+
+        googleClientId: String
+
+      },
 
     });
 

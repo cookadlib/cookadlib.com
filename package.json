@@ -1,13 +1,13 @@
 {
   "private": true,
   "name": "www.cookadlib.com",
-  "description": "Website",
+  "description": "API",
   "version": "0.1.0",
   "domain": "cookadlib.com",
   "domains": [
     "cookadlib.com"
   ],
-  "subdomain": "api",
+  "subdomain": "www",
   "homepage": "https://github.com/cookadlib/www#readme",
   "author": "The Cook AdLib Team",
   "contributors": [
@@ -36,15 +36,15 @@
   "devDependencies": {
   },
   "engines": {
-    "node": ">=5.0"
+
   },
   "scripts": {
-    "deploy": "polymer build && firebase deploy",
-    "prepublish": "mkdir -p build && cp -rp node_modules ./build/node_modules && babel . --out-dir build --ignore node_modules,build",
-    "watch": "polymer serve",
-    "start": "node build/index.js",
-    "test": "mocha test.js",
-    "watch": "polymer serve"
+    "build": " polymer build",
+    "deploy": " polymer build && firebase deploy",
+    "lint": " polymer lint",
+    "start": " polymer serve",
+    "test": "polymer test",
+    "watch": " polymer serve"
   },
   "repository": {
     "type": "git",
