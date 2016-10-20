@@ -1,7 +1,7 @@
 # Cook AdLib Website
 
 ## Introduction
-This repository contains the source code for [The Cook AdLib Website](http://www.cookadlib.com/)
+This repository contains the source code for [The Cook AdLib Website](https://cookadlib.com/)
 
 [![Build Status](https://travis-ci.org/cookadlib/www.cookadlib.com.svg)](https://travis-ci.org/cookadlib/www.cookadlib.com)
 
@@ -9,17 +9,14 @@ This repository contains the source code for [The Cook AdLib Website](http://www
 
 ##### Prerequisites
 
-Install [polymer-cli](https://github.com/cookadlib/polymer-cli):
-(Need at least npm v0.3.0)
+Install [polymer-cli](https://github.com/Polymer/polymer-cli):
 
     npm install -g polymer-cli
 
 
 ##### Setup
 
-    git clone https://github.com/cookadlib/www.git
-    cd cookadlib
-    bower install
+    yarn
 
 ### Start the development server
 
